@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Home - GExplore</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="icon" href="assets/flavicon.png" type="image/png">
+</head>
+<body id="top">
+    <div class="wrapper">
+        <div id="header">
+            <img src="assets/GExplore_logo.png" alt="GExplore Logo" class="logo">
+            <div id="topnav">
+                <ul>
+                    <li class="active"><a href="table_scroll.html"><span class="text">Home</span></a></li>
+                    <li><a href="#"><span class="text">Search</span> <span class="angle"></span></a>
+                        <ul class="dropdown">
+                            <li><a href="#">Genes</a></li>
+                            <li><a href="#">Mutations</a></li>
+                            <li><a href="#">Proteins</a></li>
+                            <li><a href="#">Expressions</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#"><span class="text">Tools</span> <span class="angle"></span></a>
+                        <ul class="dropdown">
+                            <li><a href="#">Compare</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#"><span class="text">Help</span></a></li>
+                    <li><a href="#"><span class="text">About</span></a></li>
+                </ul>
+            </div>
+        </div>
+        <div id="intro">
+            <div class="fl">
+                <h2><i>GExplore</i></h2>
+                <p>A tool for large-scale mining of data related to gene or protein function in <i>C. elegans</i>.</p>
+                <p class="readmore"><a href="#">LEARN MORE</a></p>
+            </div>
+        </div>
+        <!-- Table container for the scrollable table -->
+        <div class="table-container">
+            <button id="lockButton">Lock/Unlock Scroll</button>
+            <div id="scrollableTable" class="scroll-locked">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Column 1</th><th>Column 2</th><th>Column 3</th>
+                            <th>Column 4</th><th>Column 5</th><th>Column 6</th>
+                            <th>Column 7</th><th>Column 8</th><th>Column 9</th>
+                            <th>Column 10</th><th>Column 11</th><th>Column 12</th>
+                            <th>Column 13</th><th>Column 14</th><th>Column 15</th>
+                            <th>Column 16</th><th>Column 17</th><th>Column 18</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Adding more rows to enable scrolling -->
+                        <tr><td>Data 1</td><td>Data 2</td><td>Data 3</td>
+                        <td>Data 4</td><td>Data 5</td><td>Data 6</td>
+                        <td>Data 7</td><td>Data 8</td><td>Data 9</td>
+                        <td>Data 10</td><td>Data 11</td><td>Data 12</td>
+                        <td>Data 13</td><td>Data 14</td><td>Data 15</td>
+                        <td>Data 16</td><td>Data 17</td><td>Data 18</td></tr>
+                        <tr><td>Data 1</td><td>Data 2</td><td>Data 3</td>
+                        <td>Data 4</td><td>Data 5</td><td>Data 6</td>
+                        <td>Data 7</td><td>Data 8</td><td>Data 9</td>
+                        <td>Data 10</td><td>Data 11</td><td>Data 12</td>
+                        <td>Data 13</td><td>Data 14</td><td>Data 15</td>
+                        <td>Data 16</td><td>Data 17</td><td>Data 18</td></tr>
+                        <tr><td>Data 1</td><td>Data 2</td><td>Data 3</td>
+                        <td>Data 4</td><td>Data 5</td><td>Data 6</td>
+                        <td>Data 7</td><td>Data 8</td><td>Data 9</td>
+                        <td>Data 10</td><td>Data 11</td><td>Data 12</td>
+                        <td>Data 13</td><td>Data 14</td><td>Data 15</td>
+                        <td>Data 16</td><td>Data 17</td><td>Data 18</td></tr>
+                        <tr><td>Data 1</td><td>Data 2</td><td>Data 3</td>
+                        <td>Data 4</td><td>Data 5</td><td>Data 6</td>
+                        <td>Data 7</td><td>Data 8</td><td>Data 9</td>
+                        <td>Data 10</td><td>Data 11</td><td>Data 12</td>
+                        <td>Data 13</td><td>Data 14</td><td>Data 15</td>
+                        <td>Data 16</td><td>Data 17</td><td>Data 18</td></tr>
+                        <tr><td>Data 1</td><td>Data 2</td><td>Data 3</td>
+                        <td>Data 4</td><td>Data 5</td><td>Data 6</td>
+                        <td>Data 7</td><td>Data 8</td><td>Data 9</td>
+                        <td>Data 10</td><td>Data 11</td><td>Data 12</td>
+                        <td>Data 13</td><td>Data 14</td><td>Data 15</td>
+                        <td>Data 16</td><td>Data 17</td><td>Data 18</td></tr>
+                        <tr><td>Data 1</td><td>Data 2</td><td>Data 3</td>
+                        <td>Data 4</td><td>Data 5</td><td>Data 6</td>
+                        <td>Data 7</td><td>Data 8</td><td>Data 9</td>
+                        <td>Data 10</td><td>Data 11</td><td>Data 12</td>
+                        <td>Data 13</td><td>Data 14</td><td>Data 15</td>
+                        <td>Data 16</td><td>Data 17</td><td>Data 18</td></tr>
+                        <!-- Continue adding as needed -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>Maintained by <a href="mailto:hutter@sfu.ca">H. Hutter</a> | <a href="http://www.sfu.ca/">Simon Fraser University</a></p>
+    </footer>
+    <script src="script.js"></script> <!-- Link to the external JavaScript file -->
+</body>
+</html>
