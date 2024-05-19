@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Display - GExplore</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="icon" href="assets/flavicon.png" type="image/png">
+</head>
+<body id="top">
+    <div class="wrapper">
+        <div id="header">
+            <img src="assets/GExplore_logo.png" alt="GExplore Logo" class="logo">
+            <div id="topnav">
+                <ul>
+                    <li class="active"><a href="home.html"><span class="text">Home</span></a></li>
+                    <li><a href="#"><span class="text">Search</span> <span class="angle"></span></a>
+                        <ul class="dropdown">
+                            <li><a href="#">Genes</a></li>
+                            <li><a href="#">Mutations</a></li>
+                            <li><a href="#">Proteins</a></li>
+                            <li><a href="#">Expressions</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#"><span class="text">Tools</span> <span class="angle"></span></a>
+                        <ul class="dropdown">
+                            <li><a href="#">Compare</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#"><span class="text">Help</span></a></li>
+                    <li><a href="#"><span class="text">About</span></a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="content">
+            <div id="sidebar-icon-container" class="active">
+                <div class="list-vertical-line"></div>
+                <img id="list-icon" src="assets/list-icon.png" alt="Toggle Sidebar" class="list-icon">
+                <div class="table-vertical-line"></div>
+                <img id="table-icon" src="assets/table-icon.png" alt="Toggle Sidebar" class="table-icon">
+                <!-- Add more icons here if needed -->
+            </div>
+            <!-- Sidebar for Search Information and Display Options -->
+            <div id="sidebar">
+                <div id="search-info">
+                    <br />
+                    <h4>Search results</h4>
+                    <p>93 genes found</p>
+
+                    <div class="search-parameter">
+                        <p><strong>Search parameters</strong></p>
+                        <p>Database: Wormbase 292</p>
+                        <p>Gene: unc-*</p>
+                    </div>
+
+                    <div class="collapsible">
+                        <button class="collapsible-btn">Display options</button>
+                        <div class="collapsible-content">
+                            <form>
+                                <fieldset>
+                                    <legend>Show</legend>
+                                    <label><input type="checkbox" name="sequence_name"> sequence name</label>
+                                    <label><input type="checkbox" name="uniprot_id"> UniProt ID</label>
+                                    <label><input type="checkbox" name="protein_domains"> protein domains</label>
+                                    <label><input type="checkbox" name="protein_sequence"> protein sequence</label>
+                                    <label><input type="checkbox" name="genetic_position"> genetic position</label>
+                                    <label><input type="checkbox" name="nucleotide_position"> nucleotide position</label>
+                                    <label><input type="checkbox" name="description_concise"> Description (concise)</label>
+                                    <label><input type="checkbox" name="description_automated"> Description (automated)</label>
+                                    <label><input type="checkbox" name="phenotype_mutants"> Phenotype (mutants)</label>
+                                    <label><input type="checkbox" name="phenotype_rnai"> Phenotype (RNAi)</label>
+                                    <label><input type="checkbox" name="expression"> Expression</label>
+                                    <label><input type="checkbox" name="expression_genomic"> Expression (genomic studies)</label>
+                                    <label><input type="checkbox" name="interacting_genes"> Interacting genes</label>
+                                    <label><input type="checkbox" name="homologs"> Homologs</label>
+                                    <label><input type="checkbox" name="go_terms"> GO terms</label>
+                                    <label><input type="checkbox" name="disease_associations"> Disease associations</label>
+                                </fieldset>
+                                <fieldset>
+                                    <legend>Display</legend>
+                                    <label><input type="radio" name="display" value="html" checked> html display</label>
+                                    <label><input type="radio" name="display" value="text"> text display</label>
+                                </fieldset>
+                                <button type="button" class="update-display-btn">Update Display</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="collapsible">
+                        <button class="collapsible-btn">List of proteins found</button>
+                        <div class="collapsible-content">
+                            <p>unc-1, unc-10, unc-101, unc-103, unc-104, unc-105, unc-11, unc-112, unc-115, unc-116, unc-119, unc-120, unc-122, unc-13, unc-130, unc-132, unc-14, unc-15, unc-16, unc-18, unc-2, unc-22, unc-23, unc-24, unc-25, unc-26, unc-27, unc-29, unc-3, unc-30, unc-31, unc-32, unc-33, unc-34, unc-36, unc-37, unc-38, unc-39, unc-4, unc-40, unc-41, unc-42, unc-43, unc-44, unc-45, unc-46, unc-47, unc-49, unc-5, unc-50, unc-51, unc-52, unc-53, unc-54, unc-55, unc-57, unc-58, unc-59, unc-6, unc-60, unc-61, unc-62, unc-63, unc-64, unc-68, unc-69, unc-7, unc-70, unc-71, unc-73, unc-75, unc-76, unc-77, unc-78, unc-79, unc-8, unc-80, unc-82, unc-83, unc-84, unc-85, unc-86, unc-87, unc-89, unc-9, unc-93, unc-94, unc-95, unc-96, unc-97, unc-98</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main content area for the table -->
+            <div id="main-content">
+                <!-- Title for the table -->
+                <h3 class="table-title">Protein Data Table</h3>
+                <div class="table-container">
+                    <div id="scrollableTable" class="scroll-unlocked">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Column 1</th><th>Column 2</th><th>Column 3</th>
+                                    <th>Column 4</th><th>Column 5</th><th>Column 6</th>
+                                    <th>Column 7</th><th>Column 8</th><th>Column 9</th>
+                                    <th>Column 10</th><th>Column 11</th><th>Column 12</th>
+                                    <th>Column 13</th><th>Column 14</th><th>Column 15</th>
+                                    <th>Column 16</th><th>Column 17</th><th>Column 18</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Adding more rows to enable scrolling -->
+                                <tr><td>Data 1</td><td>Data 2</td><td>Data 3</td>
+                                <td>Data 4</td><td>Data 5</td><td>Data 6</td>
+                                <td>Data 7</td><td>Data 8</td><td>Data 9</td>
+                                <td>Data 10</td><td>Data 11</td><td>Data 12</td>
+                                <td>Data 13</td><td>Data 14</td><td>Data 15</td>
+                                <td>Data 16</td><td>Data 17</td><td>Data 18</td></tr>
+                                <tr><td>Data 1</td><td>Data 2</td><td>Data 3</td>
+                                <td>Data 4</td><td>Data 5</td><td>Data 6</td>
+                                <td>Data 7</td><td>Data 8</td><td>Data 9</td>
+                                <td>Data 10</td><td>Data 11</td><td>Data 12</td>
+                                <td>Data 13</td><td>Data 14</td><td>Data 15</td>
+                                <td>Data 16</td><td>Data 17</td><td>Data 18</td></tr>
+                                <tr><td>Data 1</td><td>Data 2</td><td>Data 3</td>
+                                <td>Data 4</td><td>Data 5</td><td>Data 6</td>
+                                <td>Data 7</td><td>Data 8</td><td>Data 9</td>
+                                <td>Data 10</td><td>Data 11</td><td>Data 12</td>
+                                <td>Data 13</td><td>Data 14</td><td>Data 15</td>
+                                <td>Data 16</td><td>Data 17</td><td>Data 18</td></tr>
+                                <tr><td>Data 1</td><td>Data 2</td><td>Data 3</td>
+                                <td>Data 4</td><td>Data 5</td><td>Data 6</td>
+                                <td>Data 7</td><td>Data 8</td><td>Data 9</td>
+                                <td>Data 10</td><td>Data 11</td><td>Data 12</td>
+                                <td>Data 13</td><td>Data 14</td><td>Data 15</td>
+                                <td>Data 16</td><td>Data 17</td><td>Data 18</td></tr>
+                                <tr><td>Data 1</td><td>Data 2</td><td>Data 3</td>
+                                <td>Data 4</td><td>Data 5</td><td>Data 6</td>
+                                <td>Data 7</td><td>Data 8</td><td>Data 9</td>
+                                <td>Data 10</td><td>Data 11</td><td>Data 12</td>
+                                <td>Data 13</td><td>Data 14</td><td>Data 15</td>
+                                <td>Data 16</td><td>Data 17</td><td>Data 18</td></tr>
+
+                                <tr><td>Data 1</td><td>Data 2</td><td>Data 3</td>
+                                <td>Data 4</td><td>Data 5</td><td>Data 6</td>
+                                <td>Data 7</td><td>Data 8</td><td>Data 9</td>
+                                <td>Data 10</td><td>Data 11</td><td>Data 12</td>
+                                <td>Data 13</td><td>Data 14</td><td>Data 15</td>
+                                <td>Data 16</td><td>Data 17</td><td>Data 18</td></tr>
+                                <tr><td>Data 1</td><td>Data 2</td><td>Data 3</td>
+                                <td>Data 4</td><td>Data 5</td><td>Data 6</td>
+                                <td>Data 7</td><td>Data 8</td><td>Data 9</td>
+                                <td>Data 10</td><td>Data 11</td><td>Data 12</td>
+                                <td>Data 13</td><td>Data 14</td><td>Data 15</td>
+                                <td>Data 16</td><td>Data 17</td><td>Data 18</td></tr>
+                                <tr><td>Data 1</td><td>Data 2</td><td>Data 3</td>
+                                <td>Data 4</td><td>Data 5</td><td>Data 6</td>
+                                <td>Data 7</td><td>Data 8</td><td>Data 9</td>
+                                <td>Data 10</td><td>Data 11</td><td>Data 12</td>
+                                <td>Data 13</td><td>Data 14</td><td>Data 15</td>
+                                <td>Data 16</td><td>Data 17</td><td>Data 18</td></tr>
+                                <tr><td>Data 1</td><td>Data 2</td><td>Data 3</td>
+                                <td>Data 4</td><td>Data 5</td><td>Data 6</td>
+                                <td>Data 7</td><td>Data 8</td><td>Data 9</td>
+                                <td>Data 10</td><td>Data 11</td><td>Data 12</td>
+                                <td>Data 13</td><td>Data 14</td><td>Data 15</td>
+                                <td>Data 16</td><td>Data 17</td><td>Data 18</td></tr>
+                                <tr><td>Data 1</td><td>Data 2</td><td>Data 3</td>
+                                <td>Data 4</td><td>Data 5</td><td>Data 6</td>
+                                <td>Data 7</td><td>Data 8</td><td>Data 9</td>
+                                <td>Data 10</td><td>Data 11</td><td>Data 12</td>
+                                <td>Data 13</td><td>Data 14</td><td>Data 15</td>
+                                <td>Data 16</td><td>Data 17</td><td>Data 18</td></tr>
+                                <tr><td>Data 1</td><td>Data 2</td><td>Data 3</td>
+                                <td>Data 4</td><td>Data 5</td><td>Data 6</td>
+                                <td>Data 7</td><td>Data 8</td><td>Data 9</td>
+                                <td>Data 10</td><td>Data 11</td><td>Data 12</td>
+                                <td>Data 13</td><td>Data 14</td><td>Data 15</td>
+                                <td>Data 16</td><td>Data 17</td><td>Data 18</td></tr>
+                                <tr><td>Data 1</td><td>Data 2</td><td>Data 3</td>
+                                <td>Data 4</td><td>Data 5</td><td>Data 6</td>
+                                <td>Data 7</td><td>Data 8</td><td>Data 9</td>
+                                <td>Data 10</td><td>Data 11</td><td>Data 12</td>
+                                <td>Data 13</td><td>Data 14</td><td>Data 15</td>
+                                <td>Data 16</td><td>Data 17</td><td>Data 18</td></tr>
+                                <tr><td>Data 1</td><td>Data 2</td><td>Data 3</td>
+                                <td>Data 4</td><td>Data 5</td><td>Data 6</td>
+                                <td>Data 7</td><td>Data 8</td><td>Data 9</td>
+                                <td>Data 10</td><td>Data 11</td><td>Data 12</td>
+                                <td>Data 13</td><td>Data 14</td><td>Data 15</td>
+                                <td>Data 16</td><td>Data 17</td><td>Data 18</td></tr>
+                                <tr><td>Data 1</td><td>Data 2</td><td>Data 3</td>
+                                <td>Data 4</td><td>Data 5</td><td>Data 6</td>
+                                <td>Data 7</td><td>Data 8</td><td>Data 9</td>
+                                <td>Data 10</td><td>Data 11</td><td>Data 12</td>
+                                <td>Data 13</td><td>Data 14</td><td>Data 15</td>
+                                <td>Data 16</td><td>Data 17</td><td>Data 18</td></tr>
+                                <tr><td>Data 1</td><td>Data 2</td><td>Data 3</td>
+                                <td>Data 4</td><td>Data 5</td><td>Data 6</td>
+                                <td>Data 7</td><td>Data 8</td><td>Data 9</td>
+                                <td>Data 10</td><td>Data 11</td><td>Data 12</td>
+                                <td>Data 13</td><td>Data 14</td><td>Data 15</td>
+                                <td>Data 16</td><td>Data 17</td><td>Data 18</td></tr>
+                                <tr><td>Data 1</td><td>Data 2</td><td>Data 3</td>
+                                <td>Data 4</td><td>Data 5</td><td>Data 6</td>
+                                <td>Data 7</td><td>Data 8</td><td>Data 9</td>
+                                <td>Data 10</td><td>Data 11</td><td>Data 12</td>
+                                <td>Data 13</td><td>Data 14</td><td>Data 15</td>
+                                <td>Data 16</td><td>Data 17</td><td>Data 18</td></tr>
+                                <tr><td>Data 1</td><td>Data 2</td><td>Data 3</td>
+                                <td>Data 4</td><td>Data 5</td><td>Data 6</td>
+                                <td>Data 7</td><td>Data 8</td><td>Data 9</td>
+                                <td>Data 10</td><td>Data 11</td><td>Data 12</td>
+                                <td>Data 13</td><td>Data 14</td><td>Data 15</td>
+                                <td>Data 16</td><td>Data 17</td><td>Data 18</td></tr>
+                                <!-- Continue adding as needed -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script> <!-- Link to the external JavaScript file -->
+</body>
+</html>
