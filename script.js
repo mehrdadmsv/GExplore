@@ -1,8 +1,11 @@
 document.addEventListener("DOMContentLoaded", function() {
     var collapsibleButtons = document.querySelectorAll(".collapsible-btn");
     var sidebar = document.getElementById("sidebar");
-    var sidebarIcon = document.getElementById("sidebar-icon");
+    var listIcon = document.getElementById("list-icon");
+    var sidebarIconContainer = document.getElementById("sidebar-icon-container");
+    var mainContent = document.getElementById("main-content");
 
+    // Function to handle collapsible content display
     collapsibleButtons.forEach(function(button) {
         button.addEventListener("click", function() {
             var content = this.nextElementSibling;
@@ -14,14 +17,17 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    sidebarIcon.addEventListener("click", function() {
+    // Function to handle sidebar toggle
+    listIcon.addEventListener("click", function() {
         if (sidebar.classList.contains("collapsed")) {
             sidebar.classList.remove("collapsed");
-            sidebarIcon.src = "assets/sidebar_active.png";
+            sidebarIconContainer.classList.add("active");
         } else {
             sidebar.classList.add("collapsed");
-            sidebarIcon.src = "assets/sidebar_inactive.png";
+            sidebarIconContainer.classList.remove("active");
         }
+        // Force a redraw of the table headers to fix the border issue
+        forceRedraw(mainContent);
     });
 
     // Drag and Drop for Table Columns
@@ -153,4 +159,12 @@ document.addEventListener("DOMContentLoaded", function() {
         col.addEventListener('drop', handleDrop, false);
         col.addEventListener('dragend', handleDragEnd, false);
     });
+
+    // Function to force a redraw of the table headers
+    function forceRedraw(element) {
+        var display = element.style.display;
+        element.style.display = 'none';
+        element.offsetHeight; // Force reflow
+        element.style.display = display;
+    }
 });
