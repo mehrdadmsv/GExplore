@@ -28,14 +28,14 @@ html, body {
     margin: 0;
     padding: 0;
     height: 100%;
-    overflow-y: auto;
+    overflow: hidden; /* Prevent overall page scrolling */
     min-width: 760px; /* Prevent window from resizing below 760px = no collision between navbar and logo */
 }
 
 .wrapper {
-    width: 100%; /* Full width */
-    margin: 0 auto;
-    text-align: left;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 /* Header styles */
@@ -222,54 +222,105 @@ html, body {
     transform: translateY(-1px);
 }
 
-
+/* Content layout */
 #content {
     display: flex;
+    flex: 1; /* Take remaining space */
     width: 100%;
-    height: calc(100vh - 50px); /* Adjust according to header/footer height */
+    height: calc(94vh - 0px); /* Adjust according to header/footer height */
 }
 
-  
+#sidebar-icon-container {
+    width: 50px; /* Fixed width for the icon container */
+    background-color: #ffffff; /* Background color for the icon container */
+    border-right: 1px solid var(--border_color); /* Border to separate icon container from sidebar */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px; /* Add some padding for better alignment */
+    position: relative; /* Relative positioning for the active line */
+}
+
+.list-icon {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    margin-bottom: 20px; /* Add some space between icons */
+}
+
+.table-icon {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    margin-bottom: 10px; /* Add some space between icons */
+}
+
+.list-vertical-line {
+    position: absolute;
+    left: 0; /* Align to the left of the icon container */
+    top: 0px; /* Align with the top padding of the icon container */
+    height: 40px; /* Fixed height */
+    width: 2px;
+    background-color: #0080F9; /* Color of the vertical line */
+    display: none; /* Hide by default */
+    z-index: 0; /* Ensure vertical line is behind the icon */
+}
+
+#sidebar-icon-container.active .list-vertical-line {
+    display: block; /* Show when the icon container is active */
+}
+
+.table-vertical-line {
+    position: absolute;
+    left: 0; /* Align to the left of the icon container */
+    top: 40px; /* Align with the top padding of the icon container */
+    height: 40px; /* Fixed height */
+    width: 2px;
+    background-color: #0080F9; /* Color of the vertical line */
+    display: none; /* Hide by default */
+    z-index: 0; /* Ensure vertical line is behind the icon */
+}
+
+#sidebar-icon-container.active .table-vertical-line {
+    display: block; /* Show when the icon container is active */
+}
 
 #sidebar {
-    width: 20%;
+    width: 250px; /* Initial width of the sidebar */
     padding: 20px;
     border-right: 1px solid var(--border_color);
     height: 100%;
-    overflow-y: auto;
+    overflow: auto;
     position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 #sidebar.collapsed {
-    width: 50px;
-    padding: 20px 5px;
-    overflow: hidden;
-    transition: width 0.3s ease;
-}
-
-#sidebar.collapsed #search-info {
-    display: none;
+    width: 0;
+    padding: 0;
+    border-right: none; /* Remove border when collapsed */
 }
 
 #main-content {
-    width: 80%;
-    padding: 20px;
+    flex-grow: 1;
+    padding: 0 20px 20px 20px;
+    overflow: hidden; /* Prevent overflow */
+    display: flex;
+    flex-direction: column;
+    transition: width 0.3s ease; /* Smooth transition for main content */
 }
 
 #sidebar.collapsed + #main-content {
-    width: calc(100% - 50px);
+    width: calc(100% - 50px); /* Adjust width when sidebar is collapsed */
 }
 
-.sidebar-icon {
-    position: absolute;
-    top: 14px;
-    left: 14px;
-    width: 22px;
-    height: 20px;
-    cursor: pointer;
+#sidebar-icon-container + #sidebar + #main-content {
+    width: calc(100% - 300px); /* Adjust width when sidebar is open */
 }
 
-/* Search Information and Display Options */
+
+
 #search-info {
     padding: 20px;
 }
@@ -354,15 +405,25 @@ label {
 
 /* Table container */
 .table-container {
+    flex-grow: 1; /* Take remaining space */
     width: 100%;
+    overflow: auto; /* Make the table scrollable */
     padding: 1%; /* Use percentage for fluid padding */
     text-align: center;
 }
 
-#scrollableTable.scroll-unlocked {
-    max-height: 400px; /* Limit height to enable scrolling when unlocked */
+.table-title {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+    color: var(--nav_text_color);
+    text-align: left; /* Align title to the left */
+}
+
+#scrollableTable {
+    height: 100%; /* Use the full height available */
     overflow-x: auto;
-    overflow-y: auto; /* Show overflow (scrollbar) when unlocked */
+    overflow-y: auto; /* Enable scrolling */
     transition: all 0.3s ease; /* Smooth transition for aesthetic purposes */
 }
 
@@ -412,17 +473,6 @@ label {
     bottom: 0;
     width: 2px;
     background-color: #1C5E82;
-}
-
-
-/* Footer styling */
-footer {
-    font-size: 13px;
-    width: 100%; /* Full width */
-    margin: 0 auto;
-    padding: 1em;
-    background-color: var(--footer_bkgr_color);
-    text-align: center;
 }
 
 .clearfix:after {
