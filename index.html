@@ -33,9 +33,15 @@
         </div>
 
         <div id="content">
+            <div id="sidebar-icon-container" class="active">
+                <div class="list-vertical-line"></div>
+                <img id="list-icon" src="assets/list-icon.png" alt="Toggle Sidebar" class="list-icon">
+                <div class="table-vertical-line"></div>
+                <img id="table-icon" src="assets/table-icon.png" alt="Toggle Sidebar" class="table-icon">
+                <!-- Add more icons here if needed -->
+            </div>
             <!-- Sidebar for Search Information and Display Options -->
             <div id="sidebar">
-                <img id="sidebar-icon" src="assets/sidebar_active.png" alt="Toggle Sidebar" class="sidebar-icon">
                 <div id="search-info">
                     <br />
                     <h4>Search results</h4>
@@ -79,13 +85,7 @@
                             </form>
                         </div>
                     </div>
-                </div>
-            </div>
 
-            <!-- Main content area for the table -->
-            <div id="main-content">
-                <!-- Moved List of Proteins Section -->
-                <div id="proteins-list">
                     <div class="collapsible">
                         <button class="collapsible-btn">List of proteins found</button>
                         <div class="collapsible-content">
@@ -93,6 +93,12 @@
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <!-- Main content area for the table -->
+            <div id="main-content">
+                <!-- Title for the table -->
+                <h3 class="table-title">Protein Data Table</h3>
                 <div class="table-container">
                     <div id="scrollableTable" class="scroll-unlocked">
                         <table>
@@ -193,7 +199,6 @@
                                 <td>Data 10</td><td>Data 11</td><td>Data 12</td>
                                 <td>Data 13</td><td>Data 14</td><td>Data 15</td>
                                 <td>Data 16</td><td>Data 17</td><td>Data 18</td></tr>
-
                                 <tr><td>Data 1</td><td>Data 2</td><td>Data 3</td>
                                 <td>Data 4</td><td>Data 5</td><td>Data 6</td>
                                 <td>Data 7</td><td>Data 8</td><td>Data 9</td>
@@ -220,9 +225,6 @@
             </div>
         </div>
     </div>
-    <footer>
-        <p>Maintained by <a href="mailto:hutter@sfu.ca">H. Hutter</a> | <a href="http://www.sfu.ca/">Simon Fraser University</a></p>
-    </footer>
     <script src="script.js"></script> <!-- Link to the external JavaScript file -->
 </body>
 </html>
