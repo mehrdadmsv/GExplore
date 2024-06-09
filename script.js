@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var collapsibleButtons = document.querySelectorAll(".collapsible-btn");
     var sidebar = document.getElementById("sidebar");
     var listIcon = document.getElementById("list-icon");
-    var sidebarIconContainer = document.getElementById("sidebar-icon-container");
+    var sidebarWrapper = document.querySelector(".sidebar-wrapper");
     var mainContent = document.getElementById("main-content");
 
     // Function to handle collapsible content display
@@ -21,10 +21,10 @@ document.addEventListener("DOMContentLoaded", function() {
     listIcon.addEventListener("click", function() {
         if (sidebar.classList.contains("collapsed")) {
             sidebar.classList.remove("collapsed");
-            sidebarIconContainer.classList.add("active");
+            sidebarWrapper.classList.remove("collapsed");
         } else {
             sidebar.classList.add("collapsed");
-            sidebarIconContainer.classList.remove("active");
+            sidebarWrapper.classList.add("collapsed");
         }
         // Force a redraw of the table headers to fix the border issue
         forceRedraw(mainContent);
