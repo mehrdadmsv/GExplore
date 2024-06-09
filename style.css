@@ -1,3 +1,10 @@
+/* Universal base styles */
+*, *:before, *:after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 /* Root definitions for color themes */
 :root {
     --body_bkgr_color: #fcffff;
@@ -14,13 +21,6 @@
     --button_text_color: #FFFFFF;
 }
 
-/* Universal base styles */
-*, *:before, *:after {
-    box-sizing: border-box; /* Ensures padding and borders are included in the width */
-    margin: 0;
-    padding: 0;
-}
-
 html, body {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     background: var(--body_bkgr_color);
@@ -28,8 +28,8 @@ html, body {
     margin: 0;
     padding: 0;
     height: 100%;
-    overflow: hidden; /* Prevent overall page scrolling */
-    min-width: 760px; /* Prevent window from resizing below 760px = no collision between navbar and logo */
+    overflow: hidden;
+    min-width: 760px;
 }
 
 .wrapper {
@@ -38,25 +38,23 @@ html, body {
     height: 100%;
 }
 
-/* Header styles */
 #header {
     display: flex;
     align-items: center;
-    justify-content: center; /* Center the content horizontally */
+    justify-content: center;
     padding: 10px 0;
     border-bottom: 1px solid var(--border_color);
-    position: relative; /* To use absolute positioning for centering */
+    position: relative;
 }
 
 #header .logo {
-    max-height: 20px; /* Adjust as needed */
+    max-height: 20px;
     margin-left: 20px;
     margin-right: 20px;
-    position: absolute; /* Position the logo absolutely */
-    left: 20px; /* Adjust as needed */
+    position: absolute;
+    left: 20px;
 }
 
-/* Navigation styles */
 #topnav {
     font-size: 13px;
     background-color: #FFFFFF;
@@ -68,7 +66,7 @@ html, body {
     padding: 0;
     margin: 0;
     display: flex;
-    justify-content: center; /* Center the navigation items */
+    justify-content: center;
 }
 
 #topnav ul li {
@@ -77,12 +75,12 @@ html, body {
 
 #topnav ul li a {
     padding: 10px 20px;
-    display: flex; /* Use flexbox for alignment */
-    align-items: center; /* Center items vertically */
+    display: flex;
+    align-items: center;
     color: var(--nav_text_color);
-    text-decoration: none; /* Remove default underline */
+    text-decoration: none;
     position: relative;
-    line-height: 2.0; /* Adjust line-height for proper alignment */
+    line-height: 2.0;
 }
 
 #topnav ul li a .text {
@@ -99,7 +97,7 @@ html, body {
     position: absolute;
     width: 0;
     height: 2px;
-    bottom: 0px; /* Position underline just below the text */
+    bottom: 0px;
     left: 0;
     background: var(--body_link_hover_color);
     transition: width 0.5s ease;
@@ -121,7 +119,7 @@ html, body {
     border-radius: 8px;
     transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
     transform: translateY(-10px);
-    z-index: 1000; /* Ensure dropdown is above other content */
+    z-index: 1000;
 }
 
 #topnav ul li:hover > ul.dropdown {
@@ -137,13 +135,13 @@ html, body {
 
 #topnav ul.dropdown li a {
     padding: 10px 15px;
-    width: 100%; /* Full width */
-    display: flex; /* Use flexbox for alignment */
-    align-items: center; /* Center items vertically */
-    color: var(--nav_text_color); /* Ensure dropdown items inherit the correct color */
-    text-decoration: none; /* Remove default underline */
+    width: 100%;
+    display: flex;
+    align-items: center;
+    color: var(--nav_text_color);
+    text-decoration: none;
     position: relative;
-    border-radius: 8px; /* Ensure border-radius on hover */
+    border-radius: 8px;
 }
 
 #topnav ul.dropdown li a:hover {
@@ -154,8 +152,8 @@ html, body {
     content: '';
     position: absolute;
     width: 0;
-    height: 0px; /* No underline effect for dropdown items */
-    bottom: 0; /* Position underline at the bottom */
+    height: 0px;
+    bottom: 0;
     left: 0;
     background: var(--body_link_hover_color);
     transition: width 0.5s ease;
@@ -169,11 +167,10 @@ html, body {
     width: 100%;
 }
 
-/* Angle icon styles */
 .angle {
     display: inline-block;
-    width: 24px; /* Adjust icon size */
-    height: 24px; /* Adjust icon size */
+    width: 24px;
+    height: 24px;
     margin-left: 4px;
     background: url('assets/angle-down.png') no-repeat center;
     background-size: contain;
@@ -184,14 +181,13 @@ html, body {
     transform: rotate(180deg);
 }
 
-/* Intro section with adjusted padding */
 #intro {
     background-color: #dedede;
-    padding: 0; /* Remove padding here if it affects the width */
+    padding: 0;
 }
 
 #intro .fl {
-    padding: 3%; /* Use percentage for fluid padding */
+    padding: 3%;
     color: #000000;
 }
 
@@ -222,104 +218,93 @@ html, body {
     transform: translateY(-1px);
 }
 
-/* Content layout */
 #content {
     display: flex;
-    flex: 1; /* Take remaining space */
+    flex: 1;
     width: 100%;
-    height: calc(94vh - 0px); /* Adjust according to header/footer height */
+    height: calc(94vh - 0px);
+    position: relative;
+}
+
+.sidebar-wrapper {
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--border_color);
+}
+
+.sidebar-wrapper.collapsed {
+    width: 0;
+    padding: 0;
+    border-right: none;
+}
+
+.sidebar-wrapper.collapsed + #main-content {
+    margin-left: 0;
+    width: 100%;
 }
 
 #sidebar-icon-container {
-    width: 50px; /* Fixed width for the icon container */
-    background-color: #ffffff; /* Background color for the icon container */
-    border-right: 1px solid var(--border_color); /* Border to separate icon container from sidebar */
+    width: 400px; /* Match the width of the sidebar */
+    height: 50px; /* Fixed height for icon container */
+    background-color: #ffffff;
     display: flex;
-    flex-direction: column;
+    align-items: center; /* Center the icon vertically */
+    padding: 10px 0;
+    position: relative;
+    z-index: 100;
+    top: 0; /* Position at the top */
+    left: 0; /* Position at the left */
+    padding-left: 10px; /* Add padding to align the icon to the left */
+}
+
+#sidebar-icon-container.collapsed {
+    height: 50px;
+    padding: 0 0 0 10px;
     align-items: center;
-    padding-top: 10px; /* Add some padding for better alignment */
-    position: relative; /* Relative positioning for the active line */
 }
 
 .list-icon {
     width: 20px;
-    height: 20px;
+    height: 17.14px;
     cursor: pointer;
-    margin-bottom: 20px; /* Add some space between icons */
-}
-
-.table-icon {
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-    margin-bottom: 10px; /* Add some space between icons */
-}
-
-.list-vertical-line {
-    position: absolute;
-    left: 0; /* Align to the left of the icon container */
-    top: 0px; /* Align with the top padding of the icon container */
-    height: 40px; /* Fixed height */
-    width: 2px;
-    background-color: #0080F9; /* Color of the vertical line */
-    display: none; /* Hide by default */
-    z-index: 0; /* Ensure vertical line is behind the icon */
-}
-
-#sidebar-icon-container.active .list-vertical-line {
-    display: block; /* Show when the icon container is active */
-}
-
-.table-vertical-line {
-    position: absolute;
-    left: 0; /* Align to the left of the icon container */
-    top: 40px; /* Align with the top padding of the icon container */
-    height: 40px; /* Fixed height */
-    width: 2px;
-    background-color: #0080F9; /* Color of the vertical line */
-    display: none; /* Hide by default */
-    z-index: 0; /* Ensure vertical line is behind the icon */
-}
-
-#sidebar-icon-container.active .table-vertical-line {
-    display: block; /* Show when the icon container is active */
 }
 
 #sidebar {
-    width: 250px; /* Initial width of the sidebar */
+    width: 400px;
     padding: 20px;
-    border-right: 1px solid var(--border_color);
-    height: 100%;
+    height: calc(100% - 50px); /* Adjust height to accommodate icon container */
     overflow: auto;
     position: relative;
     display: flex;
     flex-direction: column;
+    margin-top: 0; /* Adjust margin to accommodate the icon container */
 }
 
 #sidebar.collapsed {
     width: 0;
     padding: 0;
-    border-right: none; /* Remove border when collapsed */
+    border-right: none;
 }
 
 #main-content {
     flex-grow: 1;
     padding: 0 20px 20px 20px;
-    overflow: hidden; /* Prevent overflow */
+    overflow: hidden;
     display: flex;
     flex-direction: column;
-    transition: width 0.3s ease; /* Smooth transition for main content */
+    transition: width 0.3s ease;
+    margin-left: 0; /* Ensure main content respects the sidebar icon container */
+    margin-top: 50px; /* Ensure main content respects the sidebar icon container */
 }
 
-#sidebar.collapsed + #main-content {
-    width: calc(100% - 50px); /* Adjust width when sidebar is collapsed */
+.sidebar-wrapper.collapsed + #main-content {
+    width: 100%;
+    margin-left: 0; /* Ensure main content respects the sidebar icon container */
 }
 
-#sidebar-icon-container + #sidebar + #main-content {
-    width: calc(100% - 300px); /* Adjust width when sidebar is open */
+.sidebar-wrapper + #main-content {
+    width: calc(100% - 450px); /* Adjust width to accommodate the sidebar */
 }
-
-
 
 #search-info {
     padding: 20px;
@@ -403,12 +388,11 @@ label {
     margin: 5px 0;
 }
 
-/* Table container */
 .table-container {
-    flex-grow: 1; /* Take remaining space */
+    flex-grow: 1;
     width: 100%;
-    overflow: auto; /* Make the table scrollable */
-    padding: 1%; /* Use percentage for fluid padding */
+    overflow: auto;
+    padding: 1%;
     text-align: center;
 }
 
@@ -417,14 +401,14 @@ label {
     margin-bottom: 10px;
     font-size: 1.2em;
     color: var(--nav_text_color);
-    text-align: left; /* Align title to the left */
+    text-align: left;
 }
 
 #scrollableTable {
-    height: 100%; /* Use the full height available */
+    height: 100%;
     overflow-x: auto;
-    overflow-y: auto; /* Enable scrolling */
-    transition: all 0.3s ease; /* Smooth transition for aesthetic purposes */
+    overflow-y: auto;
+    transition: all 0.3s ease;
 }
 
 #scrollableTable table {
@@ -450,7 +434,6 @@ label {
     cursor: move;
 }
 
-/* Dragging styles */
 .dragging {
     opacity: 0.5;
 }
@@ -481,7 +464,6 @@ label {
     clear: both;
 }
 
-/* Custom Scrollbar */
 #sidebar::-webkit-scrollbar, #scrollableTable::-webkit-scrollbar {
     width: 8px;
     height: 8px;
