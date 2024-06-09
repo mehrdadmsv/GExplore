@@ -14,6 +14,8 @@ document.addEventListener("DOMContentLoaded", function() {
             } else {
                 content.style.display = "block";
             }
+            // Adjust the height of the scrollable table after collapsing
+            adjustTableHeight();
         });
     });
 
@@ -28,7 +30,18 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         // Force a redraw of the table headers to fix the border issue
         forceRedraw(mainContent);
+        // Adjust the height of the scrollable table after collapsing
+        adjustTableHeight();
     });
+
+    // Function to adjust the height of the scrollable table
+    function adjustTableHeight() {
+        var tableContainer = document.querySelector('.table-container');
+        var scrollableTable = document.getElementById('scrollableTable');
+        if (tableContainer && scrollableTable) {
+            scrollableTable.style.height = `calc(100% - ${tableContainer.offsetTop}px)`;
+        }
+    }
 
     // Drag and Drop for Table Columns
     let dragSrcEl = null;
@@ -167,4 +180,7 @@ document.addEventListener("DOMContentLoaded", function() {
         element.offsetHeight; // Force reflow
         element.style.display = display;
     }
+
+    // Initial adjustment of the table height
+    adjustTableHeight();
 });
