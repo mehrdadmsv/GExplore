@@ -220,10 +220,11 @@ html, body {
 
 #content {
     display: flex;
-    flex: 1;
+    flex: 1 1 auto;
     width: 100%;
-    height: calc(94vh - 0px);
+    height: 100%; /* Use 100% height for #content */
     position: relative;
+    overflow: hidden; /* Ensure content area does not overflow */
 }
 
 .sidebar-wrapper {
@@ -245,7 +246,7 @@ html, body {
 
 #sidebar-icon-container {
     width: 400px; /* Match the width of the sidebar */
-    height: 50px; /* Fixed height for icon container */
+    height: 60px; /* Fixed height for icon container */
     background-color: #ffffff;
     display: flex;
     align-items: center; /* Center the icon vertically */
@@ -254,7 +255,7 @@ html, body {
     z-index: 100;
     top: 0; /* Position at the top */
     left: 0; /* Position at the left */
-    padding-left: 10px; /* Add padding to align the icon to the left */
+    padding-left: 20px; /* Add padding to align the icon to the left */
 }
 
 #sidebar-icon-container.collapsed {
@@ -271,9 +272,9 @@ html, body {
 
 #sidebar {
     width: 400px;
-    padding: 20px;
-    height: calc(100% - 50px); /* Adjust height to accommodate icon container */
-    overflow: auto;
+    padding: 0px 20px 20px 20px;
+    height: calc(100% - 60px); /* Adjust height to accommodate icon container */
+    overflow-y: auto;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -288,13 +289,12 @@ html, body {
 
 #main-content {
     flex-grow: 1;
-    padding: 0 20px 20px 20px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     transition: width 0.3s ease;
     margin-left: 0; /* Ensure main content respects the sidebar icon container */
-    margin-top: 50px; /* Ensure main content respects the sidebar icon container */
+    margin-top: 0; /* Remove top margin */
 }
 
 .sidebar-wrapper.collapsed + #main-content {
@@ -307,7 +307,7 @@ html, body {
 }
 
 #search-info {
-    padding: 20px;
+    padding: 0px 20px 20px 20px;
 }
 
 #search-info h3 {
@@ -391,21 +391,16 @@ label {
 .table-container {
     flex-grow: 1;
     width: 100%;
-    overflow: auto;
-    padding: 1%;
+    overflow: hidden;
+    padding: 0% 3% 1.5% 4%;
     text-align: center;
-}
-
-.table-title {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    font-size: 1.2em;
-    color: var(--nav_text_color);
-    text-align: left;
+    position: relative; /* Ensure the container doesn't affect layout shifts */
+    display: flex;
+    flex-direction: column;
 }
 
 #scrollableTable {
-    height: 100%;
+    flex-grow: 1; /* Ensure the table takes up the remaining space */
     overflow-x: auto;
     overflow-y: auto;
     transition: all 0.3s ease;
@@ -481,4 +476,23 @@ label {
 #sidebar::-webkit-scrollbar-track, #scrollableTable::-webkit-scrollbar-track {
     background-color: #f0f0f0;
     border-radius: 4px;
+}
+
+/* Align table title to the sidebar icon container */
+#main-content-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0;
+    height: 70px; /* Match the height of the sidebar icon container */
+    justify-content: center;
+    position: relative;
+}
+
+.table-title {
+    margin: 0;
+    font-size: 1em;
+    font-weight: bold;
+    color: var(--nav_text_color);
+    z-index: 101; /* Higher than the sidebar icon container */
 }
