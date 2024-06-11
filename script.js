@@ -24,9 +24,13 @@ document.addEventListener("DOMContentLoaded", function() {
         if (sidebar.classList.contains("collapsed")) {
             sidebar.classList.remove("collapsed");
             sidebarWrapper.classList.remove("collapsed");
+            mainContent.classList.add("expanded");
+            listIcon.src = 'assets/sidebar-icon-active.png'; // Change icon when sidebar is open
         } else {
             sidebar.classList.add("collapsed");
             sidebarWrapper.classList.add("collapsed");
+            mainContent.classList.remove("expanded");
+            listIcon.src = 'assets/sidebar-icon.png'; // Change icon when sidebar is closed
         }
         // Force a redraw of the table headers to fix the border issue
         forceRedraw(mainContent);
@@ -133,7 +137,7 @@ document.addEventListener("DOMContentLoaded", function() {
         indicator.classList.add('drag-indicator');
         if (position === 'left') {
             indicator.style.left = '0';
-        } else if (position === 'right') {
+        } else if ( position === 'right') {
             indicator.style.right = '0';
         }
         column.appendChild(indicator);
