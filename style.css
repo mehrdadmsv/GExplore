@@ -11,7 +11,7 @@
     --header_bkgr_color: #e3f3fb;
     --submenu_bkgr_color: #fcffff;
     --footer_bkgr_color: #e3f3fb;
-    --border_color: #cccccc;
+    --border_color: #E0E0E0; /* previous border color was #cccccc */
     --nav_text_color: #2f322a;
     --body_text_color: #000000;
     --body_link_color: #010e45;
@@ -19,6 +19,7 @@
     --button_bkgr_color: #1C5E82;
     --button_hover_bkgr_color: #059BD8;
     --button_text_color: #FFFFFF;
+    --active_icon_border_color: #059BD8; /* Blue color for active icon border */
 }
 
 html, body {
@@ -227,74 +228,171 @@ html, body {
     overflow: hidden;
 }
 
+/* Add keyframes for modern slide-in and slide-out animations */
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+
 .sidebar-wrapper {
     display: flex;
     flex-direction: row;
     height: 100%;
-    transition: width 0.3s ease; /* Smooth transition */
-}
-
-.sidebar-wrapper.collapsed #sidebar {
-    width: 0; /* Collapse sidebar width */
+    position: relative;
 }
 
 #sidebar-icon-container {
-    width: 60px;
-    height: 100%;
-    background-color: #ffffff;
+    width: 48px;
+    height: 100vh;
+    background-color: #F0F0F0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 10px 0;
+    padding-top: 16px;
+    position: relative; /* Important for absolute positioning of help icon */
     z-index: 100;
     border-right: 1px solid var(--border_color);
+    transition: transform 0.4s ease;
 }
 
-#sidebar-icon-container.collapsed {
-    width: 60px;
-    height: 100%;
-    padding: 10px 0;
+#active-line {
+    position: absolute;
+    border-radius: 2px;
+    left: 2px;
+    width: 3px;
+    height: 31.65px; /* Adjust height to match icon container height */
+    background-color: var(--active_icon_border_color);
+    transition: top 0.3s ease; /* Smooth transition */
 }
 
-.list-icon {
-    width: 20px;
-    height: 17.14px;
+.icon-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px; /* Add bottom margin for vertical spacing */
     cursor: pointer;
-    margin: 10px 0;
+    transition: background-color 0.3s ease, border-color 0.3s ease; /* Add transition for smooth background change */
+    border: 7px solid transparent; /* Default transparent border to maintain size */
+    border-radius: 6px; /* Optional: add border-radius for rounded corners */
+}
+
+.icon-container:hover {
+    background-color: #ffffff; /* Change this to your desired hover background color */
+    border-radius: 6px; /* Optional: add border-radius for rounded corners */
+    border-color: #ffffff; /* Change border color on hover */
+}
+
+.icon-container .list-icon {
+    width: 21.8px;
+    height: 18.65px;
+    transition: transform 0.4s ease;
+}
+
+.tooltip-text {
+    font-size: 14px;
+    visibility: hidden;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px;
+    position: absolute;
+    z-index: 1;
+    top: 40%;
+    left: 110%;
+    transform: translate(10px, -50%);
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 37%;
+    left: -4px; /* Offset the arrow to the left of the tooltip */
+    transform: translateX(-65%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent #555 transparent transparent; /* Triangle pointing left */
+}
+
+.icon-container:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Ensure the help icon container is positioned 16px from the bottom */
+#help-icon-container {
+    position: absolute;
+    bottom: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #sidebar {
-    width: 400px;
-    padding: 0 20px 20px 20px;
+    background-color: #F5F5F5;
+    width: 380px; /* Adjust the width to match your layout */
+    padding: 0 0 20px 50px;
     height: 100%;
-    overflow-y: auto; /* Enable vertical scrolling */
-    overflow-x: hidden; /* Prevent horizontal scrolling */
+    overflow-y: auto;
+    overflow-x: hidden;
     display: flex;
     flex-direction: column;
     margin-top: 0;
-    transition: width 0.3s ease; /* Smooth transition */
-    border-right: 1px solid var(--border_color); /* Add right border */
-    white-space: normal; /* Ensure normal text wrapping */
+    border-right: 1px solid var(--border_color);
+    white-space: normal;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: translateX(0);
+    transition: transform 0.4s ease;
 }
 
 #sidebar.collapsed {
-    width: 0;
-    padding: 0;
-    border-right: none;
+    animation: slideOut 0.4s forwards;
+}
+
+#sidebar.collapsed #active-line {
+    opacity: 0;
+}
+
+#sidebar.expanded #active-line {
+    opacity: 1;
+}
+
+#sidebar.expanded {
+    animation: slideIn 0.4s forwards;
 }
 
 #main-content {
-    padding: 0px 20px 0px 20px;
+    padding: 0 20px;
     flex-grow: 1;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    transition: margin-left 0.3s ease; /* Smooth transition */
+    transition: margin-left 0.4s ease;
     margin-top: 0;
+    margin-left: 340px; /* Adjust to match the sidebar width */
 }
 
-#main-content.collapsed {
-    margin-left: 60px; /* Shift content to the right when sidebar is collapsed */
+#main-content.shifted {
+    margin-left: 0; /* Shift content back to original position when sidebar is collapsed */
 }
 
 #search-info {
@@ -486,4 +584,13 @@ label {
     font-weight: bold;
     color: var(--nav_text_color);
     z-index: 101; /* Higher than the sidebar icon container */
+}
+
+/* Sidebar content styling */
+.sidebar-content {
+    display: none; /* Hide all sidebar content by default */
+}
+
+.sidebar-content.active {
+    display: block; /* Show active sidebar content */
 }
