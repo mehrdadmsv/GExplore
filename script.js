@@ -1,9 +1,11 @@
 document.addEventListener("DOMContentLoaded", function() {
     var collapsibleButtons = document.querySelectorAll(".collapsible-btn");
     var sidebar = document.getElementById("sidebar");
-    var listIcon = document.getElementById("list-icon");
+    var iconContainers = document.querySelectorAll(".icon-container");
     var sidebarWrapper = document.querySelector(".sidebar-wrapper");
     var mainContent = document.getElementById("main-content");
+    var sidebarContents = document.querySelectorAll(".sidebar-content");
+    var activeLine = document.getElementById("active-line");
 
     // Function to handle collapsible content display
     collapsibleButtons.forEach(function(button) {
@@ -19,23 +21,49 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    // Function to handle sidebar toggle
-    listIcon.addEventListener("click", function() {
-        if (sidebar.classList.contains("collapsed")) {
-            sidebar.classList.remove("collapsed");
-            sidebarWrapper.classList.remove("collapsed");
-            mainContent.classList.add("expanded");
-            listIcon.src = 'assets/sidebar-icon-active.png'; // Change icon when sidebar is open
-        } else {
-            sidebar.classList.add("collapsed");
-            sidebarWrapper.classList.add("collapsed");
-            mainContent.classList.remove("expanded");
-            listIcon.src = 'assets/sidebar-icon.png'; // Change icon when sidebar is closed
-        }
-        // Force a redraw of the table headers to fix the border issue
-        forceRedraw(mainContent);
-        // Adjust the height of the scrollable table after collapsing
-        adjustTableHeight();
+    // Function to handle sidebar content switching and toggling
+    iconContainers.forEach(function(iconContainer, index) {
+        iconContainer.addEventListener("click", function() {
+            var targetId = this.getAttribute("data-target");
+            var isSidebarOpen = !sidebar.classList.contains("collapsed");
+
+            // Remove active class from all icon containers
+            iconContainers.forEach(function(container) {
+                container.classList.remove("active");
+            });
+
+            // Add active class to the clicked icon container
+            this.classList.add("active");
+
+            // Move the active line to the clicked icon container
+            var containerRect = iconContainer.getBoundingClientRect();
+            var sidebarRect = sidebar.getBoundingClientRect();
+            activeLine.style.top = (containerRect.top - sidebarRect.top) + "px";
+
+            // If the sidebar is open and the same icon is clicked, close the sidebar
+            if (isSidebarOpen && sidebar.querySelector(`#${targetId}`).classList.contains("active")) {
+                sidebar.classList.remove("expanded");
+                sidebar.classList.add("collapsed");
+                mainContent.classList.add("shifted");
+                activeLine.style.opacity = 0; // Hide the active line
+            } else {
+                // Otherwise, open the sidebar and show the relevant content
+                sidebarContents.forEach(function(content) {
+                    content.classList.remove("active");
+                    if (content.id === targetId) {
+                        content.classList.add("active");
+                    }
+                });
+                if (sidebar.classList.contains("collapsed")) {
+                    sidebar.classList.remove("collapsed");
+                    sidebar.classList.add("expanded");
+                    mainContent.classList.remove("shifted");
+                }
+                activeLine.style.opacity = 1; // Show the active line
+            }
+            // Adjust the height of the scrollable table after collapsing or expanding
+            adjustTableHeight();
+        });
     });
 
     // Function to adjust the height of the scrollable table
@@ -45,6 +73,14 @@ document.addEventListener("DOMContentLoaded", function() {
         if (tableContainer && scrollableTable) {
             scrollableTable.style.height = `calc(100% - ${tableContainer.offsetTop}px)`;
         }
+    }
+
+    // Initial position of the active line
+    var firstActiveContainer = document.querySelector(".icon-container.active");
+    if (firstActiveContainer) {
+        var containerRect = firstActiveContainer.getBoundingClientRect();
+        var sidebarRect = sidebar.getBoundingClientRect();
+        activeLine.style.top = (containerRect.top - sidebarRect.top) + "px";
     }
 
     // Drag and Drop for Table Columns
@@ -137,7 +173,7 @@ document.addEventListener("DOMContentLoaded", function() {
         indicator.classList.add('drag-indicator');
         if (position === 'left') {
             indicator.style.left = '0';
-        } else if ( position === 'right') {
+        } else if (position === 'right') {
             indicator.style.right = '0';
         }
         column.appendChild(indicator);
