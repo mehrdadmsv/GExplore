@@ -13,7 +13,9 @@
     --footer_bkgr_color: #e3f3fb;
     --border_color: #E0E0E0; /* previous border color was #cccccc */
     --nav_text_color: #2f322a;
-    --body_text_color: #000000;
+    --body_text_color: #222222; /* previous color was #000000 */
+    --background-sidebar-color: #F5F5F5;
+    --body_sidebar_color: #22252A;
     --body_link_color: #010e45;
     --body_link_hover_color: #059BD8;
     --button_bkgr_color: #1C5E82;
@@ -23,14 +25,15 @@
 }
 
 html, body {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-family: 'Open Sans', sans-serif; /* Fonts with priority given to 'Open Sans' */
     background: var(--body_bkgr_color);
-    color: var(--body_text_color);
+    color: var(--body_text_color); 
     margin: 0;
     padding: 0;
     height: 100%;
     overflow: hidden;
     min-width: 760px;
+    min-height: 335px;
 }
 
 .wrapper {
@@ -54,6 +57,7 @@ html, body {
     margin-right: 20px;
     position: absolute;
     left: 20px;
+    user-select: none; /* Prevent logo from being highlightable */
 }
 
 #topnav {
@@ -75,6 +79,7 @@ html, body {
 }
 
 #topnav ul li a {
+    user-select: none;
     padding: 10px 20px;
     display: flex;
     align-items: center;
@@ -87,6 +92,7 @@ html, body {
 #topnav ul li a .text {
     display: inline-block;
     position: relative;
+    user-select: none; /* Prevent text from being highlightable */
 }
 
 #topnav ul li:hover > a {
@@ -179,7 +185,7 @@ html, body {
 }
 
 #topnav ul li:hover > a .angle {
-    transform: rotate(180deg);
+    transform: rotate(-180deg);
 }
 
 #intro {
@@ -255,8 +261,8 @@ html, body {
 }
 
 #sidebar-icon-container {
-    width: 48px;
-    height: 100vh;
+    width: 50px;
+    height: 100%;
     background-color: #F0F0F0;
     display: flex;
     flex-direction: column;
@@ -273,12 +279,14 @@ html, body {
     border-radius: 2px;
     left: 2px;
     width: 3px;
-    height: 31.65px; /* Adjust height to match icon container height */
+    height: 31.5px; /* Adjust height to match icon container height */
     background-color: var(--active_icon_border_color);
     transition: top 0.3s ease; /* Smooth transition */
+    top: 16px; /* Ensure there's an initial value for top */
 }
 
 .icon-container {
+    user-select: none;
     position: relative;
     display: flex;
     justify-content: center;
@@ -288,6 +296,12 @@ html, body {
     transition: background-color 0.3s ease, border-color 0.3s ease; /* Add transition for smooth background change */
     border: 7px solid transparent; /* Default transparent border to maintain size */
     border-radius: 6px; /* Optional: add border-radius for rounded corners */
+}
+
+.icon-container.help-icon {
+    position: absolute;
+    margin-bottom: 16px;
+    bottom: 0px;
 }
 
 .icon-container:hover {
@@ -303,6 +317,7 @@ html, body {
 }
 
 .tooltip-text {
+    font-weight: 400;
     font-size: 14px;
     visibility: hidden;
     background-color: #555;
@@ -336,19 +351,11 @@ html, body {
     opacity: 1;
 }
 
-/* Ensure the help icon container is positioned 16px from the bottom */
-#help-icon-container {
-    position: absolute;
-    bottom: 64px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 #sidebar {
     background-color: #F5F5F5;
     width: 380px; /* Adjust the width to match your layout */
-    padding: 0 0 20px 50px;
+    height: 100%;
+    padding: 0 0 0px 50px;
     height: 100%;
     overflow-y: auto;
     overflow-x: hidden;
@@ -362,6 +369,8 @@ html, body {
     top: 0;
     transform: translateX(0);
     transition: transform 0.4s ease;
+    display: flex;
+    flex-direction: column;
 }
 
 #sidebar.collapsed {
@@ -388,95 +397,11 @@ html, body {
     flex-direction: column;
     transition: margin-left 0.4s ease;
     margin-top: 0;
-    margin-left: 340px; /* Adjust to match the sidebar width */
+    margin-left: 330px; /* Adjust to match the sidebar width */
 }
 
 #main-content.shifted {
     margin-left: 0; /* Shift content back to original position when sidebar is collapsed */
-}
-
-#search-info {
-    padding: 0px 20px 20px 20px;
-}
-
-#search-info h4 {
-    margin-bottom: 10px;
-    font-size: 1.5em;
-    color: var(--nav_text_color);
-}
-
-.collapsible {
-    width: 100%; /* Ensure the collapsible takes full width */
-    margin-bottom: 10px;
-}
-
-.collapsible-btn {
-    background-color: var(--button_bkgr_color);
-    color: var(--button_text_color);
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    text-align: left;
-    font-size: 1em;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
-
-.collapsible-btn:hover {
-    background-color: var(--button_hover_bkgr_color);
-}
-
-.collapsible-content {
-    display: none; /* Hide by default */
-    padding: 10px 0; /* Add padding for spacing */
-    overflow: hidden; /* Ensure no overflow */
-    width: 100%; /* Ensure it takes the full width of the sidebar */
-    white-space: normal; /* Ensure text wraps normally */
-}
-
-.collapsible-content form {
-    margin: 10px 0;
-}
-
-fieldset {
-    margin-bottom: 10px;
-    padding: 10px;
-    border: 1px solid var(--border_color);
-    border-radius: 5px;
-}
-
-legend {
-    padding: 0 10px;
-    font-weight: bold;
-}
-
-label {
-    display: block;
-    margin-bottom: 5px;
-}
-
-.update-display-btn {
-    background-color: var(--button_bkgr_color);
-    color: var(--button_text_color);
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    font-size: 1em;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
-
-.update-display-btn:hover {
-    background-color: var(--button_hover_bkgr_color);
-}
-
-.search-parameter {
-    padding: 10px 0;
-}
-
-.search-parameter p {
-    margin: 5px 0;
 }
 
 .table-container {
@@ -498,6 +423,7 @@ label {
 }
 
 #scrollableTable table {
+    border: 1px solid #ccc; /* Add border to the table */
     width: 100%;
     border-collapse: collapse;
 }
@@ -506,13 +432,16 @@ label {
     border: 1px solid #ccc;
     padding: 8px;
     text-align: left;
+    box-sizing: border-box; /* Include padding in the width calculation */
+    min-width: 100px; /* Adjust this value as needed */
 }
 
 #scrollableTable th {
     background-color: #f0f0f0;
     position: sticky;
     top: 0;
-    z-index: 10;
+    z-index: 10; /* Increase z-index to ensure it stays above other elements */
+    border: 1px solid #ccc; /* Ensure border is defined */
 }
 
 #scrollableTable th:hover {
@@ -564,9 +493,13 @@ label {
     background-color: #808080;
 }
 
-#sidebar::-webkit-scrollbar-track, #scrollableTable::-webkit-scrollbar-track {
+#scrollableTable::-webkit-scrollbar-track {
     background-color: #f0f0f0;
     border-radius: 4px;
+}
+
+#sidebar::-webkit-scrollbar-track {
+    background-color: transparent;
 }
 
 /* Align table title to the sidebar icon container */
@@ -589,8 +522,240 @@ label {
 /* Sidebar content styling */
 .sidebar-content {
     display: none; /* Hide all sidebar content by default */
+    color: var(--body_sidebar_color);
 }
 
 .sidebar-content.active {
     display: block; /* Show active sidebar content */
+}
+
+
+
+/* ------------------------ sidebar content ------------------------ */
+
+/* all sidebar titles */
+.sidebar-title {
+    padding: 15px 0 15px 0;
+    position: sticky; /* Use sticky positioning for flexibility */
+    top: 0; /* Align it at the top of its container */
+    background-color: #F5F5F5; /* Ensure it has a background color */
+    z-index: 1; /* Ensure it stays above other elements */
+    border-bottom: 1px solid var(--border_color); /* Optional: Add a bottom border for visual separation */
+}
+
+.sidebar-content h4 {
+    font-weight: 600;
+    font-size: 14px;
+    padding: 0 0 0 20px;
+}
+
+/* all sidebar left and right padding */
+#sidebar-info {
+    padding: 0px 20px 0px 20px;
+    overflow-y: auto;
+    flex: 1; /* Allows this section to grow and shrink as needed */
+}
+
+/* ------------------------ sidebar 1 (Search Results) ------------------------ */
+#database-content {
+    padding: 0px 0px 0px 0px;
+}
+
+.first-content-title {
+    font-weight: 700; 
+    font-size: 15px; 
+    margin: 15px 0 10px 0;
+}
+
+.content-title{
+    font-weight: 700; 
+    font-size: 15px; 
+    margin: 0 0 10px 0;
+}
+
+.content-info {
+    font-weight: 500; 
+    font-size: 14px;
+    margin: 0 0 20px 0;
+    line-height: 1.6;
+}
+
+.list-info {
+    font-weight: 500; 
+    font-size: 14px;
+    margin: 0 0 0 0;
+    line-height: 1.6;
+}
+
+.list-header {
+    display: flex; /* Use flexbox to align items */
+    align-items: center; /* Vertically center items */
+    justify-content: space-between; /* Adjust the space between items */
+}
+
+.list-header p {
+    margin: 0; /* Remove margin to align text vertically with the icon */
+    font-weight: 700; /* Make the title bold */
+    font-size: 15px; /* Set the font size */
+}
+
+.gene-list-container {
+    border: 1px solid var(--border_color);
+    border-radius: 5px;
+    padding: 10px 10px 10px 10px;
+    margin: 10px 0 20px 0;
+    background-color: #f9f9f9; /* Optional: Add background color */
+}
+
+.copy-icon-row {
+    display: flex;
+    justify-content: space-between; /* Space between the info and the icon */
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 10px; /* Add padding for spacing */
+    border-bottom: 1px solid var(--border_color); /* Horizontal line for separation */
+}
+
+.genes-found-info {
+    font-size: 14px;
+    font-weight: 600; /* Slightly bolder font */
+    color: #333; /* Slightly darker color */
+    margin-right: auto; /* Aligns the text to the left */
+    line-height: 18.65px;
+}
+
+.copy-icon-container {
+    position: relative; /* Needed for positioning the tooltip */
+    display: inline-block; /* Ensure the tooltip aligns properly */
+}
+
+#copy-icon {
+    width: 21.8px;
+    height: 18.65px;
+    cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
+    transition: transform 0.2s ease;
+    margin-right: 10px; /* Space between icon and tooltip */
+}
+
+.copy-tooltip-text {
+    font-size: 14px;
+    font-weight: 400;
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px;
+    width: 130px; /* Fixed width for the tooltip */
+    bottom: 125%; /* Position above the icon */
+    right: 10%; /* Align tooltip to the right edge of the copy icon */
+    transform: translateX(0); /* Reset the transform if needed */
+    white-space: nowrap;
+    transition: opacity 0.3s;
+    z-index: 10;
+    margin-bottom: 5px;
+    display: flex; /* Use flexbox for centering */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+.copy-tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    right: 10%; /* Adjust position to align properly */
+    transform: translateX(0);
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+.copy-icon-container:hover .copy-tooltip-text,
+.copy-icon-container:focus .copy-tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* ------------------------ sidebar 2 (Display Options) ------------------------ */
+#display-options-content {
+    padding: 0px 0px 0px 0px;
+}
+
+.column-filter-container {
+    border: none;
+    padding: 0px 10px 10px 5px;
+    margin: 10px 0 20px 0;
+}
+
+.display-option-form label {
+    display: block;                       /* Makes labels block-level elements */
+    font-family: 'Open Sans', sans-serif; /* Apply Open Sans font */
+    font-size: 14px;                      /* Set font size */
+    font-weight: 500; 
+    margin-bottom: 5px;                  /* Adds space between labels */
+    color: var(--body_sidebar_color);
+}
+
+.display-option-form input[type="checkbox"] {
+    margin-right: 5px;                   /* Adds space between checkbox and label text */
+}
+
+/* Centering the Update Display button */
+.button-container {
+    background-color: #F5F5F5; /* Match the background color with sidebar */
+    padding: 15px;
+    border-top: 1px solid var(--border_color); /* Optional: a border for visual separation */
+    position: sticky; /* Keep the button at the bottom of the viewport */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    /* box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); Optional: a shadow for emphasis */
+    display: flex;
+    justify-content: center; /* Center the button horizontally */
+    z-index: 1; /* Ensure it stays above other elements */
+}
+
+.update-display-btn {
+    font-family: 'Open Sans', sans-serif; /* Fonts with priority given to 'Open Sans' */
+    font-size: 14px;
+    font-weight: 600; /* Slightly bolder font */
+    background-color: var(--button_bkgr_color);
+    color: var(--button_text_color);
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    margin: 0 auto; /* Center the button horizontally */
+}
+
+.update-display-btn:hover {
+    background-color: var(--button_hover_bkgr_color);
+}
+
+
+
+
+
+
+
+
+
+
+
+/* ------------------------ sidebar 3 (Search Data) ------------------------ */
+#search-content {
+    padding: 0px 0px 0px 0px;
+}
+
+/* ------------------------ sidebar 4 (Export Data) ------------------------ */
+#export-content {
+    padding: 0px 0px 0px 0px;
+}
+
+/* ------------------------ sidebar 5 (Help) ------------------------ */
+#help-content {
+    padding: 0px 0px 0px 0px;
 }
