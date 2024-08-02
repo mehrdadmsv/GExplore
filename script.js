@@ -7,6 +7,62 @@ document.addEventListener("DOMContentLoaded", function() {
     var activeLine = document.getElementById("active-line");
     var sidebarContents = document.querySelectorAll(".sidebar-content");
 
+    // Function to toggle submenus and rotate arrows
+    var submenuItems = document.querySelectorAll("#help-sidebar li.has-submenu > a");
+
+    submenuItems.forEach(function(submenuItem) {
+        submenuItem.addEventListener("click", function(e) {
+            e.preventDefault();
+            var parentLi = this.parentElement;
+            var submenu = this.nextElementSibling;
+
+            if (parentLi.classList.contains("open")) {
+                submenu.style.display = "none";
+                parentLi.classList.remove("open");
+            } else {
+                submenu.style.display = "block";
+                parentLi.classList.add("open");
+            }
+        });
+    });
+
+    // Function to show content based on sidebar selection
+    var sidebarLinks = document.querySelectorAll("#help-sidebar a");
+    var contentSections = document.querySelectorAll(".help-content-section");
+
+    sidebarLinks.forEach(function(link) {
+        link.addEventListener("click", function(e) {
+            e.preventDefault();
+            var targetId = this.getAttribute("href").substring(1);
+
+            contentSections.forEach(function(section) {
+                if (section.id === targetId) {
+                    section.classList.add("active");
+                } else {
+                    section.classList.remove("active");
+                }
+            });
+
+            // Remove 'active' class from all sidebar links
+            sidebarLinks.forEach(function(link) {
+                link.classList.remove("active");
+            });
+
+            // Add 'active' class to the clicked link
+            this.classList.add("active");
+
+            // Change the URL without reloading the page
+            history.pushState(null, null, '#' + targetId);
+        });
+    });
+
+    // Set the default active link and content
+    var defaultActiveLink = document.querySelector('#help-sidebar a[href="#user-guide"]');
+    if (defaultActiveLink) {
+        defaultActiveLink.classList.add("active");
+        document.getElementById("user-guide").classList.add("active");
+    }
+
     // Copy icon tooltip handling
     var copyIcon = document.getElementById("copy-icon");
     var tooltip = copyIcon.nextElementSibling;
@@ -106,7 +162,7 @@ document.addEventListener("DOMContentLoaded", function() {
             if (tooltip) {
                 tooltip.style.visibility = 'visible';
                 tooltip.style.opacity = '1';
-                
+
                 setTimeout(function() {
                     tooltip.style.visibility = 'hidden';
                     tooltip.style.opacity = '0';
@@ -276,40 +332,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     adjustTableHeight();
 
-    // Column visibility handling
-    var columnCheckboxes = document.querySelectorAll('.display-option-form input[type="checkbox"]');
-    var updateDisplayButton = document.querySelector('.update-display-btn');
-
-    // Toggle visibility of table columns based on checkbox state
-    function toggleColumnVisibility() {
-        var visibilityMap = {};
-
-        columnCheckboxes.forEach(function(checkbox) {
-            var columnClasses = checkbox.getAttribute('data-column') || checkbox.getAttribute('data-columns');
-            if (columnClasses) {
-                var columns = columnClasses.split(',');
-                columns.forEach(function(columnClass) {
-                    if (visibilityMap[columnClass] === undefined) {
-                        visibilityMap[columnClass] = false; // Default to hidden
-                    }
-                    if (checkbox.checked) {
-                        visibilityMap[columnClass] = true; // Mark as visible if any checkbox requires it
-                    }
-                });
-            }
-        });
-
-        Object.keys(visibilityMap).forEach(function(columnClass) {
-            var columnElements = document.querySelectorAll('.' + columnClass.trim());
-            columnElements.forEach(function(column) {
-                column.style.display = visibilityMap[columnClass] ? '' : 'none';
-            });
-        });
-    }
-
-    updateDisplayButton.addEventListener('click', toggleColumnVisibility);
-    toggleColumnVisibility();
-
     // Export functions
 
     // Get visible table data for export
@@ -387,7 +409,7 @@ document.addEventListener("DOMContentLoaded", function() {
     exportButton.addEventListener("click", function() {
         var selectedFormat = document.querySelector('input[name="export-format"]:checked').value;
         var tableData = getVisibleTableData();
-        
+
         // Export data based on selected format
         switch (selectedFormat) {
             case 'json':
