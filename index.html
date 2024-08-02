@@ -13,11 +13,12 @@
 </head>
 
 <body id="top">
+
     <!-- Main wrapper div -->
     <div class="wrapper">
         <!-- Header section -->
         <div id="header">
-            <!-- Company logo -->
+            <!-- GExplore logo -->
             <img src="assets/GExplore_logo.png" alt="GExplore Logo" class="logo" draggable="false">
             <!-- Top navigation bar -->
             <div id="topnav">
@@ -48,330 +49,334 @@
 
         <!-- Content section -->
         <div id="content">
-            <!-- Sidebar wrapper -->
-            <div class="sidebar-wrapper">
-                <!-- Sidebar icon container -->
-                <div id="sidebar-icon-container" class="active">
-                    <!-- Active line indicator -->
-                    <div id="active-line"></div>
-                    <!-- Icon container for sidebar items -->
-                    <div class="icon-container" data-target="database-content">
-                        <img id="list-icon" src="assets/database-icon.png" alt="Database Icon" class="list-icon" draggable="false">
-                        <span class="tooltip-text">Search Results</span>
-                    </div>
-                    <div class="icon-container active" data-target="display-options-content">
-                        <img id="display-icon" src="assets/display-options-icon.png" alt="Display Options Icon" class="list-icon" draggable="false">
-                        <span class="tooltip-text">Display Options</span>
-                    </div>
-                    <div class="icon-container" data-target="search-content">
-                        <img id="search-icon" src="assets/search-icon.png" alt="Search Icon" class="list-icon" draggable="false">
-                        <span class="tooltip-text">Search Data</span>
-                    </div>
-                    <div class="icon-container" data-target="export-content">
-                        <img id="export-icon" src="assets/export-icon.png" alt="Export Icon" class="list-icon" draggable="false">
-                        <span class="tooltip-text">Export Data</span>
-                    </div>
-                    <div class="icon-container help-icon" data-target="help-content">
-                        <img id="help-icon" src="assets/help-icon.png" alt="Help Icon" class="list-icon" draggable="false">
-                        <span class="tooltip-text">Help</span>
-                    </div>
-                </div>
-                
-                <!-- Sidebar content -->
-                <div id="sidebar">
-                    <!-- Database content in sidebar -->
-                    <div id="database-content" class="sidebar-content">
-                        <div class="sidebar-title">
-                            <h4>Search Results</h4> 
+
+            <!-- IMPORTANT = Perl Connection-->
+            <form action="display.pl" method="post" name="ge_display_form" target="_self" id="ge_display_form">
+
+                <!-- Sidebar wrapper -->
+                <div class="sidebar-wrapper">
+                    <!-- Sidebar icon container -->
+                    <div id="sidebar-icon-container" class="active">
+                        <!-- Active line indicator -->
+                        <div id="active-line"></div>
+                        <!-- Icon container for sidebar items -->
+                        <div class="icon-container" data-target="database-content">
+                            <img id="list-icon" src="assets/database-icon.png" alt="Database Icon" class="list-icon" draggable="false">
+                            <span class="tooltip-text">Search Results</span>
                         </div>
-                        <div id="sidebar-info">
-                            <div class="first-content-title">                                
-                                <p>Search Parameters</p>
+                        <div class="icon-container active" data-target="display-options-content">
+                            <img id="display-icon" src="assets/display-options-icon.png" alt="Display Options Icon" class="list-icon" draggable="false">
+                            <span class="tooltip-text">Display Options</span>
+                        </div>
+                        <div class="icon-container" data-target="search-content">
+                            <img id="search-icon" src="assets/search-icon.png" alt="Search Icon" class="list-icon" draggable="false">
+                            <span class="tooltip-text">Search Data</span>
+                        </div>
+                        <div class="icon-container" data-target="export-content">
+                            <img id="export-icon" src="assets/export-icon.png" alt="Export Icon" class="list-icon" draggable="false">
+                            <span class="tooltip-text">Export Data</span>
+                        </div>
+                        <div class="icon-container help-icon" data-target="help-content">
+                            <img id="help-icon" src="assets/help-icon.png" alt="Help Icon" class="list-icon" draggable="false">
+                            <span class="tooltip-text">Help</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Sidebar content -->
+                    <div id="sidebar">
+                        <!-- Database content in sidebar -->
+                        <div id="database-content" class="sidebar-content">
+                            <div class="sidebar-title">
+                                <h4>Search Results</h4> 
                             </div>
-                            <div class="content-info">
-                                <p>Database: Wormbase 292</p>
-                                <p>Gene: unc-*</p>
-                            </div>
-                            <div class="content-title">                                
-                                <div class="list-header">
-                                    <p>Results</p>                             
+                            <div id="sidebar-info">
+                                <div class="first-content-title">                                
+                                    <p>Search Parameters</p>
                                 </div>
-                            </div>
-                            <div class="gene-list-container">
-                                <div class="copy-icon-row">
-                                    <div class="genes-found-info">93 genes found</div>
-                                    <div class="copy-icon-container">
-                                        <img id="copy-icon" src="assets/copy-icon.png" alt="Copy Icon" draggable="true">
-                                        <span class="copy-tooltip-text">Copy List</span>
+                                <div class="content-info">
+                                    <p>Database: Wormbase 292</p>
+                                    <p>Gene: unc-*</p>
+                                </div>
+                                <div class="content-title">                                
+                                    <div class="list-header">
+                                        <p>Results</p>                             
                                     </div>
                                 </div>
-                                <div class="list-info">
-                                    <!-- List of genes found -->
-                                    <p>unc-1, unc-10, unc-101, unc-103, unc-104, unc-105, unc-11, unc-112, unc-115, unc-116, unc-119, unc-120, unc-122, unc-13, unc-130, unc-132, unc-14, unc-15, unc-16, unc-18, unc-2, unc-22, unc-23, unc-24, unc-25, unc-26, unc-27, unc-29, unc-3, unc-30, unc-31, unc-32, unc-33, unc-34, unc-36, unc-37, unc-38, unc-39, unc-4, unc-40, unc-41, unc-42, unc-43, unc-44, unc-45, unc-46, unc-47, unc-49, unc-5, unc-50, unc-51, unc-52, unc-53, unc-54, unc-55, unc-57, unc-58, unc-59, unc-6, unc-60, unc-61, unc-62, unc-63, unc-64, unc-68, unc-69, unc-7, unc-70, unc-71, unc-73, unc-75, unc-76, unc-77, unc-78, unc-79, unc-8, unc-80, unc-82, unc-83, unc-84, unc-85, unc-86, unc-87, unc-89, unc-9, unc-93, unc-94, unc-95, unc-96, unc-97, unc-98</p>
+                                <div class="gene-list-container">
+                                    <div class="copy-icon-row">
+                                        <div class="genes-found-info">93 genes found</div>
+                                        <div class="copy-icon-container">
+                                            <img id="copy-icon" src="assets/copy-icon.png" alt="Copy Icon" draggable="true">
+                                            <span class="copy-tooltip-text">Copy List</span>
+                                        </div>
+                                    </div>
+                                    <div class="list-info">
+                                        <!-- List of genes found -->
+                                        <p>unc-1, unc-10, unc-101, unc-103, unc-104, unc-105, unc-11, unc-112, unc-115, unc-116, unc-119, unc-120, unc-122, unc-13, unc-130, unc-132, unc-14, unc-15, unc-16, unc-18, unc-2, unc-22, unc-23, unc-24, unc-25, unc-26, unc-27, unc-29, unc-3, unc-30, unc-31, unc-32, unc-33, unc-34, unc-36, unc-37, unc-38, unc-39, unc-4, unc-40, unc-41, unc-42, unc-43, unc-44, unc-45, unc-46, unc-47, unc-49, unc-5, unc-50, unc-51, unc-52, unc-53, unc-54, unc-55, unc-57, unc-58, unc-59, unc-6, unc-60, unc-61, unc-62, unc-63, unc-64, unc-68, unc-69, unc-7, unc-70, unc-71, unc-73, unc-75, unc-76, unc-77, unc-78, unc-79, unc-8, unc-80, unc-82, unc-83, unc-84, unc-85, unc-86, unc-87, unc-89, unc-9, unc-93, unc-94, unc-95, unc-96, unc-97, unc-98</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Display options content in sidebar -->
-                    <div id="display-options-content" class="sidebar-content active">
-                        <div class="sidebar-title">
-                            <h4>Display Options</h4> 
-                        </div>
-                        <div id="sidebar-info">
-                            <div class="first-content-title">                                
-                                <p>Add/Remove Columns</p>
+                        <!-- Display options content in sidebar -->
+                        <div id="display-options-content" class="sidebar-content active">
+                            <div class="sidebar-title">
+                                <h4>Display Options</h4> 
                             </div>
-                            <div class="column-filter-container">                             
-                                <form class="display-option-form">
-                                    <!-- Checkbox options for display columns -->
-                                    <label><input type="checkbox" name="sequence_name" data-column="sequence-name-column"> Sequence Name</label>
-                                    <label><input type="checkbox" name="uniprot_id" data-column="uniprot-id-column"> UniProt ID</label>
-                                    <label><input type="checkbox" name="aa_size" data-column="aa-size-column" checked> Amino Acid Length</label>
-                                    <label><input type="checkbox" name="protein_domains" data-column="protein-domains-column" checked> Protein Domains</label>
-                                    <label><input type="checkbox" name="protein_sequence" data-column="protein-sequence-column"> Protein Sequence</label>
-                                    <label><input type="checkbox" name="genetic_position" data-columns="chr-column,chr-pos-column"> Genetic Position</label>
-                                    <label><input type="checkbox" name="nucleotide_position" data-columns="chr-column,chr-strand-column,start-column,end-column"> Nucleotide Position</label>
-                                    <label><input type="checkbox" name="legacy_description" data-column="legacy-description-column"> Description (Legacy)</label>
-                                    <label><input type="checkbox" name="automated_description" data-column="automated-description-column"> Description (Automated)</label>
-                                    <label><input type="checkbox" name="phenotype_mutants" data-column="phenotype-mutants-column"> Phenotype (Mutants)</label>
-                                    <label><input type="checkbox" name="phenotype_rnai" data-column="phenotype-rnai-column"> Phenotype (RNAi)</label>
-                                    <label><input type="checkbox" name="expression" data-column="expression-column"> Expression</label>
-                                    <label><input type="checkbox" name="expression_genomic" data-column="expression-genomic-column"> Expression (Genomic Studies)</label>
-                                    <label><input type="checkbox" name="interacting_genes" data-column="interacting-physical-column,interacting-genetic-column,interacting-regulatory-column"> Interacting Genes</label>
-                                    <label><input type="checkbox" name="homologs" data-columns="yeast-homologs-column,fly-homologs-column,fish-homologs-column,mouse-homologs-column,human-homologs-column"> Homologs</label>
-                                    <label><input type="checkbox" name="go_terms" data-column="go-terms-column"> GO Terms</label>
-                                    <label><input type="checkbox" name="disease_associations" data-column="disease-associations-column"> Disease Associations</label>
+                            <div id="sidebar-info">
+                                <div class="first-content-title">                                
+                                    <p>Add/Remove Columns</p>
+                                </div>
+                                <div class="column-filter-container">                             
+                                    <div class="display-option-form">
+                                        <!-- Checkbox options for display columns -->
+                                        <label><input name="sequence_name_display" type="checkbox" id="sequence_name_display" /> Sequence Name</label>
+                                        <label><input name="uniprot_display" type="checkbox" id="uniprot_display" />UniProt ID</label>
+                                        <label><input name="domain_display" type="checkbox" id="domain_display" /> Protein Domains</label>
+                                        <label><input name="sequence_display" type="checkbox" id="sequence_display" /> Protein Sequence</label>
+                                        <label><input name="genetic_pos_display" type="checkbox" id="genetic_pos_display" /> Genetic Position</label>
+                                        <label><input name="nucleoide_pos_display" type="checkbox" id="nucleotide_pos_display" /> Nucleotide Position</label>
+                                        <label><input name="concise_description_display" type="checkbox" id="concise_description_display" /> Description (Legacy)</label>
+                                        <label><input name="auto_description_display" type="checkbox" id="auto_description_display" /> Description (Automated)</label>
+                                        <label><input name="mutant_phenotype_display" type="checkbox" id="mutant_phenotype_display" /> Phenotype (Mutants)</label>
+                                        <label><input name="RNAi_phenotype_display" type="checkbox" id="RNAi_phenotype_display" /> Phenotype (RNAi)</label>
+                                        <label><input name="expression_display" type="checkbox" id="expression_display" /> Expression</label>
+                                        <label><input name="expression_genomic_studies_display" type="checkbox" id="expression_genomic_studies_display" /> Expression (Genomic Studies)</label>
+                                        <label><input name="interactor_display" type="checkbox" id="interactor_gene_display" /> Interacting Genes</label>
+                                        <label><input name="homolog_display" type="checkbox" id="homolog_display" /> Homologs</label>
+                                        <label><input name="GO_term_display" type="checkbox" id="GO_term_display" /> GO Terms</label>
+                                        <label><input name="disease_assoc_display" type="checkbox" id="disease_assoc_display" /> Disease Associations</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Update display button -->
+                            <div class="button-container">
+                                <button type="submit" class="update-display-btn">Update Display</button>
+                            </div>
+                        </div>
+
+                        <!-- Search content in sidebar -->
+                        <div id="search-content" class="sidebar-content">
+                            <div class="sidebar-title">
+                                <h4>Search Data</h4>
+                            </div>
+                            <p>Search content goes here.</p>
+                        </div>
+
+                        <!-- Export content in sidebar -->
+                        <div id="export-content" class="sidebar-content">
+                            <div class="sidebar-title">
+                                <h4>Export Data</h4>
+                            </div>
+                            <p>Export content goes here.</p>
+                            <div id="sidebar-info">
+                                <form>
+                                    <fieldset>
+                                        <legend>Select Export Format</legend>
+                                        <label><input type="radio" name="export-format" value="json"> JSON</label><br>
+                                        <label><input type="radio" name="export-format" value="xml"> XML</label><br>
+                                        <label><input type="radio" name="export-format" value="csv"> CSV</label><br>
+                                        <label><input type="radio" name="export-format" value="txt"> TXT</label><br>
+                                        <label><input type="radio" name="export-format" value="sql"> SQL</label>
+                                    </fieldset>
+                                    <button type="button" id="export-button" class="update-display-btn">Export Data</button>
                                 </form>
                             </div>
                         </div>
-                        <!-- Update display button -->
-                        <div class="button-container">
-                            <button type="button" class="update-display-btn">Update Display</button>
-                        </div>
-                    </div>
 
-                    <!-- Search content in sidebar -->
-                    <div id="search-content" class="sidebar-content">
-                        <div class="sidebar-title">
-                            <h4>Search Data</h4>
+                        <!-- Help content in sidebar -->
+                        <div id="help-content" class="sidebar-content">
+                            <div class="sidebar-title">
+                                <h4>Help</h4> 
+                            </div>
+                            <p>Help content goes here.</p>
+                            <br>
+                            <p>Click on the active Icon to hide the sidebar.</p>
+                            <br>
+                            <p>Drag a column header to rearrange columns.</p> 
+                            <br> 
+                            <p>Click a column header to sort the table.</p>
+                            <br>
+                            <p>Uncheck a box to remove the gene from the list.</p>
+                            <br>
+                            <p>When the domain organisation of the proteins is shown, you can drag rows to rearrange the table.</p> 
+                            <br> 
+                            <p>Use 'text display' to get the 'raw' TAB-delimited table for copying.</p>
                         </div>
-                        <p>Search content goes here.</p>
-                    </div>
-
-                    <!-- Export content in sidebar -->
-                    <div id="export-content" class="sidebar-content">
-                        <div class="sidebar-title">
-                            <h4>Export Data</h4>
-                        </div>
-                        <p>Export content goes here.</p>
-                        <div id="sidebar-info">
-                            <form>
-                                <fieldset>
-                                    <legend>Select Export Format</legend>
-                                    <label><input type="radio" name="export-format" value="json"> JSON</label><br>
-                                    <label><input type="radio" name="export-format" value="xml"> XML</label><br>
-                                    <label><input type="radio" name="export-format" value="csv"> CSV</label><br>
-                                    <label><input type="radio" name="export-format" value="txt"> TXT</label><br>
-                                    <label><input type="radio" name="export-format" value="sql"> SQL</label>
-                                </fieldset>
-                                <button type="button" id="export-button" class="update-display-btn">Export Data</button>
-                            </form>
-                        </div>
-                    </div>
-
-                    <!-- Help content in sidebar -->
-                    <div id="help-content" class="sidebar-content">
-                        <div class="sidebar-title">
-                            <h4>Help</h4> 
-                        </div>
-                        <p>Help content goes here.</p>
-                        <br>
-                        <p>Click on the active Icon to hide the sidebar.</p>
-                        <br>
-                        <p>Drag a column header to rearrange columns.</p> 
-                        <br> 
-                        <p>Click a column header to sort the table.</p>
-                        <br>
-                        <p>Uncheck a box to remove the gene from the list.</p>
-                        <br>
-                        <p>When the domain organisation of the proteins is shown, you can drag rows to rearrange the table.</p> 
-                        <br> 
-                        <p>Use 'text display' to get the 'raw' TAB-delimited table for copying.</p>
                     </div>
                 </div>
-            </div>
 
-            <!-- Main content area -->
-            <div id="main-content">
-                <div id="main-content-header">
-                    <h3 class="table-title">Result Table</h3>
-                </div>
-                <div class="table-container">
-                    <div id="scrollableTable" class="scroll-unlocked">
-                        <table>
-                            <!-- Table headers -->
-                            <thead>
-                                <tr>
-                                    <!-- Constant headers (independent to display options) = no class -->
-                                    <!-- Filtered headers (dependent to display options) = associated with class -->
-                                    <th>Gene</th>
-                                    <th class="sequence-name-column">Sequence</th>
-                                    <th>CDS</th>
-                                    <th class="uniprot-id-column">UniProt ID</th>
-                                    <th class="chr-column">Chr</th>
-                                    <th class="chr-pos-column">Pos</th>
-                                    <th class="chr-strand-column">Strand</th>
-                                    <th class="start-column">Start</th>
-                                    <th class="end-column">End</th>
-                                    <th class="legacy-description-column">Legacy Description</th>
-                                    <th class="automated-description-column">Automated Description</th>
-                                    <th class="phenotype-mutants-column">Phenotype (Mutants)</th>
-                                    <th class="phenotype-rnai-column">Phenotype (RNAi)</th>
-                                    <th class="expression-column">Expression</th>
-                                    <th class="expression-genomic-column">Expression (Genomic Studies)</th>
-                                    <th class="interacting-physical-column">Physical Interactors</th>
-                                    <th class="interacting-genetic-column">Genetic Interactors</th>
-                                    <th class="interacting-regulatory-column">Regulatory Interactors</th>
-                                    <th class="yeast-homologs-column">Yeast Homolog</th>
-                                    <th class="fly-homologs-column">Fly Homolog</th>
-                                    <th class="fish-homologs-column">Fish Homolog</th>
-                                    <th class="mouse-homologs-column">Mouse Homolog</th>
-                                    <th class="human-homologs-column">Human Homolog</th>
-                                    <th class="go-terms-column">GO Terms</th>
-                                    <th class="disease-associations-column">Disease Associations</th>
-                                    <th class="aa-size-column">aa Size</th>
-                                    <th class="protein-sequence-column">Protein Sequence</th>
-                                    <th class="protein-domains-column">Domain Organization</th>    
-                                </tr>
-                            </thead>
-                            <!-- Table body with data rows -->
-                            <tbody>
-                                <tr>
-                                    <td>unc-5</td>
-                                    <td class="sequence-name-column">B0273.4</td>
-                                    <td>B0273.4c</td>
-                                    <td class="uniprot-id-column">Q26261</td>
-                                    <td class="chr-column">IV</td>
-                                    <td class="chr-pos-column">1.78</td>
-                                    <td class="chr-strand-column">-</td>
-                                    <td class="start-column">5495664</td>
-                                    <td class="end-column">5528338</td>
-                                    <td class="legacy-description-column">unc-5 encodes a netrin receptor...</td>
-                                    <td class="automated-description-column">Enables netrin receptor activity...</td>
-                                    <td class="phenotype-mutants-column">axon_dendritic_polarity_variant...</td>
-                                    <td class="phenotype-rnai-column">axon_guidance_variant...</td>
-                                    <td class="expression-column">anterior_distal_tip_cell...</td>
-                                    <td class="expression-genomic-column">ABalapaaaa, ABalappapa...</td>
-                                    <td class="interacting-physical-column">?</td>
-                                    <td class="interacting-genetic-column">?</td>
-                                    <td class="interacting-regulatory-column">?</td>
-                                    <td class="yeast-homologs-column"></td>
-                                    <td class="fly-homologs-column">Unc5b, unc5cb...</td>
-                                    <td class="fish-homologs-column">unc5da...</td>
-                                    <td class="mouse-homologs-column">Unc5a, Unc5b...</td>
-                                    <td class="human-homologs-column">UNC5A, UNC5B...</td>
-                                    <td class="go-terms-column">axon_guidance, axon_development...</td>
-                                    <td class="disease-associations-column"></td>
-                                    <td class="aa-size-column">947</td>
-                                    <td class="protein-sequence-column">?</td>
-                                    <td class="protein-domains-column"><img src="assets/display_prototype/B0273.4c.png" alt="B0273.4c Domain Organisation"></td>
-                                </tr>
-                                <tr>
-                                    <td>unc-44</td>
-                                    <td class="sequence-name-column">B0350.2</td>
-                                    <td>B0350.2f</td>
-                                    <td class="uniprot-id-column">Q17490</td>
-                                    <td class="chr-column">IV</td>
-                                    <td class="chr-pos-column">2.89</td>
-                                    <td class="chr-strand-column">+</td>
-                                    <td class="start-column">5975557</td>
-                                    <td class="end-column">6004857</td>
-                                    <td class="legacy-description-column"></td>
-                                    <td class="automated-description-column">Enables cell adhesion molecule binding activity...</td>
-                                    <td class="phenotype-mutants-column">amplitude_of_sinusoidal_movement_variant...</td>
-                                    <td class="phenotype-rnai-column">axon_guidance_variant...</td>
-                                    <td class="expression-column">anal_depressor_muscle...</td>
-                                    <td class="expression-genomic-column">anal_depressor_muscle, anal_sphincter_muscle...</td>
-                                    <td class="interacting-physical-column">?</td>
-                                    <td class="interacting-genetic-column">?</td>
-                                    <td class="interacting-regulatory-column">?</td>
-                                    <td class="yeast-homologs-column"></td>
-                                    <td class="fly-homologs-column">Ank2, Ank...</td>
-                                    <td class="fish-homologs-column">ank1a, ank2b...</td>
-                                    <td class="mouse-homologs-column">Ank1, Ank3...</td>
-                                    <td class="human-homologs-column">ANK2, ANK3...</td>
-                                    <td class="go-terms-column">body_morphogenesis, cell_adhesion_molecule_binding...</td>
-                                    <td class="disease-associations-column">anemia, bipolar_disorder...</td>
-                                    <td class="aa-size-column">6994</td>
-                                    <td class="protein-sequence-column">?</td>
-                                    <td class="protein-domains-column"><img src="assets/display_prototype/B0350.2f.png" alt="B0350.2f Domain Organisation"></td>  
-                                </tr>
-                                <tr>
-                                    <td>unc-82</td>
-                                    <td class="sequence-name-column">B0496.3</td>
-                                    <td>B0496.3e</td>
-                                    <td class="uniprot-id-column">H2KYA5</td>
-                                    <td class="chr-column">IV</td>
-                                    <td class="chr-pos-column">3.33</td>
-                                    <td class="chr-strand-column">+</td>
-                                    <td class="start-column">7424498</td>
-                                    <td class="end-column">7444664</td>
-                                    <td class="legacy-description-column">unc-82 encodes a serine/threonine kinase...</td>
-                                    <td class="automated-description-column">A structural constituent of muscle...</td>
-                                    <td class="phenotype-mutants-column">antibody_subcellular_localization_variant...</td>
-                                    <td class="phenotype-rnai-column">body_wall_muscle_sarcomere_morphology_variant...</td>
-                                    <td class="expression-column">body_wall_musculature...</td>
-                                    <td class="expression-genomic-column">anal_depressor_muscle, anal_sphincter_muscle...</td>
-                                    <td class="interacting-physical-column">?</td>
-                                    <td class="interacting-genetic-column">?</td>
-                                    <td class="interacting-regulatory-column">?</td>
-                                    <td class="yeast-homologs-column"></td>
-                                    <td class="fly-homologs-column">Nuak...</td>
-                                    <td class="fish-homologs-column">Nuak2, nuak1b...</td>
-                                    <td class="mouse-homologs-column">Nuak2, Nuak1...</td>
-                                    <td class="human-homologs-column">Nuak1, Nuak2...</td>
-                                    <td class="go-terms-column">ATP_binding, cellular_response_to_glucose_starvation...</td>
-                                    <td class="disease-associations-column">uterine_fibroid, anencephaly...</td>
-                                    <td class="aa-size-column">1793</td>
-                                    <td class="protein-sequence-column">?</td>
-                                    <td class="protein-domains-column"><img src="assets/display_prototype/B0496.3e.png" alt="B0496.3e Domain Organisation"></td>  
-                                </tr>
-                                <tr>
-                                    <td>unc-30</td>
-                                    <td class="sequence-name-column">B0564.10</td>
-                                    <td>B0564.10b</td>
-                                    <td class="uniprot-id-column">P52906</td>
-                                    <td class="chr-column">IV</td>
-                                    <td class="chr-pos-column">8.22</td>
-                                    <td class="chr-strand-column">+</td>
-                                    <td class="start-column">13118977</td>
-                                    <td class="end-column">13124406</td>
-                                    <td class="legacy-description-column">unc-30 encodes a homeodomain-containing protein...</td>
-                                    <td class="automated-description-column">Enables sequence-specific DNA binding activity...</td>
-                                    <td class="phenotype-mutants-column">amplitude_of_sinusoidal_movement_variant...</td>
-                                    <td class="phenotype-rnai-column">locomotion_variant, shrinker...</td>
-                                    <td class="expression-column">ASGL, ASGR, AVJL, AVJR...</td>
-                                    <td class="expression-genomic-column">AVDL, AVDR, AVHL, AVHR...</td>
-                                    <td class="interacting-physical-column">?</td>
-                                    <td class="interacting-genetic-column">?</td>
-                                    <td class="interacting-regulatory-column">?</td>
-                                    <td class="yeast-homologs-column">Ptx1...</td>
-                                    <td class="fly-homologs-column">Pitx2, Pitx3, Pitx1...</td>
-                                    <td class="fish-homologs-column">Pitx1, Pitx2, Pitx3...</td>
-                                    <td class="mouse-homologs-column">Pitx1, Pitx2, Pitx3...</td>
-                                    <td class="human-homologs-column">Pitx1, Pitx2, Pitx3...</td>
-                                    <td class="go-terms-column">anatomical_structure_morphogenesis, axon_guidance...</td>
-                                    <td class="disease-associations-column">cataract, clubfoot, Axenfeld-Rieger_syndrome...</td>
-                                    <td class="aa-size-column">323</td>
-                                    <td class="protein-sequence-column">?</td>
-                                    <td class="protein-domains-column"><img src="assets/display_prototype/B0564.10b.png" alt="B0564.10b Domain Organisation"></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                <!-- Main content area -->
+                <div id="main-content">
+                    <div id="main-content-header">
+                        <h3 class="table-title">Result Table</h3>
+                    </div>
+                    <div class="table-container">
+                        <div id="scrollableTable" class="scroll-unlocked">
+                            <table>
+                                <!-- Table headers -->
+                                <thead>
+                                    <tr>
+                                        <!-- Constant headers (independent to display options) = no class -->
+                                        <!-- Filtered headers (dependent to display options) = associated with class -->
+                                        <th>Gene</th>
+                                        <th class="sequence-name-column">Sequence</th>
+                                        <th>CDS</th>
+                                        <th class="uniprot-id-column">UniProt ID</th>
+                                        <th class="chr-column">Chr</th>
+                                        <th class="chr-pos-column">Pos</th>
+                                        <th class="chr-strand-column">Strand</th>
+                                        <th class="start-column">Start</th>
+                                        <th class="end-column">End</th>
+                                        <th class="legacy-description-column">Legacy Description</th>
+                                        <th class="automated-description-column">Automated Description</th>
+                                        <th class="phenotype-mutants-column">Phenotype (Mutants)</th>
+                                        <th class="phenotype-rnai-column">Phenotype (RNAi)</th>
+                                        <th class="expression-column">Expression</th>
+                                        <th class="expression-genomic-column">Expression (Genomic Studies)</th>
+                                        <th class="interacting-physical-column">Physical Interactors</th>
+                                        <th class="interacting-genetic-column">Genetic Interactors</th>
+                                        <th class="interacting-regulatory-column">Regulatory Interactors</th>
+                                        <th class="yeast-homologs-column">Yeast Homolog</th>
+                                        <th class="fly-homologs-column">Fly Homolog</th>
+                                        <th class="fish-homologs-column">Fish Homolog</th>
+                                        <th class="mouse-homologs-column">Mouse Homolog</th>
+                                        <th class="human-homologs-column">Human Homolog</th>
+                                        <th class="go-terms-column">GO Terms</th>
+                                        <th class="disease-associations-column">Disease Associations</th>
+                                        <th class="aa-size-column">aa Size</th>
+                                        <th class="protein-sequence-column">Protein Sequence</th>
+                                        <th class="protein-domains-column">Domain Organization</th>    
+                                    </tr>
+                                </thead>
+                                <!-- Table body with data rows -->
+                                <tbody>
+                                    <tr>
+                                        <td>unc-5</td>
+                                        <td class="sequence-name-column">B0273.4</td>
+                                        <td>B0273.4c</td>
+                                        <td class="uniprot-id-column">Q26261</td>
+                                        <td class="chr-column">IV</td>
+                                        <td class="chr-pos-column">1.78</td>
+                                        <td class="chr-strand-column">-</td>
+                                        <td class="start-column">5495664</td>
+                                        <td class="end-column">5528338</td>
+                                        <td class="legacy-description-column">unc-5 encodes a netrin receptor...</td>
+                                        <td class="automated-description-column">Enables netrin receptor activity...</td>
+                                        <td class="phenotype-mutants-column">axon_dendritic_polarity_variant...</td>
+                                        <td class="phenotype-rnai-column">axon_guidance_variant...</td>
+                                        <td class="expression-column">anterior_distal_tip_cell...</td>
+                                        <td class="expression-genomic-column">ABalapaaaa, ABalappapa...</td>
+                                        <td class="interacting-physical-column">?</td>
+                                        <td class="interacting-genetic-column">?</td>
+                                        <td class="interacting-regulatory-column">?</td>
+                                        <td class="yeast-homologs-column"></td>
+                                        <td class="fly-homologs-column">Unc5b, unc5cb...</td>
+                                        <td class="fish-homologs-column">unc5da...</td>
+                                        <td class="mouse-homologs-column">Unc5a, Unc5b...</td>
+                                        <td class="human-homologs-column">UNC5A, UNC5B...</td>
+                                        <td class="go-terms-column">axon_guidance, axon_development...</td>
+                                        <td class="disease-associations-column"></td>
+                                        <td class="aa-size-column">947</td>
+                                        <td class="protein-sequence-column">?</td>
+                                        <td class="protein-domains-column"><img src="assets/display_prototype/B0273.4c.png" alt="B0273.4c Domain Organisation"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>unc-44</td>
+                                        <td class="sequence-name-column">B0350.2</td>
+                                        <td>B0350.2f</td>
+                                        <td class="uniprot-id-column">Q17490</td>
+                                        <td class="chr-column">IV</td>
+                                        <td class="chr-pos-column">2.89</td>
+                                        <td class="chr-strand-column">+</td>
+                                        <td class="start-column">5975557</td>
+                                        <td class="end-column">6004857</td>
+                                        <td class="legacy-description-column"></td>
+                                        <td class="automated-description-column">Enables cell adhesion molecule binding activity...</td>
+                                        <td class="phenotype-mutants-column">amplitude_of_sinusoidal_movement_variant...</td>
+                                        <td class="phenotype-rnai-column">axon_guidance_variant...</td>
+                                        <td class="expression-column">anal_depressor_muscle...</td>
+                                        <td class="expression-genomic-column">anal_depressor_muscle, anal_sphincter_muscle...</td>
+                                        <td class="interacting-physical-column">?</td>
+                                        <td class="interacting-genetic-column">?</td>
+                                        <td class="interacting-regulatory-column">?</td>
+                                        <td class="yeast-homologs-column"></td>
+                                        <td class="fly-homologs-column">Ank2, Ank...</td>
+                                        <td class="fish-homologs-column">ank1a, ank2b...</td>
+                                        <td class="mouse-homologs-column">Ank1, Ank3...</td>
+                                        <td class="human-homologs-column">ANK2, ANK3...</td>
+                                        <td class="go-terms-column">body_morphogenesis, cell_adhesion_molecule_binding...</td>
+                                        <td class="disease-associations-column">anemia, bipolar_disorder...</td>
+                                        <td class="aa-size-column">6994</td>
+                                        <td class="protein-sequence-column">?</td>
+                                        <td class="protein-domains-column"><img src="assets/display_prototype/B0350.2f.png" alt="B0350.2f Domain Organisation"></td>  
+                                    </tr>
+                                    <tr>
+                                        <td>unc-82</td>
+                                        <td class="sequence-name-column">B0496.3</td>
+                                        <td>B0496.3e</td>
+                                        <td class="uniprot-id-column">H2KYA5</td>
+                                        <td class="chr-column">IV</td>
+                                        <td class="chr-pos-column">3.33</td>
+                                        <td class="chr-strand-column">+</td>
+                                        <td class="start-column">7424498</td>
+                                        <td class="end-column">7444664</td>
+                                        <td class="legacy-description-column">unc-82 encodes a serine/threonine kinase...</td>
+                                        <td class="automated-description-column">A structural constituent of muscle...</td>
+                                        <td class="phenotype-mutants-column">antibody_subcellular_localization_variant...</td>
+                                        <td class="phenotype-rnai-column">body_wall_muscle_sarcomere_morphology_variant...</td>
+                                        <td class="expression-column">body_wall_musculature...</td>
+                                        <td class="expression-genomic-column">anal_depressor_muscle, anal_sphincter_muscle...</td>
+                                        <td class="interacting-physical-column">?</td>
+                                        <td class="interacting-genetic-column">?</td>
+                                        <td class="interacting-regulatory-column">?</td>
+                                        <td class="yeast-homologs-column"></td>
+                                        <td class="fly-homologs-column">Nuak...</td>
+                                        <td class="fish-homologs-column">Nuak2, nuak1b...</td>
+                                        <td class="mouse-homologs-column">Nuak2, Nuak1...</td>
+                                        <td class="human-homologs-column">Nuak1, Nuak2...</td>
+                                        <td class="go-terms-column">ATP_binding, cellular_response_to_glucose_starvation...</td>
+                                        <td class="disease-associations-column">uterine_fibroid, anencephaly...</td>
+                                        <td class="aa-size-column">1793</td>
+                                        <td class="protein-sequence-column">?</td>
+                                        <td class="protein-domains-column"><img src="assets/display_prototype/B0496.3e.png" alt="B0496.3e Domain Organisation"></td>  
+                                    </tr>
+                                    <tr>
+                                        <td>unc-30</td>
+                                        <td class="sequence-name-column">B0564.10</td>
+                                        <td>B0564.10b</td>
+                                        <td class="uniprot-id-column">P52906</td>
+                                        <td class="chr-column">IV</td>
+                                        <td class="chr-pos-column">8.22</td>
+                                        <td class="chr-strand-column">+</td>
+                                        <td class="start-column">13118977</td>
+                                        <td class="end-column">13124406</td>
+                                        <td class="legacy-description-column">unc-30 encodes a homeodomain-containing protein...</td>
+                                        <td class="automated-description-column">Enables sequence-specific DNA binding activity...</td>
+                                        <td class="phenotype-mutants-column">amplitude_of_sinusoidal_movement_variant...</td>
+                                        <td class="phenotype-rnai-column">locomotion_variant, shrinker...</td>
+                                        <td class="expression-column">ASGL, ASGR, AVJL, AVJR...</td>
+                                        <td class="expression-genomic-column">AVDL, AVDR, AVHL, AVHR...</td>
+                                        <td class="interacting-physical-column">?</td>
+                                        <td class="interacting-genetic-column">?</td>
+                                        <td class="interacting-regulatory-column">?</td>
+                                        <td class="yeast-homologs-column">Ptx1...</td>
+                                        <td class="fly-homologs-column">Pitx2, Pitx3, Pitx1...</td>
+                                        <td class="fish-homologs-column">Pitx1, Pitx2, Pitx3...</td>
+                                        <td class="mouse-homologs-column">Pitx1, Pitx2, Pitx3...</td>
+                                        <td class="human-homologs-column">Pitx1, Pitx2, Pitx3...</td>
+                                        <td class="go-terms-column">anatomical_structure_morphogenesis, axon_guidance...</td>
+                                        <td class="disease-associations-column">cataract, clubfoot, Axenfeld-Rieger_syndrome...</td>
+                                        <td class="aa-size-column">323</td>
+                                        <td class="protein-sequence-column">?</td>
+                                        <td class="protein-domains-column"><img src="assets/display_prototype/B0564.10b.png" alt="B0564.10b Domain Organisation"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </form>    
         </div>
     </div>
     
