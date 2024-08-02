@@ -1,3 +1,5 @@
+/* ------------------------ Global CSS Rules Start ------------------------- */
+
 /* Universal base styles */
 *, *:before, *:after {
     box-sizing: border-box;
@@ -36,11 +38,51 @@ html, body {
     min-height: 335px;
 }
 
+
+.clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
 .wrapper {
     display: flex;
     flex-direction: column;
     height: 100%;
 }
+
+/* ------------------------ Global CSS Rules End ------------------------- */
+
+/* ------------------------ Scrollbar Behaviors Start ------------------------ */
+
+#help-sidebar::-webkit-scrollbar, #sidebar::-webkit-scrollbar, #scrollableTable::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+#help-sidebar::-webkit-scrollbar-thumb, #sidebar::-webkit-scrollbar-thumb, #scrollableTable::-webkit-scrollbar-thumb {
+    background-color: #b0b0b0;
+    border-radius: 4px;
+}
+
+#help-sidebar::-webkit-scrollbar-thumb:hover, #sidebar::-webkit-scrollbar-thumb:hover, #scrollableTable::-webkit-scrollbar-thumb:hover {
+    background-color: #808080;
+}
+
+#scrollableTable::-webkit-scrollbar-track {
+    background-color: #f0f0f0;
+    border-radius: 4px;
+}
+
+#help-sidebar::-webkit-scrollbar-track, #sidebar::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+/* ------------------------ Scrollbar Behaviors End ------------------------ */
+
+/* ------------------------ Navbar Header Menu Start ------------------------- */
+
 
 #header {
     display: flex;
@@ -188,6 +230,14 @@ html, body {
     transform: rotate(-180deg);
 }
 
+/* ------------------------ Navbar Header Menu End ------------------------- */
+
+
+
+
+/* ------------------------ Home Page Specific Start ------------------------- */
+
+
 #intro {
     background-color: #dedede;
     padding: 0;
@@ -233,6 +283,14 @@ html, body {
     position: relative;
     overflow: hidden;
 }
+
+
+/* ------------------------ Home Page Specific End ------------------------- */
+
+
+
+/* ------------------------ Display Page Specific Start ------------------------- */
+
 
 /* Add keyframes for modern slide-in and slide-out animations */
 @keyframes slideIn {
@@ -473,34 +531,7 @@ html, body {
     background-color: #1C5E82;
 }
 
-.clearfix:after {
-    content: "";
-    display: table;
-    clear: both;
-}
 
-#sidebar::-webkit-scrollbar, #scrollableTable::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-}
-
-#sidebar::-webkit-scrollbar-thumb, #scrollableTable::-webkit-scrollbar-thumb {
-    background-color: #b0b0b0;
-    border-radius: 4px;
-}
-
-#sidebar::-webkit-scrollbar-thumb:hover, #scrollableTable::-webkit-scrollbar-thumb:hover {
-    background-color: #808080;
-}
-
-#scrollableTable::-webkit-scrollbar-track {
-    background-color: #f0f0f0;
-    border-radius: 4px;
-}
-
-#sidebar::-webkit-scrollbar-track {
-    background-color: transparent;
-}
 
 /* Align table title to the sidebar icon container */
 #main-content-header {
@@ -535,7 +566,7 @@ html, body {
 
 /* all sidebar titles */
 .sidebar-title {
-    padding: 15px 0 15px 0;
+    padding: 16px 0 16px 0;
     position: sticky; /* Use sticky positioning for flexibility */
     top: 0; /* Align it at the top of its container */
     background-color: #F5F5F5; /* Ensure it has a background color */
@@ -740,11 +771,6 @@ html, body {
 
 
 
-
-
-
-
-
 /* ------------------------ sidebar 3 (Search Data) ------------------------ */
 #search-content {
     padding: 0px 0px 0px 0px;
@@ -759,3 +785,263 @@ html, body {
 #help-content {
     padding: 0px 0px 0px 0px;
 }
+
+
+/* ------------------------ Display Page Specific End ------------------------- */
+
+
+
+
+/* ------------------------ Help Page Specific Start ------------------------- */
+/* Help Sidebar */
+
+
+
+
+
+
+/* ------------------------ Help Page Specific Start ------------------------- */
+/* Help Sidebar */
+
+
+
+
+
+
+
+
+
+
+/* ------------------------ Help Page Specific Start ------------------------- */
+/* Help Sidebar */
+
+
+
+
+
+
+/* Help Sidebar */
+.help-sidebar-wrapper {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    position: relative;
+}
+
+#help-sidebar {
+    background-color: #F5F5F5;
+    width: 340px;
+    height: 100%;
+    padding: 0 30px 60px 30px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    margin-top: 0;
+    border-right: 1px solid var(--border_color);
+    white-space: normal;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.help-sidebar-title {
+    padding: 16px 0 0px 0;
+    position: sticky; /* Use sticky positioning for flexibility */
+    top: 0; /* Align it at the top of its container */
+    background-color: #F5F5F5; /* Ensure it has a background color */
+    z-index: 1; /* Ensure it stays above other elements */
+}
+
+#help-sidebar h4 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+#help-sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#help-sidebar ul li {
+    margin: 10px 0;
+    position: relative;
+}
+
+#help-sidebar ul li a {
+    color: var(--nav_text_color);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 5px 30px; /* Adjusted padding to cover full width including icon */
+    display: block;
+    position: relative;
+    border-radius: 5px;
+}
+
+#help-sidebar ul li a.active {
+    background-color: #E4E4E4;
+    border-radius: 5px;
+}
+
+#help-sidebar ul li a:hover {
+    background-color: #FAFAFA;
+    border-radius: 5px;
+}
+
+#help-sidebar ul li.has-submenu > a:hover {
+    background-color: #FAFAFA;
+    border-radius: 5px;
+}
+
+#help-sidebar ul ul li a {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+#help-sidebar ul ul li a:hover {
+    background-color: #FAFAFA;
+    text-decoration: underline;
+    border-radius: 5px;
+}
+
+/* Specific styling for .has-submenu-again items */
+#help-sidebar ul li.has-submenu-again > a:hover {
+    text-decoration: none;
+}
+
+#help-sidebar ul ul {
+    padding-left: 0px;
+    display: none;
+}
+
+#help-sidebar ul li.has-submenu > a::before,
+#help-sidebar ul li.has-submenu-again > a::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background: url('assets/angle-down.png') no-repeat center center;
+    background-size: contain;
+    position: absolute;
+    left: 5px; /* Adjusted position to align with padding */
+    top: 50%;
+    transform: translateY(-50%) rotate(-90deg);
+    transition: transform 0.3s;
+}
+
+#help-sidebar ul li.has-submenu.open > a::before,
+#help-sidebar ul li.has-submenu-again.open > a::before {
+    transform: translateY(-50%) rotate(0deg);
+}
+
+#help-sidebar ul li.has-submenu > a,
+#help-sidebar ul li.has-submenu-again > a {
+    cursor: pointer;
+}
+
+#help-sidebar ul li a[href="#user-guide"]:hover {
+    text-decoration: underline;
+    border-radius: 5px;
+}
+
+
+
+
+
+
+
+/* Help Contents */
+#help-page-content {
+    padding: 0 40px 60px 40px;
+    flex-grow: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    margin-top: 0;
+    margin-left: 340px; /* This margin should match the sidebar width */
+    position: relative;
+}
+
+#help-content-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 16px 0px;
+    justify-content: center;
+}
+
+.help-content-section {
+    display: none;   
+}
+
+.help-content-section.active {
+    display: block;
+}
+
+.date-last-updated {
+    padding: 0 0 20px 0;
+}
+
+.date-last-updated h4{
+    font-weight: 400;
+    font-size: 12px;
+}
+
+.help-content-section-title h4 {
+    padding: 0 0 20px 0;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.help-content-section-title h5 {
+    padding: 0 0 20px 0;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.help-content-section p {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.help-content-section ul {
+    padding: 10px 0px 0px 40px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+
+.update-article-button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 10px;
+    background-color: #0070d2;
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 20px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.update-article-button:hover {
+    background-color: #005bb5;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* ------------------------ Help Page Specific End ------------------------- */
