@@ -26,6 +26,55 @@
     --active_icon_border_color: #059BD8; /* Blue color for active icon border */
 }
 
+
+/* ------------------- Import local font start ------------------------ */
+
+/* Regular Weights */
+@font-face {
+    font-family: 'Open Sans';
+    src: url('fonts/Open_Sans/static/OpenSans-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('fonts/Open_Sans/static/OpenSans-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('fonts/Open_Sans/static/OpenSans-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('fonts/Open_Sans/static/OpenSans-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('fonts/Open_Sans/static/OpenSans-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('fonts/Open_Sans/static/OpenSans-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+}
+
+/* ------------------- Import local font end ------------------------ */
+
+
 html, body {
     font-family: 'Open Sans', sans-serif; /* Fonts with priority given to 'Open Sans' */
     background: var(--body_bkgr_color);
@@ -56,17 +105,17 @@ html, body {
 
 /* ------------------------ Scrollbar Behaviors Start ------------------------ */
 
-#help-sidebar::-webkit-scrollbar, #sidebar::-webkit-scrollbar, #scrollableTable::-webkit-scrollbar {
+#sidebar::-webkit-scrollbar, #scrollableTable::-webkit-scrollbar {
     width: 8px;
     height: 8px;
 }
 
-#help-sidebar::-webkit-scrollbar-thumb, #sidebar::-webkit-scrollbar-thumb, #scrollableTable::-webkit-scrollbar-thumb {
+#sidebar::-webkit-scrollbar-thumb, #scrollableTable::-webkit-scrollbar-thumb {
     background-color: #b0b0b0;
     border-radius: 4px;
 }
 
-#help-sidebar::-webkit-scrollbar-thumb:hover, #sidebar::-webkit-scrollbar-thumb:hover, #scrollableTable::-webkit-scrollbar-thumb:hover {
+#sidebar::-webkit-scrollbar-thumb:hover, #scrollableTable::-webkit-scrollbar-thumb:hover {
     background-color: #808080;
 }
 
@@ -75,7 +124,7 @@ html, body {
     border-radius: 4px;
 }
 
-#help-sidebar::-webkit-scrollbar-track, #sidebar::-webkit-scrollbar-track {
+#sidebar::-webkit-scrollbar-track {
     background-color: transparent;
 }
 
@@ -820,6 +869,10 @@ html, body {
 
 
 
+
+
+
+
 /* Help Sidebar */
 .help-sidebar-wrapper {
     display: flex;
@@ -886,6 +939,10 @@ html, body {
     border-radius: 5px;
 }
 
+#help-sidebar ul ul li a.active {
+    background-color: transparent;
+}
+
 #help-sidebar ul li a:hover {
     background-color: #FAFAFA;
     border-radius: 5px;
@@ -903,22 +960,17 @@ html, body {
 
 #help-sidebar ul ul li a:hover {
     background-color: #FAFAFA;
-    text-decoration: underline;
     border-radius: 5px;
-}
-
-/* Specific styling for .has-submenu-again items */
-#help-sidebar ul li.has-submenu-again > a:hover {
-    text-decoration: none;
 }
 
 #help-sidebar ul ul {
     padding-left: 0px;
-    display: none;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease-in-out;
 }
 
-#help-sidebar ul li.has-submenu > a::before,
-#help-sidebar ul li.has-submenu-again > a::before {
+#help-sidebar ul li.has-submenu > a::before {
     content: '';
     display: inline-block;
     width: 24px;
@@ -932,26 +984,17 @@ html, body {
     transition: transform 0.3s;
 }
 
-#help-sidebar ul li.has-submenu.open > a::before,
-#help-sidebar ul li.has-submenu-again.open > a::before {
+#help-sidebar ul li.has-submenu.open > a::before {
     transform: translateY(-50%) rotate(0deg);
 }
 
-#help-sidebar ul li.has-submenu > a,
-#help-sidebar ul li.has-submenu-again > a {
+#help-sidebar ul li.has-submenu > a {
     cursor: pointer;
 }
 
 #help-sidebar ul li a[href="#user-guide"]:hover {
-    text-decoration: underline;
     border-radius: 5px;
 }
-
-
-
-
-
-
 
 /* Help Contents */
 #help-page-content {
@@ -985,7 +1028,7 @@ html, body {
     padding: 0 0 20px 0;
 }
 
-.date-last-updated h4{
+.date-last-updated h4 {
     font-weight: 400;
     font-size: 12px;
 }
@@ -1015,7 +1058,6 @@ html, body {
     line-height: 1.6;
 }
 
-
 .update-article-button {
     display: inline-block;
     padding: 10px 20px;
@@ -1033,6 +1075,21 @@ html, body {
 .update-article-button:hover {
     background-color: #005bb5;
 }
+
+/* Highlight the selected sub-section title */
+.help-content-section div.highlight h5, .help-content-section div.highlight h6 {
+    background-color: #f0f8ff;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Ensure that only the title is highlighted, not the whole section */
+.help-content-section div.highlight {
+    background-color: transparent;
+}
+
+
+
 
 
 
