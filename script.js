@@ -1,112 +1,241 @@
-// Wait for the DOM to fully load before executing the script
 document.addEventListener("DOMContentLoaded", function() {
-    // Elements related to the sidebar and main content
     var iconContainers = document.querySelectorAll(".icon-container");
     var sidebar = document.getElementById("sidebar");
     var mainContent = document.getElementById("main-content");
     var activeLine = document.getElementById("active-line");
     var sidebarContents = document.querySelectorAll(".sidebar-content");
 
-    // Function to toggle submenus and rotate arrows
-    var submenuItems = document.querySelectorAll("#help-sidebar li.has-submenu > a");
+    // Help Page Specific Code
+    if (document.getElementById("help-page-content")) {
+        var submenuItems = document.querySelectorAll("#help-sidebar li.has-submenu > a");
 
-    submenuItems.forEach(function(submenuItem) {
-        submenuItem.addEventListener("click", function(e) {
-            e.preventDefault();
-            var parentLi = this.parentElement;
-            var submenu = this.nextElementSibling;
+        submenuItems.forEach(function(submenuItem) {
+            submenuItem.addEventListener("click", function(e) {
+                e.preventDefault();
+                var parentLi = this.parentElement;
+                var submenu = this.nextElementSibling;
 
-            if (parentLi.classList.contains("open")) {
-                submenu.style.display = "none";
-                parentLi.classList.remove("open");
-            } else {
-                submenu.style.display = "block";
-                parentLi.classList.add("open");
-            }
-        });
-    });
+                // Close all other submenus
+                submenuItems.forEach(function(item) {
+                    var itemParentLi = item.parentElement;
+                    var itemSubmenu = item.nextElementSibling;
 
-    // Function to show content based on sidebar selection
-    var sidebarLinks = document.querySelectorAll("#help-sidebar a");
-    var contentSections = document.querySelectorAll(".help-content-section");
+                    if (itemParentLi !== parentLi) {
+                        itemSubmenu.style.maxHeight = null;
+                        itemParentLi.classList.remove("open");
+                    }
+                });
 
-    sidebarLinks.forEach(function(link) {
-        link.addEventListener("click", function(e) {
-            e.preventDefault();
-            var targetId = this.getAttribute("href").substring(1);
-
-            contentSections.forEach(function(section) {
-                if (section.id === targetId) {
-                    section.classList.add("active");
+                // Toggle the clicked submenu
+                if (parentLi.classList.contains("open")) {
+                    submenu.style.maxHeight = null;
+                    parentLi.classList.remove("open");
                 } else {
-                    section.classList.remove("active");
+                    submenu.style.maxHeight = submenu.scrollHeight + "px";
+                    parentLi.classList.add("open");
                 }
             });
-
-            // Remove 'active' class from all sidebar links
-            sidebarLinks.forEach(function(link) {
-                link.classList.remove("active");
-            });
-
-            // Add 'active' class to the clicked link
-            this.classList.add("active");
-
-            // Change the URL without reloading the page
-            history.pushState(null, null, '#' + targetId);
         });
-    });
 
-    // Set the default active link and content
-    var defaultActiveLink = document.querySelector('#help-sidebar a[href="#user-guide"]');
-    if (defaultActiveLink) {
-        defaultActiveLink.classList.add("active");
-        document.getElementById("user-guide").classList.add("active");
+        var sidebarLinks = document.querySelectorAll("#help-sidebar a");
+        var contentSections = document.querySelectorAll(".help-content-section");
+
+        sidebarLinks.forEach(function(link) {
+            link.addEventListener("click", function(e) {
+                e.preventDefault();
+                var targetId = this.getAttribute("href").substring(1);
+                var targetElement = document.getElementById(targetId);
+                var parentLi = this.parentElement;
+
+                // If it's a submenu item, do not apply active class to it
+                if (parentLi.classList.contains("has-submenu")) {
+                    // Handle parent menu item activation
+                    sidebarLinks.forEach(function(link) {
+                        link.classList.remove("active");
+                    });
+                    this.classList.add("active");
+
+                    // Show the corresponding content section
+                    contentSections.forEach(function(section) {
+                        if (section.contains(targetElement)) {
+                            section.classList.add("active");
+                            var subSections = section.querySelectorAll("div[id]");
+                            subSections.forEach(function(subSection) {
+                                subSection.classList.remove("highlight");
+                            });
+                            document.querySelector('#help-page-content').scrollTo({
+                                top: 0,
+                                behavior: "smooth"
+                            });
+                        } else {
+                            section.classList.remove("active");
+                        }
+                    });
+                } else {
+                    // Handle submenu item activation
+                    var parentMenu = parentLi.closest('li.has-submenu');
+                    sidebarLinks.forEach(function(link) {
+                        link.classList.remove("active");
+                    });
+                    if (parentMenu) {
+                        parentMenu.querySelector('a').classList.add("active");
+                    }
+
+                    // Show the corresponding content section and highlight the subsection
+                    contentSections.forEach(function(section) {
+                        if (section.contains(targetElement)) {
+                            section.classList.add("active");
+                            var subSections = section.querySelectorAll("div[id]");
+                            subSections.forEach(function(subSection) {
+                                subSection.classList.remove("highlight");
+                            });
+                            targetElement.classList.add("highlight");
+
+                            var offset = targetElement.offsetTop;
+                            document.querySelector('#help-page-content').scrollTo({
+                                top: offset,
+                                behavior: "smooth"
+                            });
+
+                            // Remove the highlight after 3 seconds
+                            setTimeout(function() {
+                                targetElement.classList.remove("highlight");
+                            }, 3000);
+                        } else {
+                            section.classList.remove("active");
+                        }
+                    });
+                }
+
+                // Change the URL without reloading the page
+                history.pushState(null, null, '#' + targetId);
+            });
+        });
+
+        // Set the default active link and content
+        var defaultActiveLink = document.querySelector('#help-sidebar a[href="#user-guide"]');
+        if (defaultActiveLink) {
+            defaultActiveLink.classList.add("active");
+            document.getElementById("user-guide").classList.add("active");
+        }
+
+        // Add event listener for "GExplore User Guide" to maintain background color and close submenus
+        var userGuideLink = document.querySelector('#help-sidebar a[href="#user-guide"]');
+        if (userGuideLink) {
+            userGuideLink.addEventListener("click", function(e) {
+                e.preventDefault();
+
+                // Close all open submenus
+                submenuItems.forEach(function(item) {
+                    var itemParentLi = item.parentElement;
+                    var itemSubmenu = item.nextElementSibling;
+
+                    itemSubmenu.style.maxHeight = null;
+                    itemParentLi.classList.remove("open");
+                });
+
+                // Activate the "GExplore User Guide" link
+                sidebarLinks.forEach(function(link) {
+                    link.classList.remove("active");
+                });
+                this.classList.add("active");
+                document.getElementById("user-guide").classList.add("active");
+                document.querySelector('#help-page-content').scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+                history.pushState(null, null, '#user-guide');
+            });
+        }
+
+        // Check for URL fragment on page load
+        if (window.location.hash) {
+            var targetId = window.location.hash.substring(1);
+            var targetElement = document.getElementById(targetId);
+
+            if (targetElement) {
+                // Activate the corresponding sidebar link
+                sidebarLinks.forEach(function(link) {
+                    link.classList.remove("active");
+                    if (link.getAttribute("href").substring(1) === targetId) {
+                        link.classList.add("active");
+                    }
+                });
+
+                // Show the corresponding content section
+                contentSections.forEach(function(section) {
+                    if (section.contains(targetElement)) {
+                        section.classList.add("active");
+                        var subSections = section.querySelectorAll("div[id]");
+                        subSections.forEach(function(subSection) {
+                            subSection.classList.remove("highlight");
+                        });
+                        targetElement.classList.add("highlight");
+
+                        var offset = targetElement.offsetTop;
+                        document.querySelector('#help-page-content').scrollTo({
+                            top: offset,
+                            behavior: "smooth"
+                        });
+
+                        // Remove the highlight after 3 seconds
+                        setTimeout(function() {
+                            targetElement.classList.remove("highlight");
+                        }, 3000);
+                    } else {
+                        section.classList.remove("active");
+                    }
+                });
+            }
+        }
     }
 
     // Copy icon tooltip handling
     var copyIcon = document.getElementById("copy-icon");
-    var tooltip = copyIcon.nextElementSibling;
-    var tooltipTimeout;
+    if (copyIcon) {
+        var tooltip = copyIcon.nextElementSibling;
+        var tooltipTimeout;
 
-    // Show tooltip on mouse enter
-    copyIcon.addEventListener("mouseenter", function() {
-        clearTimeout(tooltipTimeout);
-        tooltip.textContent = "Copy List";
-        tooltip.style.visibility = "visible";
-        tooltip.style.opacity = "1";
-
-        tooltipTimeout = setTimeout(function() {
-            tooltip.style.visibility = "hidden";
-            tooltip.style.opacity = "0";
-        }, 3000);
-    });
-
-    // Hide tooltip on mouse leave
-    copyIcon.addEventListener("mouseleave", function() {
-        clearTimeout(tooltipTimeout);
-        tooltip.style.visibility = "hidden";
-        tooltip.style.opacity = "0";
-    });
-
-    // Copy list content to clipboard on click
-    copyIcon.addEventListener("click", function(e) {
-        e.stopPropagation();
-        var listInfo = document.querySelector(".list-info p").textContent;
-
-        navigator.clipboard.writeText(listInfo).then(function() {
-            console.log("Text copied to clipboard");
-            tooltip.textContent = "List Copied";
+        // Show tooltip on mouse enter
+        copyIcon.addEventListener("mouseenter", function() {
+            clearTimeout(tooltipTimeout);
+            tooltip.textContent = "Copy List";
             tooltip.style.visibility = "visible";
             tooltip.style.opacity = "1";
-            setTimeout(function() {
+
+            tooltipTimeout = setTimeout(function() {
                 tooltip.style.visibility = "hidden";
                 tooltip.style.opacity = "0";
-                tooltip.textContent = "Copy List";
             }, 3000);
-        }).catch(function(err) {
-            console.error("Failed to copy text: ", err);
         });
-    });
+
+        // Hide tooltip on mouse leave
+        copyIcon.addEventListener("mouseleave", function() {
+            clearTimeout(tooltipTimeout);
+            tooltip.style.visibility = "hidden";
+            tooltip.style.opacity = "0";
+        });
+
+        // Copy list content to clipboard on click
+        copyIcon.addEventListener("click", function(e) {
+            e.stopPropagation();
+            var listInfo = document.querySelector(".list-info p").textContent;
+
+            navigator.clipboard.writeText(listInfo).then(function() {
+                console.log("Text copied to clipboard");
+                tooltip.textContent = "List Copied";
+                tooltip.style.visibility = "visible";
+                tooltip.style.opacity = "1";
+                setTimeout(function() {
+                    tooltip.style.visibility = "hidden";
+                    tooltip.style.opacity = "0";
+                    tooltip.textContent = "Copy List";
+                }, 3000);
+            }).catch(function(err) {
+                console.error("Failed to copy text: ", err);
+            });
+        });
+    }
 
     // Update the position of the active line indicator
     function updateActiveLinePosition() {
@@ -406,29 +535,31 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Event listener for the export button
     var exportButton = document.getElementById("export-button");
-    exportButton.addEventListener("click", function() {
-        var selectedFormat = document.querySelector('input[name="export-format"]:checked').value;
-        var tableData = getVisibleTableData();
+    if (exportButton) {
+        exportButton.addEventListener("click", function() {
+            var selectedFormat = document.querySelector('input[name="export-format"]:checked').value;
+            var tableData = getVisibleTableData();
 
-        // Export data based on selected format
-        switch (selectedFormat) {
-            case 'json':
-                exportAsJSON(tableData);
-                break;
-            case 'xml':
-                exportAsXML(tableData);
-                break;
-            case 'csv':
-                exportAsCSV(tableData);
-                break;
-            case 'txt':
-                exportAsTXT(tableData);
-                break;
-            case 'sql':
-                exportAsSQL(tableData);
-                break;
-            default:
-                alert('Please select a format to export.');
-        }
-    });
+            // Export data based on selected format
+            switch (selectedFormat) {
+                case 'json':
+                    exportAsJSON(tableData);
+                    break;
+                case 'xml':
+                    exportAsXML(tableData);
+                    break;
+                case 'csv':
+                    exportAsCSV(tableData);
+                    break;
+                case 'txt':
+                    exportAsTXT(tableData);
+                    break;
+                case 'sql':
+                    exportAsSQL(tableData);
+                    break;
+                default:
+                    alert('Please select a format to export.');
+            }
+        });
+    }
 });
