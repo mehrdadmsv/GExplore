@@ -5,7 +5,6 @@
     <title>Help - GExplore</title>
     <link rel="stylesheet" href="style.css" type="text/css">
     <link rel="icon" href="assets/flavicon.png" type="image/png">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="wrapper">
@@ -46,30 +45,25 @@
                     <ul>
                         <li><a href="#user-guide" class="active">GExplore User Guide</a></li>
                         <li class="has-submenu">
-                            <a>Introduction</a>
+                            <a href="#introduction">Introduction</a>
                             <ul>
                                 <li><a href="#gexplore">GExplore</a></li>
                                 <li><a href="#whats-new">What's new?</a></li>
                             </ul>
                         </li>
                         <li class="has-submenu">
-                            <a>Databases</a>
+                            <a href="#databases">Databases</a>
                             <ul>
                                 <li><a href="#gene-database">Gene</a></li>
                                 <li><a href="#mutation-database">Mutation</a></li>
                                 <li><a href="#protein-database">Protein</a></li>
-                                <li class="has-submenu has-submenu-again">
-                                    <a>Expression</a>
-                                    <ul>
-                                        <li><a href="#expression-stages">Stages</a></li>
-                                        <li><a href="#expression-tissues">Tissues</a></li>
-                                        <li><a href="#expression-embryo">Embryo</a></li>
-                                    </ul>
-                                </li>
+                                <li><a href="#expression-stages">Stages</a></li>
+                                <li><a href="#expression-tissues">Tissues</a></li>
+                                <li><a href="#expression-embryo">Embryo</a></li>    
                             </ul>
                         </li>
                         <li class="has-submenu">
-                            <a>Search</a>
+                            <a href="#search">Search</a>
                             <ul>
                                 <li><a href="#general-comments">Overview</a></li> 
                                 <li><a href="#gene-search-field">Gene search field</a></li>
@@ -83,7 +77,7 @@
                             </ul>
                         </li>
                         <li class="has-submenu">
-                            <a>Display Options</a>
+                            <a href="#display-options">Display Options</a>
                             <ul>
                                 <li><a href="#general-comments-display">Overview</a></li>
                                 <li><a href="#protein-domain-organization">Protein domain organization</a></li>
@@ -92,7 +86,7 @@
                             </ul>
                         </li>
                         <li class="has-submenu">
-                            <a>Tools</a>
+                            <a href="#tools">Tools</a>
                             <ul>
                                 <li><a href="#compare-tool">Compare</a></li>
                                 <li><a href="#convert-tool">Convert</a></li>
@@ -118,190 +112,173 @@
                     <p>Start at the beginning, or visit each section individually to work your way through a project session. Each section of this guide provides detailed information and instructions on how to use GExplore's features effectively.</p>
                 </div>
 
-                <div id="gexplore" class="help-content-section">
+                <div id="introduction" class="help-content-section">
                     <div class="date-last-updated">
                         <h4>Last updated on Aug 1, 2024</h4>
                     </div>
                     <div class="help-content-section-title">
-                        <h4>GExplore Overview</h4>
+                        <h4>Introduction</h4>
                     </div>
-                    <p>GExplore is a tool for large-scale mining of data related to gene or protein function in <em>C. elegans</em>. The interface is simple, and response times are fast to encourage large-scale exploratory searches. GExplore is designed to offer detailed insights into genetic data, enabling researchers and analysts to delve deep into genetic information.</p>
-                    <br>
-                    <p>The database contains selected genome-wide data sets, including protein domain organization, gene expression, and phenotype data, which are important indicators for gene and protein function. Data sets were obtained from Wormbase and processed to integrate data and to simplify searches.</p>
-                    <br>
-                    <p>This site should be useful for experimental planning of genome-scale experiments and survey-type queries. With this interface, you should be able to get quick answers to questions such as:</p>
-                    <ul>
-                        <li>How many small secreted proteins are there?</li>
-                        <li>Which putative cell surface receptors are expressed in neurons?</li>
-                        <li>How many kinases expressed in muscle cells have mutants available?</li>
-                    </ul>
-                    <br>
-                    <p>We are continuously improving GExplore and its features. If you have any questions or feedback, please do not hesitate to contact Dr. Harald Hutter.</p>
-                </div>
-                
-                <div id="whats-new" class="help-content-section">
-                    <div class="date-last-updated">
-                        <h4>Last updated on Aug 1, 2024</h4>
+                    <div id="gexplore">
+                        <h5>GExplore Overview</h5>
+                        <p>GExplore is a tool for large-scale mining of data related to gene or protein function in <em>C. elegans</em>. The interface is simple, and response times are fast to encourage large-scale exploratory searches. GExplore is designed to offer detailed insights into genetic data, enabling researchers and analysts to delve deep into genetic information.</p>
+                        <br>
+                        <p>The database contains selected genome-wide data sets, including protein domain organization, gene expression, and phenotype data, which are important indicators for gene and protein function. Data sets were obtained from Wormbase and processed to integrate data and to simplify searches.</p>
+                        <br>
+                        <p>This site should be useful for experimental planning of genome-scale experiments and survey-type queries. With this interface, you should be able to get quick answers to questions such as:</p>
+                        <ul>
+                            <li>How many small secreted proteins are there?</li>
+                            <li>Which putative cell surface receptors are expressed in neurons?</li>
+                            <li>How many kinases expressed in muscle cells have mutants available?</li>
+                        </ul>
+                        <br>
+                        <p>We are continuously improving GExplore and its features. If you have any questions or feedback, please do not hesitate to contact Dr. Harald Hutter.</p>
                     </div>
-                    <div class="help-content-section-title">
+                    <div id="whats-new">
                         <h5>Learn what's new in the latest release of GExplore.</h5>
                         <h4>August 2024 release (version 1.5)</h4>
+                        <p>GExplore version 1.5 is a major update including the following novel data sets and features:</p>
+                        <ul>
+                            <li>All databases were updated to Wormbase release 292.</li>
+                            <li>The domain organization for the proteomes of all nine core species in Wormbase was added to allow searches for proteins with certain domains in different nematode species.</li>
+                            <li>Gene ontology data were added for all species.</li>
+                            <li>The location of <em>C. elegans</em> mutations was mapped onto the domain organization of the proteins.</li>
+                            <li>SAGE and RNAseq expression data were replaced by new stage-specific expression profiles from the modENCODE project (provided by the Waterston lab).</li>
+                            <li>Best BLAST hits were replaced by orthologs as listed by Wormbase; a search option to identify <em>C. elegans</em> orthologs of human, mouse, <em>Drosophila</em>, or yeast genes was added.</li>
+                        </ul>
+                        <br>
+                        <a href="https://academic.oup.com/database" target="_blank" class="update-article-button">Read update article</a>
                     </div>
-                    <p>GExplore version 1.5 is a major update including the following novel data sets and features:</p>
-                    <ul>
-                        <li>All databases were updated to Wormbase release 292.</li>
-                        <li>The domain organization for the proteomes of all nine core species in Wormbase was added to allow searches for proteins with certain domains in different nematode species.</li>
-                        <li>Gene ontology data were added for all species.</li>
-                        <li>The location of <em>C. elegans</em> mutations was mapped onto the domain organization of the proteins.</li>
-                        <li>SAGE and RNAseq expression data were replaced by new stage-specific expression profiles from the modENCODE project (provided by the Waterston lab).</li>
-                        <li>Best BLAST hits were replaced by orthologs as listed by Wormbase; a search option to identify <em>C. elegans</em> orthologs of human, mouse, <em>Drosophila</em>, or yeast genes was added.</li>
-                    </ul>
-                    <br>
-                    <a href="https://academic.oup.com/database" target="_blank" class="update-article-button">Read update article</a> <!-- adjust href link later when published -->
                 </div>
-                
-                <div id="gene-database" class="help-content-section">
+
+                <div id="databases" class="help-content-section">
                     <div class="date-last-updated">
                         <h4>Last updated on Aug 1, 2024</h4>
                     </div>
                     <div class="help-content-section-title">
-                        <h5>GExplore consists of six different databases, each with its own search page.</h5>
-                        <h4>Gene Database</h4>
+                        <h4>Databases</h4>
                     </div>
-                    <p>The gene database contains selected datasets relevant to predict the putative function of genes/proteins. These include the domain organization of the protein, the general gene description, phenotype and expression data, gene interaction data, as well as gene ontology and disease associations. All data were downloaded from Wormbase. The database will be regularly updated. The current version is based on Wormbase release 292 (April 2024).</p>
-                    <br>
-                    <p>The search interface allows the user to quickly identify groups of genes sharing certain features, e.g. all kinases that are expressed in muscle cells. Alternatively, the user can start with a large list (100s or 1000s) of candidate genes and filter them for certain characteristics. The quick response time and flexible output options allow for quick survey-type queries with large groups of genes in the input and/or output.</p>
+                    <div id="gene-database">
+                        <h5>Gene Database</h5>
+                        <p>The gene database contains selected datasets relevant to predict the putative function of genes/proteins. These include the domain organization of the protein, the general gene description, phenotype and expression data, gene interaction data, as well as gene ontology and disease associations. All data were downloaded from Wormbase. The database will be regularly updated. The current version is based on Wormbase release 292 (April 2024).</p>
+                        <br>
+                        <p>The search interface allows the user to quickly identify groups of genes sharing certain features, e.g. all kinases that are expressed in muscle cells. Alternatively, the user can start with a large list (100s or 1000s) of candidate genes and filter them for certain characteristics. The quick response time and flexible output options allow for quick survey-type queries with large groups of genes in the input and/or output.</p>
+                    </div>
+                    <div id="mutation-database">
+                        <h5>Mutation Database</h5>
+                        <p>Mutation data were downloaded from Wormbase (release 292, April 2024). Only exonic alleles and alleles affecting splice junctions are included. SNPs from wildtype isolates were excluded. The curated list of mutations should be enriched for alleles affecting the function of the protein. The location of the mutations was mapped onto the domain organization of the protein for a visual display of the location and nature of the mutations. For deletions a color code indicates whether the deletion is in-frame (purple) or causes a frameshift (red). Mutations were mapped to all known splice variants of the gene, so that splice-variant specific allele can be easily identified. For deletions the location of the endpoints is indicated ('outside' the gene, in an 'intron' or in an 'exon'). Display options include the possibility to show the protein sequence with the affected amino acid(s) highlighted. The WS292 version of the database contains 227,110 alleles in 19,661 genes (28,240 splice variants) with 12,998 deletions, 183,547 missense and 10,014 nonsense allele. The database contains an additional 8,763 alleles without molecular information.</p>
+                    </div>
+                    <div id="protein-database">
+                        <h5>Protein Database</h5>
+                        <p>The protein database contains data from 13 Caenorhabditis species (C. becei, C. brenneri, C. briggsae, C. elegans, C. japonica, C. parvicauda, C. quiockensis, C. remanei, C. sulstoni, C. uteleia, C. tropicalis, C. waitukubuli, C. zanzibari) representing all branches of the Caenorhabditis phylogenetic tree. In addition, the database contains proteome data from 7 other namatode species (B. malayi, O. tipulae, O. volvulus, P. pacificus, P. redivivus, S. ratti, T. muris) that have high-quality data available. For comparison the database also contains the proteomes of the major "model organisms" (S. cerevisiae, D. melanogaster, D. rerio, M. musculus, H. sapiens).  </p>
+                        <br>
+                        <p>Protein data were downloaded either from Wormbase (nematode species) or the 'reference proteome site (https://www.ebi.ac.uk/reference_proteomes/) (model organisms). SMART was used for protein domain prediction. To allow for comparisons across species the database also contains information about homologs in all species in the database.</p>
+                        <br>
+                        <p>The search interface allows the user to selected proteins with certain protein domains or certain domain arrangements for a selected species. The output can be limited to proteins with homologs in one or more of the other species. This can be used to quickly identify either nematode-specific genes or evolutionary conserved genes of a certain type (e.g. kinases).</p>
+                    </div>
+                    <div id="expression-database">
+                        <h5>Expression Database</h5>
+                        <div id="expression-stages">
+                            <h6>Expression (stages) database</h6>
+                            <p>This is the Expression (stages) database content.</p>
+                        </div>
+                        <div id="expression-tissues">
+                            <h6>Expression (tissues) database</h6>
+                            <p>This is the Expression (tissues) database content.</p>
+                        </div>
+                        <div id="expression-embryo">
+                            <h6>Expression (embryo) database</h6>
+                            <p>This is the Expression (embryo) database content.</p>
+                        </div>
+                    </div>
                 </div>
 
-                <div id="mutation-database" class="help-content-section">
+                <div id="search" class="help-content-section">
                     <div class="date-last-updated">
                         <h4>Last updated on Aug 1, 2024</h4>
                     </div>
                     <div class="help-content-section-title">
-                        <h5>GExplore consists of six different databases, each with its own search page.</h5>
-                        <h4>Mutation Database</h4>
+                        <h4>Search</h4>
                     </div>
-                    <p>Mutation data were downloaded from Wormbase (release 292, April 2024). Only exonic alleles and alleles affecting splice junctions are included. SNPs from wildtype isolates were excluded. The curated list of mutations should be enriched for alleles affecting the function of the protein. The location of the mutations was mapped onto the domain organization of the protein for a visual display of the location and nature of the mutations. For deletions a color code indicates whether the deletion is in-frame (purple) or causes a frameshift (red). Mutations were mapped to all known splice variants of the gene, so that splice-variant specific allele can be easily identified. For deletions the location of the endpoints is indicated ('outside' the gene, in an 'intron' or in an 'exon'). Display options include the possibility to show the protein sequence with the affected amino acid(s) highlighted. The WS292 version of the database contains 227,110 alleles in 19,661 genes (28,240 splice variants) with 12,998 deletions, 183,547 missense and 10,014 nonsense allele. The database contains an additional 8,763 alleles without molecular information.</p>
+                    <div id="general-comments">
+                        <h5>General comments</h5>
+                        <p>This is the General comments content.</p>
+                    </div>
+                    <div id="gene-search-field">
+                        <h5>Gene search field</h5>
+                        <p>This is the Gene search field content.</p>
+                    </div>
+                    <div id="domain-search-field">
+                        <h5>Domain search field</h5>
+                        <p>This is the Domain search field content.</p>
+                    </div>
+                    <div id="domain-pattern-search-field">
+                        <h5>Domain pattern search field</h5>
+                        <p>This is the Domain pattern search field content.</p>
+                    </div>
+                    <div id="description-search-field">
+                        <h5>Description search field</h5>
+                        <p>This is the Description search field content.</p>
+                    </div>
+                    <div id="phenotype-search-fields">
+                        <h5>Phenotype and Expression search fields</h5>
+                        <p>This is the Phenotype and Expression search fields content.</p>
+                    </div>
+                    <div id="ontology-association-fields">
+                        <h5>Gene Ontology and Disease Association search fields</h5>
+                        <p>This is the Gene Ontology and Disease Association search fields content.</p>
+                    </div>
+                    <div id="mutation-search-page">
+                        <h5>Search fields on the Mutation search page</h5>
+                        <p>This is the Search fields on the Mutation search page content.</p>
+                    </div>
+                    <div id="expression-search-pages">
+                        <h5>Search fields on the Expression search pages (stages, tissues, embryos)</h5>
+                        <p>This is the Search fields on the Expression search pages (stages, tissues, embryos) content.</p>
+                    </div>
                 </div>
 
-                <div id="protein-database" class="help-content-section">
+                <div id="display-options" class="help-content-section">
                     <div class="date-last-updated">
                         <h4>Last updated on Aug 1, 2024</h4>
                     </div>
                     <div class="help-content-section-title">
-                        <h5>GExplore consists of six different databases, each with its own search page.</h5>
-                        <h4>Protein Database</h4>
+                        <h4>Display Options</h4>
                     </div>
-                    <p>The protein database contains data from 13 Caenorhabditis species (C. becei, C. brenneri, C. briggsae, C. elegans, C. japonica, C. parvicauda, C. quiockensis, C. remanei, C. sulstoni, C. uteleia, C. tropicalis, C. waitukubuli, C. zanzibari) representing all branches of the Caenorhabditis phylogenetic tree. In addition, the database contains proteome data from 7 other namatode species (B. malayi, O. tipulae, O. volvulus, P. pacificus, P. redivivus, S. ratti, T. muris) that have high-quality data available. For comparison the database also contains the proteomes of the major "model organisms" (S. cerevisiae, D. melanogaster, D. rerio, M. musculus, H. sapiens).  </p>
-                    <br>
-                    <p>Protein data were downloaded either from Wormbase (nematode species) or the 'reference proteome site (https://www.ebi.ac.uk/reference_proteomes/) (model organisms). SMART was used for protein domain prediction. To allow for comparisons across species the database also contains information about homologs in all species in the database.</p>
-                    <br>
-                    <p>The search interface allows the user to selected proteins with certain protein domains or certain domain arrangements for a selected species. The output can be limited to proteins with homologs in one or more of the other species. This can be used to quickly identify either nematode-specific genes or evolutionary conserved genes of a certain type (e.g. kinases).</p>
+                    <div id="general-comments-display">
+                        <h5>General comments</h5>
+                        <p>This is the General comments display content.</p>
+                    </div>
+                    <div id="protein-domain-organization">
+                        <h5>Protein domain organization</h5>
+                        <p>This is the Protein domain organization content.</p>
+                    </div>
+                    <div id="display-options-mutations">
+                        <h5>Special display options for mutations</h5>
+                        <p>This is the Special display options for mutations content.</p>
+                    </div>
+                    <div id="display-options-expression-data">
+                        <h5>Special display options for expression data (stages, tissues, embryo)</h5>
+                        <p>This is the Special display options for expression data (stages, tissues, embryo) content.</p>
+                    </div>
                 </div>
 
-
-
-
-
-                <div id="expression-stages" class="help-content-section">
-                    <h4>Expression (stages) database</h4>
-                    <p>This is the Expression (stages) database content.</p>
-                </div>
-
-
-
-
-
-                <div id="expression-tissues" class="help-content-section">
-                    <h4>Expression (tissues) database</h4>
-                    <p>This is the Expression (tissues) database content.</p>
-                </div>
-                <div id="expression-embryo" class="help-content-section">
-                    <h4>Expression (embryo) database</h4>
-                    <p>This is the Expression (embryo) database content.</p>
-                </div>
-                <div id="general-comments" class="help-content-section">
-                    <h4>General comments</h4>
-                    <p>This is the General comments content.</p>
-                </div>
-                <div id="gene-search-field" class="help-content-section">
-                    <h4>Gene search field</h4>
-                    <p>This is the Gene search field content.</p>
-                </div>
-                <div id="domain-search-field" class="help-content-section">
-                    <h4>Domain search field</h4>
-                    <p>This is the Domain search field content.</p>
-                </div>
-                <div id="domain-pattern-search-field" class="help-content-section">
-                    <h4>Domain pattern search field</h4>
-                    <p>This is the Domain pattern search field content.</p>
-                </div>
-                <div id="description-search-field" class="help-content-section">
-                    <h4>Description search field</h4>
-                    <p>This is the Description search field content.</p>
-                </div>
-                <div id="phenotype-search-fields" class="help-content-section">
-                    <h4>Phenotype and Expression search fields</h4>
-                    <p>This is the Phenotype and Expression search fields content.</p>
-                </div>
-                <div id="ontology-association-fields" class="help-content-section">
-                    <h4>Gene Ontology and Disease Association search fields</h4>
-                    <p>This is the Gene Ontology and Disease Association search fields content.</p>
-                </div>
-                <div id="mutation-search-page" class="help-content-section">
-                    <h4>Search fields on the Mutation search page</h4>
-                    <p>This is the Search fields on the Mutation search page content.</p>
-                </div>
-                <div id="expression-search-pages" class="help-content-section">
-                    <h4>Search fields on the Expression search pages (stages, tissues, embryos)</h4>
-                    <p>This is the Search fields on the Expression search pages (stages, tissues, embryos) content.</p>
-                </div>
-                <div id="general-comments-display" class="help-content-section">
-                    <h4>General comments</h4>
-                    <p>This is the General comments display content.</p>
-                </div>
-                <div id="protein-domain-organization" class="help-content-section">
-                    <h4>Protein domain organization</h4>
-                    <p>This is the Protein domain organization content.</p>
-                </div>
-                <div id="display-options-mutations" class="help-content-section">
-                    <h4>Special display options for mutations</h4>
-                    <p>This is the Special display options for mutations content.</p>
-                </div>
-                <div id="display-options-expression-data" class="help-content-section">
-                    <h4>Special display options for expression data (stages, tissues, embryo)</h4>
-                    <p>This is the Special display options for expression data (stages, tissues, embryo) content.</p>
-                </div>
-
-
-
-
-
-                <div id="compare-tool" class="help-content-section">
+                <div id="tools" class="help-content-section">
                     <div class="date-last-updated">
                         <h4>Last updated on Aug 1, 2024</h4>
                     </div>
                     <div class="help-content-section-title">
-                        <h4>Compare Tool</h4>
+                        <h4>Tools</h4>
                     </div>
-                    <p>Compare provides an easy way to find unique and common genes within two sets of genes (two lists of terms of any kind). The input fields accept a comma-separated list of terms such as the "list of genes/proteins" found on the results pages of GExplore. The out consists of three lists: the common genes and the unique genes from each of the two input sets. </p>
+                    <div id="compare-tool">
+                        <h5>Compare Tool</h5>
+                        <p>Compare provides an easy way to find unique and common genes within two sets of genes (two lists of terms of any kind). The input fields accept a comma-separated list of terms such as the "list of genes/proteins" found on the results pages of GExplore. The out consists of three lists: the common genes and the unique genes from each of the two input sets. </p>
+                    </div>
+                    <div id="convert-tool">
+                        <h5>Convert Tool</h5>
+                        <p>The convert input field accepts any combination of <em>C. elegans</em> gene identifiers: Wormbase gene ID (WBGene00003738), gene sequence name (F54F3.1), locus (nid-1), protein sequence name (F54F3.1a), wormpep ID (CE18731), Uniprot ID (Q93791). The output consists of a table with all the identifiers for all the genes in the input field. This can be used to standardize identifiers that come from different sources or to convert one set of identifiers into another one. </p>
+                    </div>
                 </div>
-
-
-
-
-                <div id="convert-tool" class="help-content-section">
-                    <div class="date-last-updated">
-                        <h4>Last updated on Aug 1, 2024</h4>
-                    </div>
-                    <div class="help-content-section-title">
-                        <h4>Convert Tool</h4>
-                    </div>
-                    <p>The convert input field accepts any combination of <em>C. elegans</em> gene identifiers: Wormbase gene ID (WBGene00003738), gene sequence name (F54F3.1), locus (nid-1), protein sequence name (F54F3.1a), wormpep ID (CE18731), Uniprot ID (Q93791). The output consists of a table with all the identifiers for all the genes in the input field. This can be used to standardize identifiers that come from different sources or to convert one set of identifiers into another one. </p>
-                </div>
-
-
-
             </div>
         </div>
     </div>
