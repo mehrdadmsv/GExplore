@@ -75,6 +75,10 @@
 /* ------------------- Import local font end ------------------------ */
 
 
+
+
+/* ------------------------ Global CSS Rules Start ------------------------- */
+
 html, body {
     font-family: 'Open Sans', sans-serif; /* Fonts with priority given to 'Open Sans' */
     background: var(--body_bkgr_color);
@@ -82,7 +86,7 @@ html, body {
     margin: 0;
     padding: 0;
     height: 100%;
-    overflow: hidden;
+    overflow: hidden; /*this was hidden before if there was scroll problem in help and display pages revert back */
     min-width: 760px;
     min-height: 335px;
 }
@@ -99,6 +103,28 @@ html, body {
     display: flex;
     flex-direction: column;
     height: 100%;
+}
+
+/* horizontal layout content for display page and help page */
+#content {
+    display: flex;
+    flex: 1 1 auto;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+/* vs */
+
+/* vertical layout content for home page */
+#home-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: auto;
 }
 
 /* ------------------------ Global CSS Rules End ------------------------- */
@@ -284,57 +310,146 @@ html, body {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 /* ------------------------ Home Page Specific Start ------------------------- */
 
 
+
+
+
+/* Hero Section */
 #intro {
-    background-color: #dedede;
-    padding: 0;
+    position: relative; /* Ensure hero-section is positioned relatively */
+    margin-bottom: 50px;
 }
 
-#intro .fl {
-    padding: 3%;
-    color: #000000;
+#intro .hero-section {
+    background-color: #000;
+    height: 45vh;
+    position: relative; /* Establish a containing block for absolutely positioned elements */
+    padding: 20px;
+    color: #ffffff; /* Change text color for better contrast with video */
+    z-index: 1; /* Ensure text content appears above the video */
 }
 
-#intro .fl h2 {
+#intro .hero-section h2 {
+    padding-bottom: 10px;
     font-size: 2em;
 }
 
-#intro .fl p {
-    line-height: 2.6em;
-}
-
-#intro .fl p.readmore a {
-    padding: 4px 18px;
+#intro .hero-section p {
+    font-weight: 500;
     font-size: 14px;
-    background: linear-gradient(45deg, #1C5E82, #059BD8);
-    color: var(--button_text_color);
-    border-radius: 15px;
-    font-weight: bold;
-    text-decoration: none;
-    transition: background 0.3s, box-shadow 0.3s;
-    display: inline-block;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    line-height: 1.6;
+    padding-bottom: 20px;
 }
 
-#intro .fl p.readmore a:hover {
-    background: linear-gradient(45deg, #059BD8, #1C5E82);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-    transform: translateY(-1px);
-}
-
-#content {
-    display: flex;
-    flex: 1 1 auto;
+#intro .hero-section video {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    position: relative;
-    overflow: hidden;
+    object-fit: cover; /* Ensure the video covers the entire area */
+    z-index: -1; /* Place the video behind the text */
+    opacity: 0.7; /* Optional: Add opacity for better text visibility */
 }
+
+/* Cards Section */
+.cards-title {
+    font-weight: 700;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 25px;
+    padding: 20px 20px 80px 20px;
+}
+
+.card {
+    padding: 5px 5px 5px 5px;
+    background-color: #ffffff;
+    width: 400px;
+    text-align: center;
+    overflow: hidden;
+    transition: transform 0.6s;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.card img {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.card-subtitle {
+    padding: 15px 0px 0px 0px;
+}
+
+.card-subtitle h3 {
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.card-subtitle p {
+    font-weight: 400;
+    font-size: 12px;
+    color: #555;
+    text-align: left;
+
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+
+
+
 
 
 /* ------------------------ Home Page Specific End ------------------------- */
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1079,7 +1194,7 @@ html, body {
 /* Highlight the selected sub-section title */
 .help-content-section div.highlight h5, .help-content-section div.highlight h6 {
     background-color: #f0f8ff;
-    padding: 10px;
+    padding: 10px 0px 10px 0px;
     border-radius: 5px;
 }
 
