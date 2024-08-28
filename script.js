@@ -597,8 +597,18 @@ document.addEventListener("DOMContentLoaded", function() {
     var helpIcons = document.querySelectorAll(".search-page-help-icon");
     helpIcons.forEach(function(icon) {
         icon.addEventListener("click", function() {
-            var formGroup = this.closest(".form-column, .form-group"); // Changed to ensure we check within either form-group or form-column
-            var helpContent = formGroup.querySelector(".search-page-help-content");
+            var helpContent = this.closest(".form-group")?.querySelector(".search-page-help-content");
+
+            // Specific handling for different help content sections
+            if (!helpContent) {
+                // If no direct form-group help content, check by title
+                if (this.closest(".search-param-column-full").querySelector("h4").textContent.includes("Search for Expression Profiles")) {
+                    helpContent = document.querySelector(".search-for-expression-help-content");
+                } else if (this.closest(".search-param-column-full").querySelector("h4").textContent.includes("Sample Profiles")) {
+                    helpContent = this.closest(".search-param-column-full").querySelector(".search-page-help-content");
+                }
+            }
+
             if (helpContent) {
                 helpContent.style.display = helpContent.style.display === "block" ? "none" : "block";
             }
