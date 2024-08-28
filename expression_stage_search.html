@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Stage Expression Search - GExplore</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="icon" href="assets/favicon.png" type="image/png">
+</head>
+
+<body id="stage-expression-page">
+    <div class="search-wrapper">
+        <div id="header">
+            <a href="home.html">
+                <img src="assets/GExplore_logo.png" alt="GExplore Logo" class="logo">
+            </a>            
+            <div id="topnav">
+                <ul>
+                    <li class="active"><a href="home.html"><span class="text">Home</span></a></li>
+                    <li><a><span class="text">Search</span> <span class="angle"></span></a>
+                        <ul class="dropdown">
+                            <li><a href="gene_search.html">Genes</a></li>
+                            <li><a href="mutation_search.html">Mutations</a></li>
+                            <li><a href="protein_search.html">Proteins</a></li>
+                            <li><a href="expression_stage_search.html">Stage Expressions</a></li>
+                            <li><a href="#">Tissue Expressions</a></li>
+                            <li><a href="#">Embryo Expressions</a></li>
+                        </ul>
+                    </li>
+                    <li><a><span class="text">Tools</span> <span class="angle"></span></a>
+                        <ul class="dropdown">
+                            <li><a href="#">Compare</a></li>
+                            <li><a href="#">Convert</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="help.html"><span class="text">Help</span></a></li>
+                    <li><a href="about.html"><span class="text">About</span></a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="search-vertical-content">
+            <!-- Hero Section -->
+            <div id="search-intro">
+                <div class="search-hero-section">
+                    <h2>Search for stage-specific expression profiles</h2>
+                    <p>text</p>
+                </div>
+            </div>
+
+            <!-- Wrapper for padding -->
+            <div class="search-param-wrapper">
+                <div id="search-param">
+                    <div class="search-param-column-full">
+                        <!-- Gene Name Group -->
+                        <div class="form-group">
+                            <h4>
+                                Gene Name
+                                <img src="assets/help-icon.png" alt="Help" class="search-page-help-icon">
+                            </h4>
+                            <div class="search-page-help-content">
+                                <p>This is the help content for Gene Name(s). It provides details on how to use this section.</p>
+                            </div>
+                            <textarea id="gene-names" name="gene-names" placeholder="Enter a gene name. Separate each additional name with a comma."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- New Sections from Screenshot -->
+                    <div class="search-param-column-full">
+                        <!-- Time or Stage and Expression Fields -->
+                        <div class="form-group">
+                            <div class="two-column-wrapper">
+                                <div class="form-column">
+                                    <div class="title-with-icon">
+                                        <h4>Time or Stage</h4>
+                                        <img src="assets/help-icon.png" alt="Help" class="search-page-help-icon">
+                                    </div>
+                                    <div class="search-page-help-content">
+                                        <p>development post P0 division based on the times (given by Sulston et al.)</p>
+                                    </div>
+                                    <select>
+                                        <option value="e0" selected="selected">4-cell stage</option>
+                                        <option value="e1" >44 min</option>
+                                        <option value="e2" >83 min (~ 27-cell)</option>
+                                        <option value="e3" >122 min (~ 53-cell)</option>
+                                        <option value="e4" >161 min (~ 128 AB stage)</option>
+                                        <option value="e5" >199 min</option>
+                                        <option value="e6" >238 min</option>
+                                        <option value="e7" >277 min</option>
+                                        <option value="e8" >316 min</option>
+                                        <option value="e9" >355 min</option>
+                                        <option value="e10" >393 min</option>
+                                        <option value="e11" >432 min (~2-fold)</option>
+                                        <option value="e12" >471 min</option>
+                                        <option value="e13" >510 min (3-fold)</option>
+                                        <option value="e14" >548 min</option>
+                                        <option value="e15" >587 min </option>
+                                        <option value="e16" >626 min</option>
+                                        <option value="e17" >665 min</option>
+                                        <option value="L1" >L1</option>
+                                        <option value="L2" >L2</option>
+                                        <option value="L3" >L3</option>
+                                        <option value="L4" >L4</option>
+                                        <option value="YA" >young adult</option>
+                                        <option value="DauerEntry" >dauer entry</option>
+                                        <option value="Dauer" >dauer </option>
+                                        <option value="DauerExit" >dauer exit</option>
+                                        <option value="L4soma" >L4 soma</option>
+                                        <option value="L4male" >L4 male</option>
+                                        <option value="AdultSterile" >sterile adult</option>
+                                        <option value="AdultGonad" >adult gonad</option>
+                                    </select>
+                                    <select>
+                                        <option value="e0">4-cell stage</option>
+                                        <option value="e1" >44 min</option>
+                                        <option value="e2" >83 min (~ 27-cell)</option>
+                                        <option value="e3" >122 min (~ 53-cell)</option>
+                                        <option value="e4" >161 min (~ 128 AB stage)</option>
+                                        <option value="e5" >199 min</option>
+                                        <option value="e6" >238 min</option>
+                                        <option value="e7" >277 min</option>
+                                        <option value="e8" >316 min</option>
+                                        <option value="e9" >355 min</option>
+                                        <option value="e10" >393 min</option>
+                                        <option value="e11" selected="selected">432 min (~2-fold)</option>
+                                        <option value="e12" >471 min</option>
+                                        <option value="e13" >510 min (3-fold)</option>
+                                        <option value="e14" >548 min</option>
+                                        <option value="e15" >587 min </option>
+                                        <option value="e16" >626 min</option>
+                                        <option value="e17" >665 min</option>
+                                        <option value="L1" >L1</option>
+                                        <option value="L2" >L2</option>
+                                        <option value="L3" >L3</option>
+                                        <option value="L4" >L4</option>
+                                        <option value="YA" >young adult</option>
+                                        <option value="DauerEntry" >dauer entry</option>
+                                        <option value="Dauer" >dauer </option>
+                                        <option value="DauerExit" >dauer exit</option>
+                                        <option value="L4soma" >L4 soma</option>
+                                        <option value="L4male" >L4 male</option>
+                                        <option value="AdultSterile" >sterile adult</option>
+                                        <option value="AdultGonad" >adult gonad</option>
+                                    </select>
+                                    <select>
+                                        <option value="e0">4-cell stage</option>
+                                        <option value="e1" >44 min</option>
+                                        <option value="e2" >83 min (~ 27-cell)</option>
+                                        <option value="e3" >122 min (~ 53-cell)</option>
+                                        <option value="e4" >161 min (~ 128 AB stage)</option>
+                                        <option value="e5" >199 min</option>
+                                        <option value="e6" >238 min</option>
+                                        <option value="e7" >277 min</option>
+                                        <option value="e8" >316 min</option>
+                                        <option value="e9" >355 min</option>
+                                        <option value="e10" >393 min</option>
+                                        <option value="e11" >432 min (~2-fold)</option>
+                                        <option value="e12" >471 min</option>
+                                        <option value="e13" >510 min (3-fold)</option>
+                                        <option value="e14" >548 min</option>
+                                        <option value="e15" >587 min </option>
+                                        <option value="e16" >626 min</option>
+                                        <option value="e17" >665 min</option>
+                                        <option value="L1" >L1</option>
+                                        <option value="L2" >L2</option>
+                                        <option value="L3" >L3</option>
+                                        <option value="L4" >L4</option>
+                                        <option value="YA" >young adult</option>
+                                        <option value="DauerEntry" >dauer entry</option>
+                                        <option value="Dauer" selected="selected">dauer </option>
+                                        <option value="DauerExit" >dauer exit</option>
+                                        <option value="L4soma" >L4 soma</option>
+                                        <option value="L4male" >L4 male</option>
+                                        <option value="AdultSterile" >sterile adult</option>
+                                        <option value="AdultGonad" >adult gonad</option>
+                                    </select>
+                                    <select>
+                                        <option value="e0" selected="selected">4-cell stage</option>
+                                        <option value="e1" >44 min</option>
+                                        <option value="e2" >83 min (~ 27-cell)</option>
+                                        <option value="e3" >122 min (~ 53-cell)</option>
+                                        <option value="e4" >161 min (~ 128 AB stage)</option>
+                                        <option value="e5" >199 min</option>
+                                        <option value="e6" >238 min</option>
+                                        <option value="e7" >277 min</option>
+                                        <option value="e8" >316 min</option>
+                                        <option value="e9" >355 min</option>
+                                        <option value="e10" >393 min</option>
+                                        <option value="e11" >432 min (~2-fold)</option>
+                                        <option value="e12" >471 min</option>
+                                        <option value="e13" >510 min (3-fold)</option>
+                                        <option value="e14" >548 min</option>
+                                        <option value="e15" >587 min </option>
+                                        <option value="e16" >626 min</option>
+                                        <option value="e17" >665 min</option>
+                                        <option value="L1" >L1</option>
+                                        <option value="L2" >L2</option>
+                                        <option value="L3" >L3</option>
+                                        <option value="L4" >L4</option>
+                                        <option value="YA" >young adult</option>
+                                        <option value="DauerEntry" >dauer entry</option>
+                                        <option value="Dauer" >dauer </option>
+                                        <option value="DauerExit" >dauer exit</option>
+                                        <option value="L4soma" >L4 soma</option>
+                                        <option value="L4male" selected="selected">L4 male</option>
+                                        <option value="AdultSterile" >sterile adult</option>
+                                        <option value="AdultGonad" >adult gonad</option>
+                                    </select>
+                                </div>
+                                <div class="form-column">
+                                    <div class="title-with-icon">
+                                        <h4>Expression (dcpm)</h4>
+                                        <img src="assets/help-icon.png" alt="Help" class="search-page-help-icon">
+                                    </div>
+                                    <div class="search-page-help-content">
+                                        <p>depth of coverage per million reads (see Suppl. Methods in Gerstein et al, 2010).</p>
+                                    </div>
+                                    <input type="text">
+                                    <input type="text">
+                                    <input type="text">
+                                    <input type="text">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Footer Notes -->
+                    <div class="search-param-column-full">
+                        <p class="more-explanation">In the expression field to specify a range use '&gt;0.5' or '&lt;0.5' or '2-10'. To compare relative expression levels between stages specify x-fold difference and stage for comparison in the following way: '&gt;10x adult' translates into 'more than 10-fold higher than in the 'adult' stage' (compared to the stage specified by the value in the pull-down menu. Use values from the pull-down menu (e.g. '44 min', or 'Dauer entry') to specify times or stages.</p>
+                    </div>
+
+                    <!-- Sample Profiles Section -->
+                    <div class="search-param-column-full">
+                        <h4>Sample Profiles</h4>
+                        <select id="sample-profiles" name="sample-profiles">
+                            <option value="el1,e1,ev1,,el2,e10,ev2,,el3,L2,ev3,,el4,L4male,ev4,,el5,Dauer,ev5,," selected="selected">Select a sample profile</option>
+						    <option value="el1,YA,ev1,>2x L4,el2,e1,ev2,>2x 122 min,el3,e1,ev3,>0.3,el4,,ev4,,el5,,ev5,," >maternally enriched</option>
+						    <option value="el1,e2,ev1,>0.3,el2,e1,ev2,<0.5x 83 min,el3,e2,ev3,>3x 548 min,el4,,ev4,,el5,,ev5,," >early embryo enriched</option>
+						    <option value="el1,L4male,ev1,>0.1,el2,L4male,ev2,>10x L3,el3,L4male,ev3,>5x young adult,el4,L4male,ev4,>3x 626 min,el5,L4male,ev5,>3x dauer" >male enriched</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="reset">Clear</button>
+                <button type="submit" id="search-button" disabled>Search</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript file -->
+    <script src="script.js"></script>
+</body>
+</html>

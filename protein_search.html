@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Protein Search - GExplore</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="icon" href="assets/favicon.png" type="image/png">
+</head>
+
+<body>
+    <div class="search-wrapper">
+        <div id="header">
+            <a href="home.html">
+                <img src="assets/GExplore_logo.png" alt="GExplore Logo" class="logo">
+            </a>            
+            <div id="topnav">
+                <ul>
+                    <li class="active"><a href="home.html"><span class="text">Home</span></a></li>
+                    <li><a><span class="text">Search</span> <span class="angle"></span></a>
+                        <ul class="dropdown">
+                            <li><a href="gene_search.html">Genes</a></li>
+                            <li><a href="mutation_search.html">Mutations</a></li>
+                            <li><a href="protein_search.html">Proteins</a></li>
+                            <li><a href="expression_stage_search.html">Stage Expressions</a></li>
+                            <li><a href="#">Tissue Expressions</a></li>
+                            <li><a href="#">Embryo Expressions</a></li>
+                        </ul>
+                    </li>
+                    <li><a><span class="text">Tools</span> <span class="angle"></span></a>
+                        <ul class="dropdown">
+                            <li><a href="#">Compare</a></li>
+                            <li><a href="#">Convert</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="help.html"><span class="text">Help</span></a></li>
+                    <li><a href="about.html"><span class="text">About</span></a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="search-vertical-content">
+            <!-- Hero Section -->
+            <div id="search-intro">
+                <div class="search-hero-section">
+                    <h2>Search for proteins</h2>
+                    <p>text</p>
+                </div>
+            </div>
+
+            <!-- Wrapper for padding -->
+            <div class="search-param-wrapper">
+                <div id="search-param">
+                    <div id="species-selection">
+                        <label for="species">Species</label>
+                        <select id="species" name="species">
+                            <option value="all">All species</option>
+                            <optgroup label="Caenorhabditis species">
+                                <option value="Caenorhabditis becei">Caenorhabditis becei</option>
+                                <option value="Caenorhabditis brenneri">Caenorhabditis brenneri</option>
+                                <option value="Caenorhabditis briggsae">Caenorhabditis briggsae</option>
+                                <option value="Caenorhabditis elegans" selected>Caenorhabditis elegans</option>
+                                <option value="Caenorhabditis japonica">Caenorhabditis japonica</option>
+                                <option value="Caenorhabditis parvicauda">Caenorhabditis parvicauda</option>
+                                <option value="Caenorhabditis quiockensis">Caenorhabditis quiockensis</option>
+                                <option value="Caenorhabditis remanei">Caenorhabditis remanei</option>
+                                <option value="Caenorhabditis sulstoni">Caenorhabditis sulstoni</option>
+                                <option value="Caenorhabditis tropicalis">Caenorhabditis tropicalis</option>
+                                <option value="Caenorhabditis uteleia">Caenorhabditis uteleia</option>
+                                <option value="Caenorhabditis waitukubuli">Caenorhabditis waitukubuli</option>
+                                <option value="Caenorhabditis zanzibari">Caenorhabditis zanzibari</option>
+                            </optgroup>
+                            <optgroup label="Other nematodes">
+                                <option value="Brugia malayi">Brugia malayi</option>
+                                <option value="Onchocerca volvulus">Onchocerca volvulus</option>
+                                <option value="Oscheius tipulae">Oscheius tipulae</option>
+                                <option value="Pristionchus pacificus">Pristionchus pacificus</option>
+                                <option value="Strongyloides ratti">Strongyloides ratti</option>
+                                <option value="Trichuris muris">Trichuris muris</option>
+                            </optgroup>
+                            <optgroup label="Non-nematodes">
+                                <option value="Saccharomyces cerevisiae">Saccharomyces cerevisiae</option>
+                                <option value="Drosophila melanogaster">Drosophila melanogaster</option>
+                                <option value="Danio rerio">Danio rerio</option>
+                                <option value="Mus musculus">Mus musculus</option>
+                                <option value="Homo sapiens">Homo sapiens</option>
+                            </optgroup>
+                        </select>
+                    </div>
+
+                    <div class="search-param-column-1">
+                        <!-- Sequence Name Group -->
+                        <div class="form-group">
+                            <h4>
+                                Sequence Name
+                                <img src="assets/help-icon.png" alt="Help" class="search-page-help-icon">
+                            </h4>
+                            <div class="search-page-help-content">
+                                <p>This is the help content for Gene Name(s). It provides details on how to use this section.</p>
+                            </div>
+                            <textarea id="sequence-names" name="sequence-names" placeholder="Enter a sequence name. Separate each additional name with a comma."></textarea>
+                            <div class="splice-variant-row">
+                                <label for="longest-splice-variant">
+                                    <input type="checkbox" id="longest-splice-variant" name="longest-splice-variant" checked>
+                                    <h5>Only longest splice variant</h5>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Protein Domain group -->
+                        <div class="form-group">
+                            <h4>
+                                Protein Domain
+                                <img src="assets/help-icon.png" alt="Help" class="search-page-help-icon">
+                            </h4>
+                            <div class="search-page-help-content">
+                                <p>This is the help content for Gene Name(s). It provides details on how to use this section.</p>
+                            </div>
+                            <h5>Domain</h5>
+                            <textarea id="protein-domain" name="protein-domain" placeholder="Enter a protein domain. Separate each additional domain with a comma."></textarea>
+                            <h5>Domain Pattern</h5>
+                            <textarea id="domain-pattern" name="domain-pattern"></textarea>
+                        </div>
+
+                        
+                    </div>
+
+                    <div class="search-param-column-2">
+                        <!-- Orthologs group -->
+                        <div class="form-group">
+                            <h4>
+                                Show only genes with orthologs in
+                                <img src="assets/help-icon.png" alt="Help" class="search-page-help-icon">
+                            </h4>
+                            <div class="search-page-help-content">
+                                <p>This is the help content for Orthologs. It provides details on how to use this section.</p>
+                            </div>
+                            
+                            <!-- Caenorhabditis species -->
+                            <div class="orthologs-category">
+                                <h5>Caenorhabditis species</h5>
+                                <div class="orthologs-container">
+                                    <label><input type="checkbox" name="orthologs" value="Caenorhabditis becei"> <i>Caenorhabditis becei</i></label>
+                                    <label><input type="checkbox" name="orthologs" value="Caenorhabditis brenneri"> <i>Caenorhabditis brenneri</i></label>
+                                    <label><input type="checkbox" name="orthologs" value="Caenorhabditis briggsae"> <i>Caenorhabditis briggsae</i></label>
+                                    <label><input type="checkbox" name="orthologs" value="Caenorhabditis elegans"> <i>Caenorhabditis elegans</i></label>
+                                    <label><input type="checkbox" name="orthologs" value="Caenorhabditis japonica"> <i>Caenorhabditis japonica</i></label>
+                                    <label><input type="checkbox" name="orthologs" value="Caenorhabditis parvicauda"> <i>Caenorhabditis parvicauda</i></label>
+                                    <label><input type="checkbox" name="orthologs" value="Caenorhabditis quiockensis"> <i>Caenorhabditis quiockensis</i></label>
+                                    <label><input type="checkbox" name="orthologs" value="Caenorhabditis remanei"> <i>Caenorhabditis remanei</i></label>
+                                    <label><input type="checkbox" name="orthologs" value="Caenorhabditis sulstoni"> <i>Caenorhabditis sulstoni</i></label>
+                                    <label><input type="checkbox" name="orthologs" value="Caenorhabditis tropicalis"> <i>Caenorhabditis tropicalis</i></label>
+                                    <label><input type="checkbox" name="orthologs" value="Caenorhabditis uteleia"> <i>Caenorhabditis uteleia</i></label>
+                                    <label><input type="checkbox" name="orthologs" value="Caenorhabditis waitukubuli"> <i>Caenorhabditis waitukubuli</i></label>
+                                    <label><input type="checkbox" name="orthologs" value="Caenorhabditis zanzibari"> <i>Caenorhabditis zanzibari</i></label>
+                                </div>
+                            </div>
+                    
+                            <!-- Other nematodes -->
+                            <div class="orthologs-category">
+                                <h5>Other nematodes</h5>
+                                <div class="orthologs-container">
+                                    <label><input type="checkbox" name="orthologs" value="Brugia malayi"> <i>Brugia malayi</i></label>
+                                    <label><input type="checkbox" name="orthologs" value="Onchocerca volvulus"> <i>Onchocerca volvulus</i></label>
+                                    <label><input type="checkbox" name="orthologs" value="Oscheius tipulae"> <i>Oscheius tipulae</i></label>
+                                    <label><input type="checkbox" name="orthologs" value="Pristionchus pacificus"> <i>Pristionchus pacificus</i></label>
+                                    <label><input type="checkbox" name="orthologs" value="Strongyloides ratti"> <i>Strongyloides ratti</i></label>
+                                    <label><input type="checkbox" name="orthologs" value="Trichuris muris"> <i>Trichuris muris</i></label>
+                                </div>
+                            </div>
+                    
+                            <!-- Non-nematodes -->
+                            <div class="orthologs-category">
+                                <h5>Non-nematodes</h5>
+                                <div class="orthologs-container">
+                                    <label><input type="checkbox" name="orthologs" value="Saccharomyces cerevisiae"> <i>Saccharomyces cerevisiae</i></label>
+                                    <label><input type="checkbox" name="orthologs" value="Drosophila melanogaster"> <i>Drosophila melanogaster</i></label>
+                                    <label><input type="checkbox" name="orthologs" value="Danio rerio"> <i>Danio rerio</i></label>
+                                    <label><input type="checkbox" name="orthologs" value="Mus musculus"> <i>Mus musculus</i></label>
+                                    <label><input type="checkbox" name="orthologs" value="Homo sapiens"> <i>Homo sapiens</i></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="reset">Clear</button>
+                <button type="submit" id="search-button" disabled>Search</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- JavaScript file -->
+    <script src="script.js"></script>
+</body>
+</html>

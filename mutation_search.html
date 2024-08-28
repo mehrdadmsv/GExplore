@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Mutation Search - GExplore</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="icon" href="assets/favicon.png" type="image/png">
+</head>
+
+<body>
+    <div class="search-wrapper">
+        <div id="header">
+            <a href="home.html">
+                <img src="assets/GExplore_logo.png" alt="GExplore Logo" class="logo">
+            </a>            
+            <div id="topnav">
+                <ul>
+                    <li class="active"><a href="home.html"><span class="text">Home</span></a></li>
+                    <li><a><span class="text">Search</span> <span class="angle"></span></a>
+                        <ul class="dropdown">
+                            <li><a href="gene_search.html">Genes</a></li>
+                            <li><a href="mutation_search.html">Mutations</a></li>
+                            <li><a href="protein_search.html">Proteins</a></li>
+                            <li><a href="expression_stage_search.html">Stage Expressions</a></li>
+                            <li><a href="#">Tissue Expressions</a></li>
+                            <li><a href="#">Embryo Expressions</a></li>
+                        </ul>
+                    </li>
+                    <li><a><span class="text">Tools</span> <span class="angle"></span></a>
+                        <ul class="dropdown">
+                            <li><a href="#">Compare</a></li>
+                            <li><a href="#">Convert</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="help.html"><span class="text">Help</span></a></li>
+                    <li><a href="about.html"><span class="text">About</span></a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="search-vertical-content">
+            <!-- Hero Section -->
+            <div id="search-intro">
+                <div class="search-hero-section">
+                    <h2>Search for mutations in <i>C. elegans</i> genes</h2>
+                    <p>The database contains alleles affecting exons and splice junctions of protein-coding genes as well as alleles without positional information in Wormbase. Data are from Wormbase release 288 (April 2023).</p>
+                    <p>  The Million Mutation Project provides a collection of more than 2,000 heavily mutagenized strains. The <i>C. elegans</i> Gene Knockout Consortium (KO consortium) is working to produce null mutations in all identified and predicted genes currently using a CRISPR/Cas9 strategy.</p>
+                </div>
+            </div>
+
+            <!-- Wrapper for padding -->
+            <div class="search-param-wrapper">
+                <div id="search-param">
+                    <div class="search-param-column-1">
+                        <!-- Gene Name Group -->
+                        <div class="form-group">
+                            <h4>
+                                Gene Name
+                                <img src="assets/help-icon.png" alt="Help" class="search-page-help-icon">
+                            </h4>
+                            <div class="search-page-help-content">
+                                <p>This is the help content for Gene Name(s). It provides details on how to use this section.</p>
+                            </div>
+                            <textarea id="gene-names" name="gene-names" placeholder="Enter a gene name. Separate each additional name with a comma."></textarea>
+                            <div class="splice-variant-row">
+                                <label for="longest-splice-variant">
+                                    <input type="checkbox" id="longest-splice-variant" name="longest-splice-variant" checked>
+                                    <h5>Only longest splice variant</h5>
+                                </label>
+                            </div>
+                            <div class="more-than-one-gene-deletion">
+                                <label>
+                                    <input type="checkbox" id="multiple-affecting-deletion" name="multiple-affecting-deletion" checked>
+                                    <h5>Do not show deletions affecting more than one gene</h5>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Protein Domain group -->
+                        <div class="form-group">
+                            <h4>
+                                Protein Domain
+                                <img src="assets/help-icon.png" alt="Help" class="search-page-help-icon">
+                            </h4>
+                            <div class="search-page-help-content">
+                                <p>This is the help content for Gene Name(s). It provides details on how to use this section.</p>
+                            </div>
+                            <h5>Domain</h5>
+                            <textarea id="protein-domain" name="protein-domain" placeholder="Enter a protein domain. Separate each additional domain with a comma."></textarea>
+                        </div>
+
+                        <!-- Allele Name Group -->
+                        <div class="form-group">
+                            <h4>
+                                Allele Name
+                                <img src="assets/help-icon.png" alt="Help" class="search-page-help-icon">
+                            </h4>
+                            <div class="search-page-help-content">
+                                <p>This is the help content for Gene Name(s). It provides details on how to use this section.</p>
+                            </div>
+                            <textarea id="allele" name="allele" placeholder="Enter an allele name. Separate each additional name with a comma."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="search-param-column-2">
+                        
+                        <!-- Mutation Type group -->
+                        <div class="form-group">
+                            <h4>
+                                Select Mutation Type
+                                <img src="assets/help-icon.png" alt="Help" class="search-page-help-icon">
+                            </h4>
+                            <div class="search-page-help-content">
+                                <p>This is the help content for Mutation Type. It provides details on how to use this section.</p>
+                            </div>
+                            
+                            <!-- Checkboxes and Inputs -->
+                            <div class="mutation-type-container">
+                                <label>
+                                    <input type="checkbox" name="mutation-type" value="missense" checked>
+                                    Missense
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="mutation-type" value="nonsense-removing" checked>
+                                    Nonsense removing greater than
+                                    <input type="text" name="nonsense-removing-percentage" placeholder="%" style="width: 50px;">
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="mutation-type" value="splice-donor-acceptor" checked>
+                                    Splice donor / acceptor
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="mutation-type" value="deletions-removing" checked>
+                                    Deletions removing greater than
+                                    <input type="text" name="deletions-removing-percentage" placeholder="%" style="width: 50px;">
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="mutation-type" value="indels" checked>
+                                    Indels
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="mutation-type" value="readthroughs" checked>
+                                    Readthroughs
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="mutation-type" value="unknown" checked>
+                                    Unknown
+                                </label>
+                            </div>
+                        </div>
+
+
+                        <!-- Mutation Source group -->
+                        <div class="form-group">
+                            <h4>
+                                Select Mutation Source
+                                <img src="assets/help-icon.png" alt="Help" class="search-page-help-icon">
+                            </h4>
+                            <div class="search-page-help-content">
+                                <p>This is the help content for Mutation Source. It provides details on how to use this section.</p>
+                            </div>
+                            
+                            <!-- Checkboxes -->
+                            <div class="mutation-source-container">
+                                <label>
+                                    <input type="checkbox" name="mutation-source" value="million-mutation-project" checked>
+                                    Million Mutation Project
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="mutation-source" value="ko-consortium" checked>
+                                    KO consortium
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="mutation-source" value="other" checked>
+                                    Other
+                                </label>
+                            </div>
+
+                            
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="reset">Clear</button>
+                <button type="submit" id="search-button" disabled>Search</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- JavaScript file -->
+    <script src="script.js"></script>
+</body>
+</html>

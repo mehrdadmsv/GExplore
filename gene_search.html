@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Gene Search - GExplore</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="icon" href="assets/favicon.png" type="image/png">
+</head>
+
+<body>
+    <div class="search-wrapper">
+        <div id="header">
+            <a href="home.html">
+                <img src="assets/GExplore_logo.png" alt="GExplore Logo" class="logo">
+            </a>            
+            <div id="topnav">
+                <ul>
+                    <li class="active"><a href="home.html"><span class="text">Home</span></a></li>
+                    <li><a><span class="text">Search</span> <span class="angle"></span></a>
+                        <ul class="dropdown">
+                            <li><a href="gene_search.html">Genes</a></li>
+                            <li><a href="mutation_search.html">Mutations</a></li>
+                            <li><a href="protein_search.html">Proteins</a></li>
+                            <li><a href="expression_stage_search.html">Stage Expressions</a></li>
+                            <li><a href="#">Tissue Expressions</a></li>
+                            <li><a href="#">Embryo Expressions</a></li>
+                        </ul>
+                    </li>
+                    <li><a><span class="text">Tools</span> <span class="angle"></span></a>
+                        <ul class="dropdown">
+                            <li><a href="#">Compare</a></li>
+                            <li><a href="#">Convert</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="help.html"><span class="text">Help</span></a></li>
+                    <li><a href="about.html"><span class="text">About</span></a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="search-vertical-content">
+            <!-- Hero Section -->
+            <div id="search-intro">
+                <div class="search-hero-section">
+                    <h2>Search for <i>C. elegans</i> genes</h2>
+                    <p>The database contains all protein-coding genes from Wormbase release 292 (April 2024).</p>
+                    <p>Search for genes with particular protein domains, expression patterns, phenotypes, GO terms or human disease associations.</p>
+                </div>
+            </div>
+
+            <!-- Wrapper for padding -->
+            <div class="search-param-wrapper">
+                <div id="search-param">
+                    <div class="search-param-column-1">
+                        <!-- Gene Name(s) Group -->
+                        <div class="form-group">
+                            <h4>
+                                Gene Name
+                                <img src="assets/help-icon.png" alt="Help" class="search-page-help-icon">
+                            </h4>
+                            <div class="search-page-help-content">
+                                <p>This is the help content for Gene Name(s). It provides details on how to use this section.</p>
+                            </div>
+                            <textarea id="gene-names" name="gene-names" placeholder="Enter a gene name. Separate each additional name with a comma."></textarea>
+                            <div class="splice-variant-row">
+                                <label for="longest-splice-variant">
+                                    <input type="checkbox" id="longest-splice-variant" name="longest-splice-variant" checked>
+                                    <h5>Only longest splice variant</h5>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Protein Domain group -->
+                        <div class="form-group">
+                            <h4>
+                                Protein Domain
+                                <img src="assets/help-icon.png" alt="Help" class="search-page-help-icon">
+                            </h4>
+                            <div class="search-page-help-content">
+                                <p>This is the help content for Gene Name(s). It provides details on how to use this section.</p>
+                            </div>
+                            <h5>Domain</h5>
+                            <textarea id="protein-domain" name="protein-domain" placeholder="Enter a protein domain. Separate each additional domain with a comma."></textarea>
+                            <h5>Domain Pattern</h5>
+                            <textarea id="domain-pattern" name="domain-pattern"></textarea>
+                        </div>
+
+                        <!-- Expression Group -->
+                        <div class="form-group">
+                            <h4>
+                                Expression
+                                <img src="assets/help-icon.png" alt="Help" class="search-page-help-icon">
+                            </h4>
+                            <div class="search-page-help-content">
+                                <p>This is the help content for Gene Name(s). It provides details on how to use this section.</p>
+                            </div>
+                            <h5>Tissues and stages</h5>
+                            <textarea id="expression" name="expression"></textarea>
+                            <h5>Tissues and stages (genomic studies)</h5>
+                            <textarea id="genomic-studies" name="genomic-studies"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="search-param-column-2">
+                        <!-- Location group -->
+                        <div class="form-group">
+                            <h4>
+                                Location
+                                <img src="assets/help-icon.png" alt="Help" class="search-page-help-icon">
+                            </h4>
+                            <div class="search-page-help-content">
+                                <p>This is the help content for Gene Name(s). It provides details on how to use this section.</p>
+                            </div>
+                            <div class="location-type-row">
+                                <label for="genetic">
+                                    <input type="radio" id="genetic" name="location-type" value="genetic" checked>
+                                    <h5>Genetic</h5>
+                                </label>
+                                <label for="nucleotide">
+                                    <input type="radio" id="nucleotide" name="location-type" value="nucleotide">
+                                    <h5>Nucleotide</h5>
+                                </label>
+                            </div>
+                            <div class="location-row">
+                                <h5>Chromosome</h5>
+                                <select id="chromosome" name="chromosome">
+                                    <option value="">-</option>
+                                    <option value="I">I</option>
+                                    <option value="II">II</option>
+                                    <option value="III">III</option>
+                                    <option value="IV">IV</option>
+                                    <option value="V">V</option>
+                                    <option value="X">X</option>
+                                    <option value="MtDNA">MtDNA</option>
+                                </select>
+                            </div>
+                            <div class="location-row">
+                                <h5>From</h5>
+                                <input type="text" id="location-from" name="location-from">
+                                <h5>To</h5>
+                                <input type="text" id="location-to" name="location-to">
+                            </div>
+                        </div>
+
+                        <!-- Description and Phenotype group -->
+                        <div class="form-group">
+                            <h4>
+                                Description and Phenotype
+                                <img src="assets/help-icon.png" alt="Help" class="search-page-help-icon">
+                            </h4>
+                            <div class="search-page-help-content">
+                                <p>This is the help content for Gene Name(s). It provides details on how to use this section.</p>
+                            </div>
+                            <div class="label-container">
+                                <h5>Description</h5>
+                                <div class="checkbox-container">
+                                    <label for="legacy">
+                                        <input type="checkbox" id="legacy" name="description-type" checked>
+                                        <h5>Legacy</h5>
+                                    </label>
+                                    <label for="automated">
+                                        <input type="checkbox" id="automated" name="description-type" checked>
+                                        <h5>Automated</h5>
+                                    </label>
+                                </div>
+                            </div>
+                            <textarea id="description" name="description"></textarea>
+
+                            <div class="label-container">
+                                <h5>Phenotype</h5>
+                                <div class="checkbox-container">
+                                    <label for="mutant">
+                                        <input type="checkbox" id="mutant" name="phenotypes" checked>
+                                        <h5>Mutant</h5>
+                                    </label>
+                                    <label for="rnai">
+                                        <input type="checkbox" id="rnai" name="phenotypes" checked>
+                                        <h5>RNAi</h5>
+                                    </label>
+                                </div>
+                            </div>
+                            <textarea id="phenotype" name="phenotype"></textarea>
+                        </div>
+
+                        <!-- Gene Ontology Group -->
+                        <div class="form-group">
+                            <h4>
+                                Gene Ontology Term
+                                <img src="assets/help-icon.png" alt="Help" class="search-page-help-icon">
+                            </h4>
+                            <div class="search-page-help-content">
+                                <p>This is the help content for Gene Name(s). It provides details on how to use this section.</p>
+                            </div>
+                            <textarea id="go-terms" name="go-terms" placeholder="Enter a GO term. Separate each additional term with a semicolon."></textarea>
+                        </div>
+
+                        <!-- Disease Association Group -->
+                        <div class="form-group">
+                            <h4>
+                                Association to Disease Name
+                                <img src="assets/help-icon.png" alt="Help" class="search-page-help-icon">
+                            </h4>
+                            <div class="search-page-help-content">
+                                <p>This is the help content for Gene Name(s). It provides details on how to use this section.</p>
+                            </div>
+                            <textarea id="disease-associations" name="disease-associations" placeholder="Enter a disease name. Separate each additional name with a comma."></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="reset">Clear</button>
+                <button type="submit" id="search-button" disabled>Search</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- JavaScript file -->
+    <script src="script.js"></script>
+</body>
+</html>
