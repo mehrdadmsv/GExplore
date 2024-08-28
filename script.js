@@ -602,7 +602,7 @@ document.addEventListener("DOMContentLoaded", function() {
             // Specific handling for different help content sections
             if (!helpContent) {
                 // If no direct form-group help content, check by title
-                if (this.closest(".search-param-column-full").querySelector("h4").textContent.includes("Search for Expression Profiles")) {
+                if (this.closest(".search-param-column-full").querySelector("h4").textContent.includes("Expression Profiles")) {
                     helpContent = document.querySelector(".search-for-expression-help-content");
                 } else if (this.closest(".search-param-column-full").querySelector("h4").textContent.includes("Sample Profiles")) {
                     helpContent = this.closest(".search-param-column-full").querySelector(".search-page-help-content");
