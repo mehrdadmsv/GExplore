@@ -7,9 +7,7 @@
     <!-- Linking CSS stylesheet -->
     <link rel="stylesheet" href="style.css" type="text/css">
     <!-- Favicon for the browser tab -->
-    <link rel="icon" href="assets/flavicon.png" type="image/png">
-    <!-- Importing Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" href="assets/favicon.png" type="image/png">
 </head>
 
 <body id="top">
@@ -18,31 +16,30 @@
     <div class="wrapper">
         <!-- Header section -->
         <div id="header">
-            <!-- GExplore logo -->
-            <img src="assets/GExplore_logo.png" alt="GExplore Logo" class="logo" draggable="false">
-            <!-- Top navigation bar -->
+            <a href="home.html">
+                <img src="assets/GExplore_logo.png" alt="GExplore Logo" class="logo">
+            </a>            
             <div id="topnav">
                 <ul>
-                    <!-- Navigation links -->
                     <li class="active"><a href="home.html"><span class="text">Home</span></a></li>
-                    <li><a href="#"><span class="text">Search</span> <span class="angle"></span></a>
-                        <!-- Dropdown menu for Search -->
+                    <li><a><span class="text">Search</span> <span class="angle"></span></a>
                         <ul class="dropdown">
-                            <li><a href="#">Genes</a></li>
-                            <li><a href="#">Mutations</a></li>
-                            <li><a href="#">Proteins</a></li>
-                            <li><a href="#">Expressions</a></li>
+                            <li><a href="gene_search.html">Genes</a></li>
+                            <li><a href="mutation_search.html">Mutations</a></li>
+                            <li><a href="protein_search.html">Proteins</a></li>
+                            <li><a href="expression_stage_search.html">Stage Expressions</a></li>
+                            <li><a href="#">Tissue Expressions</a></li>
+                            <li><a href="#">Embryo Expressions</a></li>
                         </ul>
                     </li>
-                    <li><a href="#"><span class="text">Tools</span> <span class="angle"></span></a>
-                        <!-- Dropdown menu for Tools -->
+                    <li><a><span class="text">Tools</span> <span class="angle"></span></a>
                         <ul class="dropdown">
                             <li><a href="#">Compare</a></li>
                             <li><a href="#">Convert</a></li>
                         </ul>
                     </li>
                     <li><a href="help.html"><span class="text">Help</span></a></li>
-                    <li><a href="#"><span class="text">About</span></a></li>
+                    <li><a href="about.html"><span class="text">About</span></a></li>
                 </ul>
             </div>
         </div>
