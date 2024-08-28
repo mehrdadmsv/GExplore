@@ -20,8 +20,8 @@
     --body_sidebar_color: #22252A;
     --body_link_color: #010e45;
     --body_link_hover_color: #059BD8;
-    --button_bkgr_color: #1C5E82;
-    --button_hover_bkgr_color: #059BD8;
+    --button_bkgr_color: #0070d2;
+    --button_hover_bkgr_color: #005bb5;
     --button_text_color: #FFFFFF;
     --active_icon_border_color: #059BD8; /* Blue color for active icon border */
 }
@@ -105,6 +105,13 @@ html, body {
     height: 100%;
 }
 
+.search-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding-bottom: 80px;
+}
+
 /* horizontal layout content for display page and help page */
 #content {
     display: flex;
@@ -118,7 +125,7 @@ html, body {
 /* vs */
 
 /* vertical layout content for home page */
-#home-content {
+#vertical-content {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -127,34 +134,11 @@ html, body {
     overflow: auto;
 }
 
+
+
 /* ------------------------ Global CSS Rules End ------------------------- */
 
-/* ------------------------ Scrollbar Behaviors Start ------------------------ */
 
-#sidebar::-webkit-scrollbar, #scrollableTable::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-}
-
-#sidebar::-webkit-scrollbar-thumb, #scrollableTable::-webkit-scrollbar-thumb {
-    background-color: #b0b0b0;
-    border-radius: 4px;
-}
-
-#sidebar::-webkit-scrollbar-thumb:hover, #scrollableTable::-webkit-scrollbar-thumb:hover {
-    background-color: #808080;
-}
-
-#scrollableTable::-webkit-scrollbar-track {
-    background-color: #f0f0f0;
-    border-radius: 4px;
-}
-
-#sidebar::-webkit-scrollbar-track {
-    background-color: transparent;
-}
-
-/* ------------------------ Scrollbar Behaviors End ------------------------ */
 
 /* ------------------------ Navbar Header Menu Start ------------------------- */
 
@@ -169,12 +153,18 @@ html, body {
 }
 
 #header .logo {
-    max-height: 20px;
+    max-height: 30px; /* it was 20px before the new changes */
     margin-left: 20px;
     margin-right: 20px;
     position: absolute;
     left: 20px;
     user-select: none; /* Prevent logo from being highlightable */
+}
+
+/* Fine-tune the alignment if needed */
+#header a {
+    display: flex;
+    align-items: center;
 }
 
 #topnav {
@@ -193,11 +183,17 @@ html, body {
 
 #topnav ul li {
     position: relative;
+    margin-right: 40px; /* Adds a 20px gap between each list item */
+}
+
+/* Optionally, you can use this to remove the margin on the last item */
+#topnav ul li:last-child {
+    margin-right: 0;
 }
 
 #topnav ul li a {
     user-select: none;
-    padding: 10px 20px;
+    padding: 10px 0px;
     display: flex;
     align-items: center;
     color: var(--nav_text_color);
@@ -242,7 +238,7 @@ html, body {
     box-shadow: 0 8px 16px rgba(0,0,0,0.15);
     border-radius: 8px;
     transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
-    transform: translateY(-10px);
+    transform: translateY(0px); /* it was -10 before */
     z-index: 1000;
 }
 
@@ -328,43 +324,105 @@ html, body {
 
 
 
+
+
+
+
+
+
+
 /* Hero Section */
 #intro {
-    position: relative; /* Ensure hero-section is positioned relatively */
+    position: relative;
     margin-bottom: 50px;
 }
 
 #intro .hero-section {
     background-color: #000;
-    height: 45vh;
-    position: relative; /* Establish a containing block for absolutely positioned elements */
-    padding: 20px;
-    color: #ffffff; /* Change text color for better contrast with video */
-    z-index: 1; /* Ensure text content appears above the video */
+    height: 400px; /* Increased height for better visual impact */
+    position: relative;
+    padding: 40px 10%;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertically center content */
+    z-index: 1;
+
+    background-image: url('assets/home-hero.jpeg'); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    opacity: 1;
 }
 
 #intro .hero-section h2 {
-    padding-bottom: 10px;
-    font-size: 2em;
+    font-size: 33px; /* Larger font size */
+    opacity: 0.9;
+    font-weight: bold;
+    margin-bottom: 20px;
+    max-width: 500px; /* Control width for better readability */
+    line-height: 1.2; /* Adjust line height for better spacing */
 }
 
 #intro .hero-section p {
-    font-weight: 500;
-    font-size: 14px;
+    opacity: 0.9;
+    font-weight: 400;
+    font-size: 15px;
     line-height: 1.6;
-    padding-bottom: 20px;
+    max-width: 500px; /* Align text width with the heading */
+    margin-bottom: 30px;
 }
 
-#intro .hero-section video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Ensure the video covers the entire area */
-    z-index: -1; /* Place the video behind the text */
-    opacity: 0.7; /* Optional: Add opacity for better text visibility */
+#intro .hero-section .read-more {
+    opacity: 0.9;
+    display: inline-flex;
+    align-items: center;
+    font-size: 13px;
+    color: #ffffff; /* Keep the text color white */
+    text-decoration: none;
+    font-weight: 400;
+    position: relative;
 }
+
+#intro .hero-section img {
+    opacity: 0.9;
+    user-select: none;
+}
+
+#intro .hero-section .read-more span {
+    position: relative; /* Enable positioning for the sliding underline */
+    line-height: 2.0;
+}
+
+#intro .hero-section .read-more span::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background: var(--body_link_hover_color); /* Same color as header underline */
+    transition: width 0.5s ease; /* Same transition time as header */
+}
+
+#intro .hero-section .read-more:hover span::after {
+    width: 100%; /* Expand the underline to the full width of the text */
+}
+
+#intro .hero-section .read-more img.external-link-icon {
+    margin-left: 5px; /* Space between text and icon */
+    width: 19.82px;
+    height: 16.95px;
+    vertical-align: middle; /* Align icon with text */
+}
+
+
+
+
+
+
+
+
 
 /* Cards Section */
 .cards-title {
@@ -387,7 +445,7 @@ html, body {
 .card {
     padding: 5px 5px 5px 5px;
     background-color: #ffffff;
-    width: 400px;
+    width: 300px;
     text-align: center;
     overflow: hidden;
     transition: transform 0.6s;
@@ -436,15 +494,909 @@ html, body {
 
 
 
+
+
+
+
+
+
+/* Footer Section */
+footer {
+    background-color: #111;
+    color: #ccc;
+    padding: 50px 0 0 0;
+    font-size: 12px;
+    /*
+    background-image: url('assets/footer-background.jpeg'); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    opacity: 1;
+    */
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 200px;
+    margin-bottom: 50px;
+}
+
+.footer-section h3 {
+    color: #ffffff;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.footer-section ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-section ul li a:hover {
+    color: #fff;
+}
+
+
+
+.footer-bottom {
+    text-align: center;
+    font-size: 12px;
+    color: #777;
+}
+
+.footer-bottom-container {
+    max-width: 1200px;
+    margin: 0 auto; /* Center the footer content */
+    padding: 20px 20px 30px 20px; /* Match the padding of .footer-container */
+    border-top: 1px solid #333;
+}
+
+.footer-bottom a {
+    color: #ccc;
+    text-decoration: none;
+}
+
+.footer-bottom a:hover {
+    color: #fff;
+}
+
+.footer-bottom p {
+    margin: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* ------------------------ Home Page Specific End ------------------------- */
 
 
 
 
 
+/* ------------------------ Gene Search Page Specific Start ------------------------- */
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#search-vertical-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    background-color: #f9f9f9; /* Light background for contrast */
+    overflow: auto;
+    height: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+#search-intro {
+    position: relative;
+    width: 100%; /* Ensures the container takes up the full width of the screen */
+    margin-bottom: 20px; /* Adds some spacing below the section */
+    box-sizing: border-box; /* Ensures padding is included in the width */
+}
+
+#search-intro .search-hero-section {
+    color: #FFFFFF;
+    height: 25vh;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Ensures the section itself is 100% width */
+    box-sizing: border-box; /* Ensures padding is included in the width */
+    background-image: url('assets/search-hero.jpeg'); /* Add the background image */
+    background-size: cover; /* Ensure the image covers the entire section */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    opacity: 1;
+}
+
+#search-intro .search-hero-section h2 {
+    padding-bottom: 15px;
+    font-size: 24px; /* Slightly larger font size for the heading */
+    font-weight: 700;
+}
+
+#search-intro .search-hero-section p {
+    line-height: 1.8; /* Slightly more spaced out lines for readability */
+    text-align: center; /* Center the text for better alignment */
+    font-weight: 400;
+    font-size: 15px;
+}
+
+
+
+.search-param-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Center the content horizontally */
+    padding: 0px 20px 40px 20px; /* Add padding around the #search-param container */
+    box-sizing: border-box; /* Ensure padding is included in the width */
+}
+
+
+
+/* Form Section */
+#search-param {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0px 100px;
+    width: 100%;
+    max-width: 1200px;
+    background-color: #ffffff; /* Card-like appearance */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+.search-param-column-1 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+
+.search-param-column-2 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.form-group {
+    width: 100%; /* Adjust width of form groups */
+    margin-bottom: 20px; /* Add margin for spacing */
+}
+
+/* Group Headers = group title */
+.form-group h4 {
+    font-size: 16px; /* or 14 ?*/
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+
+
+/* Labels */
+.form-group h5 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #666;
+    margin-bottom: 5px;
+    margin-right: 0px;
+}
+
+
+/* Adjust label styling */
+.splice-variant-row label {
+    display: flex;
+    align-items: center;
+    cursor: pointer; /* Change cursor to pointer when hovering over the label */
+    margin-right: 20px;
+}
+
+.more-than-one-gene-deletion label {
+    display: flex;
+    align-items: center;
+    cursor: pointer; /* Change cursor to pointer when hovering over the label */
+    margin-right: 20px;
+}
+
+.location-type-row label {
+    display: flex;
+    align-items: center;
+    cursor: pointer; /* Change cursor to pointer when hovering over the label */
+    margin-right: 20px;
+}
+
+.label-container label {
+    display: flex;
+    align-items: center;
+    cursor: pointer; /* Change cursor to pointer when hovering over the label */
+    margin-right: 20px;
+}
+
+
+
+
+label h5 {
+    margin-bottom: 0; /* Remove bottom margin from h5 within labels */
+}
+
+/*
+label input[type="checkbox"],
+label input[type="radio"] {
+    margin-right: 8px;  Space between checkbox/radio and text 
+}
+*/
+
+
+
+
+
+
+
+/* Input Fields */
+.form-group input[type="text"],
+.form-group select {
+    height: 30px;
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    transition: border-color 0.3s;
+}
+
+.form-group textarea {
+    height: 50px; /* Adjust this value based on your design needs */
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    resize: vertical; /* Allows users to resize the textarea vertically */
+}
+
+
+
+/* General style for all text inputs and textareas */
+.form-group input[type="text"]:hover,
+.form-group textarea:hover,
+.form-group input[type="text"]:focus,
+.form-group textarea:focus,
+.form-group select:hover,
+.form-group select:focus {
+    border-color: #068EF1; /* Change to your desired color */
+    outline: none; /* Remove the default outline */
+}
+
+/* Optional: Add a transition for smooth color change */
+.form-group input[type="text"],
+.form-group textarea,
+.form-group select {
+    transition: border-color 0.3s ease-in-out;
+}
+
+
+/* Checkbox and Radio */
+.form-group input[type="checkbox"],
+.form-group input[type="radio"] {
+    margin-right: 8px;
+}
+
+
+.form-group .location-type-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+
+
+
+
+
+
+
+
+
+/* Ensure the form actions span both columns */
+.form-actions {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 80px;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    width: 100%;
+    padding: 10px;
+    background-color: #ffffff; /* Optional: Background color to distinguish the buttons */
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for better visibility */
+    z-index: 1000; /* Ensure it appears above other content */
+}
+
+/* Buttons */
+
+.form-actions button {
+    font-family: 'Open Sans', sans-serif; /* Fonts with priority given to 'Open Sans' */
+    width: 140px;
+    height: 40px;
+    font-size: 14px;
+    font-weight: 600; /* Slightly bolder font */
+    color: var(--button_text_color);
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+
+
+.form-actions button[type="reset"] {
+    background-color: #F2F7F9; 
+    color: #222222;
+}
+
+.form-actions button[type="reset"]:hover {
+    background-color: #DFEAEE;
+}
+
+
+/* Inactive state of the search button */
+#search-button:disabled {
+    background-color: #6ABBF7; /* Inactive background color */
+    cursor: not-allowed; /* Change cursor to indicate it's not clickable */
+}
+
+/* Active state of the search button */
+#search-button {
+    background-color: var(--button_bkgr_color); /* Active background color */
+    color: var(--button_text_color);
+    cursor: pointer; /* Pointer cursor to indicate it's clickable */
+    transition: background-color 0.3s ease-in-out; /* Smooth transition */
+}
+
+#search-button:hover:not(:disabled) {
+    background-color: var(--button_hover_bkgr_color); /* Hover color when active */
+}
+
+
+
+
+
+
+
+
+/* ------- Group Specific ------- */
+
+/* Container for longest splice variant row */
+.splice-variant-row {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+
+.more-than-one-gene-deletion {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+
+.splice-variant-row h5 {
+    margin: 0 0 0 0; /* Remove the bottom margin to keep the elements aligned */
+}
+
+.more-than-one-gene-deletion h5 {
+    margin: 0 0 0 0; /* Remove the bottom margin to keep the elements aligned */
+}
+
+
+
+
+
+/* Container for location fields */
+.location-row {
+    display: flex;
+    align-items: center;
+    gap: 0px; /* Adjust the gap as needed */
+    margin-bottom: 20px;
+}
+
+.location-row h5 {
+    margin: 0 10px 0 0; /* Remove the bottom margin to keep the elements aligned */
+}
+
+.location-row h5:nth-of-type(2),
+.location-row h5:nth-of-type(3) {
+    margin-left: 30px; /* Apply left margin only to the second and third h5 elements (From and To) */
+}
+
+.location-row select {
+    flex: 1; /* Make the select and input fields take up available space equally */
+}
+
+.location-row input[type="text"] {
+    flex: 1; /* Make the select and input fields take up available space equally */
+}
+
+.location-type-row {
+    margin-bottom: 20px;
+}
+
+
+/* Description and Phenotype checkboxes next to text area titles*/
+.label-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Ensure the h5 and checkboxes are on opposite sides */
+    width: 100%; /* Ensures the container takes up the full width */
+    margin-bottom: 10px; /* Add some space below the container */
+}
+
+.checkbox-container {
+    display: flex;
+    gap: 10px; /* Space between each checkbox label */
+}
+
+.label-container h5 {
+    margin: 0;
+}
+
+
+/* Style for the help icon */
+.search-page-help-icon {
+    width: 19.82x;
+    height: 16.95px;
+    margin-left: 8px; /* Space between the title and the icon */
+    cursor: pointer;  /* Indicate that it’s clickable */
+    vertical-align: middle; /* Aligns the icon vertically with the text */
+}
+
+.form-group .search-page-help-content {
+    display: none; /* Ensure it is hidden by default */
+    background-color: #f0f8ff; /* Light blue background */
+    font-size: 14px;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ------------------------ Gene Search Page Specific End ------------------------- */
+
+
+
+
+
+
+
+/* ------------------------ Mutation Search Page Specific Start ------------------------- */
+
+
+
+.mutation-type-container, .mutation-source-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0px; /* Space between each label */
+}
+
+.mutation-type-container label, .mutation-source-container label {
+    display: block; /* Ensure each label is treated as a block element */
+    margin-bottom: 10px; /* Space between each checkbox group */
+    cursor: pointer;
+}
+
+.mutation-type-container label input, .mutation-source-container label input {
+    display: inline-block; /* Keep the checkbox inline with the text */
+    margin-bottom: 5px; /* Add some space below the checkbox */
+}
+
+.mutation-type-container input[type="text"],
+.mutation-source-container input[type="text"] {
+    width: 60px;
+    padding: 4px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    display: inline-block; /* Make the input field block-level */
+    margin-top: 5px; /* Add space above the input field */
+}
+
+
+
+/* ------------------------ Mutation Search Page Specific End ------------------------- */
+
+
+
+
+
+
+
+
+/* ------------------------ Protein Search Page Specific Start ------------------------- */
+
+
+
+
+.orthologs-category {
+    margin-bottom: 20px; /* Add space between categories */
+}
+
+.orthologs-category h5 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.orthologs-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* Space between each label */
+}
+
+.orthologs-container label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.orthologs-container i {
+    font-style: italic; /* Ensure the species names are italic */
+}
+
+
+
+
+
+
+#species-selection {
+    grid-column: 1 / span 2; /* Span across both columns */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px; /* Space below the dropdown */
+}
+
+#species-selection label {
+    margin-right: 15px; /* Slightly more space between label and dropdown */
+    font-size: 16px; /* Adjust label font size */
+    font-weight: 600; /* Make label text a bit bolder */
+    color: #333; /* Darker color for better visibility */
+}
+
+#species-selection select {
+    padding: 8px 12px; /* Increase padding for a more comfortable clickable area */
+    font-size: 14px; /* Adjust dropdown font size */
+    border-radius: 4px;
+    border: 1px solid #ccc; /* Slightly darker border for better definition */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for interactions */
+}
+
+/* Hover and focus effects for the dropdown */
+#species-selection select:hover,
+#species-selection select:focus {
+    border-color: #0070d2; /* Blue border on hover/focus */
+    box-shadow: 0 0 5px rgba(0, 112, 210, 0.5); /* Subtle shadow for focus */
+    outline: none; /* Remove default outline */
+}
+
+/* Optgroup styling within the dropdown */
+#species-selection select optgroup {
+    font-weight: bold; /* Make the optgroup label bold */
+    color: #555; /* Slightly softer color for optgroup label */
+    padding: 5px 0; /* Add some padding to the label */
+    background-color: #f0f0f0; /* Light background color for distinction */
+}
+
+/* Options styling within the dropdown */
+#species-selection select option {
+    padding-left: 10px; /* Indent the options within optgroup */
+    color: #333; /* Standard text color for options */
+    background-color: #fff; /* Default background for options */
+}
+
+/* Hover effect for options */
+#species-selection select option:hover {
+    background-color: #e0e0e0; /* Slightly darker background on hover */
+}
+
+
+
+
+
+
+
+
+
+
+
+/* ------------------------ Protein Search Page Specific End ------------------------- */
+
+
+
+
+
+
+
+
+
+/* ------------------------ Expression (Stages) Search Page Specific Start ------------------------- */
+
+
+
+
+
+
+
+
+.search-param-column-full {
+    grid-column: 1 / span 2; /* This makes the element span across both columns */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center-align contents horizontally */
+    width: 100%; /* Ensure full width */
+    margin-bottom: 20px; /* Space between elements */
+}
+
+.search-param-column-full .more-explanation {
+    background-color: #f0f8ff; /* Light blue background */
+    font-size: 14px;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+/* Adjust textarea width and center it, specific to this page */
+#stage-expression-page .form-group textarea {
+    width: 100%; /* Set to a percentage or a specific pixel value */
+    max-width: 550px; /* Optionally, set a max-width to prevent it from getting too wide */
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: border-color 0.3s;
+}
+
+/* Center the Gene Name group content */
+#stage-expression-page .form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center-align the content inside the form group */
+    width: 100%;
+}
+
+#stage-expression-page .form-group .search-page-help-content {
+    max-width: 550px; /* Optionally, set a max-width to prevent it from getting too wide */
+
+    display: none; /* Ensure it is hidden by default */
+    background-color: #f0f8ff; /* Light blue background */
+    font-size: 14px;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+/* Two-column layout for the time/stage and expression fields */
+.two-column-wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; /* Adjust this value to control the spacing between columns */
+    width: 100%;
+    max-width: 1000px;
+    margin-bottom: 20px;
+}
+
+/* Individual columns within the two-column layout */
+.form-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* Ensure the select and input fields have consistent styling */
+#stage-expression-page select, #stage-expression-page input[type="text"] {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: border-color 0.3s;
+}
+
+/* Ensure footnotes and other textual information are styled appropriately */
+.footnote {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+#stage-expression-page p {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+/* Styling for the Sample Profiles dropdown */
+#sample-profiles {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+
+/* Adjust select box styling */
+#stage-expression-page .two-column-wrapper select {
+    width: 100%; /* Ensure select box takes full width of its container */
+    padding: 5px 10px; /* Adjust padding for better text display */
+    font-size: 16px; /* Adjust font size for better readability */
+    box-sizing: border-box; /* Include padding and border in the element's total width */
+}
+
+/* Adjust input box styling */
+#stage-expression-page .two-column-wrapper input[type="text"] {
+    width: 100%; /* Ensure input box takes full width of its container */
+    padding: 5px 10px; /* Adjust padding for better text display */
+    font-size: 16px; /* Adjust font size for better readability */
+    box-sizing: border-box; /* Include padding and border in the element's total width */
+}
+
+
+
+/* Container to align title and help icon side by side */
+.title-with-icon {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Ensure the title and icon are spaced out */
+    width: 100%; /* Full width to ensure proper alignment */
+}
+
+.title-with-icon h4 {
+    margin: 0; /* Remove default margin to ensure proper spacing */
+    flex-grow: 1; /* Ensure the title takes up available space */
+}
+
+.title-with-icon img {
+    margin-left: 10px; /* Space between title and icon */
+    cursor: pointer; /* Indicate that the icon is clickable */
+    vertical-align: middle; /* Align icon with the text */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ------------------------ Expression (Stages) Search Page Specific End ------------------------- */
 
 
 
@@ -630,7 +1582,7 @@ html, body {
     flex-grow: 1;
     width: 100%;
     overflow: hidden;
-    padding: 0 0px 10px 0; /* Adjust padding to move the table closer */
+    padding: 0 0px 0px 0; /* Adjust padding to move the table closer */
     text-align: center;
     position: relative; /* Ensure the container doesn't affect layout shifts */
     display: flex;
@@ -659,7 +1611,7 @@ html, body {
 }
 
 #scrollableTable th {
-    background-color: #f0f0f0;
+    background-color: #f0f0f0; /* resulting in table header border bug = fix it */ 
     position: sticky;
     top: 0;
     z-index: 10; /* Increase z-index to ensure it stays above other elements */
@@ -914,6 +1866,8 @@ html, body {
 
 .update-display-btn {
     font-family: 'Open Sans', sans-serif; /* Fonts with priority given to 'Open Sans' */
+    width: 140px;
+    height: 40px;
     font-size: 14px;
     font-weight: 600; /* Slightly bolder font */
     background-color: var(--button_bkgr_color);
@@ -1127,7 +2081,7 @@ html, body {
     width: 100%;
     display: flex;
     align-items: center;
-    padding: 16px 0px;
+    padding: 0px 0px;
     justify-content: center;
 }
 
@@ -1140,7 +2094,7 @@ html, body {
 }
 
 .date-last-updated {
-    padding: 0 0 20px 0;
+    padding: 16px 0 20px 0;
 }
 
 .date-last-updated h4 {
@@ -1151,16 +2105,23 @@ html, body {
 .help-content-section-title h4 {
     padding: 0 0 20px 0;
     font-weight: 700;
+    font-size: 18px;
+}
+
+.help-content-section h5 {
+    padding: 10px 0px 10px 0px; /* here */
+    font-weight: 700;
     font-size: 16px;
 }
 
-.help-content-section-title h5 {
-    padding: 0 0 20px 0;
-    font-weight: 500;
-    font-size: 16px;
+.help-content-section h6 {
+    padding: 10px 0px 10px 0px; /* here */
+    font-weight: 700;
+    font-size: 14px;
 }
 
 .help-content-section p {
+    padding: 0 0 20px 0;
     font-weight: 600;
     font-size: 14px;
     line-height: 1.6;
@@ -1195,13 +2156,21 @@ html, body {
 .help-content-section div.highlight h5, .help-content-section div.highlight h6 {
     background-color: #f0f8ff;
     padding: 10px 0px 10px 0px;
-    border-radius: 5px;
+    border-radius: 4px;
 }
 
 /* Ensure that only the title is highlighted, not the whole section */
 .help-content-section div.highlight {
     background-color: transparent;
 }
+
+
+
+
+
+
+
+
 
 
 
