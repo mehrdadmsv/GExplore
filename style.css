@@ -1247,18 +1247,18 @@ label input[type="radio"] {
 
 
 
-
+/* General Styles */
 .search-param-column-full {
-    grid-column: 1 / span 2; /* This makes the element span across both columns */
+    grid-column: 1 / span 2;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center-align contents horizontally */
-    width: 100%; /* Ensure full width */
-    margin-bottom: 20px; /* Space between elements */
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
 }
 
 .search-param-column-full .more-explanation {
-    background-color: #f0f8ff; /* Light blue background */
+    background-color: #f0f8ff;
     font-size: 14px;
     padding: 10px;
     margin-top: 10px;
@@ -1266,29 +1266,26 @@ label input[type="radio"] {
     border-radius: 4px;
 }
 
-/* Adjust textarea width and center it, specific to this page */
 #stage-expression-page .form-group textarea {
-    width: 100%; /* Set to a percentage or a specific pixel value */
-    max-width: 550px; /* Optionally, set a max-width to prevent it from getting too wide */
+    width: 100%;
+    max-width: 550px;
     padding: 8px;
     border: 1px solid #ddd;
     border-radius: 4px;
     transition: border-color 0.3s;
 }
 
-/* Center the Gene Name group content */
 #stage-expression-page .form-group {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center-align the content inside the form group */
+    align-items: center;
     width: 100%;
 }
 
 #stage-expression-page .form-group .search-page-help-content {
-    max-width: 550px; /* Optionally, set a max-width to prevent it from getting too wide */
-
-    display: none; /* Ensure it is hidden by default */
-    background-color: #f0f8ff; /* Light blue background */
+    max-width: 550px;
+    display: none;
+    background-color: #f0f8ff;
     font-size: 14px;
     padding: 10px;
     margin-top: 10px;
@@ -1296,17 +1293,16 @@ label input[type="radio"] {
     border-radius: 4px;
 }
 
-/* Two-column layout for the time/stage and expression fields */
+/* Two-column layout */
 .two-column-wrapper {
     display: flex;
     justify-content: space-between;
-    gap: 20px; /* Adjust this value to control the spacing between columns */
+    gap: 20px;
     width: 100%;
     max-width: 1000px;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
 }
 
-/* Individual columns within the two-column layout */
 .form-column {
     flex: 1;
     display: flex;
@@ -1314,9 +1310,11 @@ label input[type="radio"] {
     align-items: flex-start;
 }
 
-/* Ensure the select and input fields have consistent styling */
-#stage-expression-page select, #stage-expression-page input[type="text"] {
+/* Input and Select Fields */
+#stage-expression-page select,
+#stage-expression-page input[type="text"] {
     width: 100%;
+    height: 35px;
     margin-bottom: 10px;
     padding: 8px;
     border: 1px solid #ddd;
@@ -1324,19 +1322,15 @@ label input[type="radio"] {
     transition: border-color 0.3s;
 }
 
-/* Ensure footnotes and other textual information are styled appropriately */
-.footnote {
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 10px;
+#stage-expression-page select:hover,
+#stage-expression-page input[type="text"]:hover,
+#stage-expression-page select:focus,
+#stage-expression-page input[type="text"]:focus {
+    border-color: #068EF1;
+    outline: none;
 }
 
-#stage-expression-page p {
-    font-size: 14px;
-    color: #333;
-    line-height: 1.5;
-    margin-bottom: 20px;
-}
+
 
 /* Styling for the Sample Profiles dropdown */
 #sample-profiles {
@@ -1347,45 +1341,42 @@ label input[type="radio"] {
 }
 
 
-/* Adjust select box styling */
-#stage-expression-page .two-column-wrapper select {
-    width: 100%; /* Ensure select box takes full width of its container */
-    padding: 5px 10px; /* Adjust padding for better text display */
-    font-size: 16px; /* Adjust font size for better readability */
-    box-sizing: border-box; /* Include padding and border in the element's total width */
-}
-
-/* Adjust input box styling */
-#stage-expression-page .two-column-wrapper input[type="text"] {
-    width: 100%; /* Ensure input box takes full width of its container */
-    padding: 5px 10px; /* Adjust padding for better text display */
-    font-size: 16px; /* Adjust font size for better readability */
-    box-sizing: border-box; /* Include padding and border in the element's total width */
+.search-for-expression-help-content {
+    display: none;
+    max-width: 550px;
+    display: none;
+    background-color: #f0f8ff;
+    font-size: 14px;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
 }
 
 
-
-/* Container to align title and help icon side by side */
-.title-with-icon {
-    display: flex;
-    align-items: center;
-    justify-content: space-between; /* Ensure the title and icon are spaced out */
-    width: 100%; /* Full width to ensure proper alignment */
+/* Ensure consistent styling for all titles */
+#stage-expression-page h4 {
+    font-size: 16px; /* Adjusted font size */
+    font-weight: 700; /* Bold font weight */
+    margin: 0; /* Remove default margins */
+    padding-bottom: 10px; /* Add some space below the title */
 }
 
-.title-with-icon h4 {
-    margin: 0; /* Remove default margin to ensure proper spacing */
-    flex-grow: 1; /* Ensure the title takes up available space */
+/* Specific styles for the "Sample Profiles" section */
+#sample-profiles-title {
+    margin-top: 20px; /* Add space above the title to separate it from previous content */
+    margin-bottom: 10px; /* Ensure consistent spacing below the title */
+    text-align: center; /* Center the title */
 }
 
-.title-with-icon img {
-    margin-left: 10px; /* Space between title and icon */
-    cursor: pointer; /* Indicate that the icon is clickable */
-    vertical-align: middle; /* Align icon with the text */
+/* Styling for the Sample Profiles dropdown */
+#sample-profiles {
+    max-width: 550px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
 }
-
-
-
 
 
 
