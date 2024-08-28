@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Embryo Expression Search - GExplore</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="icon" href="assets/favicon.png" type="image/png">
+</head>
+
+<body id="stage-expression-page">
+    <div class="search-wrapper">
+        <div id="header">
+            <a href="home.html">
+                <img src="assets/GExplore_logo.png" alt="GExplore Logo" class="logo">
+            </a>            
+            <div id="topnav">
+                <ul>
+                    <li class="active"><a href="home.html"><span class="text">Home</span></a></li>
+                    <li><a><span class="text">Search</span> <span class="angle"></span></a>
+                        <ul class="dropdown">
+                            <li><a href="gene_search.html">Genes</a></li>
+                            <li><a href="mutation_search.html">Mutations</a></li>
+                            <li><a href="protein_search.html">Proteins</a></li>
+                            <li><a href="expression_stage_search.html">Stage Expressions</a></li>
+                            <li><a href="expression_tissue_search.html">Tissue Expressions</a></li>
+                            <li><a href="#">Embryo Expressions</a></li>
+                        </ul>
+                    </li>
+                    <li><a><span class="text">Tools</span> <span class="angle"></span></a>
+                        <ul class="dropdown">
+                            <li><a href="#">Compare</a></li>
+                            <li><a href="#">Convert</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="help.html"><span class="text">Help</span></a></li>
+                    <li><a href="about.html"><span class="text">About</span></a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="search-vertical-content">
+            <!-- Hero Section -->
+            <div id="search-intro">
+                <div class="search-hero-section">
+                    <h2>Search for tissue-specific expression profiles in the embryo</h2>
+                    <p>text</p>
+                </div>
+            </div>
+
+            <!-- Wrapper for padding -->
+            <div class="search-param-wrapper">
+                <div id="search-param">
+                    <div class="search-param-column-full">
+                        <!-- Gene Name Group -->
+                        <div class="form-group">
+                            <h4>
+                                Gene Name
+                                <img src="assets/help-icon.png" alt="Help" class="search-page-help-icon">
+                            </h4>
+                            <div class="search-page-help-content">
+                                <p>This is the help content for Gene Name(s). It provides details on how to use this section.</p>
+                            </div>
+                            <textarea id="gene-names" name="gene-names" placeholder="Enter a gene name. Separate each additional name with a comma."></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="search-param-column-full">
+                        <h4>
+                            Embryo Expression Profiles
+                            <img src="assets/help-icon.png" alt="Help" class="search-page-help-icon">
+                        </h4>
+                        <div class="search-page-help-content search-for-expression-help-content">
+                            <p>
+                                Expression values are given in transcripts per million (TPM)
+                            </p>
+                        </div>                    
+                    </div>
+
+                    <div class="search-param-column-full">
+                        <!-- Time or Stage and Expression Fields -->
+                        <div class="form-group">
+                            <div class="three-column-wrapper">
+                                <div class="form-column">
+                                    <h4>Tissue or Cell Type</h4>
+                                    <select name="el1" id="el1" >
+                                        <option value="ABa" >ABa</option>
+                                        <option value="ABala" >ABala</option>
+                                        <option value="hypodermis" selected="selected">hypodermis</option>
+                                        <option value="intestine" >intestine</option>
+                                        <option value="pharynx" >pharynx</option>
+                                        <option value="muscle" >muscle</option>
+                                        <option value="neuron" >neuron</option>
+                                    </select>
+                                    <select name="el2" id="el2" >
+                                        <option value="ABa" >ABa</option>
+                                        <option value="ABala" >ABala</option>
+                                        <option value="hypodermis">hypodermis</option>
+                                        <option value="intestine"	selected="selected">intestine</option>
+                                        <option value="pharynx" >pharynx</option>
+                                        <option value="muscle" >muscle</option>
+                                        <option value="neuron" >neuron</option>
+                                    </select>
+                                    <select name="el3" id="el3" >
+                                        <option value="ABa" >ABa</option>
+                                        <option value="ABala" >ABala</option>
+                                        <option value="hypodermis">hypodermis</option>
+                                        <option value="intestine" >intestine</option>
+                                        <option value="pharynx" selected="selected" >pharynx</option>
+                                        <option value="muscle" >muscle</option>
+                                        <option value="neuron" >neuron</option>
+                                    </select>
+                                    <select name="el4" id="el4" >
+                                        <option value="ABa" >ABa</option>
+                                        <option value="ABala" >ABala</option>
+                                        <option value="hypodermis">hypodermis</option>
+                                        <option value="intestine">intestine</option>
+                                        <option value="pharynx" >pharynx</option>
+                                        <option value="muscle" selected="selected">muscle</option>
+                                        <option value="neuron" >neuron</option>
+                                    </select>
+                                    <select name="el5" id="el5" >
+                                        <option value="ABa" >ABa</option>
+                                        <option value="ABala" >ABala</option>
+                                        <option value="hypodermis">hypodermis</option>
+                                        <option value="intestine" >intestine</option>
+                                        <option value="pharynx">pharynx</option>
+                                        <option value="muscle" >muscle</option>
+                                        <option value="neuron"	selected="selected">neuron</option>
+                                    </select>
+                                </div>
+                                <div class="form-column">
+                                    <h4>Time Point</h4>
+                                    <select name="et1" id="et1" >
+                                        <option value="t0" selected="selected">t0 (120 min)</option>
+                                        <option value="t1" >t1 (210 min)</option>
+                                        <option value="t2" >t2 (300 min)</option>
+                                        <option value="t3" >t3 (390 min)</option>
+                                        <option value="t4" >t4 (480 min)</option>
+                                    </select>
+                                    <select name="et2" id="et2" >
+                                        <option value="t0" selected="selected">t0 (120 min)</option>
+                                        <option value="t1" >t1 (210 min)</option>
+                                        <option value="t2" >t2 (300 min)</option>
+                                        <option value="t3" >t3 (390 min)</option>
+                                        <option value="t4" >t4 (480 min)</option>
+                                    </select>
+                                    <select name="et3" id="et3" >
+                                        <option value="t0" selected="selected">t0 (120 min)</option>
+                                        <option value="t1" >t1 (210 min)</option>
+                                        <option value="t2" >t2 (300 min)</option>
+                                        <option value="t3" >t3 (390 min)</option>
+                                        <option value="t4" >t4 (480 min)</option>
+                                    </select>
+                                    <select name="et4" id="et4" >
+                                        <option value="t0" selected="selected">t0 (120 min)</option>
+                                        <option value="t1" >t1 (210 min)</option>
+                                        <option value="t2" >t2 (300 min)</option>
+                                        <option value="t3" >t3 (390 min)</option>
+                                        <option value="t4" >t4 (480 min)</option>
+                                    </select>
+                                    <select name="et5" id="et5" >
+                                        <option value="t0" selected="selected">t0 (120 min)</option>
+                                        <option value="t1" >t1 (210 min)</option>
+                                        <option value="t2" >t2 (300 min)</option>
+                                        <option value="t3" >t3 (390 min)</option>
+                                        <option value="t4" >t4 (480 min)</option>
+                                    </select>
+                                </div>
+                                <div class="form-column">
+                                    <h4>Expression (TPM)</h4>
+                                    <input type="text">
+                                    <input type="text">
+                                    <input type="text">
+                                    <input type="text">
+                                    <input type="text">
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                    <!-- Notes -->
+                    <div class="search-param-column-full">
+                        <p class="more-explanation">To specify a range use '>0.5' or '<0.5' or '2-10'. To compare relative expression levels between tissues specify x-fold difference and tissue for comparison in the following way: >10x neuron_t3' means expression in the tissue/time point specified by the values in the pull-down menus is 'more than 10-fold higher than expression in neurons at t3'. Use values from the pull-down menus and seperate tissue and timepoint by an underscore (e.g. 'neuron_t3').</p>
+                    </div>
+
+                    <!-- Sample Profiles Section -->
+                    <div class="search-param-column-full">
+                        <h4>
+                            Sample Profiles
+                            <img src="assets/help-icon.png" alt="Help" class="search-page-help-icon">
+                        </h4>
+                        <div class="search-page-help-content search-for-expression-help-content">
+                            <p>
+                                sample profile help content
+                            </p>
+                        </div>    
+                        <select id="sample-profiles" name="sample-profiles">
+                            <option value="" disabled selected>Select a sample profile</option>
+                            <option>?</option>
+                            <option>?</option>
+                            <option>?</option>
+                        </select>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="reset">Clear</button>
+                <button type="submit" id="search-button" disabled>Search</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript file -->
+    <script src="script.js"></script>
+</body>
+</html>
