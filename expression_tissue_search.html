@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Tissue Expression Search - GExplore</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="icon" href="assets/favicon.png" type="image/png">
+</head>
+
+<body id="stage-expression-page">
+    <div class="search-wrapper">
+        <div id="header">
+            <a href="home.html">
+                <img src="assets/GExplore_logo.png" alt="GExplore Logo" class="logo">
+            </a>            
+            <div id="topnav">
+                <ul>
+                    <li class="active"><a href="home.html"><span class="text">Home</span></a></li>
+                    <li><a><span class="text">Search</span> <span class="angle"></span></a>
+                        <ul class="dropdown">
+                            <li><a href="gene_search.html">Genes</a></li>
+                            <li><a href="mutation_search.html">Mutations</a></li>
+                            <li><a href="protein_search.html">Proteins</a></li>
+                            <li><a href="expression_stage_search.html">Stage Expressions</a></li>
+                            <li><a href="#">Tissue Expressions</a></li>
+                            <li><a href="#">Embryo Expressions</a></li>
+                        </ul>
+                    </li>
+                    <li><a><span class="text">Tools</span> <span class="angle"></span></a>
+                        <ul class="dropdown">
+                            <li><a href="#">Compare</a></li>
+                            <li><a href="#">Convert</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="help.html"><span class="text">Help</span></a></li>
+                    <li><a href="about.html"><span class="text">About</span></a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="search-vertical-content">
+            <!-- Hero Section -->
+            <div id="search-intro">
+                <div class="search-hero-section">
+                    <h2>Search for tissue-specific expression profiles </h2>
+                    <p>text</p>
+                </div>
+            </div>
+
+            <!-- Wrapper for padding -->
+            <div class="search-param-wrapper">
+                <div id="search-param">
+                    <div class="search-param-column-full">
+                        <!-- Gene Name Group -->
+                        <div class="form-group">
+                            <h4>
+                                Gene Name
+                                <img src="assets/help-icon.png" alt="Help" class="search-page-help-icon">
+                            </h4>
+                            <div class="search-page-help-content">
+                                <p>This is the help content for Gene Name(s). It provides details on how to use this section.</p>
+                            </div>
+                            <textarea id="gene-names" name="gene-names" placeholder="Enter a gene name. Separate each additional name with a comma."></textarea>
+                        </div>
+
+                        <!-- Enrichment group -->
+                        <div class="form-group">
+                            <h4>
+                                Enrichment
+                                <img src="assets/help-icon.png" alt="Help" class="search-page-help-icon">
+                            </h4>
+                            <div class="search-page-help-content">
+                                <p>This is the help content for Gene Name(s). It provides details on how to use this section.</p>
+                            </div>
+                            <div class="enrichment-row">
+                                <h5>Search for genes enriched in</h5>
+                                <select name="enriched" id="enriched" >
+                                    <option value="" disabled selected></option>
+                                    <option value="Body_wall_muscle">Body wall muscle</option>
+                                    <option value="Intestinal_rectal_muscle" >Intestinal/rectal muscle</option>
+                                    <option value="Pharyngeal_muscle" >Pharyngeal muscle</option>
+                                    <option value="Pharyngeal_epithelia" >Pharyngeal epithelia</option>
+                                    <option value="Pharyngeal_gland" >Pharyngeal gland</option>
+                                    <option value="Seam_cells" >Seam cells</option>
+                                    <option value="Non_seam_hypodermis" >Non-seam hypodermis</option>
+                                    <option value="Rectum" >Rectum</option>
+                                    <option value="Ciliated_sensory_neurons" >Ciliated sensory neurons</option>
+                                    <option value="Oxygen_sensory_neurons" >Oxygen sensory neurons</option>
+                                    <option value="Touch_receptor_neurons" >Touch receptor neurons</option>
+                                    <option value="Cholinergic_neurons" >Cholinergic neurons</option>
+                                    <option value="GABAergic_neurons" >GABAergic neurons</option>
+                                    <option value="Pharyngeal_neurons" >Pharyngeal neurons</option>
+                                    <option value="flp1_interneurons" >flp-1 interneurons</option>
+                                    <option value="Other_interneurons" >Other interneurons</option>
+                                    <option value="Canal_associated_neurons" >Canal associated neurons</option>
+                                    <option value="Am_PH_sheath_cells" >Am/PH sheath cells</option>
+                                    <option value="Socket_cells" >Socket cells</option>
+                                    <option value="Excretory_cells" >Excretory cells</option>
+                                    <option value="Intestine" >Intestine</option>
+                                    <option value="Germline" >Germline</option>
+                                    <option value="Somatic_gonad_precursors" >Somatic gonad precursors</option>
+                                    <option value="Distal_tip_cells" >Distal tip cells</option>
+                                    <option value="Vulval_precursors" >Vulval precursors</option>
+                                    <option value="Sex_myoblasts" >Sex myoblasts</option>
+                                    <option value="Coelomocytes" >Coelomocytes</option>
+                                </select>
+                            </div>
+                            <div class="enrichment-row">
+                                <h5>From</h5>
+                                <select name="enrich_factor" id="enrich_factor" >
+                                    <option value="5" selected="selected">5-fold</option>
+                                    <option value="4">4-fold</option>
+                                    <option value="3">3-fold</option>
+                                    <option value="2"">2-fold</option>
+                                </select>
+                                <h5>To</h5>
+                                <select name="false_rate" id="false_rate" >
+                                    <option value="0.05" selected="selected">0.05</option>
+                                    <option value="0.01">0.01</option>
+                                    <option value="0.001">0.001</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="search-param-column-full">
+                        <h4>
+                            Tissue Expression Profiles
+                            <img src="assets/help-icon.png" alt="Help" class="search-page-help-icon">
+                        </h4>
+                        <div class="search-page-help-content search-for-expression-help-content">
+                            <p>
+                                Expression values are given in transcripts per million (TPM)
+                            </p>
+                        </div>                    
+                    </div>
+
+                    <div class="search-param-column-full">
+                        <!-- Time or Stage and Expression Fields -->
+                        <div class="form-group">
+                            <div class="two-column-wrapper">
+                                <div class="form-column">
+                                    <h4>Tissue or Cell Type</h4>
+                                    <select>
+                                        <option value="Body_wall_muscle" selected="selected">Body wall muscle</option>
+                                        <option value="Intestinal_rectal_muscle" >Intestinal/rectal muscle</option>
+                                        <option value="Pharyngeal_muscle" >Pharyngeal muscle</option>
+                                        <option value="Pharyngeal_epithelia" >Pharyngeal epithelia</option>
+                                        <option value="Pharyngeal_gland" >Pharyngeal gland</option>
+                                        <option value="Seam_cells" >Seam cells</option>
+                                        <option value="Non_seam_hypodermis" >Non-seam hypodermis</option>
+                                        <option value="Rectum" >Rectum</option>
+                                        <option value="Ciliated_sensory_neurons" >Ciliated sensory neurons</option>
+                                        <option value="Oxygen_sensory_neurons" >Oxygen sensory neurons</option>
+                                        <option value="Touch_receptor_neurons" >Touch receptor neurons</option>
+                                        <option value="Cholinergic_neurons" >Cholinergic neurons</option>
+                                        <option value="GABAergic_neurons" >GABAergic neurons</option>
+                                        <option value="Pharyngeal_neurons" >Pharyngeal neurons</option>
+                                        <option value="flp1_interneurons" >flp-1 interneurons</option>
+                                        <option value="Other_interneurons" >Other interneurons</option>
+                                        <option value="Canal_associated_neurons" >Canal associated neurons</option>
+                                        <option value="Am_PH_sheath_cells" >Am/PH sheath cells</option>
+                                        <option value="Socket_cells" >Socket cells</option>
+                                        <option value="Excretory_cells" >Excretory cells</option>
+                                        <option value="Intestine" >Intestine</option>
+                                        <option value="Germline" >Germline</option>
+                                        <option value="Somatic_gonad_precursors" >Somatic gonad precursors</option>
+                                        <option value="Distal_tip_cells" >Distal tip cells</option>
+                                        <option value="Vulval_precursors" >Vulval precursors</option>
+                                        <option value="Sex_myoblasts" >Sex myoblasts</option>
+                                        <option value="Coelomocytes" >Coelomocytes</option>
+                                    </select>
+                                    <select>
+                                        <option value="Body_wall_muscle">Body wall muscle</option>
+                                        <option value="Intestinal_rectal_muscle" >Intestinal/rectal muscle</option>
+                                        <option value="Pharyngeal_muscle" >Pharyngeal muscle</option>
+                                        <option value="Pharyngeal_epithelia" >Pharyngeal epithelia</option>
+                                        <option value="Pharyngeal_gland" >Pharyngeal gland</option>
+                                        <option value="Seam_cells" selected="selected">Seam cells</option>
+                                        <option value="Non_seam_hypodermis" >Non-seam hypodermis</option>
+                                        <option value="Rectum" >Rectum</option>
+                                        <option value="Ciliated_sensory_neurons" >Ciliated sensory neurons</option>
+                                        <option value="Oxygen_sensory_neurons" >Oxygen sensory neurons</option>
+                                        <option value="Touch_receptor_neurons" >Touch receptor neurons</option>
+                                        <option value="Cholinergic_neurons" >Cholinergic neurons</option>
+                                        <option value="GABAergic_neurons" >GABAergic neurons</option>
+                                        <option value="Pharyngeal_neurons" >Pharyngeal neurons</option>
+                                        <option value="flp1_interneurons" >flp-1 interneurons</option>
+                                        <option value="Other_interneurons" >Other interneurons</option>
+                                        <option value="Canal_associated_neurons" >Canal associated neurons</option>
+                                        <option value="Am_PH_sheath_cells" >Am/PH sheath cells</option>
+                                        <option value="Socket_cells" >Socket cells</option>
+                                        <option value="Excretory_cells" >Excretory cells</option>
+                                        <option value="Intestine" >Intestine</option>
+                                        <option value="Germline" >Germline</option>
+                                        <option value="Somatic_gonad_precursors" >Somatic gonad precursors</option>
+                                        <option value="Distal_tip_cells" >Distal tip cells</option>
+                                        <option value="Vulval_precursors" >Vulval precursors</option>
+                                        <option value="Sex_myoblasts" >Sex myoblasts</option>
+                                        <option value="Coelomocytes" >Coelomocytes</option>
+                                    </select>
+                                    <select>
+                                        <option value="Body_wall_muscle" >Body wall muscle</option>
+                                        <option value="Intestinal_rectal_muscle" >Intestinal/rectal muscle</option>
+                                        <option value="Pharyngeal_muscle" >Pharyngeal muscle</option>
+                                        <option value="Pharyngeal_epithelia" >Pharyngeal epithelia</option>
+                                        <option value="Pharyngeal_gland" >Pharyngeal gland</option>
+                                        <option value="Seam_cells" >Seam cells</option>
+                                        <option value="Non_seam_hypodermis" >Non-seam hypodermis</option>
+                                        <option value="Rectum" >Rectum</option>
+                                        <option value="Ciliated_sensory_neurons" selected="selected">Ciliated sensory neurons</option>
+                                        <option value="Oxygen_sensory_neurons" >Oxygen sensory neurons</option>
+                                        <option value="Touch_receptor_neurons" >Touch receptor neurons</option>
+                                        <option value="Cholinergic_neurons" >Cholinergic neurons</option>
+                                        <option value="GABAergic_neurons" >GABAergic neurons</option>
+                                        <option value="Pharyngeal_neurons" >Pharyngeal neurons</option>
+                                        <option value="flp1_interneurons" >flp-1 interneurons</option>
+                                        <option value="Other_interneurons" >Other interneurons</option>
+                                        <option value="Canal_associated_neurons" >Canal associated neurons</option>
+                                        <option value="Am_PH_sheath_cells" >Am/PH sheath cells</option>
+                                        <option value="Socket_cells" >Socket cells</option>
+                                        <option value="Excretory_cells" >Excretory cells</option>
+                                        <option value="Intestine" >Intestine</option>
+                                        <option value="Germline" >Germline</option>
+                                        <option value="Somatic_gonad_precursors" >Somatic gonad precursors</option>
+                                        <option value="Distal_tip_cells" >Distal tip cells</option>
+                                        <option value="Vulval_precursors" >Vulval precursors</option>
+                                        <option value="Sex_myoblasts" >Sex myoblasts</option>
+                                        <option value="Coelomocytes" >Coelomocytes</option>
+                                    </select>
+                                    <select>
+                                        <option value="Body_wall_muscle" >Body wall muscle</option>
+                                        <option value="Intestinal_rectal_muscle" >Intestinal/rectal muscle</option>
+                                        <option value="Pharyngeal_muscle" >Pharyngeal muscle</option>
+                                        <option value="Pharyngeal_epithelia" >Pharyngeal epithelia</option>
+                                        <option value="Pharyngeal_gland" >Pharyngeal gland</option>
+                                        <option value="Seam_cells" >Seam cells</option>
+                                        <option value="Non_seam_hypodermis" >Non-seam hypodermis</option>
+                                        <option value="Rectum" >Rectum</option>
+                                        <option value="Ciliated_sensory_neurons" >Ciliated sensory neurons</option>
+                                        <option value="Oxygen_sensory_neurons" >Oxygen sensory neurons</option>
+                                        <option value="Touch_receptor_neurons" >Touch receptor neurons</option>
+                                        <option value="Cholinergic_neurons" >Cholinergic neurons</option>
+                                        <option value="GABAergic_neurons" >GABAergic neurons</option>
+                                        <option value="Pharyngeal_neurons" >Pharyngeal neurons</option>
+                                        <option value="flp1_interneurons" >flp-1 interneurons</option>
+                                        <option value="Other_interneurons" >Other interneurons</option>
+                                        <option value="Canal_associated_neurons" >Canal associated neurons</option>
+                                        <option value="Am_PH_sheath_cells" >Am/PH sheath cells</option>
+                                        <option value="Socket_cells" >Socket cells</option>
+                                        <option value="Excretory_cells" >Excretory cells</option>
+                                        <option value="Intestine" selected="selected">Intestine</option>
+                                        <option value="Germline" >Germline</option>
+                                        <option value="Somatic_gonad_precursors" >Somatic gonad precursors</option>
+                                    <option value="Distal_tip_cells" >Distal tip cells</option>
+                                        <option value="Vulval_precursors" >Vulval precursors</option>
+                                        <option value="Sex_myoblasts" >Sex myoblasts</option>
+                                        <option value="Coelomocytes" >Coelomocytes</option>
+                                    </select>
+                                    <select>
+                                        <option value="Body_wall_muscle" >Body wall muscle</option>
+                                        <option value="Intestinal_rectal_muscle" >Intestinal/rectal muscle</option>
+                                        <option value="Pharyngeal_muscle" >Pharyngeal muscle</option>
+                                        <option value="Pharyngeal_epithelia" >Pharyngeal epithelia</option>
+                                        <option value="Pharyngeal_gland" >Pharyngeal gland</option>
+                                        <option value="Seam_cells" >Seam cells</option>
+                                        <option value="Non_seam_hypodermis" >Non-seam hypodermis</option>
+                                        <option value="Rectum" >Rectum</option>
+                                        <option value="Ciliated_sensory_neurons" >Ciliated sensory neurons</option>
+                                        <option value="Oxygen_sensory_neurons" >Oxygen sensory neurons</option>
+                                        <option value="Touch_receptor_neurons" >Touch receptor neurons</option>
+                                        <option value="Cholinergic_neurons" >Cholinergic neurons</option>
+                                        <option value="GABAergic_neurons" >GABAergic neurons</option>
+                                        <option value="Pharyngeal_neurons" >Pharyngeal neurons</option>
+                                        <option value="flp1_interneurons" >flp-1 interneurons</option>
+                                        <option value="Other_interneurons" >Other interneurons</option>
+                                        <option value="Canal_associated_neurons" >Canal associated neurons</option>
+                                        <option value="Am_PH_sheath_cells" >Am/PH sheath cells</option>
+                                        <option value="Socket_cells" >Socket cells</option>
+                                        <option value="Excretory_cells" >Excretory cells</option>
+                                        <option value="Intestine" >Intestine</option>
+                                        <option value="Germline" selected="selected">Germline</option>
+                                        <option value="Somatic_gonad_precursors" >Somatic gonad precursors</option>
+                                        <option value="Distal_tip_cells" >Distal tip cells</option>
+                                        <option value="Vulval_precursors" >Vulval precursors</option>
+                                        <option value="Sex_myoblasts" >Sex myoblasts</option>
+                                        <option value="Coelomocytes" >Coelomocytes</option>
+                                    </select>
+                                </div>
+                                <div class="form-column">
+                                    <h4>expression (TPM)</h4>
+                                    <input type="text">
+                                    <input type="text">
+                                    <input type="text">
+                                    <input type="text">
+                                    <input type="text">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Notes -->
+                    <div class="search-param-column-full">
+                        <p class="more-explanation">To specify a range use '>0.5' or '<0.5' or '2-10'. To compare relative expression levels between tissues specify x-fold difference and tissue for comparison in the following way: '>10x Body wall muscle' means expression in the tissue specified by the value in the pull-down menu is 'more than 10-fold higher than expression in body wall muscle'. Use exact values from the pull-down menu (e.g. 'Body wall muscle') to specify the tissue for comparison.</p>
+                    </div>
+
+                    <!-- Sample Profiles Section -->
+                    <div class="search-param-column-full">
+                        <h4>
+                            Sample Profiles
+                            <img src="assets/help-icon.png" alt="Help" class="search-page-help-icon">
+                        </h4>
+                        <div class="search-page-help-content search-for-expression-help-content">
+                            <p>
+                                sample profile help content
+                            </p>
+                        </div>    
+                        <select id="sample-profiles" name="sample-profiles">
+                            <option value="" disabled selected>Select a sample profile</option>
+                            <option>?</option>
+                            <option>?</option>
+                            <option>?</option>
+                        </select>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="reset">Clear</button>
+                <button type="submit" id="search-button" disabled>Search</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript file -->
+    <script src="script.js"></script>
+</body>
+</html>
