@@ -562,4 +562,46 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     }
+
+    // New code for enabling/disabling the search button based on form inputs
+    var searchButton = document.getElementById("search-button");
+    if (searchButton) {
+        var inputs = document.querySelectorAll('.form-group input[type="text"], .form-group textarea, .form-group select');
+
+        function checkFormFields() {
+            let isFilled = false;
+            inputs.forEach(function(input) {
+                if (input.value.trim() !== "") {
+                    isFilled = true;
+                }
+            });
+
+            if (isFilled) {
+                searchButton.disabled = false; // Enable the button
+            } else {
+                searchButton.disabled = true; // Disable the button
+            }
+        }
+
+        // Add event listeners to all inputs, textareas, and select elements
+        inputs.forEach(function(input) {
+            input.addEventListener('input', checkFormFields);
+            input.addEventListener('change', checkFormFields); // Also listen to change events for select elements
+        });
+
+        // Initial check in case the form is pre-filled (e.g., browser autofill)
+        checkFormFields();
+    }
+
+    // Show and hide help content on click
+    var helpIcons = document.querySelectorAll(".search-page-help-icon");
+    helpIcons.forEach(function(icon) {
+        icon.addEventListener("click", function() {
+            var formGroup = this.closest(".form-column, .form-group"); // Changed to ensure we check within either form-group or form-column
+            var helpContent = formGroup.querySelector(".search-page-help-content");
+            if (helpContent) {
+                helpContent.style.display = helpContent.style.display === "block" ? "none" : "block";
+            }
+        });
+    });
 });
