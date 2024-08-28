@@ -4,24 +4,28 @@
     <meta charset="utf-8">
     <title>Home - GExplore</title>
     <link rel="stylesheet" href="style.css" type="text/css">
-    <link rel="icon" href="assets/flavicon.png" type="image/png">
+    <link rel="icon" href="assets/favicon.png" type="image/png">
 </head>
 <body>
     <div class="wrapper">
         <div id="header">
-            <img src="assets/GExplore_logo.png" alt="GExplore Logo" class="logo">
+            <a href="home.html">
+                <img src="assets/GExplore_logo.png" alt="GExplore Logo" class="logo">
+            </a>            
             <div id="topnav">
                 <ul>
                     <li class="active"><a href="home.html"><span class="text">Home</span></a></li>
-                    <li><a href="#"><span class="text">Search</span> <span class="angle"></span></a>
+                    <li><a><span class="text">Search</span> <span class="angle"></span></a>
                         <ul class="dropdown">
-                            <li><a href="#">Genes</a></li>
-                            <li><a href="#">Mutations</a></li>
-                            <li><a href="#">Proteins</a></li>
-                            <li><a href="#">Expressions</a></li>
+                            <li><a href="gene_search.html">Genes</a></li>
+                            <li><a href="mutation_search.html">Mutations</a></li>
+                            <li><a href="protein_search.html">Proteins</a></li>
+                            <li><a href="expression_stage_search.html">Stage Expressions</a></li>
+                            <li><a href="#">Tissue Expressions</a></li>
+                            <li><a href="#">Embryo Expressions</a></li>
                         </ul>
                     </li>
-                    <li><a href="#"><span class="text">Tools</span> <span class="angle"></span></a>
+                    <li><a><span class="text">Tools</span> <span class="angle"></span></a>
                         <ul class="dropdown">
                             <li><a href="#">Compare</a></li>
                             <li><a href="#">Convert</a></li>
@@ -33,24 +37,28 @@
             </div>
         </div>
 
-        <div id="home-content">
+        <div id="vertical-content">
 
             <!-- Hero Section -->
             <div id="intro">
                 <div class="hero-section">
-                    <h2><i>GExplore</i></h2>
-                    <p>The function of the majority of the genes in the C. elegans (and all other) genomes is currently unknown. GExplore is a tool for genome-scale mining of data related to gene/protein function in C. elegans. The database contains selected data sets, which are important indicators for gene and protein function, such as the protein domain organisation, gene expression and phenotype data as well as homology data and gene ontology terms. Data sets were obtained from Wormbase and selected publications. GExplore should be useful for quick survey-type queries and experimental planning of genome-scale experiments.  </p>
-                    <video autoplay muted loop>
-                        <source src="assets/hero-.mov" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <div class="hero-section-content">
+                        <h2>Explore <i>C. elegans</i> Data for Gene and Protein Insights</h2>
+                        <p>The database features carefully selected datasets that serve as key indicators of gene and protein function, including protein domain organization, gene expression, phenotype data, homology information, and gene ontology terms.</p>
+                        <a href="about.html" class="read-more">
+                            <span>Read More</span>
+                            <img src="assets/external-link-icon.png" alt="External Link Icon" class="external-link-icon" draggable="false">
+                        </a>                        
+                    </div>
                 </div>
             </div>
+
             
-            <!-- Database Cards Section -->
+            <!-- Database Cards Section 
             <div class="cards-title">
                 <h2>Databases</h2>
             </div>
+            -->
             <div id="cards">
                 <div class="card">
                     <img src="assets/gene-database-image.png" alt="Product Launch" draggable="false">
@@ -69,10 +77,11 @@
                 <div class="card">
                     <img src="assets/protein-database-image.png" alt="Broad Area Management" draggable="false">
                     <div class="card-subtitle">
-                        <h3>Protein Domains</h3>
+                        <h3>Proteins</h3>
                         <p>The gene database provides an option to show the domain compositions of the proteins based on SMART and Pfam predictions. The location of mutations can be shown in relation to these domains.</p>
                     </div>
                 </div>
+
                 <div class="card">
                     <img src="assets/expression-database-image.png" alt="Planet featured in HBO film" draggable="false">
                     <div class="card-subtitle">
@@ -83,27 +92,105 @@
             </div>
 
 
-            
-            <!-- Tools Cards Section -->
+
+
+
+            <!-- Database Cards Section -->
             <div class="cards-title">
-                <h2>Tools</h2>
+                <h2>WTF To Do?!</h2>
             </div>
             <div id="cards">
                 <div class="card">
-                    <img src="assets/sample.jpg" alt="Product Launch">
+                    <img src="assets/expression-database-image.png" alt="Planet featured in HBO film" draggable="false">
                     <div class="card-subtitle">
-                        <h3>Compare</h3>
-                        <p>We’re proud to unveil our all-in-one platform for multidimensional Earth insights</p>
+                        <h3>Expression 1</h3>
+                        <p>This is a collection of selected published genome-wide expression datasets including stage- and tissue-specific expression data and single-cell time-resolved embryonic expression data.</p>
                     </div>
                 </div>
+
                 <div class="card">
-                    <img src="assets/sample.jpg" alt="On The Road 2024">
+                    <img src="assets/expression-database-image.png" alt="Planet featured in HBO film" draggable="false">
                     <div class="card-subtitle">
-                        <h3>Convert</h3>
-                        <p>A one-day event that brings together thought leaders, customers and partners</p>
+                        <h3>Expression 2</h3>
+                        <p>This is a collection of selected published genome-wide expression datasets including stage- and tissue-specific expression data and single-cell time-resolved embryonic expression data.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="assets/expression-database-image.png" alt="Planet featured in HBO film" draggable="false">
+                    <div class="card-subtitle">
+                        <h3>Expression 3</h3>
+                        <p>This is a collection of selected published genome-wide expression datasets including stage- and tissue-specific expression data and single-cell time-resolved embryonic expression data.</p>
                     </div>
                 </div>
             </div>
+
+
+            
+            
+
+
+
+
+
+
+
+                <!-- Footer Section -->
+                <footer>
+                    <div class="footer-container">
+                        <div class="footer-section">
+                            <h3>SEARCH</h3>
+                            <ul>
+                                <li><a href="#">Genes</a></li>
+                                <li><a href="#">Mutations</a></li>
+                                <li><a href="#">Proteins</a></li>
+                                <li><a href="#">Stage Expressions</a></li>
+                                <li><a href="#">Tissue Expressions</a></li>
+                                <li><a href="#">Embryo Expressions</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-section">
+                            <h3>TOOLS</h3>
+                            <ul>
+                                <li><a href="#">Compare</a></li>
+                                <li><a href="#">Convert</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-section">
+                            <h3>SUPPORT</h3>
+                            <ul>
+                                <li><a href="#">Help Center</a></li>
+                                <li><a href="#">Domains</a></li>
+                                <li><a href="#">FAQs</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-section">
+                            <h3>DATABASE</h3>
+                            <ul>
+                                <li><a href="#">About Us</a></li>
+                                <li><a href="#">How to Cite</a></li>
+                                <li><a href="#">Contact Us</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-section">
+                            <h3>QUICK LINKS</h3>
+                            <ul>
+                                <li><a href="https://www.sfu.ca/biology/faculty/hutter/lab/" target="_blank">Hutter Lab</a></li>
+                                <li><a href="https://wormbase.org/" target="_blank">WormBase</a></li>
+                                <li><a href="https://www.alliancegenome.org/" target="_blank">Alliance of Genome Resources</a></li>
+                                <li><a href="https://cgc.umn.edu/" target="_blank">Caenorhabditis Genetics Center</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div>
+                    <div class="footer-bottom">
+                        <div class="footer-bottom-container">
+                            <p>&copy; 2024 Simon Fraser University | Hutter Lab. All rights reserved. | Maintained by <a href="mailto:hutter@sfu.ca">H. Hutter</a> | <a href="#">Credits</a> | <a href="https://www.sfu.ca/contact/terms-conditions.html" target="_blank">Terms of Use</a></p>
+                        </div>                    
+                    </div>
+                    </div>
+                </footer>
+
 
 
 
