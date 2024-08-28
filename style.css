@@ -744,7 +744,7 @@ footer {
     font-size: 16px; /* or 14 ?*/
     font-weight: 700;
     color: #333;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 
@@ -811,7 +811,7 @@ label input[type="radio"] {
 /* Input Fields */
 .form-group input[type="text"],
 .form-group select {
-    height: 30px;
+    height: 35px;
     width: 100%;
     padding: 8px;
     border: 1px solid #ddd;
@@ -1322,6 +1322,8 @@ label input[type="radio"] {
     transition: border-color 0.3s;
 }
 
+#stage-expression-page textarea:hover,
+#stage-expression-page textarea:focus,
 #stage-expression-page select:hover,
 #stage-expression-page input[type="text"]:hover,
 #stage-expression-page select:focus,
@@ -1359,7 +1361,7 @@ label input[type="radio"] {
     font-size: 16px; /* Adjusted font size */
     font-weight: 700; /* Bold font weight */
     margin: 0; /* Remove default margins */
-    padding-bottom: 10px; /* Add some space below the title */
+    padding-bottom: 20px; /* Add some space below the title */
 }
 
 /* Specific styles for the "Sample Profiles" section */
@@ -1382,12 +1384,50 @@ label input[type="radio"] {
 
 
 
-
-
-
-
-
 /* ------------------------ Expression (Stages) Search Page Specific End ------------------------- */
+
+
+
+
+
+
+
+
+
+
+
+/* ------------------------ Expression (Tissues) Search Page Specific Start ------------------------- */
+
+
+/* Container for Enrichment fields */
+.enrichment-row {
+    display: flex;
+    align-items: center;
+    gap: 0px; /* Adjust the gap as needed */
+    margin-bottom: 0px;
+}
+
+.enrichment-row h5 {
+    margin: 0 10px 0 0; /* Remove the bottom margin to keep the elements aligned */
+}
+
+
+
+.enrichment-row h5:nth-of-type(2),
+.enrichment-row h5:nth-of-type(3) {
+    margin-left: 30px; /* Apply left margin only to the second and third h5 elements (From and To) */
+}
+
+.enrichment-row select {
+    flex: 1; /* Make the select and input fields take up available space equally */
+}
+
+
+
+
+
+/* ------------------------ Expression (Tissues) Search Page Specific End ------------------------- */
+
 
 
 
