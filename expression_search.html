@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Expression Search - GExplore</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="icon" href="assets/favicon.png" type="image/png">
+</head>
+
+<body id="stage-expression-page">
+    <div class="search-wrapper">
+        <div id="header">
+            <a href="home.html">
+                <img src="assets/GExplore_logo.png" alt="GExplore Logo" class="logo">
+            </a>            
+            <div id="topnav">
+                <ul>
+                    <li class="active"><a href="home.html"><span class="text">Home</span></a></li>
+                    <li><a><span class="text">Search</span> <span class="angle"></span></a>
+                        <ul class="dropdown">
+                            <li><a href="gene_search.html">Genes</a></li>
+                            <li><a href="mutation_search.html">Mutations</a></li>
+                            <li><a href="protein_search.html">Proteins</a></li>
+                            <li><a href="expression_stage_search.html">Stage Expressions</a></li>
+                            <li><a href="expression_tissue_search.html">Tissue Expressions</a></li>
+                            <li><a href="#">Embryo Expressions</a></li>
+                        </ul>
+                    </li>
+                    <li><a><span class="text">Tools</span> <span class="angle"></span></a>
+                        <ul class="dropdown">
+                            <li><a href="#">Compare</a></li>
+                            <li><a href="#">Convert</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="help.html"><span class="text">Help</span></a></li>
+                    <li><a href="about.html"><span class="text">About</span></a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="search-vertical-content">
+            <!-- Hero Section -->
+            <div id="search-intro">
+                <div class="search-hero-section">
+                    <h2>Search for stage-specific expression profiles</h2>
+                    <p>text</p>
+                </div>
+            </div>
+
+            <!-- Buttons to switch between searches -->
+            <div class="search-switcher">
+                <button id="stage-button">Stage Expression Search</button>
+                <button id="tissue-button">Tissue Expression Search</button>
+                <button id="embryo-button">Embryo Expression Search</button>
+            </div>
+
+            
+            <!-- Wrapper for padding -->
+            <div class="search-param-wrapper">
+                <div id="search-param">
+                    <div id="stage-search" class="search-form, search-param-column-full">
+                        <div class="search-param-column-full">
+                            <!-- Gene Name Group -->
+                            <div class="form-group">
+                                <h4>
+                                    Gene Name
+                                    <img src="assets/help-icon.png" alt="Help" class="search-page-help-icon">
+                                </h4>
+                                <div class="search-page-help-content">
+                                    <p>This is the help content for Gene Name(s). It provides details on how to use this section.</p>
+                                </div>
+                                <textarea id="gene-names" name="gene-names" placeholder="Enter a gene name. Separate each additional name with a comma."></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="search-param-column-full">
+                            <h4>
+                                Stage Expression Profiles
+                                <img src="assets/help-icon.png" alt="Help" class="search-page-help-icon">
+                            </h4>
+                            <div class="search-page-help-content search-for-expression-help-content">
+                                <p>
+                                    Time or Stage: Development post P0 division based on the times given by Sulston et al.
+                                    dcpm: Depth of coverage per million reads (see Suppl. Methods in Gerstein et al, 2010).
+                                </p>
+                            </div>                    
+                        </div>
+
+                        <div class="search-param-column-full">
+                            <!-- Time or Stage and Expression Fields -->
+                            <div class="form-group">
+                                <div class="two-column-wrapper">
+                                    <div class="form-column">
+                                        <h4>Time or Stage</h4>
+                                        <select>
+                                            <option value="e0" selected="selected">4-cell stage</option>
+                                            <option value="e1" >44 min</option>
+                                            <option value="e2" >83 min (~ 27-cell)</option>
+                                            <option value="e3" >122 min (~ 53-cell)</option>
+                                            <option value="e4" >161 min (~ 128 AB stage)</option>
+                                            <option value="e5" >199 min</option>
+                                            <option value="e6" >238 min</option>
+                                            <option value="e7" >277 min</option>
+                                            <option value="e8" >316 min</option>
+                                            <option value="e9" >355 min</option>
+                                            <option value="e10" >393 min</option>
+                                            <option value="e11" >432 min (~2-fold)</option>
+                                            <option value="e12" >471 min</option>
+                                            <option value="e13" >510 min (3-fold)</option>
+                                            <option value="e14" >548 min</option>
+                                            <option value="e15" >587 min </option>
+                                            <option value="e16" >626 min</option>
+                                            <option value="e17" >665 min</option>
+                                            <option value="L1" >L1</option>
+                                            <option value="L2" >L2</option>
+                                            <option value="L3" >L3</option>
+                                            <option value="L4" >L4</option>
+                                            <option value="YA" >young adult</option>
+                                            <option value="DauerEntry" >dauer entry</option>
+                                            <option value="Dauer" >dauer </option>
+                                            <option value="DauerExit" >dauer exit</option>
+                                            <option value="L4soma" >L4 soma</option>
+                                            <option value="L4male" >L4 male</option>
+                                            <option value="AdultSterile" >sterile adult</option>
+                                            <option value="AdultGonad" >adult gonad</option>
+                                        </select>
+                                        <select>
+                                            <option value="e0">4-cell stage</option>
+                                            <option value="e1" >44 min</option>
+                                            <option value="e2" >83 min (~ 27-cell)</option>
+                                            <option value="e3" >122 min (~ 53-cell)</option>
+                                            <option value="e4" >161 min (~ 128 AB stage)</option>
+                                            <option value="e5" >199 min</option>
+                                            <option value="e6" >238 min</option>
+                                            <option value="e7" >277 min</option>
+                                            <option value="e8" >316 min</option>
+                                            <option value="e9" >355 min</option>
+                                            <option value="e10" >393 min</option>
+                                            <option value="e11" selected="selected">432 min (~2-fold)</option>
+                                            <option value="e12" >471 min</option>
+                                            <option value="e13" >510 min (3-fold)</option>
+                                            <option value="e14" >548 min</option>
+                                            <option value="e15" >587 min </option>
+                                            <option value="e16" >626 min</option>
+                                            <option value="e17" >665 min</option>
+                                            <option value="L1" >L1</option>
+                                            <option value="L2" >L2</option>
+                                            <option value="L3" >L3</option>
+                                            <option value="L4" >L4</option>
+                                            <option value="YA" >young adult</option>
+                                            <option value="DauerEntry" >dauer entry</option>
+                                            <option value="Dauer" >dauer </option>
+                                            <option value="DauerExit" >dauer exit</option>
+                                            <option value="L4soma" >L4 soma</option>
+                                            <option value="L4male" >L4 male</option>
+                                            <option value="AdultSterile" >sterile adult</option>
+                                            <option value="AdultGonad" >adult gonad</option>
+                                        </select>
+                                        <select>
+                                            <option value="e0" >4-cell stage</option>
+                                            <option value="e1" >44 min</option>
+                                            <option value="e2" >83 min (~ 27-cell)</option>
+                                            <option value="e3" >122 min (~ 53-cell)</option>
+                                            <option value="e4" >161 min (~ 128 AB stage)</option>
+                                            <option value="e5" >199 min</option>
+                                            <option value="e6" >238 min</option>
+                                            <option value="e7" >277 min</option>
+                                            <option value="e8" >316 min</option>
+                                            <option value="e9" >355 min</option>
+                                            <option value="e10" >393 min</option>
+                                            <option value="e11" >432 min (~2-fold)</option>
+                                            <option value="e12" >471 min</option>
+                                            <option value="e13" >510 min (3-fold)</option>
+                                            <option value="e14" >548 min</option>
+                                            <option value="e15" >587 min </option>
+                                            <option value="e16" >626 min</option>
+                                            <option value="e17" >665 min</option>
+                                            <option value="L1" >L1</option>
+                                            <option value="L2" selected="selected">L2</option>
+                                            <option value="L3" >L3</option>
+                                            <option value="L4" >L4</option>
+                                            <option value="YA" >young adult</option>
+                                            <option value="DauerEntry" >dauer entry</option>
+                                            <option value="Dauer" >dauer </option>
+                                            <option value="DauerExit" >dauer exit</option>
+                                            <option value="L4soma" >L4 soma</option>
+                                            <option value="L4male" >L4 male</option>
+                                            <option value="AdultSterile" >sterile adult</option>
+                                            <option value="AdultGonad" >adult gonad</option>
+                                        </select>
+                                        <select>
+                                            <option value="e0" >4-cell stage</option>
+                                            <option value="e1" >44 min</option>
+                                            <option value="e2" >83 min (~ 27-cell)</option>
+                                            <option value="e3" >122 min (~ 53-cell)</option>
+                                            <option value="e4" >161 min (~ 128 AB stage)</option>
+                                            <option value="e5" >199 min</option>
+                                            <option value="e6" >238 min</option>
+                                            <option value="e7" >277 min</option>
+                                            <option value="e8" >316 min</option>
+                                            <option value="e9" >355 min</option>
+                                            <option value="e10" >393 min</option>
+                                            <option value="e11" >432 min (~2-fold)</option>
+                                            <option value="e12" >471 min</option>
+                                            <option value="e13" >510 min (3-fold)</option>
+                                            <option value="e14" >548 min</option>
+                                            <option value="e15" >587 min </option>
+                                            <option value="e16" >626 min</option>
+                                            <option value="e17" >665 min</option>
+                                            <option value="L1" >L1</option>
+                                            <option value="L2" >L2</option>
+                                            <option value="L3" >L3</option>
+                                            <option value="L4" >L4</option>
+                                            <option value="YA" >young adult</option>
+                                            <option value="DauerEntry" >dauer entry</option>
+                                            <option value="Dauer" selected="selected">dauer </option>
+                                            <option value="DauerExit" >dauer exit</option>
+                                            <option value="L4soma" >L4 soma</option>
+                                            <option value="L4male" >L4 male</option>
+                                            <option value="AdultSterile" >sterile adult</option>
+                                            <option value="AdultGonad" >adult gonad</option>
+                                        </select>
+                                        <select>
+                                            <option value="e0" >4-cell stage</option>
+                                            <option value="e1" >44 min</option>
+                                            <option value="e2" >83 min (~ 27-cell)</option>
+                                            <option value="e3" >122 min (~ 53-cell)</option>
+                                            <option value="e4" >161 min (~ 128 AB stage)</option>
+                                            <option value="e5" >199 min</option>
+                                            <option value="e6" >238 min</option>
+                                            <option value="e7" >277 min</option>
+                                            <option value="e8" >316 min</option>
+                                            <option value="e9" >355 min</option>
+                                            <option value="e10" >393 min</option>
+                                            <option value="e11" >432 min (~2-fold)</option>
+                                            <option value="e12" >471 min</option>
+                                            <option value="e13" >510 min (3-fold)</option>
+                                            <option value="e14" >548 min</option>
+                                            <option value="e15" >587 min </option>
+                                            <option value="e16" >626 min</option>
+                                            <option value="e17" >665 min</option>
+                                            <option value="L1" >L1</option>
+                                            <option value="L2" >L2</option>
+                                            <option value="L3" >L3</option>
+                                            <option value="L4" >L4</option>
+                                            <option value="YA" >young adult</option>
+                                            <option value="DauerEntry" >dauer entry</option>
+                                            <option value="Dauer" >dauer </option>
+                                            <option value="DauerExit" >dauer exit</option>
+                                            <option value="L4soma" >L4 soma</option>
+                                            <option value="L4male" selected="selected">L4 male</option>
+                                            <option value="AdultSterile" >sterile adult</option>
+                                            <option value="AdultGonad" >adult gonad</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-column">
+                                        <h4>Expression (dcpm)</h4>
+                                        <input type="text">
+                                        <input type="text">
+                                        <input type="text">
+                                        <input type="text">
+                                        <input type="text">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Notes -->
+                        <div class="search-param-column-full">
+                            <p class="more-explanation">In the expression field to specify a range use '&gt;0.5' or '&lt;0.5' or '2-10'. To compare relative expression levels between stages specify x-fold difference and stage for comparison in the following way: '&gt;10x adult' translates into 'more than 10-fold higher than in the 'adult' stage' (compared to the stage specified by the value in the pull-down menu. Use values from the pull-down menu (e.g. '44 min', or 'Dauer entry') to specify times or stages.</p>
+                        </div>
+
+                        <!-- Sample Profiles Section -->
+                        <div class="search-param-column-full">
+                            <h4>
+                                Sample Profiles
+                                <img src="assets/help-icon.png" alt="Help" class="search-page-help-icon">
+                            </h4>
+                            <div class="search-page-help-content search-for-expression-help-content">
+                                <p>
+                                    sample profile help content
+                                </p>
+                            </div>    
+                            <select id="sample-profiles" name="sample-profiles">
+                                <option value="" disabled selected>Select a sample profile</option>
+                                <option value="el1,YA,ev1,>2x L4,el2,e1,ev2,>2x 122 min,el3,e1,ev3,>0.3,el4,,ev4,,el5,,ev5,,">Maternally Enriched</option>
+                                <option value="el1,e2,ev1,>0.3,el2,e1,ev2,<0.5x 83 min,el3,e2,ev3,>3x 548 min,el4,,ev4,,el5,,ev5,,">Early Embryo Enriched</option>
+                                <option value="el1,L4male,ev1,>0.1,el2,L4male,ev2,>10x L3,el3,L4male,ev3,>5x Young Adult,el4,L4male,ev4,>3x 626 min,el5,L4male,ev5,>3x Dauer">Male Enriched</option>
+                            </select>
+                            
+                        </div>
+                    </div>
+
+                    <!-- Tissue Expression Search Form -->
+                    <div id="tissue-search" class="search-form, search-param-column-full" style="display:none;">
+                        <div class="search-param-column-full">
+                            <!-- Gene Name Group -->
+                            <div class="form-group">
+                                <h4>
+                                    Gene Name
+                                    <img src="assets/help-icon.png" alt="Help" class="search-page-help-icon">
+                                </h4>
+                                <div class="search-page-help-content">
+                                    <p>This is the help content for Gene Name(s). It provides details on how to use this section.</p>
+                                </div>
+                                <textarea id="gene-names" name="gene-names" placeholder="Enter a gene name. Separate each additional name with a comma."></textarea>
+                            </div>
+    
+                            <!-- Enrichment group -->
+                            <div class="form-group">
+                                <h4>
+                                    Enrichment
+                                    <img src="assets/help-icon.png" alt="Help" class="search-page-help-icon">
+                                </h4>
+                                <div class="search-page-help-content">
+                                    <p>enrichment ratio: ratio of the gene's expression in the most highly versus the 2nd most highly expressing cell type.</p>
+                                </div>
+                                <div class="enrichment-row">
+                                    <h5>Search for genes enriched in</h5>
+                                    <select name="enriched" id="enriched" >
+                                        <option value="" disabled selected></option>
+                                        <option value="Body_wall_muscle">Body wall muscle</option>
+                                        <option value="Intestinal_rectal_muscle" >Intestinal/rectal muscle</option>
+                                        <option value="Pharyngeal_muscle" >Pharyngeal muscle</option>
+                                        <option value="Pharyngeal_epithelia" >Pharyngeal epithelia</option>
+                                        <option value="Pharyngeal_gland" >Pharyngeal gland</option>
+                                        <option value="Seam_cells" >Seam cells</option>
+                                        <option value="Non_seam_hypodermis" >Non-seam hypodermis</option>
+                                        <option value="Rectum" >Rectum</option>
+                                        <option value="Ciliated_sensory_neurons" >Ciliated sensory neurons</option>
+                                        <option value="Oxygen_sensory_neurons" >Oxygen sensory neurons</option>
+                                        <option value="Touch_receptor_neurons" >Touch receptor neurons</option>
+                                        <option value="Cholinergic_neurons" >Cholinergic neurons</option>
+                                        <option value="GABAergic_neurons" >GABAergic neurons</option>
+                                        <option value="Pharyngeal_neurons" >Pharyngeal neurons</option>
+                                        <option value="flp1_interneurons" >flp-1 interneurons</option>
+                                        <option value="Other_interneurons" >Other interneurons</option>
+                                        <option value="Canal_associated_neurons" >Canal associated neurons</option>
+                                        <option value="Am_PH_sheath_cells" >Am/PH sheath cells</option>
+                                        <option value="Socket_cells" >Socket cells</option>
+                                        <option value="Excretory_cells" >Excretory cells</option>
+                                        <option value="Intestine" >Intestine</option>
+                                        <option value="Germline" >Germline</option>
+                                        <option value="Somatic_gonad_precursors" >Somatic gonad precursors</option>
+                                        <option value="Distal_tip_cells" >Distal tip cells</option>
+                                        <option value="Vulval_precursors" >Vulval precursors</option>
+                                        <option value="Sex_myoblasts" >Sex myoblasts</option>
+                                        <option value="Coelomocytes" >Coelomocytes</option>
+                                    </select>
+                                </div>
+                                <div class="enrichment-row">
+                                    <h5>From</h5>
+                                    <select name="enrich_factor" id="enrich_factor" >
+                                        <option value="5" selected="selected">5-fold</option>
+                                        <option value="4">4-fold</option>
+                                        <option value="3">3-fold</option>
+                                        <option value="2"">2-fold</option>
+                                    </select>
+                                    <h5>To</h5>
+                                    <select name="false_rate" id="false_rate" >
+                                        <option value="0.05" selected="selected">0.05</option>
+                                        <option value="0.01">0.01</option>
+                                        <option value="0.001">0.001</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="search-param-column-full">
+                            <h4>
+                                Tissue Expression Profiles
+                                <img src="assets/help-icon.png" alt="Help" class="search-page-help-icon">
+                            </h4>
+                            <div class="search-page-help-content search-for-expression-help-content">
+                                <p>
+                                    Expression values are given in transcripts per million (TPM)
+                                </p>
+                            </div>                    
+                        </div>
+    
+                        <div class="search-param-column-full">
+                            <!-- Time or Stage and Expression Fields -->
+                            <div class="form-group">
+                                <div class="two-column-wrapper">
+                                    <div class="form-column">
+                                        <h4>Tissue or Cell Type</h4>
+                                        <select>
+                                            <option value="Body_wall_muscle" selected="selected">Body wall muscle</option>
+                                            <option value="Intestinal_rectal_muscle" >Intestinal/rectal muscle</option>
+                                            <option value="Pharyngeal_muscle" >Pharyngeal muscle</option>
+                                            <option value="Pharyngeal_epithelia" >Pharyngeal epithelia</option>
+                                            <option value="Pharyngeal_gland" >Pharyngeal gland</option>
+                                            <option value="Seam_cells" >Seam cells</option>
+                                            <option value="Non_seam_hypodermis" >Non-seam hypodermis</option>
+                                            <option value="Rectum" >Rectum</option>
+                                            <option value="Ciliated_sensory_neurons" >Ciliated sensory neurons</option>
+                                            <option value="Oxygen_sensory_neurons" >Oxygen sensory neurons</option>
+                                            <option value="Touch_receptor_neurons" >Touch receptor neurons</option>
+                                            <option value="Cholinergic_neurons" >Cholinergic neurons</option>
+                                            <option value="GABAergic_neurons" >GABAergic neurons</option>
+                                            <option value="Pharyngeal_neurons" >Pharyngeal neurons</option>
+                                            <option value="flp1_interneurons" >flp-1 interneurons</option>
+                                            <option value="Other_interneurons" >Other interneurons</option>
+                                            <option value="Canal_associated_neurons" >Canal associated neurons</option>
+                                            <option value="Am_PH_sheath_cells" >Am/PH sheath cells</option>
+                                            <option value="Socket_cells" >Socket cells</option>
+                                            <option value="Excretory_cells" >Excretory cells</option>
+                                            <option value="Intestine" >Intestine</option>
+                                            <option value="Germline" >Germline</option>
+                                            <option value="Somatic_gonad_precursors" >Somatic gonad precursors</option>
+                                            <option value="Distal_tip_cells" >Distal tip cells</option>
+                                            <option value="Vulval_precursors" >Vulval precursors</option>
+                                            <option value="Sex_myoblasts" >Sex myoblasts</option>
+                                            <option value="Coelomocytes" >Coelomocytes</option>
+                                        </select>
+                                        <select>
+                                            <option value="Body_wall_muscle">Body wall muscle</option>
+                                            <option value="Intestinal_rectal_muscle" >Intestinal/rectal muscle</option>
+                                            <option value="Pharyngeal_muscle" >Pharyngeal muscle</option>
+                                            <option value="Pharyngeal_epithelia" >Pharyngeal epithelia</option>
+                                            <option value="Pharyngeal_gland" >Pharyngeal gland</option>
+                                            <option value="Seam_cells" selected="selected">Seam cells</option>
+                                            <option value="Non_seam_hypodermis" >Non-seam hypodermis</option>
+                                            <option value="Rectum" >Rectum</option>
+                                            <option value="Ciliated_sensory_neurons" >Ciliated sensory neurons</option>
+                                            <option value="Oxygen_sensory_neurons" >Oxygen sensory neurons</option>
+                                            <option value="Touch_receptor_neurons" >Touch receptor neurons</option>
+                                            <option value="Cholinergic_neurons" >Cholinergic neurons</option>
+                                            <option value="GABAergic_neurons" >GABAergic neurons</option>
+                                            <option value="Pharyngeal_neurons" >Pharyngeal neurons</option>
+                                            <option value="flp1_interneurons" >flp-1 interneurons</option>
+                                            <option value="Other_interneurons" >Other interneurons</option>
+                                            <option value="Canal_associated_neurons" >Canal associated neurons</option>
+                                            <option value="Am_PH_sheath_cells" >Am/PH sheath cells</option>
+                                            <option value="Socket_cells" >Socket cells</option>
+                                            <option value="Excretory_cells" >Excretory cells</option>
+                                            <option value="Intestine" >Intestine</option>
+                                            <option value="Germline" >Germline</option>
+                                            <option value="Somatic_gonad_precursors" >Somatic gonad precursors</option>
+                                            <option value="Distal_tip_cells" >Distal tip cells</option>
+                                            <option value="Vulval_precursors" >Vulval precursors</option>
+                                            <option value="Sex_myoblasts" >Sex myoblasts</option>
+                                            <option value="Coelomocytes" >Coelomocytes</option>
+                                        </select>
+                                        <select>
+                                            <option value="Body_wall_muscle" >Body wall muscle</option>
+                                            <option value="Intestinal_rectal_muscle" >Intestinal/rectal muscle</option>
+                                            <option value="Pharyngeal_muscle" >Pharyngeal muscle</option>
+                                            <option value="Pharyngeal_epithelia" >Pharyngeal epithelia</option>
+                                            <option value="Pharyngeal_gland" >Pharyngeal gland</option>
+                                            <option value="Seam_cells" >Seam cells</option>
+                                            <option value="Non_seam_hypodermis" >Non-seam hypodermis</option>
+                                            <option value="Rectum" >Rectum</option>
+                                            <option value="Ciliated_sensory_neurons" selected="selected">Ciliated sensory neurons</option>
+                                            <option value="Oxygen_sensory_neurons" >Oxygen sensory neurons</option>
+                                            <option value="Touch_receptor_neurons" >Touch receptor neurons</option>
+                                            <option value="Cholinergic_neurons" >Cholinergic neurons</option>
+                                            <option value="GABAergic_neurons" >GABAergic neurons</option>
+                                            <option value="Pharyngeal_neurons" >Pharyngeal neurons</option>
+                                            <option value="flp1_interneurons" >flp-1 interneurons</option>
+                                            <option value="Other_interneurons" >Other interneurons</option>
+                                            <option value="Canal_associated_neurons" >Canal associated neurons</option>
+                                            <option value="Am_PH_sheath_cells" >Am/PH sheath cells</option>
+                                            <option value="Socket_cells" >Socket cells</option>
+                                            <option value="Excretory_cells" >Excretory cells</option>
+                                            <option value="Intestine" >Intestine</option>
+                                            <option value="Germline" >Germline</option>
+                                            <option value="Somatic_gonad_precursors" >Somatic gonad precursors</option>
+                                            <option value="Distal_tip_cells" >Distal tip cells</option>
+                                            <option value="Vulval_precursors" >Vulval precursors</option>
+                                            <option value="Sex_myoblasts" >Sex myoblasts</option>
+                                            <option value="Coelomocytes" >Coelomocytes</option>
+                                        </select>
+                                        <select>
+                                            <option value="Body_wall_muscle" >Body wall muscle</option>
+                                            <option value="Intestinal_rectal_muscle" >Intestinal/rectal muscle</option>
+                                            <option value="Pharyngeal_muscle" >Pharyngeal muscle</option>
+                                            <option value="Pharyngeal_epithelia" >Pharyngeal epithelia</option>
+                                            <option value="Pharyngeal_gland" >Pharyngeal gland</option>
+                                            <option value="Seam_cells" >Seam cells</option>
+                                            <option value="Non_seam_hypodermis" >Non-seam hypodermis</option>
+                                            <option value="Rectum" >Rectum</option>
+                                            <option value="Ciliated_sensory_neurons" >Ciliated sensory neurons</option>
+                                            <option value="Oxygen_sensory_neurons" >Oxygen sensory neurons</option>
+                                            <option value="Touch_receptor_neurons" >Touch receptor neurons</option>
+                                            <option value="Cholinergic_neurons" >Cholinergic neurons</option>
+                                            <option value="GABAergic_neurons" >GABAergic neurons</option>
+                                            <option value="Pharyngeal_neurons" >Pharyngeal neurons</option>
+                                            <option value="flp1_interneurons" >flp-1 interneurons</option>
+                                            <option value="Other_interneurons" >Other interneurons</option>
+                                            <option value="Canal_associated_neurons" >Canal associated neurons</option>
+                                            <option value="Am_PH_sheath_cells" >Am/PH sheath cells</option>
+                                            <option value="Socket_cells" >Socket cells</option>
+                                            <option value="Excretory_cells" >Excretory cells</option>
+                                            <option value="Intestine" selected="selected">Intestine</option>
+                                            <option value="Germline" >Germline</option>
+                                            <option value="Somatic_gonad_precursors" >Somatic gonad precursors</option>
+                                        <option value="Distal_tip_cells" >Distal tip cells</option>
+                                            <option value="Vulval_precursors" >Vulval precursors</option>
+                                            <option value="Sex_myoblasts" >Sex myoblasts</option>
+                                            <option value="Coelomocytes" >Coelomocytes</option>
+                                        </select>
+                                        <select>
+                                            <option value="Body_wall_muscle" >Body wall muscle</option>
+                                            <option value="Intestinal_rectal_muscle" >Intestinal/rectal muscle</option>
+                                            <option value="Pharyngeal_muscle" >Pharyngeal muscle</option>
+                                            <option value="Pharyngeal_epithelia" >Pharyngeal epithelia</option>
+                                            <option value="Pharyngeal_gland" >Pharyngeal gland</option>
+                                            <option value="Seam_cells" >Seam cells</option>
+                                            <option value="Non_seam_hypodermis" >Non-seam hypodermis</option>
+                                            <option value="Rectum" >Rectum</option>
+                                            <option value="Ciliated_sensory_neurons" >Ciliated sensory neurons</option>
+                                            <option value="Oxygen_sensory_neurons" >Oxygen sensory neurons</option>
+                                            <option value="Touch_receptor_neurons" >Touch receptor neurons</option>
+                                            <option value="Cholinergic_neurons" >Cholinergic neurons</option>
+                                            <option value="GABAergic_neurons" >GABAergic neurons</option>
+                                            <option value="Pharyngeal_neurons" >Pharyngeal neurons</option>
+                                            <option value="flp1_interneurons" >flp-1 interneurons</option>
+                                            <option value="Other_interneurons" >Other interneurons</option>
+                                            <option value="Canal_associated_neurons" >Canal associated neurons</option>
+                                            <option value="Am_PH_sheath_cells" >Am/PH sheath cells</option>
+                                            <option value="Socket_cells" >Socket cells</option>
+                                            <option value="Excretory_cells" >Excretory cells</option>
+                                            <option value="Intestine" >Intestine</option>
+                                            <option value="Germline" selected="selected">Germline</option>
+                                            <option value="Somatic_gonad_precursors" >Somatic gonad precursors</option>
+                                            <option value="Distal_tip_cells" >Distal tip cells</option>
+                                            <option value="Vulval_precursors" >Vulval precursors</option>
+                                            <option value="Sex_myoblasts" >Sex myoblasts</option>
+                                            <option value="Coelomocytes" >Coelomocytes</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-column">
+                                        <h4>expression (TPM)</h4>
+                                        <input type="text">
+                                        <input type="text">
+                                        <input type="text">
+                                        <input type="text">
+                                        <input type="text">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <!-- Notes -->
+                        <div class="search-param-column-full">
+                            <p class="more-explanation">To specify a range use '>0.5' or '<0.5' or '2-10'. To compare relative expression levels between tissues specify x-fold difference and tissue for comparison in the following way: '>10x Body wall muscle' means expression in the tissue specified by the value in the pull-down menu is 'more than 10-fold higher than expression in body wall muscle'. Use exact values from the pull-down menu (e.g. 'Body wall muscle') to specify the tissue for comparison.</p>
+                        </div>
+    
+                        <!-- Sample Profiles Section -->
+                        <div class="search-param-column-full">
+                            <h4>
+                                Sample Profiles
+                                <img src="assets/help-icon.png" alt="Help" class="search-page-help-icon">
+                            </h4>
+                            <div class="search-page-help-content search-for-expression-help-content">
+                                <p>
+                                    sample profile help content
+                                </p>
+                            </div>    
+                            <select id="sample-profiles" name="sample-profiles">
+                                <option value="" disabled selected>Select a sample profile</option>
+                                <option>?</option>
+                                <option>?</option>
+                                <option>?</option>
+                            </select>
+                            
+                        </div>                        
+                        <!-- Include the tissue search HTML here -->
+                        <!-- You can copy the tissue search content from the individual tissue search HTML file -->
+                    </div>
+
+                    <!-- Embryo Expression Search Form -->
+                    <div id="embryo-search" class="search-form, search-param-column-full" style="display:none;">
+                        <div class="search-param-column-full">
+                            <!-- Gene Name Group -->
+                            <div class="form-group">
+                                <h4>
+                                    Gene Name
+                                    <img src="assets/help-icon.png" alt="Help" class="search-page-help-icon">
+                                </h4>
+                                <div class="search-page-help-content">
+                                    <p>This is the help content for Gene Name(s). It provides details on how to use this section.</p>
+                                </div>
+                                <textarea id="gene-names" name="gene-names" placeholder="Enter a gene name. Separate each additional name with a comma."></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="search-param-column-full">
+                            <h4>
+                                Embryo Expression Profiles
+                                <img src="assets/help-icon.png" alt="Help" class="search-page-help-icon">
+                            </h4>
+                            <div class="search-page-help-content search-for-expression-help-content">
+                                <p>
+                                    Expression values are given in transcripts per million (TPM)
+                                </p>
+                            </div>                    
+                        </div>
+    
+                        <div class="search-param-column-full">
+                            <!-- Time or Stage and Expression Fields -->
+                            <div class="form-group">
+                                <div class="three-column-wrapper">
+                                    <div class="form-column">
+                                        <h4>Tissue or Cell Type</h4>
+                                        <select name="el1" id="el1" >
+                                            <option value="ABa" >ABa</option>
+                                            <option value="ABala" >ABala</option>
+                                            <option value="hypodermis" selected="selected">hypodermis</option>
+                                            <option value="intestine" >intestine</option>
+                                            <option value="pharynx" >pharynx</option>
+                                            <option value="muscle" >muscle</option>
+                                            <option value="neuron" >neuron</option>
+                                        </select>
+                                        <select name="el2" id="el2" >
+                                            <option value="ABa" >ABa</option>
+                                            <option value="ABala" >ABala</option>
+                                            <option value="hypodermis">hypodermis</option>
+                                            <option value="intestine"	selected="selected">intestine</option>
+                                            <option value="pharynx" >pharynx</option>
+                                            <option value="muscle" >muscle</option>
+                                            <option value="neuron" >neuron</option>
+                                        </select>
+                                        <select name="el3" id="el3" >
+                                            <option value="ABa" >ABa</option>
+                                            <option value="ABala" >ABala</option>
+                                            <option value="hypodermis">hypodermis</option>
+                                            <option value="intestine" >intestine</option>
+                                            <option value="pharynx" selected="selected" >pharynx</option>
+                                            <option value="muscle" >muscle</option>
+                                            <option value="neuron" >neuron</option>
+                                        </select>
+                                        <select name="el4" id="el4" >
+                                            <option value="ABa" >ABa</option>
+                                            <option value="ABala" >ABala</option>
+                                            <option value="hypodermis">hypodermis</option>
+                                            <option value="intestine">intestine</option>
+                                            <option value="pharynx" >pharynx</option>
+                                            <option value="muscle" selected="selected">muscle</option>
+                                            <option value="neuron" >neuron</option>
+                                        </select>
+                                        <select name="el5" id="el5" >
+                                            <option value="ABa" >ABa</option>
+                                            <option value="ABala" >ABala</option>
+                                            <option value="hypodermis">hypodermis</option>
+                                            <option value="intestine" >intestine</option>
+                                            <option value="pharynx">pharynx</option>
+                                            <option value="muscle" >muscle</option>
+                                            <option value="neuron"	selected="selected">neuron</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-column">
+                                        <h4>Time Point</h4>
+                                        <select name="et1" id="et1" >
+                                            <option value="t0" selected="selected">t0 (120 min)</option>
+                                            <option value="t1" >t1 (210 min)</option>
+                                            <option value="t2" >t2 (300 min)</option>
+                                            <option value="t3" >t3 (390 min)</option>
+                                            <option value="t4" >t4 (480 min)</option>
+                                        </select>
+                                        <select name="et2" id="et2" >
+                                            <option value="t0" selected="selected">t0 (120 min)</option>
+                                            <option value="t1" >t1 (210 min)</option>
+                                            <option value="t2" >t2 (300 min)</option>
+                                            <option value="t3" >t3 (390 min)</option>
+                                            <option value="t4" >t4 (480 min)</option>
+                                        </select>
+                                        <select name="et3" id="et3" >
+                                            <option value="t0" selected="selected">t0 (120 min)</option>
+                                            <option value="t1" >t1 (210 min)</option>
+                                            <option value="t2" >t2 (300 min)</option>
+                                            <option value="t3" >t3 (390 min)</option>
+                                            <option value="t4" >t4 (480 min)</option>
+                                        </select>
+                                        <select name="et4" id="et4" >
+                                            <option value="t0" selected="selected">t0 (120 min)</option>
+                                            <option value="t1" >t1 (210 min)</option>
+                                            <option value="t2" >t2 (300 min)</option>
+                                            <option value="t3" >t3 (390 min)</option>
+                                            <option value="t4" >t4 (480 min)</option>
+                                        </select>
+                                        <select name="et5" id="et5" >
+                                            <option value="t0" selected="selected">t0 (120 min)</option>
+                                            <option value="t1" >t1 (210 min)</option>
+                                            <option value="t2" >t2 (300 min)</option>
+                                            <option value="t3" >t3 (390 min)</option>
+                                            <option value="t4" >t4 (480 min)</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-column">
+                                        <h4>Expression (TPM)</h4>
+                                        <input type="text">
+                                        <input type="text">
+                                        <input type="text">
+                                        <input type="text">
+                                        <input type="text">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+    
+                        <!-- Notes -->
+                        <div class="search-param-column-full">
+                            <p class="more-explanation">To specify a range use '>0.5' or '<0.5' or '2-10'. To compare relative expression levels between tissues specify x-fold difference and tissue for comparison in the following way: >10x neuron_t3' means expression in the tissue/time point specified by the values in the pull-down menus is 'more than 10-fold higher than expression in neurons at t3'. Use values from the pull-down menus and seperate tissue and timepoint by an underscore (e.g. 'neuron_t3').</p>
+                        </div>
+    
+                        <!-- Sample Profiles Section -->
+                        <div class="search-param-column-full">
+                            <h4>
+                                Sample Profiles
+                                <img src="assets/help-icon.png" alt="Help" class="search-page-help-icon">
+                            </h4>
+                            <div class="search-page-help-content search-for-expression-help-content">
+                                <p>
+                                    sample profile help content
+                                </p>
+                            </div>    
+                            <select id="sample-profiles" name="sample-profiles">
+                                <option value="" disabled selected>Select a sample profile</option>
+                                <option>?</option>
+                                <option>?</option>
+                                <option>?</option>
+                            </select>
+                            
+                        </div>
+                        <!-- Include the embryo search HTML here -->
+                        <!-- You can copy the embryo search content from the individual embryo search HTML file -->
+                    </div>
+
+                    
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="reset">Clear</button>
+                <button type="submit" id="search-button" disabled>Search</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript file -->
+    <script src="script.js"></script>
+</body>
+</html>
