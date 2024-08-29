@@ -614,4 +614,52 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     });
+
+    // New code for handling button clicks to show the associated search content
+    var stageButton = document.getElementById("stage-button");
+    var tissueButton = document.getElementById("tissue-button");
+    var embryoButton = document.getElementById("embryo-button");
+
+    var stageSearch = document.getElementById("stage-search");
+    var tissueSearch = document.getElementById("tissue-search");
+    var embryoSearch = document.getElementById("embryo-search");
+
+    // Function to hide all search forms
+    function hideAllSearchForms() {
+        stageSearch.style.display = "none";
+        tissueSearch.style.display = "none";
+        embryoSearch.style.display = "none";
+    }
+
+    // Function to remove active class from all buttons
+    function removeActiveClassFromButtons() {
+        stageButton.classList.remove("active");
+        tissueButton.classList.remove("active");
+        embryoButton.classList.remove("active");
+    }
+
+    // Add event listeners to the buttons
+    stageButton.addEventListener("click", function() {
+        hideAllSearchForms();
+        removeActiveClassFromButtons();
+        stageSearch.style.display = "block";
+        this.classList.add("active");
+    });
+
+    tissueButton.addEventListener("click", function() {
+        hideAllSearchForms();
+        removeActiveClassFromButtons();
+        tissueSearch.style.display = "block";
+        this.classList.add("active");
+    });
+
+    embryoButton.addEventListener("click", function() {
+        hideAllSearchForms();
+        removeActiveClassFromButtons();
+        embryoSearch.style.display = "block";
+        this.classList.add("active");
+    });
+
+    // Initialize by showing the stage search by default
+    stageButton.click();
 });
