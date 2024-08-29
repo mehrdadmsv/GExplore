@@ -1486,6 +1486,57 @@ label input[type="radio"] {
 
 
 
+/* ------------------------ Combined Expression Search Page Specific Start ------------------------- */
+
+
+
+
+
+/* Add styles for the search switcher buttons */
+.search-switcher {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.search-switcher button {
+    background-color: #068EF1;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.search-switcher button.active {
+    background-color: #005bb5;
+}
+
+.search-switcher button:hover {
+    background-color: #005bb5;
+}
+
+/* Style the search forms */
+.search-form {
+    display: none;
+}
+
+/* Ensure the active form is visible */
+.search-form.active {
+    display: block;
+}
+
+
+
+
+
+
+/* ------------------------ Combined Expression Search Page Specific End ------------------------- */
+
+
+
+
 
 
 /* ------------------------ Display Page Specific Start ------------------------- */
@@ -2269,3 +2320,92 @@ label input[type="radio"] {
 
 
 /* ------------------------ Help Page Specific End ------------------------- */
+
+
+
+
+
+
+
+
+
+
+
+/* ------------------------ Autosuggest Styles Start ------------------------- */
+
+
+
+/* Ensure the form-group is relatively positioned */
+.form-group {
+    position: relative;
+}
+
+/* Style for the autocomplete suggestions container */
+.autocomplete-items {
+    position: absolute;
+    top: 100%; /* Align directly below the textarea */
+    left: 0;
+    width: 100%; /* Ensure the dropdown matches the textarea's width */
+    z-index: 99;
+    border: 1px solid var(--border_color);
+    border-top: none;
+    background-color: #fff;
+    max-height: 200px;
+    overflow-y: auto;
+    border-radius: 0 0 8px 8px; /* Rounded corners on the bottom */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1); /* Deeper shadow for a more modern feel */
+    transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out; /* Smooth drop-down effect */
+    opacity: 1;
+}
+
+/* Style each item in the dropdown */
+.autocomplete-items div {
+    padding: 12px 10px; /* Slightly more padding for better touch targets */
+    cursor: pointer;
+    background-color: #fff;
+    border-bottom: 1px solid var(--border_color);
+    font-size: 14px;
+    color: var(--body_text_color);
+    transition: background-color 0.2s, color 0.2s; /* Smooth transition for hover effect */
+}
+
+/* Highlighted suggestion */
+.autocomplete-items div.autocomplete-active {
+    background-color: #E6F3FF; /* Lighter blue background for hover */
+    color: var(--body_text_color); /* Maintain consistent text color */
+}
+
+/* Style for bold text in the suggestion */
+.autocomplete-items div strong {
+    font-weight: bold;
+    color: var(--body_text_color);
+}
+
+/* Add a smooth drop effect */
+.autocomplete-items {
+    transform: translateY(-10px); /* Start slightly above */
+    animation: dropDown 0.3s ease forwards;
+}
+
+/* Keyframes for the dropdown animation */
+@keyframes dropDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hover effect to preview text */
+.autocomplete-items div:hover {
+    background-color: #E6F3FF; /* Lighter blue background for hover */
+    color: var(--body_text_color); /* Maintain consistent text color */
+}
+
+
+
+
+/* ------------------------ Autosuggest Styles End ------------------------- */
