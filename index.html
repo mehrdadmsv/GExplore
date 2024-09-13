@@ -3,7 +3,7 @@
 <head>
     <!-- Meta tags for character set and responsive design -->
     <meta charset="utf-8">
-    <title>Display - GExplore</title>
+    <title>Search Results - GExplore</title>
     <!-- Linking CSS stylesheet -->
     <link rel="stylesheet" href="style.css" type="text/css">
     <!-- Favicon for the browser tab -->
@@ -28,14 +28,14 @@
                             <li><a href="mutation_search.html">Mutations</a></li>
                             <li><a href="protein_search.html">Proteins</a></li>
                             <li><a href="expression_stage_search.html">Stage Expressions</a></li>
-                            <li><a href="#">Tissue Expressions</a></li>
-                            <li><a href="#">Embryo Expressions</a></li>
+                            <li><a href="expression_tissue_search.html">Tissue Expressions</a></li>
+                            <li><a href="expression_embryo_search.html">Embryo Expressions</a></li>
                         </ul>
                     </li>
                     <li><a><span class="text">Tools</span> <span class="angle"></span></a>
                         <ul class="dropdown">
-                            <li><a href="#">Compare</a></li>
-                            <li><a href="#">Convert</a></li>
+                            <li><a href="compare.html">Compare</a></li>
+                            <li><a href="convert.html">Convert</a></li>
                         </ul>
                     </li>
                     <li><a href="help.html"><span class="text">Help</span></a></li>
@@ -49,7 +49,8 @@
 
             <!-- IMPORTANT = Perl Connection-->
             <form action="display.pl" method="post" name="ge_display_form" target="_self" id="ge_display_form">
-
+        
+                
                 <!-- Sidebar wrapper -->
                 <div class="sidebar-wrapper">
                     <!-- Sidebar icon container -->
@@ -61,13 +62,13 @@
                             <img id="list-icon" src="assets/database-icon.png" alt="Database Icon" class="list-icon" draggable="false">
                             <span class="tooltip-text">Search Results</span>
                         </div>
-                        <div class="icon-container active" data-target="display-options-content">
+                        <div class="icon-container" data-target="display-options-content">
                             <img id="display-icon" src="assets/display-options-icon.png" alt="Display Options Icon" class="list-icon" draggable="false">
                             <span class="tooltip-text">Display Options</span>
                         </div>
                         <div class="icon-container" data-target="search-content">
                             <img id="search-icon" src="assets/search-icon.png" alt="Search Icon" class="list-icon" draggable="false">
-                            <span class="tooltip-text">Search Data</span>
+                            <span class="tooltip-text">Search Table</span>
                         </div>
                         <div class="icon-container" data-target="export-content">
                             <img id="export-icon" src="assets/export-icon.png" alt="Export Icon" class="list-icon" draggable="false">
@@ -82,7 +83,7 @@
                     <!-- Sidebar content -->
                     <div id="sidebar">
                         <!-- Database content in sidebar -->
-                        <div id="database-content" class="sidebar-content">
+                        <div id="database-content" class="sidebar-content "> <!--add class active if any issue-->
                             <div class="sidebar-title">
                                 <h4>Search Results</h4> 
                             </div>
@@ -116,7 +117,7 @@
                         </div>
 
                         <!-- Display options content in sidebar -->
-                        <div id="display-options-content" class="sidebar-content active">
+                        <div id="display-options-content" class="sidebar-content ">
                             <div class="sidebar-title">
                                 <h4>Display Options</h4> 
                             </div>
@@ -152,54 +153,76 @@
                             </div>
                         </div>
 
+
+
                         <!-- Search content in sidebar -->
                         <div id="search-content" class="sidebar-content">
                             <div class="sidebar-title">
-                                <h4>Search Data</h4>
+                                <h4>Search Table</h4>
                             </div>
-                            <p>Search content goes here.</p>
+                            <!-- Add a search bar and buttons for search navigation -->
+                            <div id="sidebar-info">
+                                <div class="first-content-title">
+                                    <p>Search in Results</p>
+                                </div>
+                                <div id="table-search-container">
+                                    <input type="text" id="table-search" placeholder="Search table..." />
+                                    <span id="clear-search" class="clear-search" style="display:none;">&times;</span>
+                                    <span id="search-count">0 of 0</span>
+                                    <div class="button-container search-nav">
+                                        <button id="search-prev" type="button" class="nav-button">Previous</button>
+                                        <button id="search-next" type="button" class="nav-button">Next</button>
+                                    </div>
+                                </div>
+                                                             
+                            </div>
                         </div>
+
 
                         <!-- Export content in sidebar -->
                         <div id="export-content" class="sidebar-content">
                             <div class="sidebar-title">
                                 <h4>Export Data</h4>
                             </div>
-                            <p>Export content goes here.</p>
                             <div id="sidebar-info">
-                                <form>
-                                    <fieldset>
-                                        <legend>Select Export Format</legend>
-                                        <label><input type="radio" name="export-format" value="json"> JSON</label><br>
-                                        <label><input type="radio" name="export-format" value="xml"> XML</label><br>
-                                        <label><input type="radio" name="export-format" value="csv"> CSV</label><br>
-                                        <label><input type="radio" name="export-format" value="txt"> TXT</label><br>
-                                        <label><input type="radio" name="export-format" value="sql"> SQL</label>
-                                    </fieldset>
-                                    <button type="button" id="export-button" class="update-display-btn">Export Data</button>
-                                </form>
+                                <div class="first-content-title">                                
+                                    <p>Select Export Format</p>
+                                </div>
+                                <div class="export-option-container">
+                                    <form class="export-option-form">
+                                        <div class="export-buttons">
+                                            <button type="button" id="export-csv-button">Export as CSV</button>
+                                            <button type="button" id="export-txt-button">Export as TXT</button>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
+                        
+
 
                         <!-- Help content in sidebar -->
                         <div id="help-content" class="sidebar-content">
                             <div class="sidebar-title">
-                                <h4>Help</h4> 
+                                <h4>Help</h4>
                             </div>
-                            <p>Help content goes here.</p>
-                            <br>
-                            <p>Click on the active Icon to hide the sidebar.</p>
-                            <br>
-                            <p>Drag a column header to rearrange columns.</p> 
-                            <br> 
-                            <p>Click a column header to sort the table.</p>
-                            <br>
-                            <p>Uncheck a box to remove the gene from the list.</p>
-                            <br>
-                            <p>When the domain organisation of the proteins is shown, you can drag rows to rearrange the table.</p> 
-                            <br> 
-                            <p>Use 'text display' to get the 'raw' TAB-delimited table for copying.</p>
+                            <div id="sidebar-info">
+                                <div class="help-content-container">
+                                    <p>Click on the active Icon to hide the sidebar.</p>
+                                    <p>Click a column header to sort the table.</p>
+                                    <p>Uncheck a box in the table and then click 'Update Display' to remove a gene from the list.</p>
+                                    <p>To view the full content of a cell, simply click on the cell to open its details in a modal pop-up window. You can also copy the content directly from this window.</p>
+                                    <p>Drag a column header to rearrange columns.</p>
+                                    <p>When the domain organization of the proteins is shown, you can drag rows to rearrange the table.</p>
+                                </div>                                
+                            </div>
+                            <!-- Help button linking to help.html#display-options -->
+                            <div class="help-button-container">
+                                <a href="help.html#display-options" target="_blank" class="help-button">View Display Options Guide</a>
+                            </div>
                         </div>
+
+
                     </div>
                 </div>
 
@@ -208,166 +231,644 @@
                     <div id="main-content-header">
                         <h3 class="table-title">Result Table</h3>
                     </div>
+
                     <div class="table-container">
                         <div id="scrollableTable" class="scroll-unlocked">
-                            <table>
+                            <table id="results" class="sortable result_table">
                                 <!-- Table headers -->
                                 <thead>
                                     <tr>
-                                        <!-- Constant headers (independent to display options) = no class -->
-                                        <!-- Filtered headers (dependent to display options) = associated with class -->
-                                        <th>Gene</th>
-                                        <th class="sequence-name-column">Sequence</th>
-                                        <th>CDS</th>
-                                        <th class="uniprot-id-column">UniProt ID</th>
-                                        <th class="chr-column">Chr</th>
-                                        <th class="chr-pos-column">Pos</th>
-                                        <th class="chr-strand-column">Strand</th>
-                                        <th class="start-column">Start</th>
-                                        <th class="end-column">End</th>
-                                        <th class="legacy-description-column">Legacy Description</th>
-                                        <th class="automated-description-column">Automated Description</th>
-                                        <th class="phenotype-mutants-column">Phenotype (Mutants)</th>
-                                        <th class="phenotype-rnai-column">Phenotype (RNAi)</th>
-                                        <th class="expression-column">Expression</th>
-                                        <th class="expression-genomic-column">Expression (Genomic Studies)</th>
-                                        <th class="interacting-physical-column">Physical Interactors</th>
-                                        <th class="interacting-genetic-column">Genetic Interactors</th>
-                                        <th class="interacting-regulatory-column">Regulatory Interactors</th>
-                                        <th class="yeast-homologs-column">Yeast Homolog</th>
-                                        <th class="fly-homologs-column">Fly Homolog</th>
-                                        <th class="fish-homologs-column">Fish Homolog</th>
-                                        <th class="mouse-homologs-column">Mouse Homolog</th>
-                                        <th class="human-homologs-column">Human Homolog</th>
-                                        <th class="go-terms-column">GO Terms</th>
-                                        <th class="disease-associations-column">Disease Associations</th>
-                                        <th class="aa-size-column">aa Size</th>
-                                        <th class="protein-sequence-column">Protein Sequence</th>
-                                        <th class="protein-domains-column">Domain Organization</th>    
+                                        <th class ="checkbox_col sorttable_nosort"></th>
+                                        <th class ="gene_col">Gene</th>
+                                        <th class ="gene_col">Sequence name</th>
+                                        <th class ="gene_col">CDS</th>
+                                        <th class ="gene_col">UniProt ID</th>
+                                        <th class ="chr_col">Chr.</th>
+                                        <th>Pos</th>
+                                        <th class ="chr_col">Chr.</th>
+                                        <th class ="chr_col">Strand</th>
+                                        <th>Start</th>
+                                        <th>End</th>
+                                        <th class ="text_col">Legacy Description</th>
+                                        <th class ="text_col">Automated Description</th>
+                                        <th class ="text_col">Mutant Phenotype</th>
+                                        <th class ="text_col">RNAi Phenotype</th>
+                                        <th class ="text_col">Expression</th>
+                                        <th class ="text_col">Expression (genomic studies)</th>
+                                        <th>Physical Interactors</th>
+                                        <th>Genetic Interactors</th>
+                                        <th>Regulatory Interactors</th>
+                                        <th>Yeast homologs</th>
+                                        <th>Fly homologs</th>
+                                        <th>Fish homologs</th>
+                                        <th>Mouse homologs</th>
+                                        <th>Human homologs</th>
+                                        <th class ="GOterm_col">GO terms</th>
+                                        <th class ="text_col">Disease association</th>
+                                        <th class ="protsize_col">size aa</th>
+                                        <th class ="seq_col">Protein Sequence</th>
+                                        <th class="sorttable_nosort pic_col">Domain Organization</th>    
                                     </tr>
                                 </thead>
+                                
                                 <!-- Table body with data rows -->
-                                <tbody>
+                                <tbody id="result_tbody">
                                     <tr>
-                                        <td>unc-5</td>
-                                        <td class="sequence-name-column">B0273.4</td>
-                                        <td>B0273.4c</td>
-                                        <td class="uniprot-id-column">Q26261</td>
-                                        <td class="chr-column">IV</td>
-                                        <td class="chr-pos-column">1.78</td>
-                                        <td class="chr-strand-column">-</td>
-                                        <td class="start-column">5495664</td>
-                                        <td class="end-column">5528338</td>
-                                        <td class="legacy-description-column">unc-5 encodes a netrin receptor...</td>
-                                        <td class="automated-description-column">Enables netrin receptor activity...</td>
-                                        <td class="phenotype-mutants-column">axon_dendritic_polarity_variant...</td>
-                                        <td class="phenotype-rnai-column">axon_guidance_variant...</td>
-                                        <td class="expression-column">anterior_distal_tip_cell...</td>
-                                        <td class="expression-genomic-column">ABalapaaaa, ABalappapa...</td>
-                                        <td class="interacting-physical-column">?</td>
-                                        <td class="interacting-genetic-column">?</td>
-                                        <td class="interacting-regulatory-column">?</td>
-                                        <td class="yeast-homologs-column"></td>
-                                        <td class="fly-homologs-column">Unc5b, unc5cb...</td>
-                                        <td class="fish-homologs-column">unc5da...</td>
-                                        <td class="mouse-homologs-column">Unc5a, Unc5b...</td>
-                                        <td class="human-homologs-column">UNC5A, UNC5B...</td>
-                                        <td class="go-terms-column">axon_guidance, axon_development...</td>
-                                        <td class="disease-associations-column"></td>
-                                        <td class="aa-size-column">947</td>
-                                        <td class="protein-sequence-column">?</td>
-                                        <td class="protein-domains-column"><img src="assets/display_prototype/B0273.4c.png" alt="B0273.4c Domain Organisation"></td>
+                                        <td class ="checkbox_col">&nbsp;<input type="checkbox" id="B0273.4c" name="B0273.4c" checked="checked"/></td>
+                                        <td class ="gene_col"><a href="http://www.wormbase.org/db/gene/gene?name=unc-5;class=Gene" target="_blank">unc-5</a></td>
+                                        <td class ="gene_col"><a href="http://www.wormbase.org/db/gene/gene?name=B0273.4;class=Gene" target="_blank">B0273.4</a></td>
+                                        <td class ="gene_col"><a href="http://www.wormbase.org/db/gene/gene?name=B0273.4c;class=Protein" target="_blank">B0273.4c</a></td>
+                                        <td class ="gene_col"><a href="http://www.uniprot.org/uniprot/Q26261" target="_blank">Q26261</a></td>
+                                        <td class ="chr_col">IV</td>
+                                        <td class ="gpos_col">1.78</td>
+                                        <td class ="chr_col">IV</td>
+                                        <td class ="chr_col">-</td>
+                                        <td class ="ppos_col">5,495,664</td>
+                                        <td class ="ppos_col">5,528,338</td>
+                                        <td class ="text_col">unc-5 encodes a netrin receptor; unc-5 activity is required cell autonomously for dorsalward cell and pioneer motor axon migrations along the body wall that are essential for normal locomotion and gonad development; unc-5 mRNAs are expressed throughout the entire life cycle, with increasing levels seen as animals progess to adulthood.</td>						
+                                        <td class ="text_col">Enables netrin receptor activity and protein tyrosine kinase binding activity. Involved in several processes, including axon guidance; regulation of neuron projection development; and sex differentiation. Acts upstream of or within distal tip cell migration. Located in axonal growth cone. Expressed in several structures, including distal tip cell; excretory canal; head neurons; motor neurons; and somatic nervous system. Is an ortholog of human UNC5A (unc-5 netrin receptor A); UNC5B (unc-5 netrin receptor B); and UNC5C (unc-5 netrin receptor C).</td>						
+                                        <td class ="text_col">axodendritic_polarity_variant, axon_branching_variant, axon_development_variant, axon_guidance_variant, axon_outgrowth_variant, axon_trajectory_variant, coiler, constitutive_egg_laying, cord_commissures_fail_to_reach_target, dendrite_development_variant, distal_tip_cell_migration_variant, dorsal_nerve_cord_development_variant, dorsal_region_development_variant, gonad_arm_morphology_variant, locomotion_variant, long_range_axon_migration_variant, muscle_arm_axon_connection_variant, muscle_arm_development_variant, presynaptic_component_localization_variant, presynaptic_vesicle_cluster_localization_variant, short_range_axon_migration_variant, ventral_cord_disorganized</td>						
+                                        <td class ="text_col">axon_guidance_variant, body_wall_muscle_sarcomere_morphology_variant, dendrite_development_variant, locomotion_variant, protein_degradation_variant</td>						
+                                        <td class ="text_col">anterior_distal_tip_cell, AS_neuron, ASEL, ASER, DA_neuron, DB_neuron, DD_neuron, distal_tip_cell, dorsal_nerve_cord, excretory_canal, IL2DL, IL2DR, IL2L, IL2R, IL2VL, IL2VR, linker_cell, motor_neuron, OLLL, OLLR, OLQDL, OLQDR, OLQVL, OLQVR, posterior_distal_tip_cell, RIAL, RIAR, RIH, VD_neuron, ventral_nerve_cord; all_stages, L2-L3_molt, L3_larva, L4_larva</td>						
+                                        <td class ="text_col">ABalapaaaa, ABalappapa, AS11, DA_neuron, DA1, DA2, DA3, DA4, DA5, DA6, DA7, DA8, DA9, DB1, DB2, DB3, DB4, DB5, DB6, DB7, g1AL, g1AR, g1P, GABAergic_neuron, head_mesodermal_cell, hyp3, I5_neuron, intestine, male-specific_anatomical_entity, MSpaaapa, MSpppaaa, neuron, OLL, oocyte, PDA, PDB, PVD, retrovesicular_ganglion, RID, SAB, sensory_neuron, SIADL, SIADR, SIAVL, SIAVR, VA_neuron, VA1, VA12, VD_neuron; 1-cell_embryo, 1-day_post-L4_adult_hermaphrodite, 10-days_post-L4_adult_hermaphrodite, 11-days_post-L4_adult_hermaphrodite, 15-days_post-L4_adult_hermaphrodite, 2-days_post-L4_adult_hermaphrodite, 20-days_post-L4_adult_hermaphrodite, 3-days_post-L4_adult_hermaphrodite, 4-days_post-L4_adult_hermaphrodite, 5-days_post-L4_adult_hermaphrodite, 6-days_post-L4_adult_hermaphrodite, 7-10_days_post-L4_adult_hermaphrodite, 8-days_post-L4_adult_hermaphrodite, adult, adult_male, all_stages, blastula_embryo, dauer_larva, embryo, L1_larva, L2_larva, L2d_larva, L3_larva, L4_larva, larva, oocyte-laying_stage_adult_hermaphrodite</td>						
+                                        <td class ="text_col">max-1, src-1, unc-129, apb-3, ccar-1, dpy-19, madd-4, unc-73</td>
+                                        <td class ="text_col">max-1, src-1, unc-129, ahr-1, clr-1, dbl-1, egl-20, enu-3.1, mec-8, mig-22, seu-1, seu-2, sqv-5, unc-14, unc-34, unc-40, unc-44, unc-52, unc-6, unc-71</td>
+                                        <td class ="text_col">blmp-1, daf-12, daf-9, lnp-1, nhr-67, pros-1, rab-3, rpm-1, snb-1, sys-1, unc-49</td>
+                                        <td class ="text_col"></td>
+                                        <td class ="text_col">unc-5</td>
+                                        <td class ="text_col">Unc5b, unc5cb, unc5da, Unc5a, unc5db, unc5ca</td>
+                                        <td class ="text_col">Unc5c, Unc5a, Unc5b, Unc5d</td>
+                                        <td class ="text_col">Unc5c, Unc5a, Unc5d, Unc5b</td>
+                                        <td class ="text_col">axonal_growth_cone , cell_projection , chemorepulsion_of_axon , commissural_neuron_axon_guidance , distal_tip_cell_migration , dorsal/ventral_axon_guidance , establishment_or_maintenance_of_actin_cytoskeleton_polarity , gonad_morphogenesis , membrane_raft , membrane , mesodermal_cell_migration , motor_neuron_axon_guidance , negative_regulation_of_microtubule_polymerization , nematode_male_tail_tip_morphogenesis , netrin_receptor_activity , netrin-activated_signaling_pathway , neuron_projection , plasma_membrane , positive_regulation_of_anterior/posterior_axon_guidance , positive_regulation_of_axon_extension , positive_regulation_of_locomotion , protein_tyrosine_kinase_binding , regulation_of_dorsal/ventral_axon_guidance , signal_transduction , ventral_cord_development</td>						
+                                        <td class ="text_col"> </td>						
+                                        <td class ="protsize_col">947</td>
+                                        <td class ="seq_col">MEDDTPDVSS DSNGDAAYSD YFLDYKSIMD EITITTQPKS GYVIRNKPLR LQCRANHATK IRYKCSSKWI DDSRIEKLIG TDSTSGVGYI DASVDISRID VDTSGHVDAF QCQCYASGDD DQDVVASDVA TVHLAYMRKH FLKSPVAQRV QEGTTLQLPC QAPESDPKAE LTWYKDGVVV QPDANVIRAS DGSLIMSAAR LSDSGNYTCE ATNVANSRKT DPVEVQIYVD GGWSEWSPWI GTCHVDCPLL RQHAHRIRDP HDVLPHQRRT RTCNNPAPLN DGEYCKGEEE MTRSCKVPCK LDGGWSSWSD WSACSSSCHR YRTRACTVPP PMNGGQPCFG DDLMTQECPA QLCTADSSRI VISDTAVYGS VASIFIVASF ILAILAMFCC KRGNSKKSKP LKPQKMNSEK AGGIYYSEPP GVRRLLLEHQ HGTLLGEKIS SCSQYFEPPP LPHSTTLRSG KSAFSGYSST RNAGSRAALI QECSSSSSGS GGKRTMLRTS SSNCSDDDNY ATLYDYMEDK SVLGLDTSQN IVAAQIDSNG ARLSLSKSGA RLIVPELAVE GEKMLYLAVS DTLTDQPHLK PIESALSPVI VIGQCDVSMS AHDNILRRPV VVSFRHCAST FPRDNWQFTL YADEGSGWQK AVTIGEENLN TNMFVQFEQP GKKNDGFGWC HVMTYSLARL MLAGHPRRNS LSAAKRVHLA VFGPTEMSAY RRPFELRVYC VPETGAAMES VWKQEDGSRL LCESNDFILN EKGNLCICIE DVIPGFSCDG PEVVEISETQ HRFVAQNGLH CSLKFRPKEI NGSQFSTRVI VYQKASSTEP MVMEVSNEPE LYDATSEERE KGSVCVEFRL PFGVKDELAR LLDMPNESHS DWRGLAKKLH YDRYLQFFAS FPDCSPTSLL LDLWEASSSG SARAVPDLLQ TLRVMGRPDA VMVLERFLSA FPQIVSP</td>
+                                        <td class="pic_col"><img src="assets/display_prototype/B0273.4c.png" alt="B0273.4c Domain Organisation"></td>
                                     </tr>
                                     <tr>
-                                        <td>unc-44</td>
-                                        <td class="sequence-name-column">B0350.2</td>
-                                        <td>B0350.2f</td>
-                                        <td class="uniprot-id-column">Q17490</td>
-                                        <td class="chr-column">IV</td>
-                                        <td class="chr-pos-column">2.89</td>
-                                        <td class="chr-strand-column">+</td>
-                                        <td class="start-column">5975557</td>
-                                        <td class="end-column">6004857</td>
-                                        <td class="legacy-description-column"></td>
-                                        <td class="automated-description-column">Enables cell adhesion molecule binding activity...</td>
-                                        <td class="phenotype-mutants-column">amplitude_of_sinusoidal_movement_variant...</td>
-                                        <td class="phenotype-rnai-column">axon_guidance_variant...</td>
-                                        <td class="expression-column">anal_depressor_muscle...</td>
-                                        <td class="expression-genomic-column">anal_depressor_muscle, anal_sphincter_muscle...</td>
-                                        <td class="interacting-physical-column">?</td>
-                                        <td class="interacting-genetic-column">?</td>
-                                        <td class="interacting-regulatory-column">?</td>
-                                        <td class="yeast-homologs-column"></td>
-                                        <td class="fly-homologs-column">Ank2, Ank...</td>
-                                        <td class="fish-homologs-column">ank1a, ank2b...</td>
-                                        <td class="mouse-homologs-column">Ank1, Ank3...</td>
-                                        <td class="human-homologs-column">ANK2, ANK3...</td>
-                                        <td class="go-terms-column">body_morphogenesis, cell_adhesion_molecule_binding...</td>
-                                        <td class="disease-associations-column">anemia, bipolar_disorder...</td>
-                                        <td class="aa-size-column">6994</td>
-                                        <td class="protein-sequence-column">?</td>
-                                        <td class="protein-domains-column"><img src="assets/display_prototype/B0350.2f.png" alt="B0350.2f Domain Organisation"></td>  
+                                        <td class ="checkbox_col">&nbsp;<input type="checkbox" id="B0350.2f" name="B0350.2f" checked="checked"/></td>
+                                        <td class ="gene_col"><a href="http://www.wormbase.org/db/gene/gene?name=unc-44;class=Gene" target="_blank">unc-44</a></td>
+                                        <td class ="gene_col"><a href="http://www.wormbase.org/db/gene/gene?name=B0350.2;class=Gene" target="_blank">B0350.2</a></td>
+                                        <td class ="gene_col"><a href="http://www.wormbase.org/db/gene/gene?name=B0350.2f;class=Protein" target="_blank">B0350.2f</a></td>
+                                        <td class ="gene_col"><a href="http://www.uniprot.org/uniprot/Q17490" target="_blank">Q17490</a></td>
+                                        <td class ="chr_col">IV</td>
+                                        <td class ="gpos_col">2.89</td>
+                                        <td class ="chr_col">IV</td>
+                                        <td class ="chr_col">+</td>
+                                        <td class ="ppos_col">5,975,557</td>
+                                        <td class ="ppos_col">6,004,857</td>
+                                        <td class ="text_col"> </td>						
+                                        <td class ="text_col">Enables cell adhesion molecule binding activity. Involved in several processes, including axon guidance; establishment or maintenance of cytoskeleton polarity; and regulation of cellular component organization. Located in lateral plasma membrane. Expressed in hermaphrodite gonad; hypodermis; intestinal cell; and vulval cell. Human ortholog(s) of this gene implicated in several diseases, including ankyrin-B-related cardiac arrhythmia; autosomal recessive intellectual developmental disorder 37; and heart conduction disease (multiple). Is an ortholog of human ANK2 (ankyrin 2) and ANK3 (ankyrin 3).</td>						
+                                        <td class ="text_col">amplitude_of_sinusoidal_movement_variant, axon_branching_variant, axon_development_variant, axon_outgrowth_variant, backing_decreased, backward_point_velocity_decreased, benzaldehyde_chemotaxis_variant, body_posture_amplitude_variant, body_posture_wavelength_decreased, coiler, coiling_frequency_increased, curly, dumpy, dye_filling_defect, forward_locomotion_decreased, forward_point_velocity_decreased, frequency_of_body_bend_variant, gap_junction_plaque_number_increased, head_bend_angle_decreased, lethal, locomotion_variant, loss_of_asymmetry_AWC, nose_movement_variant, paralyzed, path_curvature_increased, pausing_variant, roaming_reduced, short, small, sterile, tail_bend_angle_variant, thin, turning_frequency_variant</td>						
+                                        <td class ="text_col">axon_guidance_variant, cleavage_furrow_termination_defective_early_emb, dendrite_development_variant, dumpy, germ_cell_morphology_variant, locomotion_variant, meiosis_variant, reduced_brood_size, slow_growth, sluggish, small</td>						
+                                        <td class ="text_col">anal_depressor_muscle, anchor_cell, body_wall_musculature, gonadal_sheath_cell, head_neuron, hypodermal_cell, hypodermis, intestinal_cell, intestine, muscle_cell, nerve_ring, nervous_system, neuron, pharyngeal_neuron, seam_cell, spermatheca, tail_neuron, ventral_cord_neuron, vulval_cell; 1.5-fold_embryo, 2-fold_embryo, 3-fold_embryo, adult, embryo, enclosing_embryo, fully-elongated_embryo, L1_larva, L3_larva, L4_larva, larva</td>						
+                                        <td class ="text_col">anal_depressor_muscle, anal_sphincter_muscle, anchor_cell, AS1, AS10, AS11, AS2, AS3, AS4, AS5, AS6, AS7, AS8, AS9, AVG, AVK, Cappppv, CEM, CEPshDL, CEPshDR, CEPshVL, CEPshVR, Cpppppv, DA_neuron, DA1, DA2, DA3, DA4, DA5, DA6, DA7, DA8, DA9, DB1, DB2, DB3, DB4, DB5, DB6, DB7, DD_neuron, head_mesodermal_cell, hermaphrodite_distal_tip_cell, HOB, HSN, I5_neuron, IL2_neuron, intestinal_muscle, intestine, male_distal_tip_cell, MSapaaap, MSapapap, MSapappp, MSappapp, MSppaaap, MSppapap, MSppappp, MSpppapp, muscle_cell, neuron, NSM, OLL, PDB, PLM, PVC, PVD, PVM, PVT, PVW, ray_neuron_type_B, rect_D, retrovesicular_ganglion, SAB, sensory_neuron, VA_neuron, VA12, VB1, VB10, VB11, VB2, VB3, VB4, VB5, VB6, VB7, VB8, VB9; 1-day_post-L4_adult_hermaphrodite, 10-days_post-L4_adult_hermaphrodite, 2-days_post-L4_adult_hermaphrodite, 20-days_post-L4_adult_hermaphrodite, 3-days_post-L4_adult_hermaphrodite, 4-days_post-L4_adult_hermaphrodite, 5-days_post-L4_adult_hermaphrodite, 6-days_post-L4_adult_hermaphrodite, 7-10_days_post-L4_adult_hermaphrodite, adult, adult_hermaphrodite, adult_male, all_stages, blastula_embryo, dauer_larva, embryo, L1_larva, L2_larva, L3_larva, L4_larva, L4-adult_lethargus, larva, oocyte-laying_stage_adult_hermaphrodite</td>						
+                                        <td class ="text_col">sax-7, C11E4.6, calm-1, cdc-42, chn-1, dlg-1, elks-1, glh-1, gras-1, lgl-1, myrf-1, myrf-2, nhr-111, nrde-2, pak-1, pan-1, rabs-5, sec-6, sip-1, smo-1, spc-1, spe-39, ubq-1, unc-119, vps-45, Y59A8B.12, zen-4</td>
+                                        <td class ="text_col">daf-11, unc-5</td>
+                                        <td class ="text_col">sax-7, inx-19, unc-1, unc-33, unc-9</td>
+                                        <td class ="text_col"></td>
+                                        <td class ="text_col">Ank2, Ank</td>
+                                        <td class ="text_col">ank1a, ank2b, ank2a, ank3a</td>
+                                        <td class ="text_col">Ank1, Ank3, Ank2</td>
+                                        <td class ="text_col">Ank1, Ank2, Ank3</td>
+                                        <td class ="text_col">body_morphogenesis , cell_adhesion_molecule_binding , chemorepulsion_of_axon , cytoplasm , cytoskeleton , dorsal/ventral_axon_guidance , establishment_or_maintenance_of_actin_cytoskeleton_polarity , establishment_or_maintenance_of_microtubule_cytoskeleton_polarity , lateral_plasma_membrane , localization , locomotion , membrane , negative_regulation_of_microtubule_polymerization , netrin-activated_signaling_pathway , positive_regulation_of_multicellular_organism_growth , regulation_of_dorsal/ventral_axon_guidance , signal_transduction</td>						
+                                        <td class ="text_col">anemia, bipolar_disorder, schizophrenia, hereditary_spherocytosis, sick_sinus_syndrome, atrial_fibrillation, autosomal_recessive_intellectual_developmental_disorder_37, hereditary_spherocytosis_type_1, ankyrin-B-related_cardiac_arrhythmia</td>						
+                                        <td class ="protsize_col">6994</td>
+                                        <td class ="seq_col">MSNEGDPPQP QQQQPESQEV QAPAAPEPGR AEGSASFLRA ARAGDLEKVL ELLRAGTDIN TSNANGLNSL HLASKEGHSE VVRELIKRQA QVDAATRKGN TALHIASLAG QSLIVTILVE NGANVNVQSV NGFTPLYMAA QENHEEVVKY LLKHGANQAL STEDGFTPLA VALQQGHDRV VAVLLENDSK GKVRLPALHI AAKKDDTTAA TLLLQNEHNP DVTSKSGFTP LHIAAHYGHE NVGQLLLEKG ANVNYQARHN ISPLHVATKW GRTNMANLLL SRGAIIDSRT KDLLTPLHCA ARSGHDQVVD LLVVQGAPIS AKTKNGLAPL HMAAQGDHVD AARTLLYHRA PVDDVTVDYL TPLHVAAHCG HVRVAKLLLD RSADPNSRAL NGFTPLHIAC KKNRIKVVEL LLKYRAAIEA TTESGLTPLH VAAFMGAINI VIYLLQQGAN PDVETVRGET PLHLAARANQ TDVVRVLIRN GAKVDAQARE LQTPLHIASR LGNTDIVILL LQAGANSNAT TRDNYSPLHI AAKEGQEEVA GILLDHNADK TLLTKKGFTP LHLASKYGNL EVVRLLLERG TPVDIEGKNQ VTPLHVAAHY NNDKVAMLLL ENGASAKAAA KNGYTPLHIA AKKNQMEIAS TLLQFKADPN AKSRAGFTPL HLSAQEGHKE ISGLLIENGS DVGAKANNGL TAMHLCAQED HVPVAQILYN NGAEINSKTN AGYTPLHVAC HFGQLNMVKF LVENGADVGE KTRASYTPLH QAAQQGHNNC VRYLLENGAS PNEQTATGQT PLSIAQRLGY VSVVETLRTV TETTVITETT TVDERYKPQN PEAMNETMFS ESEDEGQAAE HEAVAAHEKD FSDNLTQGLQ DSTGVHMIHT GEQLLQRSQE LENGGAIPKI NSGGMSPEKE FAKIAPVATS SPIATSNSQS FGIAPRAGSI SGQFQQQPLH GAGPEDNLEE LVRRAQNHPI NAGNYDNGGV AMLENGHADN VPIGHHVTQP SKLQHRTFLI SFLVDARGGA MRGCRHSGVR IIVPPRKASQ PIRVTCRYLR KDKLAHPPPL SEGEELASRI LEMAPAGAKF LGPVILEVPH FASLRDRERE IVILRSDDGQ HWKEHQLEAT EDAVQEVLNE SFDAEDLAQL DDLQTPRITR ILTSDFPMYF AVVTRVRQEV HCVGPEGGVI ISSVVPRVQA IFPDGSLTKT IKVSVQAQPV PQEMVTRLHG NRVAVSPIVT VEPRRRKFHK PITLCIPLPQ SNNRGMLTQY SGQQGQEPPT LRLLCSITGG SAPAQWEDIT GTTQLTFTGD EVSFTTTVSA RFWLMDCQTP RDAARMAQEV YNEAISIPYM AKFAVFARRT FPVEGQLRVF CMTDDKEDKT LEKQEHFKLI AKSRDVEVLK GKHQFLEFSG NLVPITKSGD QLSLFFLPFQ ENRLAFMVKT RSNDDNEAAT EGRIGFMAEP KIRSDALPPQ QPICTLAISL PEYTGEIKTA PPPKKDLTPF EQRYGSALEK DLPEFVHQNV LKGIGADWPR LGRALEVPHR DIQHIRQNYP GQECKNTLKI WIHLKKEDAN QDNLDQALRQ IGRDDIVRSI AYGEPDALIN YSQADSPSQK REPIRHFEEV PAATLVKREV RTEDLVTREP VQPTHHVEQA TTVVQEPSYS APVHHSPVPE EPEMEEEAPV AEMRTVVRTE RHVHDSEDGP VVEERTITTT YEDDVAVNEN IVDRTVPLNE DEQQKWEELN RLADESSPSP AQRSTIVAES TSEQVPEDVE QSVESESHRE DDGTIVTTTV TTSHISESPS GSPTRRSVEP EEHRHSQHED HEASGAEQHS GQDSGTTQKK ETAEEGFTNE DGSVVVSKKM TRVVTTTRTT LPGEGEEPSA PDSPVESLGS VKDRIAKFEQ FKTLPIDPSV SGPPPSAHTL QSEEYQEESG NVESAYDVET DRRDSERSLK SERSIPEIHT SPSEEQQSEH FESAEHTEDQ GRDSGRSLKS DRSIPEVQFT ESDSELEKHD LHEDSHLEPT VGIVITPHTP VPPEHPDDKE DIEDEQPQEP LEPSEPEHVA HAELKDTREY SDEELAQELS PSEEHVSTAE IKDIKSYSPT SSDDERSSQK GKVSPPIPQV RHAISPSVAS EVLSSHDDEL AAHFVAESFE KHDEGNVETI EQTPVYKGHH SPGQTSPIVS EHPHAQEYAE SVTSHDEGDN LSLKSGHEPE IARHSVASVQ EEDDDDDEKS ELGDFAKKAG MIVGGVIAAP VALAAVGAKA AYDALNRDDD EEKLEGHEEK EVLTTQTTIM ESPIRHEDIP SPHLEDVTPK VSHQEHPYEH VTETTTTVTR DYYEQPEDHR EASPAPSSHV ESERPISESP AVSEREPSHI ATETTTTVTR EYDQEPKADQ SSARESVRDL VSEEHEHPAC DSERLSEPAQ SPEPVETHAE SQFSNLVETT TTTAVTREFY DEDQEEQASS RATKERIEQS PVASERSIVS TEHRQSPTQE SEQSLEPTSE KNVHTVTETT TVTRECFEEP IASELEHASR EFEQGSNDFR RSVSPVDAQE QVDVPHSPAP SSHAESEQPV PESPHHIVET TTTTTVTREF QDEEYPRPES PAEIFPIPSS EQQSEEPHIV KETTTTTTVT RELYDEPEKG NVTFSPAPSS HAESERQVPE SPVVSHQEYP HVVETTTTTN VTSNIYDDED NVPSSEDPAT QHFQQSETSV HRSHPDSVEE SDGEGLGSKV LGFAKKAGMV AGGVVAAPVA LAAVGAKAAY DAFEKDDEDD ETSHSPESPV PEYQSEQYQD DSAQSSHTDF EHHMPESPIE HEKETEEFDH SHPESPVLSE KEREHQVTSE TTTTTTVTRE YNDEPEDEQE HQGPHSPAPS SHTEAEHPHI VETTTTTTVT REFQEEPEEL EYKQEDNSRK SPSSHSQENL VTETTTTTTV TSEYYDEPEH FEEQETGKSS PAPSSHVESE RQVLESPVAS DPRHVMETTT TTTVTRQFHD DESERSDSPN RDVVEAQSIH SSNIESHQQF SEKDDDSQRG PSPVKSEDEP VKHESYKFET STTETREFDR PELDSERLSE PAQSPMEVSP ITTEENIVRP SSSVKSEYGS EGHVPSVIET KTTTTVTREF YDDDQDEHEN QTQSEELRSS IPTEEEEHEG SHLFKETTTT TTVTREFYDE PENVEELQDP QFSPAPSSHV ESGIHASESP VAQQQEIPQT REFHEDSPAA QYFHEEEYES HVLTEQAPLL TEQQHQPESG DESDGEGLGS KVLGFAKKAG MVAGGVVAAP VALAAVGAKA AYDALKKDDD EEDQEERESL LRQERSIDSP HASEQSQIEE EHERFEESPV PSEKHHVTET TTTTTVTREY FDEHEPLVSQ EIEGEKGSPA DSEKSLPHVV ETTTTTTVTR EFDKNDSESP VPSEKEQEPT TVSREVYETA EGDEPEHHYT ETTTTTVTKE VIDDSQEMGD DDEPKQESPQ VVETTTTTMT SREYDDNDDE TRSEAGDSHI TETTKTTTVV REFHGEQPEE TEETDEVEEL PPKIEEEDNV SEYSESSTSV SREVRPDEPH IIETTTTTTV TREYHNEPEE TYDDQKDAAP ISFSQEHQDD DSQASHDQHD RESPVESEKS VKHTTETTTT TTVTRQLYDD EASEIRGESP VATEEHEHVS STKSDDESEQ HVPSVIETTT TTTVTREFYD DQDELQREDH TQSEERRSSI PTEETEHEDS HLIKETTTTT TVTREFYDEP ENVEKLQDSQ FSLSPSSHVE SEIYVPESPV AKQQEIPQTR EFHEDSPAAQ YFHEDEYEHQ VPTEQAPLLT EQQHQPESGE ESDGEGFGSK VLGFAKKAGM VAGGVVAAPV ALAAVGAKAA YDALKKEDDE EDQEERESLI REERSFDSPH ASEQSQIEKE HKRFEESPVP SEKHHDQSSA LPQESVSQPI EKESRTFNDE SEFGVKSDHY TEDDQESLKS PKESGEAFSQ FTSEKEQDRS DSPIHSQKED ISQFQNESSP EDVKSEQPHD EEKPDLERQG SYSSGYSPKS PGGSITGLDE EKALSGVQEP EDRPENFAES HEKTEATSDE NLFESDKYAP ASPVPSEDSS NRVIETTTTT TVTREHFEPE DDHSYVVESQ EYSSSGSPVP SEKSVDRVIE TTTTTTVTRE HFEAEDEIPT IVESSHDDQA ASPVPSEEDV HEQIQTTTTT TTVTKEHFVP DDEIDSEHMN ESDKYASGSP VPSEEDSSRV TETTTTTTVT REHFEPEDDH SPVVQTQEYS ASESPVPSEK SVERVIETTT TTTVTREHFE DEDHILGQQG ESDSQIPSES ITSENMDRET SSSPVQSNRD EEFVLPAIAP YKQPTEYGRV DSHDAPASPA PSAESPIQAY KQEESQEAHS LEQFQQRSSV SHEDSPAAQY FHDNESDHDS PVPSDRAPLL TEQQHQPESG EESDGEGFGS KVLGFAKKAG MVAGGVVAAP VALAAVGAKA AYDALKKDDD EDENPDEQEK LLPKSPERQV LVNPVEPSDS EISEIELEYT SPSPTEKSES QCYTETVRTT TVTREYLDDP QSVTRSRSPS EHDISEQYAP ESPVEQDPYV VEKTTTVIRQ YHDEPPQEIE EQTIPEEVTV LREVYESPEG DEPEQHYIET KTTTTITKEV HVPVEEDVQI SPVHSETSVS EKQLPADEQL DEPVTESTTT ATVTRERYEE PEEVRPPSGS EADDESHAPK YMETTTTTTV TREYEVSEDE DEHQQSQVQR DESPAPSEDS VKHVIEKTTT TTVTEERYEP EDSHSPVPSE DDVHGFVKTT TTTTTVTHEH FEPEDPPSDE HVVESERYAS GSPVPSEEDS SREIETTTTT TVTREHFELE DDQEHVVESQ EYSASGSPVP SEKSVERVIE TTTTNTVTRE HFEHEDDIPT IVETSHDDPA ASSVPSEEDV HGQIQTTTTT TTVTREHVVP DEEIDSGRMD ELEKYSSESP VPSEEDSSRV IETTTTTTVS REHFEPEDDH SHVVESQEYS ASGSPVPSEK SVERVIETTT TTTVTREHFD TEEDYIPSES RTSHDDGITD QHVPSQSPVP SEEDDHVTHE QIIRDDPIDE QIVESHEYKS ESSIPSEQDS THVIETVMST PITSERYDPE VEKDVVESAD DEIDSSTAQY YKSESPVQTE KSLLLAKQQQ ESGDESDGEG FGSKVLGFAK KAGMVAGGVV AAPVALAAVG AKAAYDALKK DDDEEDQEDK EPLIGGFHKD QDPISQDEPS AVDSETQEPG ATFYEPEEED KVITDSADSS VVQDEPKIVF PVDSTPEHHS NDREEFESIV KSEGPYIVES TDYAQTSAEE PRISSPVHSD AGDASSFKRP ESVTGEDEKN AIPETSETDA PYVIDSEEYE FNNRDEQRIS SPAHSDEEDE NDAEVIDSEF YRHSQEQNNE EDPSIVESGE YISSGHGSPR PFEDSTTTTV LNVHHEPAAI PEPEVDEEEL EQERSIIESE EYKTSSPLPP TSVTTVEHVE PAEIHKYRTT SPTIVTTVSS EHLDRNQEPY VVESEEYTRA SPLGPERPES PSGSPLPREE DDSHVIESHE YTSSPVPSED SVKHVIEKTT TTTVTEERYE PEDSHSPVPS EDDVHGFVKT TTTTTTVTHE HFEPEDHTSD EHVVESERYA SGSPVPSEEN SNRVTETTTT TTVTREHFEP EDDQEHVVES QEYSASGSPV PSEKSVEKVI ETTTTTTVTR EHFEHEDEIP TIVESSHDDQ AASSVPSEED VHGQIQTTTT TTTVTREHVV PDEEIDSGRM DELEKYSSES PVPPEEDSSR VIETTTTTTF IREHFEPEDD HSHVVGSQEY SASGSPVPSE KSVERVIETT TTTTVTSEHF EHEDEHAQLH DTVSSEKTSS SEPVEQTLEE ADITEETHQR FSAEDEHQPT STEKPVHGFM ETTSTSHTAS HVELEHRDDD DESGGEGFGS KVLGFAKKAG MVAGGVVAAP VALAAVGAKA AYDALKKDDD EEATYDLDRE HGSYESAELQ RPTQQVESRQ EDSESEGSFV DHGEDSQHLP VQSTEAAFKL SSEDIAEQTA EKLVSEVFAP LDRTLIESEQ YRASIESLNR RSPVEPKRSV EDLASEALQN VTKISFGHAD ESDDKHDGDN DGEWKVYDRH GEVLEEFSTQ LTDDVIQEAE GDATTHIMMT QAEYSPRRSK FLKQESCQEI SNEPEVDYYS DLQEKLNILA GEKNNLHALV EEEPSSSASD QLDVIHESDQ EAHLEQEHQQ EAAAQKEQDE KEEAAEYTAT LLVDDVLQQV VQEINEEDDD KKTMTSTSYL TATEKDDQEY DTCVTSQDDT YESAQGWTSQ DSEYTTATSQ APSRLSDSDA ELTARDHDQE RQETSTPQAI LSPVDSDRHF TVQQDFEMPV IRAFDPDDFM QTTARSTPDV ALQVTIEEED ESDDKLPISP SGILLPPKHD PGRPISPVPP RKSDGTMQKE GDHFVFVREE DTIAEPTPPP QPAEPEQLAE YEATKESEHQ QITEGDVPQE EEETEMRRQE TERIHSLAME ASSDLGNSES SRYSRQLSDL SSSAESHADT VIRVESERSG SSDSLEVVSV ISAGKDAQMS EKSLTPEDPE KPTDSVQEHQ QKDQEQAEAE DQREAEDLGF EVYDADTEEQ NQQLEELETV EEEPEDSDSL NEGGNHSSGH SSVGVPADTL AMIGKYRHQS SDNLSLTSLQ EFERLEKEVG ARGDGSLTRS EIELLVAGRL NKSGEGSVSS LAEFERLEKE MTENQSPPED VMMLSDIREE SEAEDMSIRD DDEEDAEGSD TELKSRPVQE EDLRVITPIA PSPTDSLDHA VDAVQMQYLE TSTDSLEPTF QEIEVEQRPE SVEDTSLTEY EVIPRVMEAS TTDSLDGTAT IEKDSVLEGA SQGIESTQST HGLLSGDTMG TVVTDDDRDS LDGEMSSMLQ SYPTTLTTFQ TTVVGPDGSL QTISRRVETK VTDPLVSHVT FTGTESQERL DQLPDDEQFE TVDTEGNVTR TTFHREHDQQ QPHF</td>
+                                        <td class="pic_col"><img src="assets/display_prototype/B0350.2f.png" alt="B0350.2f Domain Organisation"></td>  
                                     </tr>
                                     <tr>
-                                        <td>unc-82</td>
-                                        <td class="sequence-name-column">B0496.3</td>
-                                        <td>B0496.3e</td>
-                                        <td class="uniprot-id-column">H2KYA5</td>
-                                        <td class="chr-column">IV</td>
-                                        <td class="chr-pos-column">3.33</td>
-                                        <td class="chr-strand-column">+</td>
-                                        <td class="start-column">7424498</td>
-                                        <td class="end-column">7444664</td>
-                                        <td class="legacy-description-column">unc-82 encodes a serine/threonine kinase...</td>
-                                        <td class="automated-description-column">A structural constituent of muscle...</td>
-                                        <td class="phenotype-mutants-column">antibody_subcellular_localization_variant...</td>
-                                        <td class="phenotype-rnai-column">body_wall_muscle_sarcomere_morphology_variant...</td>
-                                        <td class="expression-column">body_wall_musculature...</td>
-                                        <td class="expression-genomic-column">anal_depressor_muscle, anal_sphincter_muscle...</td>
-                                        <td class="interacting-physical-column">?</td>
-                                        <td class="interacting-genetic-column">?</td>
-                                        <td class="interacting-regulatory-column">?</td>
-                                        <td class="yeast-homologs-column"></td>
-                                        <td class="fly-homologs-column">Nuak...</td>
-                                        <td class="fish-homologs-column">Nuak2, nuak1b...</td>
-                                        <td class="mouse-homologs-column">Nuak2, Nuak1...</td>
-                                        <td class="human-homologs-column">Nuak1, Nuak2...</td>
-                                        <td class="go-terms-column">ATP_binding, cellular_response_to_glucose_starvation...</td>
-                                        <td class="disease-associations-column">uterine_fibroid, anencephaly...</td>
-                                        <td class="aa-size-column">1793</td>
-                                        <td class="protein-sequence-column">?</td>
-                                        <td class="protein-domains-column"><img src="assets/display_prototype/B0496.3e.png" alt="B0496.3e Domain Organisation"></td>  
+                                        <td class ="checkbox_col">&nbsp;<input type="checkbox" id="B0496.3e" name="B0496.3e" checked="checked"/></td>
+                                        <td class ="gene_col"><a href="http://www.wormbase.org/db/gene/gene?name=unc-82;class=Gene" target="_blank">unc-82</a></td>
+                                        <td class ="gene_col"><a href="http://www.wormbase.org/db/gene/gene?name=B0496.3;class=Gene" target="_blank">B0496.3</a></td>
+                                        <td class ="gene_col"><a href="http://www.wormbase.org/db/gene/gene?name=B0496.3e;class=Protein" target="_blank">B0496.3e</a></td>
+                                        <td class ="gene_col"><a href="http://www.uniprot.org/uniprot/H2KYA5" target="_blank">H2KYA5</a></td>
+                                        <td class ="chr_col">IV</td>
+                                        <td class ="gpos_col">3.33</td>
+                                        <td class ="chr_col">IV</td>
+                                        <td class ="chr_col">+</td>
+                                        <td class ="ppos_col">7,424,498</td>
+                                        <td class ="ppos_col">7,444,664</td>
+                                        <td class ="text_col">unc-82 encodes a serine/threonine kinase related to the human ARK5/SNARK ( 1/ 2) and the PAR-1 and SNF1/AMP-Activated kinase (AMPK) protein kinase families; during development, UNC-82 activity is required for proper organization of internal (membrane-distal) proteins of myosin thick filaments and M-lines in conjunction with embryonic elongation; an UNC-82::GFP reporter fusion is expressed in muscle cells and is associated with M lines; UNC-82::GFP expression is also seen in the pharynx.</td>						
+                                        <td class ="text_col">A structural constituent of muscle. Involved in striated muscle myosin thick filament assembly and striated muscle paramyosin thick filament assembly. Located in M band. Expressed in body wall musculature. Human ortholog(s) of this gene implicated in anencephaly. Is an ortholog of human  1 (  family kinase 1) and  2 (  family kinase 2).</td>						
+                                        <td class ="text_col">antibody_subcellular_localization_variant, body_wall_muscle_morphology_variant, body_wall_muscle_thick_filament_variant, body_wall_muscle_thin_filament_variant, M_line_variant, muscle_birefringence_variant, muscle_cell_morphology_variant, pharyngeal_muscle_morphology_variant, sluggish, sperm_pseudopod_variant</td>						
+                                        <td class ="text_col">body_wall_muscle_sarcomere_morphology_variant, body_wall_muscle_thick_filament_variant, locomotion_reduced, locomotion_variant, M_line_variant, mitochondria_morphology_variant, protein_degradation_variant</td>						
+                                        <td class ="text_col">body_wall_musculature;  </td>						
+                                        <td class ="text_col">anal_depressor_muscle, anal_sphincter_muscle, AS_neuron, AS1, body_wall_muscle_cell, body_wall_musculature, Cappppv, Cpppppv, DA_neuron, DA1, DA3, DA9, DB_neuron, DB1, DB2, DB3, DB4, DB5, DB6, DB7, M.vrpaapaa, M.vrpaapap, MSapaaap, MSapapap, MSapappp, MSappapp, MSppaaap, MSppapap, MSppappp, MSpppapp, mu_int_L, muscle_cell, PLM, PVCL, SAA, uterine_muscle, VA_neuron, VA1, VD_neuron, vulval_muscle; 1-day_post-L4_adult_hermaphrodite, 10-days_post-L4_adult_hermaphrodite, 11-days_post-L4_adult_hermaphrodite, 15-days_post-L4_adult_hermaphrodite, 2-days_post-L4_adult_hermaphrodite, 24-cell_embryo, 3-days_post-L4_adult_hermaphrodite, 5-days_post-L4_adult_hermaphrodite, 6-days_post-L4_adult_hermaphrodite, 7-10_days_post-L4_adult_hermaphrodite, 8-days_post-L4_adult_hermaphrodite, 96-cell_embryo, adult, adult_hermaphrodite, all_stages, blastula_embryo, dauer_larva, embryo, L1_larva, L2_larva, L3_larva, L4_larva, L4_larva_male, L4-adult_lethargus, larva, oocyte-laying_stage_adult_hermaphrodite</td>						
+                                        <td class ="text_col">elks-1, glh-1, lin-53</td>
+                                        <td class ="text_col">dim-1, unc-15, unc-54</td>
+                                        <td class ="text_col"></td>
+                                        <td class ="text_col"></td>
+                                        <td class ="text_col">Nuak</td>
+                                        <td class ="text_col">Nuak2, nuak1b, nuak1a</td>
+                                        <td class ="text_col">Nuak2, Nuak1</td>
+                                        <td class ="text_col">Nuak1, Nuak2</td>
+                                        <td class ="text_col">ATP_binding , cellular_response_to_glucose_starvation , intracellular_signal_transduction , kinase_activity , M_band , negative_regulation_of_TOR_signaling , nucleotide_binding , nucleotide-activated_protein_kinase_complex , phosphorylation , protein_kinase_activity , protein_phosphorylation , protein_serine/threonine_kinase_activity , striated_muscle_myosin_thick_filament_assembly , striated_muscle_paramyosin_thick_filament_assembly , structural_constituent_of_muscle</td>						
+                                        <td class ="text_col">uterine_fibroid, anencephaly</td>						
+                                        <td class ="protsize_col">1793</td>
+                                        <td class ="seq_col">MSSKKRYGTY GRAITSPALL SSSVGWTRPD VTSQIDRLRS QATSVVSSPP PHEYAVPHAF SGSSNGTNAS RPPADPKQPQ RSRAERLRHR ISERRTNAYM IPPSSTTGKD PAIDALMNKY LNKSKENLDE GRKSRESSRA QELLARTNRE MSPTIDSLMK RYGNNNSSAH RIKDSTVSRR ESMEIQDNEN SRSLDNKSCR EARLSGSDVR IKWEVTNTEV KPTSSVKRFS VIIDPTGGRM PVGNSGSRSG RLARISQSNI RPFGSNGGGA TNSYGPGTHP MSGAEPCSPT KKEKHRFEIT KKLGSGTYGK VSLAYDHKFD REVAVKLIKK SAIESKADLV RIRREIRIMS ALNHPNIIQI YEVFENKDKI ILVMEYSSGG ELYDYVSRCG SLPEAEARRI FRQITSAVLY CHKHRVAHRD LKLENILLDQ NNNAKIADFG LSNYFADKNL LTTFCGSPLY ASPEIINGTP YKGPEVDCWS LGILLYTLVY GSMPFDGRDF NRMVRQIKRG AYFEPETPST ASMLIRNMLR VNPERRATIF DIASHWWLNL EENMPVIQEL PENQIIDHTP LTEREETMIV QDLADEQDVF MEFGHLSSET RRKIEDFRIR RKEAEEFNDN SPVKPPKARK TDELTGKISK EQPEEMKSAE KSLRGVKEEK EKPKVVDPND PLERLRQIEN RLGQNKKDKE AAKTSARVET VKLKEVKKEK SPEQQPEDPK TARGTSKPAD SRAPSFVPVK DRPETSEPER PRTRPHLTAS AYRIETDSLN MLMNQVLEQM EKGPVNLNII ARIKAHPLYD TRPMVKELLE SIIAAQPEPV QKQTSKVVEQ QTFSRQNTLT RKKKEDPLEE EIPEVPSPSR KMKERPWHSV EVGFDPDEEP EHDRMQESIA SNATEVTVQD TSFEDDSSDE EERKKTPVAS TPKTPVLIVE KQESSTNAED EESDEGDDYS DAEMEELADE VDKKGPSDSK LAPVVENLEA NPPPDPSSSP QFLDAFDRGL IKRQSKGKYQ HTLINNYGRG VSTECESPTQ QRKFFGGPQP SAELSPFLFD KAKEILQTYP NNKLDARGID VELRRKLRME KVKADLLKQP KDGDKPRNSY VGSVPPRSPP PIVVKSDGEE LDDEEEEEED EEEIEETDSE EGSDFENFKP KRPIIAAVRR DDGAVVPVIH QTTRPAVVSP NSQNPRYQVA SPKTSTVIQA TPEKVPVAGT SAKYLVTVAE LKLKPTDKKE EAQLKEQLKD SEINSERKVT KGAAPSTISQ DSDGKDTFES ASAYIRRKNR ERRQRNRTIG TAEEALRALE RPSVDPYDDR AFSPLSTDPF YSHHSSGSAA PSALGYVRPR YHDDSYRTHR DSDYRPMSPT SRYTAAVTRD DRGKSTSYDP HETTRPSYDR GYITSSNASP SYTRKFEHEQ PTLNSWANDR KFEVYKTRAE RDAERNTYHP TGTTGASSYR PSSYYTSASD RPVTGLRRPE ESYTSSTNYG RYDGRSTTPS NDQYAISTAL AENQASSMNN RFRPTARRVA SAMTDADRRN YHRSRSMDRN KVDYEYGSNL LNRLTTPDSH GDYSYVNYHD SSNGRSNITL EKDGQPRSIL KNKQSADIEP RVESSYEPSN GVRSVFERLR RHLSLEKSVS PQRQNTSFYG RQLRVASVGP HSRNIDSTSS ALDNPKKKRS LLSFNRRKTS EVRMGADGKL VTNGYDSTPS SRDFKRPSSP IDRIKSLFRK NESSGTGHSD YYNSSRNYTS SNPVSTTREP YVAQYRKYPG STSRDTSSAL NRYSYTPGLT DQRRHWYDDP NIY</td>
+                                        <td class="pic_col"><img src="assets/display_prototype/B0496.3e.png" alt="B0496.3e Domain Organisation"></td>  
                                     </tr>
                                     <tr>
-                                        <td>unc-30</td>
-                                        <td class="sequence-name-column">B0564.10</td>
-                                        <td>B0564.10b</td>
-                                        <td class="uniprot-id-column">P52906</td>
-                                        <td class="chr-column">IV</td>
-                                        <td class="chr-pos-column">8.22</td>
-                                        <td class="chr-strand-column">+</td>
-                                        <td class="start-column">13118977</td>
-                                        <td class="end-column">13124406</td>
-                                        <td class="legacy-description-column">unc-30 encodes a homeodomain-containing protein...</td>
-                                        <td class="automated-description-column">Enables sequence-specific DNA binding activity...</td>
-                                        <td class="phenotype-mutants-column">amplitude_of_sinusoidal_movement_variant...</td>
-                                        <td class="phenotype-rnai-column">locomotion_variant, shrinker...</td>
-                                        <td class="expression-column">ASGL, ASGR, AVJL, AVJR...</td>
-                                        <td class="expression-genomic-column">AVDL, AVDR, AVHL, AVHR...</td>
-                                        <td class="interacting-physical-column">?</td>
-                                        <td class="interacting-genetic-column">?</td>
-                                        <td class="interacting-regulatory-column">?</td>
-                                        <td class="yeast-homologs-column">Ptx1...</td>
-                                        <td class="fly-homologs-column">Pitx2, Pitx3, Pitx1...</td>
-                                        <td class="fish-homologs-column">Pitx1, Pitx2, Pitx3...</td>
-                                        <td class="mouse-homologs-column">Pitx1, Pitx2, Pitx3...</td>
-                                        <td class="human-homologs-column">Pitx1, Pitx2, Pitx3...</td>
-                                        <td class="go-terms-column">anatomical_structure_morphogenesis, axon_guidance...</td>
-                                        <td class="disease-associations-column">cataract, clubfoot, Axenfeld-Rieger_syndrome...</td>
-                                        <td class="aa-size-column">323</td>
-                                        <td class="protein-sequence-column">?</td>
-                                        <td class="protein-domains-column"><img src="assets/display_prototype/B0564.10b.png" alt="B0564.10b Domain Organisation"></td>
+                                        <td class ="checkbox_col">&nbsp;<input type="checkbox" id="B0564.10b" name="B0564.10b" checked="checked"/></td>
+                                        <td class ="gene_col"><a href="http://www.wormbase.org/db/gene/gene?name=unc-30;class=Gene" target="_blank">unc-30</a></td>
+                                        <td class ="gene_col"><a href="http://www.wormbase.org/db/gene/gene?name=B0564.10;class=Gene" target="_blank">B0564.10</a></td>
+                                        <td class ="gene_col"><a href="http://www.wormbase.org/db/gene/gene?name=B0564.10b;class=Protein" target="_blank">B0564.10b</a></td>
+                                        <td class ="gene_col"><a href="http://www.uniprot.org/uniprot/P52906" target="_blank">P52906</a></td>
+                                        <td class ="chr_col">IV</td>
+                                        <td class ="gpos_col">8.22</td>
+                                        <td class ="chr_col">IV</td>
+                                        <td class ="chr_col">+</td>
+                                        <td class ="ppos_col">13,118,977</td>
+                                        <td class ="ppos_col">13,124,406</td>
+                                        <td class ="text_col">unc-30 encodes a homeodomain-containing protein that is orthologous to the Pitx family of homeodomain transcription factors; during develpoment, UNC-30 controls the terminal differentiation of all 19 type D GABA-ergic motor neurons by directly regulating the expression of UNC-25/GAD and UNC-47/VGAT, which regulate GABA formation and secretion, respectively; UNC-30 is expressed most strongly in type D motor neurons during early L1 and L2 larval stages.</td>						
+                                        <td class ="text_col">Enables sequence-specific DNA binding activity. Involved in neuron differentiation; positive regulation of transcription by RNA polymerase II; and regulation of locomotion. Located in nucleus. Expressed in GABAergic neurons; ganglia; intestine; and ventral cord neurons. Human ortholog(s) of this gene implicated in Arts syndrome; clubfoot; and eye disease (multiple). Is an ortholog of human PITX2 (paired like homeodomain 2) and PITX3 (paired like homeodomain 3).</td>						
+                                        <td class ="text_col">amplitude_of_sinusoidal_movement_variant, antibody_staining_reduced, axon_fasciculation_variant, axon_outgrowth_variant, backing_decreased, backward_locomotion_variant, backward_point_velocity_decreased, body_posture_amplitude_decreased, body_posture_wavelength_decreased, coiling_frequency_increased, embryonic_lethal, forward_locomotion_decreased, forward_point_velocity_decreased, frequency_body_bend_reduced, head_bend_angle_variant, larval_lethal, locomotion_variant, neuron_morphology_variant, nose_movement_variant, path_curvature_increased, pathogen_adherence_decreased, pathogen_resistance_increased, pausing_increased, roaming_reduced, short, shortened_life_span, shrinker, sluggish, small, tail_bend_angle_variant, thin, turning_frequency_variant</td>						
+                                        <td class ="text_col">locomotion_variant, shrinker, transgene_expression_increased</td>						
+                                        <td class ="text_col">ASGL, ASGR, AVJL, AVJR, DD_neuron, DD1, DD2, DD3, DD4, DD5, DD6, GABAergic_neuron, intestine, PVPL, PVPR, RID, RIH, VD_neuron, VD1, VD10, VD11, VD12, VD13, VD2, VD3, VD4, VD5, VD6, VD7, VD8, VD9, ventral_cord_neuron; L1_larva, L2_larva, L3_larva, L4_larva, postembryonic</td>						
+                                        <td class ="text_col">AVDL, AVDR, AVHL, AVHR, AVJ, AVJL, AVJR, DD_neuron, DD1, DD2, DD3, DD4, DD5, DD6, GABAergic_neuron, GLRDL, GLRDR, GLRL, GLRR, GLRVL, GLRVR, intestine, neuron, OLL, PVD, PVP, PVPL, PVPR, PVT, RIBL, RIBR, sensory_neuron, somatic_gonad_precursor, spermathecal-uterine_valve_cell, VD_neuron, VD1, VD10, VD11, VD12, VD13, VD2, VD3, VD4, VD5, VD6, VD7, VD8, VD9, ventral_nerve_cord, Z1, Z4; 1-day_post-L4_adult_hermaphrodite, 10-days_post-L4_adult_hermaphrodite, 11-days_post-L4_adult_hermaphrodite, 15-days_post-L4_adult_hermaphrodite, 2-days_post-L4_adult_hermaphrodite, 2-fold_embryo, 20-days_post-L4_adult_hermaphrodite, 3-days_post-L4_adult_hermaphrodite, 3-fold_embryo, 4-days_post-L4_adult_hermaphrodite, 5-days_post-L4_adult_hermaphrodite, 6-days_post-L4_adult_hermaphrodite, 8-days_post-L4_adult_hermaphrodite, adult, all_stages, blastula_embryo, dauer_larva, embryo, L1_larva, L2_larva, L3_larva, L4_larva, larva</td>						
+                                        <td class ="text_col">alr-1, aptf-1, ceh-10, ceh-13, ceh-18, ceh-37, ceh-43, ceh-45, ceh-8, daf-3, die-1, dsc-1, egl-5, elt-1, eya-1, fkh-6, hlh-30, lin-54, lsl-1, lsy-2, mab-5, mls-2, mml-1, nhr-10, nhr-111, nhr-1, nhr-6, php-3, pie-1, T24C4.2, tbx-8, ttx-1, unc-30, unc-30, unc-42, vab-3, ztf-11, ztf-1, ztf-26</td>
+                                        <td class ="text_col">cdc-48.2, jnk-1</td>
+                                        <td class ="text_col">ckb-2, irx-1, madd-4, odr-2, oig-1, snb-1, syd-1, syd-2, unc-130, unc-25, unc-46, unc-47, unc-49</td>
+                                        <td class ="text_col"></td>
+                                        <td class ="text_col">Ptx1</td>
+                                        <td class ="text_col">Pitx2, Pitx3, Pitx1</td>
+                                        <td class ="text_col">Pitx1, Pitx2, Pitx3</td>
+                                        <td class ="text_col">Pitx1, Pitx2, Pitx3</td>
+                                        <td class ="text_col">anatomical_structure_morphogenesis , axon_guidance , DNA_binding , DNA-binding_transcription_factor_activity , DNA-binding_transcription_factor_activity,_RNA_polymerase_II-specific , dorsal/ventral_axon_guidance , GABAergic_neuron_differentiation , nucleus , positive_regulation_of_transcription_by_RNA_polymerase_II , regulation_of_locomotion , regulation_of_transcription_by_RNA_polymerase_II , RNA_polymerase_II_cis-regulatory_region_sequence-specific_DNA_binding , sequence-specific_DNA_binding</td>						
+                                        <td class ="text_col">cataract, clubfoot, Axenfeld-Rieger_syndrome, Arts_syndrome, anterior_segment_dysgenesis, anterior_segment_dysgenesis_1, anterior_segment_dysgenesis_4, Axenfeld-Rieger_syndrome_type_1, cataract_11_multiple_types, cataract_9_multiple_types, ring_dermoid_of_cornea</td>						
+                                        <td class ="protsize_col">323</td>
+                                        <td class ="seq_col">MDDNTATLTA IHQQQQSHNR FSNPLVCVGQ LDHHSLLPEH SISSSLAPLT HNPYAFNYSI PLPPTDITTK LPKLELLSLD VKQEQDDNHL DTSSPTDSTG NGSTNGGKIQ KPRRQRTHFT SHQLTELENW FSRNRYPDMA CREEIAVWIS LTEPRVRVWF KNRRAKWRKR ERNYVIDNGQ GTTKVTAQSL DPLGSLQNTF PQTLLQSSSS QLDDSAVTSS SFYGYGGAWQ QNPYYSRNNQ TTFNWQIKPQ DQFQFQTIPM SPTTATSRFS TAANLAPLPT AQAAFSTSAT SSNDKLKLMD GLSNSLSSSL GQPYQPCQYS GPL</td>
+                                        <td class="pic_col"><img src="assets/display_prototype/B0564.10b.png" alt="B0564.10b Domain Organisation"></td>
                                     </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    <tr>
+                                        <td class ="checkbox_col">&nbsp;<input type="checkbox" id="B0273.4c" name="B0273.4c" checked="checked"/></td>
+                                        <td class ="gene_col"><a href="http://www.wormbase.org/db/gene/gene?name=unc-5;class=Gene" target="_blank">unc-5</a></td>
+                                        <td class ="gene_col"><a href="http://www.wormbase.org/db/gene/gene?name=B0273.4;class=Gene" target="_blank">B0273.4</a></td>
+                                        <td class ="gene_col"><a href="http://www.wormbase.org/db/gene/gene?name=B0273.4c;class=Protein" target="_blank">B0273.4c</a></td>
+                                        <td class ="gene_col"><a href="http://www.uniprot.org/uniprot/Q26261" target="_blank">Q26261</a></td>
+                                        <td class ="chr_col">IV</td>
+                                        <td class ="gpos_col">1.78</td>
+                                        <td class ="chr_col">IV</td>
+                                        <td class ="chr_col">-</td>
+                                        <td class ="ppos_col">5,495,664</td>
+                                        <td class ="ppos_col">5,528,338</td>
+                                        <td class ="text_col">unc-5 encodes a netrin receptor; unc-5 activity is required cell autonomously for dorsalward cell and pioneer motor axon migrations along the body wall that are essential for normal locomotion and gonad development; unc-5 mRNAs are expressed throughout the entire life cycle, with increasing levels seen as animals progess to adulthood.</td>						
+                                        <td class ="text_col">Enables netrin receptor activity and protein tyrosine kinase binding activity. Involved in several processes, including axon guidance; regulation of neuron projection development; and sex differentiation. Acts upstream of or within distal tip cell migration. Located in axonal growth cone. Expressed in several structures, including distal tip cell; excretory canal; head neurons; motor neurons; and somatic nervous system. Is an ortholog of human UNC5A (unc-5 netrin receptor A); UNC5B (unc-5 netrin receptor B); and UNC5C (unc-5 netrin receptor C).</td>						
+                                        <td class ="text_col">axodendritic_polarity_variant, axon_branching_variant, axon_development_variant, axon_guidance_variant, axon_outgrowth_variant, axon_trajectory_variant, coiler, constitutive_egg_laying, cord_commissures_fail_to_reach_target, dendrite_development_variant, distal_tip_cell_migration_variant, dorsal_nerve_cord_development_variant, dorsal_region_development_variant, gonad_arm_morphology_variant, locomotion_variant, long_range_axon_migration_variant, muscle_arm_axon_connection_variant, muscle_arm_development_variant, presynaptic_component_localization_variant, presynaptic_vesicle_cluster_localization_variant, short_range_axon_migration_variant, ventral_cord_disorganized</td>						
+                                        <td class ="text_col">axon_guidance_variant, body_wall_muscle_sarcomere_morphology_variant, dendrite_development_variant, locomotion_variant, protein_degradation_variant</td>						
+                                        <td class ="text_col">anterior_distal_tip_cell, AS_neuron, ASEL, ASER, DA_neuron, DB_neuron, DD_neuron, distal_tip_cell, dorsal_nerve_cord, excretory_canal, IL2DL, IL2DR, IL2L, IL2R, IL2VL, IL2VR, linker_cell, motor_neuron, OLLL, OLLR, OLQDL, OLQDR, OLQVL, OLQVR, posterior_distal_tip_cell, RIAL, RIAR, RIH, VD_neuron, ventral_nerve_cord; all_stages, L2-L3_molt, L3_larva, L4_larva</td>						
+                                        <td class ="text_col">ABalapaaaa, ABalappapa, AS11, DA_neuron, DA1, DA2, DA3, DA4, DA5, DA6, DA7, DA8, DA9, DB1, DB2, DB3, DB4, DB5, DB6, DB7, g1AL, g1AR, g1P, GABAergic_neuron, head_mesodermal_cell, hyp3, I5_neuron, intestine, male-specific_anatomical_entity, MSpaaapa, MSpppaaa, neuron, OLL, oocyte, PDA, PDB, PVD, retrovesicular_ganglion, RID, SAB, sensory_neuron, SIADL, SIADR, SIAVL, SIAVR, VA_neuron, VA1, VA12, VD_neuron; 1-cell_embryo, 1-day_post-L4_adult_hermaphrodite, 10-days_post-L4_adult_hermaphrodite, 11-days_post-L4_adult_hermaphrodite, 15-days_post-L4_adult_hermaphrodite, 2-days_post-L4_adult_hermaphrodite, 20-days_post-L4_adult_hermaphrodite, 3-days_post-L4_adult_hermaphrodite, 4-days_post-L4_adult_hermaphrodite, 5-days_post-L4_adult_hermaphrodite, 6-days_post-L4_adult_hermaphrodite, 7-10_days_post-L4_adult_hermaphrodite, 8-days_post-L4_adult_hermaphrodite, adult, adult_male, all_stages, blastula_embryo, dauer_larva, embryo, L1_larva, L2_larva, L2d_larva, L3_larva, L4_larva, larva, oocyte-laying_stage_adult_hermaphrodite</td>						
+                                        <td class ="text_col">max-1, src-1, unc-129, apb-3, ccar-1, dpy-19, madd-4, unc-73</td>
+                                        <td class ="text_col">max-1, src-1, unc-129, ahr-1, clr-1, dbl-1, egl-20, enu-3.1, mec-8, mig-22, seu-1, seu-2, sqv-5, unc-14, unc-34, unc-40, unc-44, unc-52, unc-6, unc-71</td>
+                                        <td class ="text_col">blmp-1, daf-12, daf-9, lnp-1, nhr-67, pros-1, rab-3, rpm-1, snb-1, sys-1, unc-49</td>
+                                        <td class ="text_col"></td>
+                                        <td class ="text_col">unc-5</td>
+                                        <td class ="text_col">Unc5b, unc5cb, unc5da, Unc5a, unc5db, unc5ca</td>
+                                        <td class ="text_col">Unc5c, Unc5a, Unc5b, Unc5d</td>
+                                        <td class ="text_col">Unc5c, Unc5a, Unc5d, Unc5b</td>
+                                        <td class ="text_col">axonal_growth_cone , cell_projection , chemorepulsion_of_axon , commissural_neuron_axon_guidance , distal_tip_cell_migration , dorsal/ventral_axon_guidance , establishment_or_maintenance_of_actin_cytoskeleton_polarity , gonad_morphogenesis , membrane_raft , membrane , mesodermal_cell_migration , motor_neuron_axon_guidance , negative_regulation_of_microtubule_polymerization , nematode_male_tail_tip_morphogenesis , netrin_receptor_activity , netrin-activated_signaling_pathway , neuron_projection , plasma_membrane , positive_regulation_of_anterior/posterior_axon_guidance , positive_regulation_of_axon_extension , positive_regulation_of_locomotion , protein_tyrosine_kinase_binding , regulation_of_dorsal/ventral_axon_guidance , signal_transduction , ventral_cord_development</td>						
+                                        <td class ="text_col"> </td>						
+                                        <td class ="protsize_col">947</td>
+                                        <td class ="seq_col">MEDDTPDVSS DSNGDAAYSD YFLDYKSIMD EITITTQPKS GYVIRNKPLR LQCRANHATK IRYKCSSKWI DDSRIEKLIG TDSTSGVGYI DASVDISRID VDTSGHVDAF QCQCYASGDD DQDVVASDVA TVHLAYMRKH FLKSPVAQRV QEGTTLQLPC QAPESDPKAE LTWYKDGVVV QPDANVIRAS DGSLIMSAAR LSDSGNYTCE ATNVANSRKT DPVEVQIYVD GGWSEWSPWI GTCHVDCPLL RQHAHRIRDP HDVLPHQRRT RTCNNPAPLN DGEYCKGEEE MTRSCKVPCK LDGGWSSWSD WSACSSSCHR YRTRACTVPP PMNGGQPCFG DDLMTQECPA QLCTADSSRI VISDTAVYGS VASIFIVASF ILAILAMFCC KRGNSKKSKP LKPQKMNSEK AGGIYYSEPP GVRRLLLEHQ HGTLLGEKIS SCSQYFEPPP LPHSTTLRSG KSAFSGYSST RNAGSRAALI QECSSSSSGS GGKRTMLRTS SSNCSDDDNY ATLYDYMEDK SVLGLDTSQN IVAAQIDSNG ARLSLSKSGA RLIVPELAVE GEKMLYLAVS DTLTDQPHLK PIESALSPVI VIGQCDVSMS AHDNILRRPV VVSFRHCAST FPRDNWQFTL YADEGSGWQK AVTIGEENLN TNMFVQFEQP GKKNDGFGWC HVMTYSLARL MLAGHPRRNS LSAAKRVHLA VFGPTEMSAY RRPFELRVYC VPETGAAMES VWKQEDGSRL LCESNDFILN EKGNLCICIE DVIPGFSCDG PEVVEISETQ HRFVAQNGLH CSLKFRPKEI NGSQFSTRVI VYQKASSTEP MVMEVSNEPE LYDATSEERE KGSVCVEFRL PFGVKDELAR LLDMPNESHS DWRGLAKKLH YDRYLQFFAS FPDCSPTSLL LDLWEASSSG SARAVPDLLQ TLRVMGRPDA VMVLERFLSA FPQIVSP</td>
+                                        <td class="pic_col"><img src="assets/display_prototype/B0273.4c.png" alt="B0273.4c Domain Organisation"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class ="checkbox_col">&nbsp;<input type="checkbox" id="B0350.2f" name="B0350.2f" checked="checked"/></td>
+                                        <td class ="gene_col"><a href="http://www.wormbase.org/db/gene/gene?name=unc-44;class=Gene" target="_blank">unc-44</a></td>
+                                        <td class ="gene_col"><a href="http://www.wormbase.org/db/gene/gene?name=B0350.2;class=Gene" target="_blank">B0350.2</a></td>
+                                        <td class ="gene_col"><a href="http://www.wormbase.org/db/gene/gene?name=B0350.2f;class=Protein" target="_blank">B0350.2f</a></td>
+                                        <td class ="gene_col"><a href="http://www.uniprot.org/uniprot/Q17490" target="_blank">Q17490</a></td>
+                                        <td class ="chr_col">IV</td>
+                                        <td class ="gpos_col">2.89</td>
+                                        <td class ="chr_col">IV</td>
+                                        <td class ="chr_col">+</td>
+                                        <td class ="ppos_col">5,975,557</td>
+                                        <td class ="ppos_col">6,004,857</td>
+                                        <td class ="text_col"> </td>						
+                                        <td class ="text_col">Enables cell adhesion molecule binding activity. Involved in several processes, including axon guidance; establishment or maintenance of cytoskeleton polarity; and regulation of cellular component organization. Located in lateral plasma membrane. Expressed in hermaphrodite gonad; hypodermis; intestinal cell; and vulval cell. Human ortholog(s) of this gene implicated in several diseases, including ankyrin-B-related cardiac arrhythmia; autosomal recessive intellectual developmental disorder 37; and heart conduction disease (multiple). Is an ortholog of human ANK2 (ankyrin 2) and ANK3 (ankyrin 3).</td>						
+                                        <td class ="text_col">amplitude_of_sinusoidal_movement_variant, axon_branching_variant, axon_development_variant, axon_outgrowth_variant, backing_decreased, backward_point_velocity_decreased, benzaldehyde_chemotaxis_variant, body_posture_amplitude_variant, body_posture_wavelength_decreased, coiler, coiling_frequency_increased, curly, dumpy, dye_filling_defect, forward_locomotion_decreased, forward_point_velocity_decreased, frequency_of_body_bend_variant, gap_junction_plaque_number_increased, head_bend_angle_decreased, lethal, locomotion_variant, loss_of_asymmetry_AWC, nose_movement_variant, paralyzed, path_curvature_increased, pausing_variant, roaming_reduced, short, small, sterile, tail_bend_angle_variant, thin, turning_frequency_variant</td>						
+                                        <td class ="text_col">axon_guidance_variant, cleavage_furrow_termination_defective_early_emb, dendrite_development_variant, dumpy, germ_cell_morphology_variant, locomotion_variant, meiosis_variant, reduced_brood_size, slow_growth, sluggish, small</td>						
+                                        <td class ="text_col">anal_depressor_muscle, anchor_cell, body_wall_musculature, gonadal_sheath_cell, head_neuron, hypodermal_cell, hypodermis, intestinal_cell, intestine, muscle_cell, nerve_ring, nervous_system, neuron, pharyngeal_neuron, seam_cell, spermatheca, tail_neuron, ventral_cord_neuron, vulval_cell; 1.5-fold_embryo, 2-fold_embryo, 3-fold_embryo, adult, embryo, enclosing_embryo, fully-elongated_embryo, L1_larva, L3_larva, L4_larva, larva</td>						
+                                        <td class ="text_col">anal_depressor_muscle, anal_sphincter_muscle, anchor_cell, AS1, AS10, AS11, AS2, AS3, AS4, AS5, AS6, AS7, AS8, AS9, AVG, AVK, Cappppv, CEM, CEPshDL, CEPshDR, CEPshVL, CEPshVR, Cpppppv, DA_neuron, DA1, DA2, DA3, DA4, DA5, DA6, DA7, DA8, DA9, DB1, DB2, DB3, DB4, DB5, DB6, DB7, DD_neuron, head_mesodermal_cell, hermaphrodite_distal_tip_cell, HOB, HSN, I5_neuron, IL2_neuron, intestinal_muscle, intestine, male_distal_tip_cell, MSapaaap, MSapapap, MSapappp, MSappapp, MSppaaap, MSppapap, MSppappp, MSpppapp, muscle_cell, neuron, NSM, OLL, PDB, PLM, PVC, PVD, PVM, PVT, PVW, ray_neuron_type_B, rect_D, retrovesicular_ganglion, SAB, sensory_neuron, VA_neuron, VA12, VB1, VB10, VB11, VB2, VB3, VB4, VB5, VB6, VB7, VB8, VB9; 1-day_post-L4_adult_hermaphrodite, 10-days_post-L4_adult_hermaphrodite, 2-days_post-L4_adult_hermaphrodite, 20-days_post-L4_adult_hermaphrodite, 3-days_post-L4_adult_hermaphrodite, 4-days_post-L4_adult_hermaphrodite, 5-days_post-L4_adult_hermaphrodite, 6-days_post-L4_adult_hermaphrodite, 7-10_days_post-L4_adult_hermaphrodite, adult, adult_hermaphrodite, adult_male, all_stages, blastula_embryo, dauer_larva, embryo, L1_larva, L2_larva, L3_larva, L4_larva, L4-adult_lethargus, larva, oocyte-laying_stage_adult_hermaphrodite</td>						
+                                        <td class ="text_col">sax-7, C11E4.6, calm-1, cdc-42, chn-1, dlg-1, elks-1, glh-1, gras-1, lgl-1, myrf-1, myrf-2, nhr-111, nrde-2, pak-1, pan-1, rabs-5, sec-6, sip-1, smo-1, spc-1, spe-39, ubq-1, unc-119, vps-45, Y59A8B.12, zen-4</td>
+                                        <td class ="text_col">daf-11, unc-5</td>
+                                        <td class ="text_col">sax-7, inx-19, unc-1, unc-33, unc-9</td>
+                                        <td class ="text_col"></td>
+                                        <td class ="text_col">Ank2, Ank</td>
+                                        <td class ="text_col">ank1a, ank2b, ank2a, ank3a</td>
+                                        <td class ="text_col">Ank1, Ank3, Ank2</td>
+                                        <td class ="text_col">Ank1, Ank2, Ank3</td>
+                                        <td class ="text_col">body_morphogenesis , cell_adhesion_molecule_binding , chemorepulsion_of_axon , cytoplasm , cytoskeleton , dorsal/ventral_axon_guidance , establishment_or_maintenance_of_actin_cytoskeleton_polarity , establishment_or_maintenance_of_microtubule_cytoskeleton_polarity , lateral_plasma_membrane , localization , locomotion , membrane , negative_regulation_of_microtubule_polymerization , netrin-activated_signaling_pathway , positive_regulation_of_multicellular_organism_growth , regulation_of_dorsal/ventral_axon_guidance , signal_transduction</td>						
+                                        <td class ="text_col">anemia, bipolar_disorder, schizophrenia, hereditary_spherocytosis, sick_sinus_syndrome, atrial_fibrillation, autosomal_recessive_intellectual_developmental_disorder_37, hereditary_spherocytosis_type_1, ankyrin-B-related_cardiac_arrhythmia</td>						
+                                        <td class ="protsize_col">6994</td>
+                                        <td class ="seq_col">MSNEGDPPQP QQQQPESQEV QAPAAPEPGR AEGSASFLRA ARAGDLEKVL ELLRAGTDIN TSNANGLNSL HLASKEGHSE VVRELIKRQA QVDAATRKGN TALHIASLAG QSLIVTILVE NGANVNVQSV NGFTPLYMAA QENHEEVVKY LLKHGANQAL STEDGFTPLA VALQQGHDRV VAVLLENDSK GKVRLPALHI AAKKDDTTAA TLLLQNEHNP DVTSKSGFTP LHIAAHYGHE NVGQLLLEKG ANVNYQARHN ISPLHVATKW GRTNMANLLL SRGAIIDSRT KDLLTPLHCA ARSGHDQVVD LLVVQGAPIS AKTKNGLAPL HMAAQGDHVD AARTLLYHRA PVDDVTVDYL TPLHVAAHCG HVRVAKLLLD RSADPNSRAL NGFTPLHIAC KKNRIKVVEL LLKYRAAIEA TTESGLTPLH VAAFMGAINI VIYLLQQGAN PDVETVRGET PLHLAARANQ TDVVRVLIRN GAKVDAQARE LQTPLHIASR LGNTDIVILL LQAGANSNAT TRDNYSPLHI AAKEGQEEVA GILLDHNADK TLLTKKGFTP LHLASKYGNL EVVRLLLERG TPVDIEGKNQ VTPLHVAAHY NNDKVAMLLL ENGASAKAAA KNGYTPLHIA AKKNQMEIAS TLLQFKADPN AKSRAGFTPL HLSAQEGHKE ISGLLIENGS DVGAKANNGL TAMHLCAQED HVPVAQILYN NGAEINSKTN AGYTPLHVAC HFGQLNMVKF LVENGADVGE KTRASYTPLH QAAQQGHNNC VRYLLENGAS PNEQTATGQT PLSIAQRLGY VSVVETLRTV TETTVITETT TVDERYKPQN PEAMNETMFS ESEDEGQAAE HEAVAAHEKD FSDNLTQGLQ DSTGVHMIHT GEQLLQRSQE LENGGAIPKI NSGGMSPEKE FAKIAPVATS SPIATSNSQS FGIAPRAGSI SGQFQQQPLH GAGPEDNLEE LVRRAQNHPI NAGNYDNGGV AMLENGHADN VPIGHHVTQP SKLQHRTFLI SFLVDARGGA MRGCRHSGVR IIVPPRKASQ PIRVTCRYLR KDKLAHPPPL SEGEELASRI LEMAPAGAKF LGPVILEVPH FASLRDRERE IVILRSDDGQ HWKEHQLEAT EDAVQEVLNE SFDAEDLAQL DDLQTPRITR ILTSDFPMYF AVVTRVRQEV HCVGPEGGVI ISSVVPRVQA IFPDGSLTKT IKVSVQAQPV PQEMVTRLHG NRVAVSPIVT VEPRRRKFHK PITLCIPLPQ SNNRGMLTQY SGQQGQEPPT LRLLCSITGG SAPAQWEDIT GTTQLTFTGD EVSFTTTVSA RFWLMDCQTP RDAARMAQEV YNEAISIPYM AKFAVFARRT FPVEGQLRVF CMTDDKEDKT LEKQEHFKLI AKSRDVEVLK GKHQFLEFSG NLVPITKSGD QLSLFFLPFQ ENRLAFMVKT RSNDDNEAAT EGRIGFMAEP KIRSDALPPQ QPICTLAISL PEYTGEIKTA PPPKKDLTPF EQRYGSALEK DLPEFVHQNV LKGIGADWPR LGRALEVPHR DIQHIRQNYP GQECKNTLKI WIHLKKEDAN QDNLDQALRQ IGRDDIVRSI AYGEPDALIN YSQADSPSQK REPIRHFEEV PAATLVKREV RTEDLVTREP VQPTHHVEQA TTVVQEPSYS APVHHSPVPE EPEMEEEAPV AEMRTVVRTE RHVHDSEDGP VVEERTITTT YEDDVAVNEN IVDRTVPLNE DEQQKWEELN RLADESSPSP AQRSTIVAES TSEQVPEDVE QSVESESHRE DDGTIVTTTV TTSHISESPS GSPTRRSVEP EEHRHSQHED HEASGAEQHS GQDSGTTQKK ETAEEGFTNE DGSVVVSKKM TRVVTTTRTT LPGEGEEPSA PDSPVESLGS VKDRIAKFEQ FKTLPIDPSV SGPPPSAHTL QSEEYQEESG NVESAYDVET DRRDSERSLK SERSIPEIHT SPSEEQQSEH FESAEHTEDQ GRDSGRSLKS DRSIPEVQFT ESDSELEKHD LHEDSHLEPT VGIVITPHTP VPPEHPDDKE DIEDEQPQEP LEPSEPEHVA HAELKDTREY SDEELAQELS PSEEHVSTAE IKDIKSYSPT SSDDERSSQK GKVSPPIPQV RHAISPSVAS EVLSSHDDEL AAHFVAESFE KHDEGNVETI EQTPVYKGHH SPGQTSPIVS EHPHAQEYAE SVTSHDEGDN LSLKSGHEPE IARHSVASVQ EEDDDDDEKS ELGDFAKKAG MIVGGVIAAP VALAAVGAKA AYDALNRDDD EEKLEGHEEK EVLTTQTTIM ESPIRHEDIP SPHLEDVTPK VSHQEHPYEH VTETTTTVTR DYYEQPEDHR EASPAPSSHV ESERPISESP AVSEREPSHI ATETTTTVTR EYDQEPKADQ SSARESVRDL VSEEHEHPAC DSERLSEPAQ SPEPVETHAE SQFSNLVETT TTTAVTREFY DEDQEEQASS RATKERIEQS PVASERSIVS TEHRQSPTQE SEQSLEPTSE KNVHTVTETT TVTRECFEEP IASELEHASR EFEQGSNDFR RSVSPVDAQE QVDVPHSPAP SSHAESEQPV PESPHHIVET TTTTTVTREF QDEEYPRPES PAEIFPIPSS EQQSEEPHIV KETTTTTTVT RELYDEPEKG NVTFSPAPSS HAESERQVPE SPVVSHQEYP HVVETTTTTN VTSNIYDDED NVPSSEDPAT QHFQQSETSV HRSHPDSVEE SDGEGLGSKV LGFAKKAGMV AGGVVAAPVA LAAVGAKAAY DAFEKDDEDD ETSHSPESPV PEYQSEQYQD DSAQSSHTDF EHHMPESPIE HEKETEEFDH SHPESPVLSE KEREHQVTSE TTTTTTVTRE YNDEPEDEQE HQGPHSPAPS SHTEAEHPHI VETTTTTTVT REFQEEPEEL EYKQEDNSRK SPSSHSQENL VTETTTTTTV TSEYYDEPEH FEEQETGKSS PAPSSHVESE RQVLESPVAS DPRHVMETTT TTTVTRQFHD DESERSDSPN RDVVEAQSIH SSNIESHQQF SEKDDDSQRG PSPVKSEDEP VKHESYKFET STTETREFDR PELDSERLSE PAQSPMEVSP ITTEENIVRP SSSVKSEYGS EGHVPSVIET KTTTTVTREF YDDDQDEHEN QTQSEELRSS IPTEEEEHEG SHLFKETTTT TTVTREFYDE PENVEELQDP QFSPAPSSHV ESGIHASESP VAQQQEIPQT REFHEDSPAA QYFHEEEYES HVLTEQAPLL TEQQHQPESG DESDGEGLGS KVLGFAKKAG MVAGGVVAAP VALAAVGAKA AYDALKKDDD EEDQEERESL LRQERSIDSP HASEQSQIEE EHERFEESPV PSEKHHVTET TTTTTVTREY FDEHEPLVSQ EIEGEKGSPA DSEKSLPHVV ETTTTTTVTR EFDKNDSESP VPSEKEQEPT TVSREVYETA EGDEPEHHYT ETTTTTVTKE VIDDSQEMGD DDEPKQESPQ VVETTTTTMT SREYDDNDDE TRSEAGDSHI TETTKTTTVV REFHGEQPEE TEETDEVEEL PPKIEEEDNV SEYSESSTSV SREVRPDEPH IIETTTTTTV TREYHNEPEE TYDDQKDAAP ISFSQEHQDD DSQASHDQHD RESPVESEKS VKHTTETTTT TTVTRQLYDD EASEIRGESP VATEEHEHVS STKSDDESEQ HVPSVIETTT TTTVTREFYD DQDELQREDH TQSEERRSSI PTEETEHEDS HLIKETTTTT TVTREFYDEP ENVEKLQDSQ FSLSPSSHVE SEIYVPESPV AKQQEIPQTR EFHEDSPAAQ YFHEDEYEHQ VPTEQAPLLT EQQHQPESGE ESDGEGFGSK VLGFAKKAGM VAGGVVAAPV ALAAVGAKAA YDALKKEDDE EDQEERESLI REERSFDSPH ASEQSQIEKE HKRFEESPVP SEKHHDQSSA LPQESVSQPI EKESRTFNDE SEFGVKSDHY TEDDQESLKS PKESGEAFSQ FTSEKEQDRS DSPIHSQKED ISQFQNESSP EDVKSEQPHD EEKPDLERQG SYSSGYSPKS PGGSITGLDE EKALSGVQEP EDRPENFAES HEKTEATSDE NLFESDKYAP ASPVPSEDSS NRVIETTTTT TVTREHFEPE DDHSYVVESQ EYSSSGSPVP SEKSVDRVIE TTTTTTVTRE HFEAEDEIPT IVESSHDDQA ASPVPSEEDV HEQIQTTTTT TTVTKEHFVP DDEIDSEHMN ESDKYASGSP VPSEEDSSRV TETTTTTTVT REHFEPEDDH SPVVQTQEYS ASESPVPSEK SVERVIETTT TTTVTREHFE DEDHILGQQG ESDSQIPSES ITSENMDRET SSSPVQSNRD EEFVLPAIAP YKQPTEYGRV DSHDAPASPA PSAESPIQAY KQEESQEAHS LEQFQQRSSV SHEDSPAAQY FHDNESDHDS PVPSDRAPLL TEQQHQPESG EESDGEGFGS KVLGFAKKAG MVAGGVVAAP VALAAVGAKA AYDALKKDDD EDENPDEQEK LLPKSPERQV LVNPVEPSDS EISEIELEYT SPSPTEKSES QCYTETVRTT TVTREYLDDP QSVTRSRSPS EHDISEQYAP ESPVEQDPYV VEKTTTVIRQ YHDEPPQEIE EQTIPEEVTV LREVYESPEG DEPEQHYIET KTTTTITKEV HVPVEEDVQI SPVHSETSVS EKQLPADEQL DEPVTESTTT ATVTRERYEE PEEVRPPSGS EADDESHAPK YMETTTTTTV TREYEVSEDE DEHQQSQVQR DESPAPSEDS VKHVIEKTTT TTVTEERYEP EDSHSPVPSE DDVHGFVKTT TTTTTVTHEH FEPEDPPSDE HVVESERYAS GSPVPSEEDS SREIETTTTT TVTREHFELE DDQEHVVESQ EYSASGSPVP SEKSVERVIE TTTTNTVTRE HFEHEDDIPT IVETSHDDPA ASSVPSEEDV HGQIQTTTTT TTVTREHVVP DEEIDSGRMD ELEKYSSESP VPSEEDSSRV IETTTTTTVS REHFEPEDDH SHVVESQEYS ASGSPVPSEK SVERVIETTT TTTVTREHFD TEEDYIPSES RTSHDDGITD QHVPSQSPVP SEEDDHVTHE QIIRDDPIDE QIVESHEYKS ESSIPSEQDS THVIETVMST PITSERYDPE VEKDVVESAD DEIDSSTAQY YKSESPVQTE KSLLLAKQQQ ESGDESDGEG FGSKVLGFAK KAGMVAGGVV AAPVALAAVG AKAAYDALKK DDDEEDQEDK EPLIGGFHKD QDPISQDEPS AVDSETQEPG ATFYEPEEED KVITDSADSS VVQDEPKIVF PVDSTPEHHS NDREEFESIV KSEGPYIVES TDYAQTSAEE PRISSPVHSD AGDASSFKRP ESVTGEDEKN AIPETSETDA PYVIDSEEYE FNNRDEQRIS SPAHSDEEDE NDAEVIDSEF YRHSQEQNNE EDPSIVESGE YISSGHGSPR PFEDSTTTTV LNVHHEPAAI PEPEVDEEEL EQERSIIESE EYKTSSPLPP TSVTTVEHVE PAEIHKYRTT SPTIVTTVSS EHLDRNQEPY VVESEEYTRA SPLGPERPES PSGSPLPREE DDSHVIESHE YTSSPVPSED SVKHVIEKTT TTTVTEERYE PEDSHSPVPS EDDVHGFVKT TTTTTTVTHE HFEPEDHTSD EHVVESERYA SGSPVPSEEN SNRVTETTTT TTVTREHFEP EDDQEHVVES QEYSASGSPV PSEKSVEKVI ETTTTTTVTR EHFEHEDEIP TIVESSHDDQ AASSVPSEED VHGQIQTTTT TTTVTREHVV PDEEIDSGRM DELEKYSSES PVPPEEDSSR VIETTTTTTF IREHFEPEDD HSHVVGSQEY SASGSPVPSE KSVERVIETT TTTTVTSEHF EHEDEHAQLH DTVSSEKTSS SEPVEQTLEE ADITEETHQR FSAEDEHQPT STEKPVHGFM ETTSTSHTAS HVELEHRDDD DESGGEGFGS KVLGFAKKAG MVAGGVVAAP VALAAVGAKA AYDALKKDDD EEATYDLDRE HGSYESAELQ RPTQQVESRQ EDSESEGSFV DHGEDSQHLP VQSTEAAFKL SSEDIAEQTA EKLVSEVFAP LDRTLIESEQ YRASIESLNR RSPVEPKRSV EDLASEALQN VTKISFGHAD ESDDKHDGDN DGEWKVYDRH GEVLEEFSTQ LTDDVIQEAE GDATTHIMMT QAEYSPRRSK FLKQESCQEI SNEPEVDYYS DLQEKLNILA GEKNNLHALV EEEPSSSASD QLDVIHESDQ EAHLEQEHQQ EAAAQKEQDE KEEAAEYTAT LLVDDVLQQV VQEINEEDDD KKTMTSTSYL TATEKDDQEY DTCVTSQDDT YESAQGWTSQ DSEYTTATSQ APSRLSDSDA ELTARDHDQE RQETSTPQAI LSPVDSDRHF TVQQDFEMPV IRAFDPDDFM QTTARSTPDV ALQVTIEEED ESDDKLPISP SGILLPPKHD PGRPISPVPP RKSDGTMQKE GDHFVFVREE DTIAEPTPPP QPAEPEQLAE YEATKESEHQ QITEGDVPQE EEETEMRRQE TERIHSLAME ASSDLGNSES SRYSRQLSDL SSSAESHADT VIRVESERSG SSDSLEVVSV ISAGKDAQMS EKSLTPEDPE KPTDSVQEHQ QKDQEQAEAE DQREAEDLGF EVYDADTEEQ NQQLEELETV EEEPEDSDSL NEGGNHSSGH SSVGVPADTL AMIGKYRHQS SDNLSLTSLQ EFERLEKEVG ARGDGSLTRS EIELLVAGRL NKSGEGSVSS LAEFERLEKE MTENQSPPED VMMLSDIREE SEAEDMSIRD DDEEDAEGSD TELKSRPVQE EDLRVITPIA PSPTDSLDHA VDAVQMQYLE TSTDSLEPTF QEIEVEQRPE SVEDTSLTEY EVIPRVMEAS TTDSLDGTAT IEKDSVLEGA SQGIESTQST HGLLSGDTMG TVVTDDDRDS LDGEMSSMLQ SYPTTLTTFQ TTVVGPDGSL QTISRRVETK VTDPLVSHVT FTGTESQERL DQLPDDEQFE TVDTEGNVTR TTFHREHDQQ QPHF</td>
+                                        <td class="pic_col"><img src="assets/display_prototype/B0350.2f.png" alt="B0350.2f Domain Organisation"></td>  
+                                    </tr>
+                                    <tr>
+                                        <td class ="checkbox_col">&nbsp;<input type="checkbox" id="B0496.3e" name="B0496.3e" checked="checked"/></td>
+                                        <td class ="gene_col"><a href="http://www.wormbase.org/db/gene/gene?name=unc-82;class=Gene" target="_blank">unc-82</a></td>
+                                        <td class ="gene_col"><a href="http://www.wormbase.org/db/gene/gene?name=B0496.3;class=Gene" target="_blank">B0496.3</a></td>
+                                        <td class ="gene_col"><a href="http://www.wormbase.org/db/gene/gene?name=B0496.3e;class=Protein" target="_blank">B0496.3e</a></td>
+                                        <td class ="gene_col"><a href="http://www.uniprot.org/uniprot/H2KYA5" target="_blank">H2KYA5</a></td>
+                                        <td class ="chr_col">IV</td>
+                                        <td class ="gpos_col">3.33</td>
+                                        <td class ="chr_col">IV</td>
+                                        <td class ="chr_col">+</td>
+                                        <td class ="ppos_col">7,424,498</td>
+                                        <td class ="ppos_col">7,444,664</td>
+                                        <td class ="text_col">unc-82 encodes a serine/threonine kinase related to the human ARK5/SNARK ( 1/ 2) and the PAR-1 and SNF1/AMP-Activated kinase (AMPK) protein kinase families; during development, UNC-82 activity is required for proper organization of internal (membrane-distal) proteins of myosin thick filaments and M-lines in conjunction with embryonic elongation; an UNC-82::GFP reporter fusion is expressed in muscle cells and is associated with M lines; UNC-82::GFP expression is also seen in the pharynx.</td>						
+                                        <td class ="text_col">A structural constituent of muscle. Involved in striated muscle myosin thick filament assembly and striated muscle paramyosin thick filament assembly. Located in M band. Expressed in body wall musculature. Human ortholog(s) of this gene implicated in anencephaly. Is an ortholog of human  1 (  family kinase 1) and  2 (  family kinase 2).</td>						
+                                        <td class ="text_col">antibody_subcellular_localization_variant, body_wall_muscle_morphology_variant, body_wall_muscle_thick_filament_variant, body_wall_muscle_thin_filament_variant, M_line_variant, muscle_birefringence_variant, muscle_cell_morphology_variant, pharyngeal_muscle_morphology_variant, sluggish, sperm_pseudopod_variant</td>						
+                                        <td class ="text_col">body_wall_muscle_sarcomere_morphology_variant, body_wall_muscle_thick_filament_variant, locomotion_reduced, locomotion_variant, M_line_variant, mitochondria_morphology_variant, protein_degradation_variant</td>						
+                                        <td class ="text_col">body_wall_musculature;  </td>						
+                                        <td class ="text_col">anal_depressor_muscle, anal_sphincter_muscle, AS_neuron, AS1, body_wall_muscle_cell, body_wall_musculature, Cappppv, Cpppppv, DA_neuron, DA1, DA3, DA9, DB_neuron, DB1, DB2, DB3, DB4, DB5, DB6, DB7, M.vrpaapaa, M.vrpaapap, MSapaaap, MSapapap, MSapappp, MSappapp, MSppaaap, MSppapap, MSppappp, MSpppapp, mu_int_L, muscle_cell, PLM, PVCL, SAA, uterine_muscle, VA_neuron, VA1, VD_neuron, vulval_muscle; 1-day_post-L4_adult_hermaphrodite, 10-days_post-L4_adult_hermaphrodite, 11-days_post-L4_adult_hermaphrodite, 15-days_post-L4_adult_hermaphrodite, 2-days_post-L4_adult_hermaphrodite, 24-cell_embryo, 3-days_post-L4_adult_hermaphrodite, 5-days_post-L4_adult_hermaphrodite, 6-days_post-L4_adult_hermaphrodite, 7-10_days_post-L4_adult_hermaphrodite, 8-days_post-L4_adult_hermaphrodite, 96-cell_embryo, adult, adult_hermaphrodite, all_stages, blastula_embryo, dauer_larva, embryo, L1_larva, L2_larva, L3_larva, L4_larva, L4_larva_male, L4-adult_lethargus, larva, oocyte-laying_stage_adult_hermaphrodite</td>						
+                                        <td class ="text_col">elks-1, glh-1, lin-53</td>
+                                        <td class ="text_col">dim-1, unc-15, unc-54</td>
+                                        <td class ="text_col"></td>
+                                        <td class ="text_col"></td>
+                                        <td class ="text_col">Nuak</td>
+                                        <td class ="text_col">Nuak2, nuak1b, nuak1a</td>
+                                        <td class ="text_col">Nuak2, Nuak1</td>
+                                        <td class ="text_col">Nuak1, Nuak2</td>
+                                        <td class ="text_col">ATP_binding , cellular_response_to_glucose_starvation , intracellular_signal_transduction , kinase_activity , M_band , negative_regulation_of_TOR_signaling , nucleotide_binding , nucleotide-activated_protein_kinase_complex , phosphorylation , protein_kinase_activity , protein_phosphorylation , protein_serine/threonine_kinase_activity , striated_muscle_myosin_thick_filament_assembly , striated_muscle_paramyosin_thick_filament_assembly , structural_constituent_of_muscle</td>						
+                                        <td class ="text_col">uterine_fibroid, anencephaly</td>						
+                                        <td class ="protsize_col">1793</td>
+                                        <td class ="seq_col">MSSKKRYGTY GRAITSPALL SSSVGWTRPD VTSQIDRLRS QATSVVSSPP PHEYAVPHAF SGSSNGTNAS RPPADPKQPQ RSRAERLRHR ISERRTNAYM IPPSSTTGKD PAIDALMNKY LNKSKENLDE GRKSRESSRA QELLARTNRE MSPTIDSLMK RYGNNNSSAH RIKDSTVSRR ESMEIQDNEN SRSLDNKSCR EARLSGSDVR IKWEVTNTEV KPTSSVKRFS VIIDPTGGRM PVGNSGSRSG RLARISQSNI RPFGSNGGGA TNSYGPGTHP MSGAEPCSPT KKEKHRFEIT KKLGSGTYGK VSLAYDHKFD REVAVKLIKK SAIESKADLV RIRREIRIMS ALNHPNIIQI YEVFENKDKI ILVMEYSSGG ELYDYVSRCG SLPEAEARRI FRQITSAVLY CHKHRVAHRD LKLENILLDQ NNNAKIADFG LSNYFADKNL LTTFCGSPLY ASPEIINGTP YKGPEVDCWS LGILLYTLVY GSMPFDGRDF NRMVRQIKRG AYFEPETPST ASMLIRNMLR VNPERRATIF DIASHWWLNL EENMPVIQEL PENQIIDHTP LTEREETMIV QDLADEQDVF MEFGHLSSET RRKIEDFRIR RKEAEEFNDN SPVKPPKARK TDELTGKISK EQPEEMKSAE KSLRGVKEEK EKPKVVDPND PLERLRQIEN RLGQNKKDKE AAKTSARVET VKLKEVKKEK SPEQQPEDPK TARGTSKPAD SRAPSFVPVK DRPETSEPER PRTRPHLTAS AYRIETDSLN MLMNQVLEQM EKGPVNLNII ARIKAHPLYD TRPMVKELLE SIIAAQPEPV QKQTSKVVEQ QTFSRQNTLT RKKKEDPLEE EIPEVPSPSR KMKERPWHSV EVGFDPDEEP EHDRMQESIA SNATEVTVQD TSFEDDSSDE EERKKTPVAS TPKTPVLIVE KQESSTNAED EESDEGDDYS DAEMEELADE VDKKGPSDSK LAPVVENLEA NPPPDPSSSP QFLDAFDRGL IKRQSKGKYQ HTLINNYGRG VSTECESPTQ QRKFFGGPQP SAELSPFLFD KAKEILQTYP NNKLDARGID VELRRKLRME KVKADLLKQP KDGDKPRNSY VGSVPPRSPP PIVVKSDGEE LDDEEEEEED EEEIEETDSE EGSDFENFKP KRPIIAAVRR DDGAVVPVIH QTTRPAVVSP NSQNPRYQVA SPKTSTVIQA TPEKVPVAGT SAKYLVTVAE LKLKPTDKKE EAQLKEQLKD SEINSERKVT KGAAPSTISQ DSDGKDTFES ASAYIRRKNR ERRQRNRTIG TAEEALRALE RPSVDPYDDR AFSPLSTDPF YSHHSSGSAA PSALGYVRPR YHDDSYRTHR DSDYRPMSPT SRYTAAVTRD DRGKSTSYDP HETTRPSYDR GYITSSNASP SYTRKFEHEQ PTLNSWANDR KFEVYKTRAE RDAERNTYHP TGTTGASSYR PSSYYTSASD RPVTGLRRPE ESYTSSTNYG RYDGRSTTPS NDQYAISTAL AENQASSMNN RFRPTARRVA SAMTDADRRN YHRSRSMDRN KVDYEYGSNL LNRLTTPDSH GDYSYVNYHD SSNGRSNITL EKDGQPRSIL KNKQSADIEP RVESSYEPSN GVRSVFERLR RHLSLEKSVS PQRQNTSFYG RQLRVASVGP HSRNIDSTSS ALDNPKKKRS LLSFNRRKTS EVRMGADGKL VTNGYDSTPS SRDFKRPSSP IDRIKSLFRK NESSGTGHSD YYNSSRNYTS SNPVSTTREP YVAQYRKYPG STSRDTSSAL NRYSYTPGLT DQRRHWYDDP NIY</td>
+                                        <td class="pic_col"><img src="assets/display_prototype/B0496.3e.png" alt="B0496.3e Domain Organisation"></td>  
+                                    </tr>
+                                    <tr>
+                                        <td class ="checkbox_col">&nbsp;<input type="checkbox" id="B0564.10b" name="B0564.10b" checked="checked"/></td>
+                                        <td class ="gene_col"><a href="http://www.wormbase.org/db/gene/gene?name=unc-30;class=Gene" target="_blank">unc-30</a></td>
+                                        <td class ="gene_col"><a href="http://www.wormbase.org/db/gene/gene?name=B0564.10;class=Gene" target="_blank">B0564.10</a></td>
+                                        <td class ="gene_col"><a href="http://www.wormbase.org/db/gene/gene?name=B0564.10b;class=Protein" target="_blank">B0564.10b</a></td>
+                                        <td class ="gene_col"><a href="http://www.uniprot.org/uniprot/P52906" target="_blank">P52906</a></td>
+                                        <td class ="chr_col">IV</td>
+                                        <td class ="gpos_col">8.22</td>
+                                        <td class ="chr_col">IV</td>
+                                        <td class ="chr_col">+</td>
+                                        <td class ="ppos_col">13,118,977</td>
+                                        <td class ="ppos_col">13,124,406</td>
+                                        <td class ="text_col">unc-30 encodes a homeodomain-containing protein that is orthologous to the Pitx family of homeodomain transcription factors; during develpoment, UNC-30 controls the terminal differentiation of all 19 type D GABA-ergic motor neurons by directly regulating the expression of UNC-25/GAD and UNC-47/VGAT, which regulate GABA formation and secretion, respectively; UNC-30 is expressed most strongly in type D motor neurons during early L1 and L2 larval stages.</td>						
+                                        <td class ="text_col">Enables sequence-specific DNA binding activity. Involved in neuron differentiation; positive regulation of transcription by RNA polymerase II; and regulation of locomotion. Located in nucleus. Expressed in GABAergic neurons; ganglia; intestine; and ventral cord neurons. Human ortholog(s) of this gene implicated in Arts syndrome; clubfoot; and eye disease (multiple). Is an ortholog of human PITX2 (paired like homeodomain 2) and PITX3 (paired like homeodomain 3).</td>						
+                                        <td class ="text_col">amplitude_of_sinusoidal_movement_variant, antibody_staining_reduced, axon_fasciculation_variant, axon_outgrowth_variant, backing_decreased, backward_locomotion_variant, backward_point_velocity_decreased, body_posture_amplitude_decreased, body_posture_wavelength_decreased, coiling_frequency_increased, embryonic_lethal, forward_locomotion_decreased, forward_point_velocity_decreased, frequency_body_bend_reduced, head_bend_angle_variant, larval_lethal, locomotion_variant, neuron_morphology_variant, nose_movement_variant, path_curvature_increased, pathogen_adherence_decreased, pathogen_resistance_increased, pausing_increased, roaming_reduced, short, shortened_life_span, shrinker, sluggish, small, tail_bend_angle_variant, thin, turning_frequency_variant</td>						
+                                        <td class ="text_col">locomotion_variant, shrinker, transgene_expression_increased</td>						
+                                        <td class ="text_col">ASGL, ASGR, AVJL, AVJR, DD_neuron, DD1, DD2, DD3, DD4, DD5, DD6, GABAergic_neuron, intestine, PVPL, PVPR, RID, RIH, VD_neuron, VD1, VD10, VD11, VD12, VD13, VD2, VD3, VD4, VD5, VD6, VD7, VD8, VD9, ventral_cord_neuron; L1_larva, L2_larva, L3_larva, L4_larva, postembryonic</td>						
+                                        <td class ="text_col">AVDL, AVDR, AVHL, AVHR, AVJ, AVJL, AVJR, DD_neuron, DD1, DD2, DD3, DD4, DD5, DD6, GABAergic_neuron, GLRDL, GLRDR, GLRL, GLRR, GLRVL, GLRVR, intestine, neuron, OLL, PVD, PVP, PVPL, PVPR, PVT, RIBL, RIBR, sensory_neuron, somatic_gonad_precursor, spermathecal-uterine_valve_cell, VD_neuron, VD1, VD10, VD11, VD12, VD13, VD2, VD3, VD4, VD5, VD6, VD7, VD8, VD9, ventral_nerve_cord, Z1, Z4; 1-day_post-L4_adult_hermaphrodite, 10-days_post-L4_adult_hermaphrodite, 11-days_post-L4_adult_hermaphrodite, 15-days_post-L4_adult_hermaphrodite, 2-days_post-L4_adult_hermaphrodite, 2-fold_embryo, 20-days_post-L4_adult_hermaphrodite, 3-days_post-L4_adult_hermaphrodite, 3-fold_embryo, 4-days_post-L4_adult_hermaphrodite, 5-days_post-L4_adult_hermaphrodite, 6-days_post-L4_adult_hermaphrodite, 8-days_post-L4_adult_hermaphrodite, adult, all_stages, blastula_embryo, dauer_larva, embryo, L1_larva, L2_larva, L3_larva, L4_larva, larva</td>						
+                                        <td class ="text_col">alr-1, aptf-1, ceh-10, ceh-13, ceh-18, ceh-37, ceh-43, ceh-45, ceh-8, daf-3, die-1, dsc-1, egl-5, elt-1, eya-1, fkh-6, hlh-30, lin-54, lsl-1, lsy-2, mab-5, mls-2, mml-1, nhr-10, nhr-111, nhr-1, nhr-6, php-3, pie-1, T24C4.2, tbx-8, ttx-1, unc-30, unc-30, unc-42, vab-3, ztf-11, ztf-1, ztf-26</td>
+                                        <td class ="text_col">cdc-48.2, jnk-1</td>
+                                        <td class ="text_col">ckb-2, irx-1, madd-4, odr-2, oig-1, snb-1, syd-1, syd-2, unc-130, unc-25, unc-46, unc-47, unc-49</td>
+                                        <td class ="text_col"></td>
+                                        <td class ="text_col">Ptx1</td>
+                                        <td class ="text_col">Pitx2, Pitx3, Pitx1</td>
+                                        <td class ="text_col">Pitx1, Pitx2, Pitx3</td>
+                                        <td class ="text_col">Pitx1, Pitx2, Pitx3</td>
+                                        <td class ="text_col">anatomical_structure_morphogenesis , axon_guidance , DNA_binding , DNA-binding_transcription_factor_activity , DNA-binding_transcription_factor_activity,_RNA_polymerase_II-specific , dorsal/ventral_axon_guidance , GABAergic_neuron_differentiation , nucleus , positive_regulation_of_transcription_by_RNA_polymerase_II , regulation_of_locomotion , regulation_of_transcription_by_RNA_polymerase_II , RNA_polymerase_II_cis-regulatory_region_sequence-specific_DNA_binding , sequence-specific_DNA_binding</td>						
+                                        <td class ="text_col">cataract, clubfoot, Axenfeld-Rieger_syndrome, Arts_syndrome, anterior_segment_dysgenesis, anterior_segment_dysgenesis_1, anterior_segment_dysgenesis_4, Axenfeld-Rieger_syndrome_type_1, cataract_11_multiple_types, cataract_9_multiple_types, ring_dermoid_of_cornea</td>						
+                                        <td class ="protsize_col">323</td>
+                                        <td class ="seq_col">MDDNTATLTA IHQQQQSHNR FSNPLVCVGQ LDHHSLLPEH SISSSLAPLT HNPYAFNYSI PLPPTDITTK LPKLELLSLD VKQEQDDNHL DTSSPTDSTG NGSTNGGKIQ KPRRQRTHFT SHQLTELENW FSRNRYPDMA CREEIAVWIS LTEPRVRVWF KNRRAKWRKR ERNYVIDNGQ GTTKVTAQSL DPLGSLQNTF PQTLLQSSSS QLDDSAVTSS SFYGYGGAWQ QNPYYSRNNQ TTFNWQIKPQ DQFQFQTIPM SPTTATSRFS TAANLAPLPT AQAAFSTSAT SSNDKLKLMD GLSNSLSSSL GQPYQPCQYS GPL</td>
+                                        <td class="pic_col"><img src="assets/display_prototype/B0564.10b.png" alt="B0564.10b Domain Organisation"></td>
+                                    </tr>
+
+
+
+
+                                    <tr>
+                                        <td class ="checkbox_col">&nbsp;<input type="checkbox" id="B0273.4c" name="B0273.4c" checked="checked"/></td>
+                                        <td class ="gene_col"><a href="http://www.wormbase.org/db/gene/gene?name=unc-5;class=Gene" target="_blank">unc-5</a></td>
+                                        <td class ="gene_col"><a href="http://www.wormbase.org/db/gene/gene?name=B0273.4;class=Gene" target="_blank">B0273.4</a></td>
+                                        <td class ="gene_col"><a href="http://www.wormbase.org/db/gene/gene?name=B0273.4c;class=Protein" target="_blank">B0273.4c</a></td>
+                                        <td class ="gene_col"><a href="http://www.uniprot.org/uniprot/Q26261" target="_blank">Q26261</a></td>
+                                        <td class ="chr_col">IV</td>
+                                        <td class ="gpos_col">1.78</td>
+                                        <td class ="chr_col">IV</td>
+                                        <td class ="chr_col">-</td>
+                                        <td class ="ppos_col">5,495,664</td>
+                                        <td class ="ppos_col">5,528,338</td>
+                                        <td class ="text_col">unc-5 encodes a netrin receptor; unc-5 activity is required cell autonomously for dorsalward cell and pioneer motor axon migrations along the body wall that are essential for normal locomotion and gonad development; unc-5 mRNAs are expressed throughout the entire life cycle, with increasing levels seen as animals progess to adulthood.</td>						
+                                        <td class ="text_col">Enables netrin receptor activity and protein tyrosine kinase binding activity. Involved in several processes, including axon guidance; regulation of neuron projection development; and sex differentiation. Acts upstream of or within distal tip cell migration. Located in axonal growth cone. Expressed in several structures, including distal tip cell; excretory canal; head neurons; motor neurons; and somatic nervous system. Is an ortholog of human UNC5A (unc-5 netrin receptor A); UNC5B (unc-5 netrin receptor B); and UNC5C (unc-5 netrin receptor C).</td>						
+                                        <td class ="text_col">axodendritic_polarity_variant, axon_branching_variant, axon_development_variant, axon_guidance_variant, axon_outgrowth_variant, axon_trajectory_variant, coiler, constitutive_egg_laying, cord_commissures_fail_to_reach_target, dendrite_development_variant, distal_tip_cell_migration_variant, dorsal_nerve_cord_development_variant, dorsal_region_development_variant, gonad_arm_morphology_variant, locomotion_variant, long_range_axon_migration_variant, muscle_arm_axon_connection_variant, muscle_arm_development_variant, presynaptic_component_localization_variant, presynaptic_vesicle_cluster_localization_variant, short_range_axon_migration_variant, ventral_cord_disorganized</td>						
+                                        <td class ="text_col">axon_guidance_variant, body_wall_muscle_sarcomere_morphology_variant, dendrite_development_variant, locomotion_variant, protein_degradation_variant</td>						
+                                        <td class ="text_col">anterior_distal_tip_cell, AS_neuron, ASEL, ASER, DA_neuron, DB_neuron, DD_neuron, distal_tip_cell, dorsal_nerve_cord, excretory_canal, IL2DL, IL2DR, IL2L, IL2R, IL2VL, IL2VR, linker_cell, motor_neuron, OLLL, OLLR, OLQDL, OLQDR, OLQVL, OLQVR, posterior_distal_tip_cell, RIAL, RIAR, RIH, VD_neuron, ventral_nerve_cord; all_stages, L2-L3_molt, L3_larva, L4_larva</td>						
+                                        <td class ="text_col">ABalapaaaa, ABalappapa, AS11, DA_neuron, DA1, DA2, DA3, DA4, DA5, DA6, DA7, DA8, DA9, DB1, DB2, DB3, DB4, DB5, DB6, DB7, g1AL, g1AR, g1P, GABAergic_neuron, head_mesodermal_cell, hyp3, I5_neuron, intestine, male-specific_anatomical_entity, MSpaaapa, MSpppaaa, neuron, OLL, oocyte, PDA, PDB, PVD, retrovesicular_ganglion, RID, SAB, sensory_neuron, SIADL, SIADR, SIAVL, SIAVR, VA_neuron, VA1, VA12, VD_neuron; 1-cell_embryo, 1-day_post-L4_adult_hermaphrodite, 10-days_post-L4_adult_hermaphrodite, 11-days_post-L4_adult_hermaphrodite, 15-days_post-L4_adult_hermaphrodite, 2-days_post-L4_adult_hermaphrodite, 20-days_post-L4_adult_hermaphrodite, 3-days_post-L4_adult_hermaphrodite, 4-days_post-L4_adult_hermaphrodite, 5-days_post-L4_adult_hermaphrodite, 6-days_post-L4_adult_hermaphrodite, 7-10_days_post-L4_adult_hermaphrodite, 8-days_post-L4_adult_hermaphrodite, adult, adult_male, all_stages, blastula_embryo, dauer_larva, embryo, L1_larva, L2_larva, L2d_larva, L3_larva, L4_larva, larva, oocyte-laying_stage_adult_hermaphrodite</td>						
+                                        <td class ="text_col">max-1, src-1, unc-129, apb-3, ccar-1, dpy-19, madd-4, unc-73</td>
+                                        <td class ="text_col">max-1, src-1, unc-129, ahr-1, clr-1, dbl-1, egl-20, enu-3.1, mec-8, mig-22, seu-1, seu-2, sqv-5, unc-14, unc-34, unc-40, unc-44, unc-52, unc-6, unc-71</td>
+                                        <td class ="text_col">blmp-1, daf-12, daf-9, lnp-1, nhr-67, pros-1, rab-3, rpm-1, snb-1, sys-1, unc-49</td>
+                                        <td class ="text_col"></td>
+                                        <td class ="text_col">unc-5</td>
+                                        <td class ="text_col">Unc5b, unc5cb, unc5da, Unc5a, unc5db, unc5ca</td>
+                                        <td class ="text_col">Unc5c, Unc5a, Unc5b, Unc5d</td>
+                                        <td class ="text_col">Unc5c, Unc5a, Unc5d, Unc5b</td>
+                                        <td class ="text_col">axonal_growth_cone , cell_projection , chemorepulsion_of_axon , commissural_neuron_axon_guidance , distal_tip_cell_migration , dorsal/ventral_axon_guidance , establishment_or_maintenance_of_actin_cytoskeleton_polarity , gonad_morphogenesis , membrane_raft , membrane , mesodermal_cell_migration , motor_neuron_axon_guidance , negative_regulation_of_microtubule_polymerization , nematode_male_tail_tip_morphogenesis , netrin_receptor_activity , netrin-activated_signaling_pathway , neuron_projection , plasma_membrane , positive_regulation_of_anterior/posterior_axon_guidance , positive_regulation_of_axon_extension , positive_regulation_of_locomotion , protein_tyrosine_kinase_binding , regulation_of_dorsal/ventral_axon_guidance , signal_transduction , ventral_cord_development</td>						
+                                        <td class ="text_col"> </td>						
+                                        <td class ="protsize_col">947</td>
+                                        <td class ="seq_col">MEDDTPDVSS DSNGDAAYSD YFLDYKSIMD EITITTQPKS GYVIRNKPLR LQCRANHATK IRYKCSSKWI DDSRIEKLIG TDSTSGVGYI DASVDISRID VDTSGHVDAF QCQCYASGDD DQDVVASDVA TVHLAYMRKH FLKSPVAQRV QEGTTLQLPC QAPESDPKAE LTWYKDGVVV QPDANVIRAS DGSLIMSAAR LSDSGNYTCE ATNVANSRKT DPVEVQIYVD GGWSEWSPWI GTCHVDCPLL RQHAHRIRDP HDVLPHQRRT RTCNNPAPLN DGEYCKGEEE MTRSCKVPCK LDGGWSSWSD WSACSSSCHR YRTRACTVPP PMNGGQPCFG DDLMTQECPA QLCTADSSRI VISDTAVYGS VASIFIVASF ILAILAMFCC KRGNSKKSKP LKPQKMNSEK AGGIYYSEPP GVRRLLLEHQ HGTLLGEKIS SCSQYFEPPP LPHSTTLRSG KSAFSGYSST RNAGSRAALI QECSSSSSGS GGKRTMLRTS SSNCSDDDNY ATLYDYMEDK SVLGLDTSQN IVAAQIDSNG ARLSLSKSGA RLIVPELAVE GEKMLYLAVS DTLTDQPHLK PIESALSPVI VIGQCDVSMS AHDNILRRPV VVSFRHCAST FPRDNWQFTL YADEGSGWQK AVTIGEENLN TNMFVQFEQP GKKNDGFGWC HVMTYSLARL MLAGHPRRNS LSAAKRVHLA VFGPTEMSAY RRPFELRVYC VPETGAAMES VWKQEDGSRL LCESNDFILN EKGNLCICIE DVIPGFSCDG PEVVEISETQ HRFVAQNGLH CSLKFRPKEI NGSQFSTRVI VYQKASSTEP MVMEVSNEPE LYDATSEERE KGSVCVEFRL PFGVKDELAR LLDMPNESHS DWRGLAKKLH YDRYLQFFAS FPDCSPTSLL LDLWEASSSG SARAVPDLLQ TLRVMGRPDA VMVLERFLSA FPQIVSP</td>
+                                        <td class="pic_col"><img src="assets/display_prototype/B0273.4c.png" alt="B0273.4c Domain Organisation"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class ="checkbox_col">&nbsp;<input type="checkbox" id="B0350.2f" name="B0350.2f" checked="checked"/></td>
+                                        <td class ="gene_col"><a href="http://www.wormbase.org/db/gene/gene?name=unc-44;class=Gene" target="_blank">unc-44</a></td>
+                                        <td class ="gene_col"><a href="http://www.wormbase.org/db/gene/gene?name=B0350.2;class=Gene" target="_blank">B0350.2</a></td>
+                                        <td class ="gene_col"><a href="http://www.wormbase.org/db/gene/gene?name=B0350.2f;class=Protein" target="_blank">B0350.2f</a></td>
+                                        <td class ="gene_col"><a href="http://www.uniprot.org/uniprot/Q17490" target="_blank">Q17490</a></td>
+                                        <td class ="chr_col">IV</td>
+                                        <td class ="gpos_col">2.89</td>
+                                        <td class ="chr_col">IV</td>
+                                        <td class ="chr_col">+</td>
+                                        <td class ="ppos_col">5,975,557</td>
+                                        <td class ="ppos_col">6,004,857</td>
+                                        <td class ="text_col"> </td>						
+                                        <td class ="text_col">Enables cell adhesion molecule binding activity. Involved in several processes, including axon guidance; establishment or maintenance of cytoskeleton polarity; and regulation of cellular component organization. Located in lateral plasma membrane. Expressed in hermaphrodite gonad; hypodermis; intestinal cell; and vulval cell. Human ortholog(s) of this gene implicated in several diseases, including ankyrin-B-related cardiac arrhythmia; autosomal recessive intellectual developmental disorder 37; and heart conduction disease (multiple). Is an ortholog of human ANK2 (ankyrin 2) and ANK3 (ankyrin 3).</td>						
+                                        <td class ="text_col">amplitude_of_sinusoidal_movement_variant, axon_branching_variant, axon_development_variant, axon_outgrowth_variant, backing_decreased, backward_point_velocity_decreased, benzaldehyde_chemotaxis_variant, body_posture_amplitude_variant, body_posture_wavelength_decreased, coiler, coiling_frequency_increased, curly, dumpy, dye_filling_defect, forward_locomotion_decreased, forward_point_velocity_decreased, frequency_of_body_bend_variant, gap_junction_plaque_number_increased, head_bend_angle_decreased, lethal, locomotion_variant, loss_of_asymmetry_AWC, nose_movement_variant, paralyzed, path_curvature_increased, pausing_variant, roaming_reduced, short, small, sterile, tail_bend_angle_variant, thin, turning_frequency_variant</td>						
+                                        <td class ="text_col">axon_guidance_variant, cleavage_furrow_termination_defective_early_emb, dendrite_development_variant, dumpy, germ_cell_morphology_variant, locomotion_variant, meiosis_variant, reduced_brood_size, slow_growth, sluggish, small</td>						
+                                        <td class ="text_col">anal_depressor_muscle, anchor_cell, body_wall_musculature, gonadal_sheath_cell, head_neuron, hypodermal_cell, hypodermis, intestinal_cell, intestine, muscle_cell, nerve_ring, nervous_system, neuron, pharyngeal_neuron, seam_cell, spermatheca, tail_neuron, ventral_cord_neuron, vulval_cell; 1.5-fold_embryo, 2-fold_embryo, 3-fold_embryo, adult, embryo, enclosing_embryo, fully-elongated_embryo, L1_larva, L3_larva, L4_larva, larva</td>						
+                                        <td class ="text_col">anal_depressor_muscle, anal_sphincter_muscle, anchor_cell, AS1, AS10, AS11, AS2, AS3, AS4, AS5, AS6, AS7, AS8, AS9, AVG, AVK, Cappppv, CEM, CEPshDL, CEPshDR, CEPshVL, CEPshVR, Cpppppv, DA_neuron, DA1, DA2, DA3, DA4, DA5, DA6, DA7, DA8, DA9, DB1, DB2, DB3, DB4, DB5, DB6, DB7, DD_neuron, head_mesodermal_cell, hermaphrodite_distal_tip_cell, HOB, HSN, I5_neuron, IL2_neuron, intestinal_muscle, intestine, male_distal_tip_cell, MSapaaap, MSapapap, MSapappp, MSappapp, MSppaaap, MSppapap, MSppappp, MSpppapp, muscle_cell, neuron, NSM, OLL, PDB, PLM, PVC, PVD, PVM, PVT, PVW, ray_neuron_type_B, rect_D, retrovesicular_ganglion, SAB, sensory_neuron, VA_neuron, VA12, VB1, VB10, VB11, VB2, VB3, VB4, VB5, VB6, VB7, VB8, VB9; 1-day_post-L4_adult_hermaphrodite, 10-days_post-L4_adult_hermaphrodite, 2-days_post-L4_adult_hermaphrodite, 20-days_post-L4_adult_hermaphrodite, 3-days_post-L4_adult_hermaphrodite, 4-days_post-L4_adult_hermaphrodite, 5-days_post-L4_adult_hermaphrodite, 6-days_post-L4_adult_hermaphrodite, 7-10_days_post-L4_adult_hermaphrodite, adult, adult_hermaphrodite, adult_male, all_stages, blastula_embryo, dauer_larva, embryo, L1_larva, L2_larva, L3_larva, L4_larva, L4-adult_lethargus, larva, oocyte-laying_stage_adult_hermaphrodite</td>						
+                                        <td class ="text_col">sax-7, C11E4.6, calm-1, cdc-42, chn-1, dlg-1, elks-1, glh-1, gras-1, lgl-1, myrf-1, myrf-2, nhr-111, nrde-2, pak-1, pan-1, rabs-5, sec-6, sip-1, smo-1, spc-1, spe-39, ubq-1, unc-119, vps-45, Y59A8B.12, zen-4</td>
+                                        <td class ="text_col">daf-11, unc-5</td>
+                                        <td class ="text_col">sax-7, inx-19, unc-1, unc-33, unc-9</td>
+                                        <td class ="text_col"></td>
+                                        <td class ="text_col">Ank2, Ank</td>
+                                        <td class ="text_col">ank1a, ank2b, ank2a, ank3a</td>
+                                        <td class ="text_col">Ank1, Ank3, Ank2</td>
+                                        <td class ="text_col">Ank1, Ank2, Ank3</td>
+                                        <td class ="text_col">body_morphogenesis , cell_adhesion_molecule_binding , chemorepulsion_of_axon , cytoplasm , cytoskeleton , dorsal/ventral_axon_guidance , establishment_or_maintenance_of_actin_cytoskeleton_polarity , establishment_or_maintenance_of_microtubule_cytoskeleton_polarity , lateral_plasma_membrane , localization , locomotion , membrane , negative_regulation_of_microtubule_polymerization , netrin-activated_signaling_pathway , positive_regulation_of_multicellular_organism_growth , regulation_of_dorsal/ventral_axon_guidance , signal_transduction</td>						
+                                        <td class ="text_col">anemia, bipolar_disorder, schizophrenia, hereditary_spherocytosis, sick_sinus_syndrome, atrial_fibrillation, autosomal_recessive_intellectual_developmental_disorder_37, hereditary_spherocytosis_type_1, ankyrin-B-related_cardiac_arrhythmia</td>						
+                                        <td class ="protsize_col">6994</td>
+                                        <td class ="seq_col">MSNEGDPPQP QQQQPESQEV QAPAAPEPGR AEGSASFLRA ARAGDLEKVL ELLRAGTDIN TSNANGLNSL HLASKEGHSE VVRELIKRQA QVDAATRKGN TALHIASLAG QSLIVTILVE NGANVNVQSV NGFTPLYMAA QENHEEVVKY LLKHGANQAL STEDGFTPLA VALQQGHDRV VAVLLENDSK GKVRLPALHI AAKKDDTTAA TLLLQNEHNP DVTSKSGFTP LHIAAHYGHE NVGQLLLEKG ANVNYQARHN ISPLHVATKW GRTNMANLLL SRGAIIDSRT KDLLTPLHCA ARSGHDQVVD LLVVQGAPIS AKTKNGLAPL HMAAQGDHVD AARTLLYHRA PVDDVTVDYL TPLHVAAHCG HVRVAKLLLD RSADPNSRAL NGFTPLHIAC KKNRIKVVEL LLKYRAAIEA TTESGLTPLH VAAFMGAINI VIYLLQQGAN PDVETVRGET PLHLAARANQ TDVVRVLIRN GAKVDAQARE LQTPLHIASR LGNTDIVILL LQAGANSNAT TRDNYSPLHI AAKEGQEEVA GILLDHNADK TLLTKKGFTP LHLASKYGNL EVVRLLLERG TPVDIEGKNQ VTPLHVAAHY NNDKVAMLLL ENGASAKAAA KNGYTPLHIA AKKNQMEIAS TLLQFKADPN AKSRAGFTPL HLSAQEGHKE ISGLLIENGS DVGAKANNGL TAMHLCAQED HVPVAQILYN NGAEINSKTN AGYTPLHVAC HFGQLNMVKF LVENGADVGE KTRASYTPLH QAAQQGHNNC VRYLLENGAS PNEQTATGQT PLSIAQRLGY VSVVETLRTV TETTVITETT TVDERYKPQN PEAMNETMFS ESEDEGQAAE HEAVAAHEKD FSDNLTQGLQ DSTGVHMIHT GEQLLQRSQE LENGGAIPKI NSGGMSPEKE FAKIAPVATS SPIATSNSQS FGIAPRAGSI SGQFQQQPLH GAGPEDNLEE LVRRAQNHPI NAGNYDNGGV AMLENGHADN VPIGHHVTQP SKLQHRTFLI SFLVDARGGA MRGCRHSGVR IIVPPRKASQ PIRVTCRYLR KDKLAHPPPL SEGEELASRI LEMAPAGAKF LGPVILEVPH FASLRDRERE IVILRSDDGQ HWKEHQLEAT EDAVQEVLNE SFDAEDLAQL DDLQTPRITR ILTSDFPMYF AVVTRVRQEV HCVGPEGGVI ISSVVPRVQA IFPDGSLTKT IKVSVQAQPV PQEMVTRLHG NRVAVSPIVT VEPRRRKFHK PITLCIPLPQ SNNRGMLTQY SGQQGQEPPT LRLLCSITGG SAPAQWEDIT GTTQLTFTGD EVSFTTTVSA RFWLMDCQTP RDAARMAQEV YNEAISIPYM AKFAVFARRT FPVEGQLRVF CMTDDKEDKT LEKQEHFKLI AKSRDVEVLK GKHQFLEFSG NLVPITKSGD QLSLFFLPFQ ENRLAFMVKT RSNDDNEAAT EGRIGFMAEP KIRSDALPPQ QPICTLAISL PEYTGEIKTA PPPKKDLTPF EQRYGSALEK DLPEFVHQNV LKGIGADWPR LGRALEVPHR DIQHIRQNYP GQECKNTLKI WIHLKKEDAN QDNLDQALRQ IGRDDIVRSI AYGEPDALIN YSQADSPSQK REPIRHFEEV PAATLVKREV RTEDLVTREP VQPTHHVEQA TTVVQEPSYS APVHHSPVPE EPEMEEEAPV AEMRTVVRTE RHVHDSEDGP VVEERTITTT YEDDVAVNEN IVDRTVPLNE DEQQKWEELN RLADESSPSP AQRSTIVAES TSEQVPEDVE QSVESESHRE DDGTIVTTTV TTSHISESPS GSPTRRSVEP EEHRHSQHED HEASGAEQHS GQDSGTTQKK ETAEEGFTNE DGSVVVSKKM TRVVTTTRTT LPGEGEEPSA PDSPVESLGS VKDRIAKFEQ FKTLPIDPSV SGPPPSAHTL QSEEYQEESG NVESAYDVET DRRDSERSLK SERSIPEIHT SPSEEQQSEH FESAEHTEDQ GRDSGRSLKS DRSIPEVQFT ESDSELEKHD LHEDSHLEPT VGIVITPHTP VPPEHPDDKE DIEDEQPQEP LEPSEPEHVA HAELKDTREY SDEELAQELS PSEEHVSTAE IKDIKSYSPT SSDDERSSQK GKVSPPIPQV RHAISPSVAS EVLSSHDDEL AAHFVAESFE KHDEGNVETI EQTPVYKGHH SPGQTSPIVS EHPHAQEYAE SVTSHDEGDN LSLKSGHEPE IARHSVASVQ EEDDDDDEKS ELGDFAKKAG MIVGGVIAAP VALAAVGAKA AYDALNRDDD EEKLEGHEEK EVLTTQTTIM ESPIRHEDIP SPHLEDVTPK VSHQEHPYEH VTETTTTVTR DYYEQPEDHR EASPAPSSHV ESERPISESP AVSEREPSHI ATETTTTVTR EYDQEPKADQ SSARESVRDL VSEEHEHPAC DSERLSEPAQ SPEPVETHAE SQFSNLVETT TTTAVTREFY DEDQEEQASS RATKERIEQS PVASERSIVS TEHRQSPTQE SEQSLEPTSE KNVHTVTETT TVTRECFEEP IASELEHASR EFEQGSNDFR RSVSPVDAQE QVDVPHSPAP SSHAESEQPV PESPHHIVET TTTTTVTREF QDEEYPRPES PAEIFPIPSS EQQSEEPHIV KETTTTTTVT RELYDEPEKG NVTFSPAPSS HAESERQVPE SPVVSHQEYP HVVETTTTTN VTSNIYDDED NVPSSEDPAT QHFQQSETSV HRSHPDSVEE SDGEGLGSKV LGFAKKAGMV AGGVVAAPVA LAAVGAKAAY DAFEKDDEDD ETSHSPESPV PEYQSEQYQD DSAQSSHTDF EHHMPESPIE HEKETEEFDH SHPESPVLSE KEREHQVTSE TTTTTTVTRE YNDEPEDEQE HQGPHSPAPS SHTEAEHPHI VETTTTTTVT REFQEEPEEL EYKQEDNSRK SPSSHSQENL VTETTTTTTV TSEYYDEPEH FEEQETGKSS PAPSSHVESE RQVLESPVAS DPRHVMETTT TTTVTRQFHD DESERSDSPN RDVVEAQSIH SSNIESHQQF SEKDDDSQRG PSPVKSEDEP VKHESYKFET STTETREFDR PELDSERLSE PAQSPMEVSP ITTEENIVRP SSSVKSEYGS EGHVPSVIET KTTTTVTREF YDDDQDEHEN QTQSEELRSS IPTEEEEHEG SHLFKETTTT TTVTREFYDE PENVEELQDP QFSPAPSSHV ESGIHASESP VAQQQEIPQT REFHEDSPAA QYFHEEEYES HVLTEQAPLL TEQQHQPESG DESDGEGLGS KVLGFAKKAG MVAGGVVAAP VALAAVGAKA AYDALKKDDD EEDQEERESL LRQERSIDSP HASEQSQIEE EHERFEESPV PSEKHHVTET TTTTTVTREY FDEHEPLVSQ EIEGEKGSPA DSEKSLPHVV ETTTTTTVTR EFDKNDSESP VPSEKEQEPT TVSREVYETA EGDEPEHHYT ETTTTTVTKE VIDDSQEMGD DDEPKQESPQ VVETTTTTMT SREYDDNDDE TRSEAGDSHI TETTKTTTVV REFHGEQPEE TEETDEVEEL PPKIEEEDNV SEYSESSTSV SREVRPDEPH IIETTTTTTV TREYHNEPEE TYDDQKDAAP ISFSQEHQDD DSQASHDQHD RESPVESEKS VKHTTETTTT TTVTRQLYDD EASEIRGESP VATEEHEHVS STKSDDESEQ HVPSVIETTT TTTVTREFYD DQDELQREDH TQSEERRSSI PTEETEHEDS HLIKETTTTT TVTREFYDEP ENVEKLQDSQ FSLSPSSHVE SEIYVPESPV AKQQEIPQTR EFHEDSPAAQ YFHEDEYEHQ VPTEQAPLLT EQQHQPESGE ESDGEGFGSK VLGFAKKAGM VAGGVVAAPV ALAAVGAKAA YDALKKEDDE EDQEERESLI REERSFDSPH ASEQSQIEKE HKRFEESPVP SEKHHDQSSA LPQESVSQPI EKESRTFNDE SEFGVKSDHY TEDDQESLKS PKESGEAFSQ FTSEKEQDRS DSPIHSQKED ISQFQNESSP EDVKSEQPHD EEKPDLERQG SYSSGYSPKS PGGSITGLDE EKALSGVQEP EDRPENFAES HEKTEATSDE NLFESDKYAP ASPVPSEDSS NRVIETTTTT TVTREHFEPE DDHSYVVESQ EYSSSGSPVP SEKSVDRVIE TTTTTTVTRE HFEAEDEIPT IVESSHDDQA ASPVPSEEDV HEQIQTTTTT TTVTKEHFVP DDEIDSEHMN ESDKYASGSP VPSEEDSSRV TETTTTTTVT REHFEPEDDH SPVVQTQEYS ASESPVPSEK SVERVIETTT TTTVTREHFE DEDHILGQQG ESDSQIPSES ITSENMDRET SSSPVQSNRD EEFVLPAIAP YKQPTEYGRV DSHDAPASPA PSAESPIQAY KQEESQEAHS LEQFQQRSSV SHEDSPAAQY FHDNESDHDS PVPSDRAPLL TEQQHQPESG EESDGEGFGS KVLGFAKKAG MVAGGVVAAP VALAAVGAKA AYDALKKDDD EDENPDEQEK LLPKSPERQV LVNPVEPSDS EISEIELEYT SPSPTEKSES QCYTETVRTT TVTREYLDDP QSVTRSRSPS EHDISEQYAP ESPVEQDPYV VEKTTTVIRQ YHDEPPQEIE EQTIPEEVTV LREVYESPEG DEPEQHYIET KTTTTITKEV HVPVEEDVQI SPVHSETSVS EKQLPADEQL DEPVTESTTT ATVTRERYEE PEEVRPPSGS EADDESHAPK YMETTTTTTV TREYEVSEDE DEHQQSQVQR DESPAPSEDS VKHVIEKTTT TTVTEERYEP EDSHSPVPSE DDVHGFVKTT TTTTTVTHEH FEPEDPPSDE HVVESERYAS GSPVPSEEDS SREIETTTTT TVTREHFELE DDQEHVVESQ EYSASGSPVP SEKSVERVIE TTTTNTVTRE HFEHEDDIPT IVETSHDDPA ASSVPSEEDV HGQIQTTTTT TTVTREHVVP DEEIDSGRMD ELEKYSSESP VPSEEDSSRV IETTTTTTVS REHFEPEDDH SHVVESQEYS ASGSPVPSEK SVERVIETTT TTTVTREHFD TEEDYIPSES RTSHDDGITD QHVPSQSPVP SEEDDHVTHE QIIRDDPIDE QIVESHEYKS ESSIPSEQDS THVIETVMST PITSERYDPE VEKDVVESAD DEIDSSTAQY YKSESPVQTE KSLLLAKQQQ ESGDESDGEG FGSKVLGFAK KAGMVAGGVV AAPVALAAVG AKAAYDALKK DDDEEDQEDK EPLIGGFHKD QDPISQDEPS AVDSETQEPG ATFYEPEEED KVITDSADSS VVQDEPKIVF PVDSTPEHHS NDREEFESIV KSEGPYIVES TDYAQTSAEE PRISSPVHSD AGDASSFKRP ESVTGEDEKN AIPETSETDA PYVIDSEEYE FNNRDEQRIS SPAHSDEEDE NDAEVIDSEF YRHSQEQNNE EDPSIVESGE YISSGHGSPR PFEDSTTTTV LNVHHEPAAI PEPEVDEEEL EQERSIIESE EYKTSSPLPP TSVTTVEHVE PAEIHKYRTT SPTIVTTVSS EHLDRNQEPY VVESEEYTRA SPLGPERPES PSGSPLPREE DDSHVIESHE YTSSPVPSED SVKHVIEKTT TTTVTEERYE PEDSHSPVPS EDDVHGFVKT TTTTTTVTHE HFEPEDHTSD EHVVESERYA SGSPVPSEEN SNRVTETTTT TTVTREHFEP EDDQEHVVES QEYSASGSPV PSEKSVEKVI ETTTTTTVTR EHFEHEDEIP TIVESSHDDQ AASSVPSEED VHGQIQTTTT TTTVTREHVV PDEEIDSGRM DELEKYSSES PVPPEEDSSR VIETTTTTTF IREHFEPEDD HSHVVGSQEY SASGSPVPSE KSVERVIETT TTTTVTSEHF EHEDEHAQLH DTVSSEKTSS SEPVEQTLEE ADITEETHQR FSAEDEHQPT STEKPVHGFM ETTSTSHTAS HVELEHRDDD DESGGEGFGS KVLGFAKKAG MVAGGVVAAP VALAAVGAKA AYDALKKDDD EEATYDLDRE HGSYESAELQ RPTQQVESRQ EDSESEGSFV DHGEDSQHLP VQSTEAAFKL SSEDIAEQTA EKLVSEVFAP LDRTLIESEQ YRASIESLNR RSPVEPKRSV EDLASEALQN VTKISFGHAD ESDDKHDGDN DGEWKVYDRH GEVLEEFSTQ LTDDVIQEAE GDATTHIMMT QAEYSPRRSK FLKQESCQEI SNEPEVDYYS DLQEKLNILA GEKNNLHALV EEEPSSSASD QLDVIHESDQ EAHLEQEHQQ EAAAQKEQDE KEEAAEYTAT LLVDDVLQQV VQEINEEDDD KKTMTSTSYL TATEKDDQEY DTCVTSQDDT YESAQGWTSQ DSEYTTATSQ APSRLSDSDA ELTARDHDQE RQETSTPQAI LSPVDSDRHF TVQQDFEMPV IRAFDPDDFM QTTARSTPDV ALQVTIEEED ESDDKLPISP SGILLPPKHD PGRPISPVPP RKSDGTMQKE GDHFVFVREE DTIAEPTPPP QPAEPEQLAE YEATKESEHQ QITEGDVPQE EEETEMRRQE TERIHSLAME ASSDLGNSES SRYSRQLSDL SSSAESHADT VIRVESERSG SSDSLEVVSV ISAGKDAQMS EKSLTPEDPE KPTDSVQEHQ QKDQEQAEAE DQREAEDLGF EVYDADTEEQ NQQLEELETV EEEPEDSDSL NEGGNHSSGH SSVGVPADTL AMIGKYRHQS SDNLSLTSLQ EFERLEKEVG ARGDGSLTRS EIELLVAGRL NKSGEGSVSS LAEFERLEKE MTENQSPPED VMMLSDIREE SEAEDMSIRD DDEEDAEGSD TELKSRPVQE EDLRVITPIA PSPTDSLDHA VDAVQMQYLE TSTDSLEPTF QEIEVEQRPE SVEDTSLTEY EVIPRVMEAS TTDSLDGTAT IEKDSVLEGA SQGIESTQST HGLLSGDTMG TVVTDDDRDS LDGEMSSMLQ SYPTTLTTFQ TTVVGPDGSL QTISRRVETK VTDPLVSHVT FTGTESQERL DQLPDDEQFE TVDTEGNVTR TTFHREHDQQ QPHF</td>
+                                        <td class="pic_col"><img src="assets/display_prototype/B0350.2f.png" alt="B0350.2f Domain Organisation"></td>  
+                                    </tr>
+                                    <tr>
+                                        <td class ="checkbox_col">&nbsp;<input type="checkbox" id="B0496.3e" name="B0496.3e" checked="checked"/></td>
+                                        <td class ="gene_col"><a href="http://www.wormbase.org/db/gene/gene?name=unc-82;class=Gene" target="_blank">unc-82</a></td>
+                                        <td class ="gene_col"><a href="http://www.wormbase.org/db/gene/gene?name=B0496.3;class=Gene" target="_blank">B0496.3</a></td>
+                                        <td class ="gene_col"><a href="http://www.wormbase.org/db/gene/gene?name=B0496.3e;class=Protein" target="_blank">B0496.3e</a></td>
+                                        <td class ="gene_col"><a href="http://www.uniprot.org/uniprot/H2KYA5" target="_blank">H2KYA5</a></td>
+                                        <td class ="chr_col">IV</td>
+                                        <td class ="gpos_col">3.33</td>
+                                        <td class ="chr_col">IV</td>
+                                        <td class ="chr_col">+</td>
+                                        <td class ="ppos_col">7,424,498</td>
+                                        <td class ="ppos_col">7,444,664</td>
+                                        <td class ="text_col">unc-82 encodes a serine/threonine kinase related to the human ARK5/SNARK ( 1/ 2) and the PAR-1 and SNF1/AMP-Activated kinase (AMPK) protein kinase families; during development, UNC-82 activity is required for proper organization of internal (membrane-distal) proteins of myosin thick filaments and M-lines in conjunction with embryonic elongation; an UNC-82::GFP reporter fusion is expressed in muscle cells and is associated with M lines; UNC-82::GFP expression is also seen in the pharynx.</td>						
+                                        <td class ="text_col">A structural constituent of muscle. Involved in striated muscle myosin thick filament assembly and striated muscle paramyosin thick filament assembly. Located in M band. Expressed in body wall musculature. Human ortholog(s) of this gene implicated in anencephaly. Is an ortholog of human  1 (  family kinase 1) and  2 (  family kinase 2).</td>						
+                                        <td class ="text_col">antibody_subcellular_localization_variant, body_wall_muscle_morphology_variant, body_wall_muscle_thick_filament_variant, body_wall_muscle_thin_filament_variant, M_line_variant, muscle_birefringence_variant, muscle_cell_morphology_variant, pharyngeal_muscle_morphology_variant, sluggish, sperm_pseudopod_variant</td>						
+                                        <td class ="text_col">body_wall_muscle_sarcomere_morphology_variant, body_wall_muscle_thick_filament_variant, locomotion_reduced, locomotion_variant, M_line_variant, mitochondria_morphology_variant, protein_degradation_variant</td>						
+                                        <td class ="text_col">body_wall_musculature;  </td>						
+                                        <td class ="text_col">anal_depressor_muscle, anal_sphincter_muscle, AS_neuron, AS1, body_wall_muscle_cell, body_wall_musculature, Cappppv, Cpppppv, DA_neuron, DA1, DA3, DA9, DB_neuron, DB1, DB2, DB3, DB4, DB5, DB6, DB7, M.vrpaapaa, M.vrpaapap, MSapaaap, MSapapap, MSapappp, MSappapp, MSppaaap, MSppapap, MSppappp, MSpppapp, mu_int_L, muscle_cell, PLM, PVCL, SAA, uterine_muscle, VA_neuron, VA1, VD_neuron, vulval_muscle; 1-day_post-L4_adult_hermaphrodite, 10-days_post-L4_adult_hermaphrodite, 11-days_post-L4_adult_hermaphrodite, 15-days_post-L4_adult_hermaphrodite, 2-days_post-L4_adult_hermaphrodite, 24-cell_embryo, 3-days_post-L4_adult_hermaphrodite, 5-days_post-L4_adult_hermaphrodite, 6-days_post-L4_adult_hermaphrodite, 7-10_days_post-L4_adult_hermaphrodite, 8-days_post-L4_adult_hermaphrodite, 96-cell_embryo, adult, adult_hermaphrodite, all_stages, blastula_embryo, dauer_larva, embryo, L1_larva, L2_larva, L3_larva, L4_larva, L4_larva_male, L4-adult_lethargus, larva, oocyte-laying_stage_adult_hermaphrodite</td>						
+                                        <td class ="text_col">elks-1, glh-1, lin-53</td>
+                                        <td class ="text_col">dim-1, unc-15, unc-54</td>
+                                        <td class ="text_col"></td>
+                                        <td class ="text_col"></td>
+                                        <td class ="text_col">Nuak</td>
+                                        <td class ="text_col">Nuak2, nuak1b, nuak1a</td>
+                                        <td class ="text_col">Nuak2, Nuak1</td>
+                                        <td class ="text_col">Nuak1, Nuak2</td>
+                                        <td class ="text_col">ATP_binding , cellular_response_to_glucose_starvation , intracellular_signal_transduction , kinase_activity , M_band , negative_regulation_of_TOR_signaling , nucleotide_binding , nucleotide-activated_protein_kinase_complex , phosphorylation , protein_kinase_activity , protein_phosphorylation , protein_serine/threonine_kinase_activity , striated_muscle_myosin_thick_filament_assembly , striated_muscle_paramyosin_thick_filament_assembly , structural_constituent_of_muscle</td>						
+                                        <td class ="text_col">uterine_fibroid, anencephaly</td>						
+                                        <td class ="protsize_col">1793</td>
+                                        <td class ="seq_col">MSSKKRYGTY GRAITSPALL SSSVGWTRPD VTSQIDRLRS QATSVVSSPP PHEYAVPHAF SGSSNGTNAS RPPADPKQPQ RSRAERLRHR ISERRTNAYM IPPSSTTGKD PAIDALMNKY LNKSKENLDE GRKSRESSRA QELLARTNRE MSPTIDSLMK RYGNNNSSAH RIKDSTVSRR ESMEIQDNEN SRSLDNKSCR EARLSGSDVR IKWEVTNTEV KPTSSVKRFS VIIDPTGGRM PVGNSGSRSG RLARISQSNI RPFGSNGGGA TNSYGPGTHP MSGAEPCSPT KKEKHRFEIT KKLGSGTYGK VSLAYDHKFD REVAVKLIKK SAIESKADLV RIRREIRIMS ALNHPNIIQI YEVFENKDKI ILVMEYSSGG ELYDYVSRCG SLPEAEARRI FRQITSAVLY CHKHRVAHRD LKLENILLDQ NNNAKIADFG LSNYFADKNL LTTFCGSPLY ASPEIINGTP YKGPEVDCWS LGILLYTLVY GSMPFDGRDF NRMVRQIKRG AYFEPETPST ASMLIRNMLR VNPERRATIF DIASHWWLNL EENMPVIQEL PENQIIDHTP LTEREETMIV QDLADEQDVF MEFGHLSSET RRKIEDFRIR RKEAEEFNDN SPVKPPKARK TDELTGKISK EQPEEMKSAE KSLRGVKEEK EKPKVVDPND PLERLRQIEN RLGQNKKDKE AAKTSARVET VKLKEVKKEK SPEQQPEDPK TARGTSKPAD SRAPSFVPVK DRPETSEPER PRTRPHLTAS AYRIETDSLN MLMNQVLEQM EKGPVNLNII ARIKAHPLYD TRPMVKELLE SIIAAQPEPV QKQTSKVVEQ QTFSRQNTLT RKKKEDPLEE EIPEVPSPSR KMKERPWHSV EVGFDPDEEP EHDRMQESIA SNATEVTVQD TSFEDDSSDE EERKKTPVAS TPKTPVLIVE KQESSTNAED EESDEGDDYS DAEMEELADE VDKKGPSDSK LAPVVENLEA NPPPDPSSSP QFLDAFDRGL IKRQSKGKYQ HTLINNYGRG VSTECESPTQ QRKFFGGPQP SAELSPFLFD KAKEILQTYP NNKLDARGID VELRRKLRME KVKADLLKQP KDGDKPRNSY VGSVPPRSPP PIVVKSDGEE LDDEEEEEED EEEIEETDSE EGSDFENFKP KRPIIAAVRR DDGAVVPVIH QTTRPAVVSP NSQNPRYQVA SPKTSTVIQA TPEKVPVAGT SAKYLVTVAE LKLKPTDKKE EAQLKEQLKD SEINSERKVT KGAAPSTISQ DSDGKDTFES ASAYIRRKNR ERRQRNRTIG TAEEALRALE RPSVDPYDDR AFSPLSTDPF YSHHSSGSAA PSALGYVRPR YHDDSYRTHR DSDYRPMSPT SRYTAAVTRD DRGKSTSYDP HETTRPSYDR GYITSSNASP SYTRKFEHEQ PTLNSWANDR KFEVYKTRAE RDAERNTYHP TGTTGASSYR PSSYYTSASD RPVTGLRRPE ESYTSSTNYG RYDGRSTTPS NDQYAISTAL AENQASSMNN RFRPTARRVA SAMTDADRRN YHRSRSMDRN KVDYEYGSNL LNRLTTPDSH GDYSYVNYHD SSNGRSNITL EKDGQPRSIL KNKQSADIEP RVESSYEPSN GVRSVFERLR RHLSLEKSVS PQRQNTSFYG RQLRVASVGP HSRNIDSTSS ALDNPKKKRS LLSFNRRKTS EVRMGADGKL VTNGYDSTPS SRDFKRPSSP IDRIKSLFRK NESSGTGHSD YYNSSRNYTS SNPVSTTREP YVAQYRKYPG STSRDTSSAL NRYSYTPGLT DQRRHWYDDP NIY</td>
+                                        <td class="pic_col"><img src="assets/display_prototype/B0496.3e.png" alt="B0496.3e Domain Organisation"></td>  
+                                    </tr>
+                                    <tr>
+                                        <td class ="checkbox_col">&nbsp;<input type="checkbox" id="B0564.10b" name="B0564.10b" checked="checked"/></td>
+                                        <td class ="gene_col"><a href="http://www.wormbase.org/db/gene/gene?name=unc-30;class=Gene" target="_blank">unc-30</a></td>
+                                        <td class ="gene_col"><a href="http://www.wormbase.org/db/gene/gene?name=B0564.10;class=Gene" target="_blank">B0564.10</a></td>
+                                        <td class ="gene_col"><a href="http://www.wormbase.org/db/gene/gene?name=B0564.10b;class=Protein" target="_blank">B0564.10b</a></td>
+                                        <td class ="gene_col"><a href="http://www.uniprot.org/uniprot/P52906" target="_blank">P52906</a></td>
+                                        <td class ="chr_col">IV</td>
+                                        <td class ="gpos_col">8.22</td>
+                                        <td class ="chr_col">IV</td>
+                                        <td class ="chr_col">+</td>
+                                        <td class ="ppos_col">13,118,977</td>
+                                        <td class ="ppos_col">13,124,406</td>
+                                        <td class ="text_col">unc-30 encodes a homeodomain-containing protein that is orthologous to the Pitx family of homeodomain transcription factors; during develpoment, UNC-30 controls the terminal differentiation of all 19 type D GABA-ergic motor neurons by directly regulating the expression of UNC-25/GAD and UNC-47/VGAT, which regulate GABA formation and secretion, respectively; UNC-30 is expressed most strongly in type D motor neurons during early L1 and L2 larval stages.</td>						
+                                        <td class ="text_col">Enables sequence-specific DNA binding activity. Involved in neuron differentiation; positive regulation of transcription by RNA polymerase II; and regulation of locomotion. Located in nucleus. Expressed in GABAergic neurons; ganglia; intestine; and ventral cord neurons. Human ortholog(s) of this gene implicated in Arts syndrome; clubfoot; and eye disease (multiple). Is an ortholog of human PITX2 (paired like homeodomain 2) and PITX3 (paired like homeodomain 3).</td>						
+                                        <td class ="text_col">amplitude_of_sinusoidal_movement_variant, antibody_staining_reduced, axon_fasciculation_variant, axon_outgrowth_variant, backing_decreased, backward_locomotion_variant, backward_point_velocity_decreased, body_posture_amplitude_decreased, body_posture_wavelength_decreased, coiling_frequency_increased, embryonic_lethal, forward_locomotion_decreased, forward_point_velocity_decreased, frequency_body_bend_reduced, head_bend_angle_variant, larval_lethal, locomotion_variant, neuron_morphology_variant, nose_movement_variant, path_curvature_increased, pathogen_adherence_decreased, pathogen_resistance_increased, pausing_increased, roaming_reduced, short, shortened_life_span, shrinker, sluggish, small, tail_bend_angle_variant, thin, turning_frequency_variant</td>						
+                                        <td class ="text_col">locomotion_variant, shrinker, transgene_expression_increased</td>						
+                                        <td class ="text_col">ASGL, ASGR, AVJL, AVJR, DD_neuron, DD1, DD2, DD3, DD4, DD5, DD6, GABAergic_neuron, intestine, PVPL, PVPR, RID, RIH, VD_neuron, VD1, VD10, VD11, VD12, VD13, VD2, VD3, VD4, VD5, VD6, VD7, VD8, VD9, ventral_cord_neuron; L1_larva, L2_larva, L3_larva, L4_larva, postembryonic</td>						
+                                        <td class ="text_col">AVDL, AVDR, AVHL, AVHR, AVJ, AVJL, AVJR, DD_neuron, DD1, DD2, DD3, DD4, DD5, DD6, GABAergic_neuron, GLRDL, GLRDR, GLRL, GLRR, GLRVL, GLRVR, intestine, neuron, OLL, PVD, PVP, PVPL, PVPR, PVT, RIBL, RIBR, sensory_neuron, somatic_gonad_precursor, spermathecal-uterine_valve_cell, VD_neuron, VD1, VD10, VD11, VD12, VD13, VD2, VD3, VD4, VD5, VD6, VD7, VD8, VD9, ventral_nerve_cord, Z1, Z4; 1-day_post-L4_adult_hermaphrodite, 10-days_post-L4_adult_hermaphrodite, 11-days_post-L4_adult_hermaphrodite, 15-days_post-L4_adult_hermaphrodite, 2-days_post-L4_adult_hermaphrodite, 2-fold_embryo, 20-days_post-L4_adult_hermaphrodite, 3-days_post-L4_adult_hermaphrodite, 3-fold_embryo, 4-days_post-L4_adult_hermaphrodite, 5-days_post-L4_adult_hermaphrodite, 6-days_post-L4_adult_hermaphrodite, 8-days_post-L4_adult_hermaphrodite, adult, all_stages, blastula_embryo, dauer_larva, embryo, L1_larva, L2_larva, L3_larva, L4_larva, larva</td>						
+                                        <td class ="text_col">alr-1, aptf-1, ceh-10, ceh-13, ceh-18, ceh-37, ceh-43, ceh-45, ceh-8, daf-3, die-1, dsc-1, egl-5, elt-1, eya-1, fkh-6, hlh-30, lin-54, lsl-1, lsy-2, mab-5, mls-2, mml-1, nhr-10, nhr-111, nhr-1, nhr-6, php-3, pie-1, T24C4.2, tbx-8, ttx-1, unc-30, unc-30, unc-42, vab-3, ztf-11, ztf-1, ztf-26</td>
+                                        <td class ="text_col">cdc-48.2, jnk-1</td>
+                                        <td class ="text_col">ckb-2, irx-1, madd-4, odr-2, oig-1, snb-1, syd-1, syd-2, unc-130, unc-25, unc-46, unc-47, unc-49</td>
+                                        <td class ="text_col"></td>
+                                        <td class ="text_col">Ptx1</td>
+                                        <td class ="text_col">Pitx2, Pitx3, Pitx1</td>
+                                        <td class ="text_col">Pitx1, Pitx2, Pitx3</td>
+                                        <td class ="text_col">Pitx1, Pitx2, Pitx3</td>
+                                        <td class ="text_col">anatomical_structure_morphogenesis , axon_guidance , DNA_binding , DNA-binding_transcription_factor_activity , DNA-binding_transcription_factor_activity,_RNA_polymerase_II-specific , dorsal/ventral_axon_guidance , GABAergic_neuron_differentiation , nucleus , positive_regulation_of_transcription_by_RNA_polymerase_II , regulation_of_locomotion , regulation_of_transcription_by_RNA_polymerase_II , RNA_polymerase_II_cis-regulatory_region_sequence-specific_DNA_binding , sequence-specific_DNA_binding</td>						
+                                        <td class ="text_col">cataract, clubfoot, Axenfeld-Rieger_syndrome, Arts_syndrome, anterior_segment_dysgenesis, anterior_segment_dysgenesis_1, anterior_segment_dysgenesis_4, Axenfeld-Rieger_syndrome_type_1, cataract_11_multiple_types, cataract_9_multiple_types, ring_dermoid_of_cornea</td>						
+                                        <td class ="protsize_col">323</td>
+                                        <td class ="seq_col">MDDNTATLTA IHQQQQSHNR FSNPLVCVGQ LDHHSLLPEH SISSSLAPLT HNPYAFNYSI PLPPTDITTK LPKLELLSLD VKQEQDDNHL DTSSPTDSTG NGSTNGGKIQ KPRRQRTHFT SHQLTELENW FSRNRYPDMA CREEIAVWIS LTEPRVRVWF KNRRAKWRKR ERNYVIDNGQ GTTKVTAQSL DPLGSLQNTF PQTLLQSSSS QLDDSAVTSS SFYGYGGAWQ QNPYYSRNNQ TTFNWQIKPQ DQFQFQTIPM SPTTATSRFS TAANLAPLPT AQAAFSTSAT SSNDKLKLMD GLSNSLSSSL GQPYQPCQYS GPL</td>
+                                        <td class="pic_col"><img src="assets/display_prototype/B0564.10b.png" alt="B0564.10b Domain Organisation"></td>
+                                    </tr>
+
+
+
+
+
+                                    <tr>
+                                        <td class ="checkbox_col">&nbsp;<input type="checkbox" id="B0273.4c" name="B0273.4c" checked="checked"/></td>
+                                        <td class ="gene_col"><a href="http://www.wormbase.org/db/gene/gene?name=unc-5;class=Gene" target="_blank">unc-5</a></td>
+                                        <td class ="gene_col"><a href="http://www.wormbase.org/db/gene/gene?name=B0273.4;class=Gene" target="_blank">B0273.4</a></td>
+                                        <td class ="gene_col"><a href="http://www.wormbase.org/db/gene/gene?name=B0273.4c;class=Protein" target="_blank">B0273.4c</a></td>
+                                        <td class ="gene_col"><a href="http://www.uniprot.org/uniprot/Q26261" target="_blank">Q26261</a></td>
+                                        <td class ="chr_col">IV</td>
+                                        <td class ="gpos_col">1.78</td>
+                                        <td class ="chr_col">IV</td>
+                                        <td class ="chr_col">-</td>
+                                        <td class ="ppos_col">5,495,664</td>
+                                        <td class ="ppos_col">5,528,338</td>
+                                        <td class ="text_col">unc-5 encodes a netrin receptor; unc-5 activity is required cell autonomously for dorsalward cell and pioneer motor axon migrations along the body wall that are essential for normal locomotion and gonad development; unc-5 mRNAs are expressed throughout the entire life cycle, with increasing levels seen as animals progess to adulthood.</td>						
+                                        <td class ="text_col">Enables netrin receptor activity and protein tyrosine kinase binding activity. Involved in several processes, including axon guidance; regulation of neuron projection development; and sex differentiation. Acts upstream of or within distal tip cell migration. Located in axonal growth cone. Expressed in several structures, including distal tip cell; excretory canal; head neurons; motor neurons; and somatic nervous system. Is an ortholog of human UNC5A (unc-5 netrin receptor A); UNC5B (unc-5 netrin receptor B); and UNC5C (unc-5 netrin receptor C).</td>						
+                                        <td class ="text_col">axodendritic_polarity_variant, axon_branching_variant, axon_development_variant, axon_guidance_variant, axon_outgrowth_variant, axon_trajectory_variant, coiler, constitutive_egg_laying, cord_commissures_fail_to_reach_target, dendrite_development_variant, distal_tip_cell_migration_variant, dorsal_nerve_cord_development_variant, dorsal_region_development_variant, gonad_arm_morphology_variant, locomotion_variant, long_range_axon_migration_variant, muscle_arm_axon_connection_variant, muscle_arm_development_variant, presynaptic_component_localization_variant, presynaptic_vesicle_cluster_localization_variant, short_range_axon_migration_variant, ventral_cord_disorganized</td>						
+                                        <td class ="text_col">axon_guidance_variant, body_wall_muscle_sarcomere_morphology_variant, dendrite_development_variant, locomotion_variant, protein_degradation_variant</td>						
+                                        <td class ="text_col">anterior_distal_tip_cell, AS_neuron, ASEL, ASER, DA_neuron, DB_neuron, DD_neuron, distal_tip_cell, dorsal_nerve_cord, excretory_canal, IL2DL, IL2DR, IL2L, IL2R, IL2VL, IL2VR, linker_cell, motor_neuron, OLLL, OLLR, OLQDL, OLQDR, OLQVL, OLQVR, posterior_distal_tip_cell, RIAL, RIAR, RIH, VD_neuron, ventral_nerve_cord; all_stages, L2-L3_molt, L3_larva, L4_larva</td>						
+                                        <td class ="text_col">ABalapaaaa, ABalappapa, AS11, DA_neuron, DA1, DA2, DA3, DA4, DA5, DA6, DA7, DA8, DA9, DB1, DB2, DB3, DB4, DB5, DB6, DB7, g1AL, g1AR, g1P, GABAergic_neuron, head_mesodermal_cell, hyp3, I5_neuron, intestine, male-specific_anatomical_entity, MSpaaapa, MSpppaaa, neuron, OLL, oocyte, PDA, PDB, PVD, retrovesicular_ganglion, RID, SAB, sensory_neuron, SIADL, SIADR, SIAVL, SIAVR, VA_neuron, VA1, VA12, VD_neuron; 1-cell_embryo, 1-day_post-L4_adult_hermaphrodite, 10-days_post-L4_adult_hermaphrodite, 11-days_post-L4_adult_hermaphrodite, 15-days_post-L4_adult_hermaphrodite, 2-days_post-L4_adult_hermaphrodite, 20-days_post-L4_adult_hermaphrodite, 3-days_post-L4_adult_hermaphrodite, 4-days_post-L4_adult_hermaphrodite, 5-days_post-L4_adult_hermaphrodite, 6-days_post-L4_adult_hermaphrodite, 7-10_days_post-L4_adult_hermaphrodite, 8-days_post-L4_adult_hermaphrodite, adult, adult_male, all_stages, blastula_embryo, dauer_larva, embryo, L1_larva, L2_larva, L2d_larva, L3_larva, L4_larva, larva, oocyte-laying_stage_adult_hermaphrodite</td>						
+                                        <td class ="text_col">max-1, src-1, unc-129, apb-3, ccar-1, dpy-19, madd-4, unc-73</td>
+                                        <td class ="text_col">max-1, src-1, unc-129, ahr-1, clr-1, dbl-1, egl-20, enu-3.1, mec-8, mig-22, seu-1, seu-2, sqv-5, unc-14, unc-34, unc-40, unc-44, unc-52, unc-6, unc-71</td>
+                                        <td class ="text_col">blmp-1, daf-12, daf-9, lnp-1, nhr-67, pros-1, rab-3, rpm-1, snb-1, sys-1, unc-49</td>
+                                        <td class ="text_col"></td>
+                                        <td class ="text_col">unc-5</td>
+                                        <td class ="text_col">Unc5b, unc5cb, unc5da, Unc5a, unc5db, unc5ca</td>
+                                        <td class ="text_col">Unc5c, Unc5a, Unc5b, Unc5d</td>
+                                        <td class ="text_col">Unc5c, Unc5a, Unc5d, Unc5b</td>
+                                        <td class ="text_col">axonal_growth_cone , cell_projection , chemorepulsion_of_axon , commissural_neuron_axon_guidance , distal_tip_cell_migration , dorsal/ventral_axon_guidance , establishment_or_maintenance_of_actin_cytoskeleton_polarity , gonad_morphogenesis , membrane_raft , membrane , mesodermal_cell_migration , motor_neuron_axon_guidance , negative_regulation_of_microtubule_polymerization , nematode_male_tail_tip_morphogenesis , netrin_receptor_activity , netrin-activated_signaling_pathway , neuron_projection , plasma_membrane , positive_regulation_of_anterior/posterior_axon_guidance , positive_regulation_of_axon_extension , positive_regulation_of_locomotion , protein_tyrosine_kinase_binding , regulation_of_dorsal/ventral_axon_guidance , signal_transduction , ventral_cord_development</td>						
+                                        <td class ="text_col"> </td>						
+                                        <td class ="protsize_col">947</td>
+                                        <td class ="seq_col">MEDDTPDVSS DSNGDAAYSD YFLDYKSIMD EITITTQPKS GYVIRNKPLR LQCRANHATK IRYKCSSKWI DDSRIEKLIG TDSTSGVGYI DASVDISRID VDTSGHVDAF QCQCYASGDD DQDVVASDVA TVHLAYMRKH FLKSPVAQRV QEGTTLQLPC QAPESDPKAE LTWYKDGVVV QPDANVIRAS DGSLIMSAAR LSDSGNYTCE ATNVANSRKT DPVEVQIYVD GGWSEWSPWI GTCHVDCPLL RQHAHRIRDP HDVLPHQRRT RTCNNPAPLN DGEYCKGEEE MTRSCKVPCK LDGGWSSWSD WSACSSSCHR YRTRACTVPP PMNGGQPCFG DDLMTQECPA QLCTADSSRI VISDTAVYGS VASIFIVASF ILAILAMFCC KRGNSKKSKP LKPQKMNSEK AGGIYYSEPP GVRRLLLEHQ HGTLLGEKIS SCSQYFEPPP LPHSTTLRSG KSAFSGYSST RNAGSRAALI QECSSSSSGS GGKRTMLRTS SSNCSDDDNY ATLYDYMEDK SVLGLDTSQN IVAAQIDSNG ARLSLSKSGA RLIVPELAVE GEKMLYLAVS DTLTDQPHLK PIESALSPVI VIGQCDVSMS AHDNILRRPV VVSFRHCAST FPRDNWQFTL YADEGSGWQK AVTIGEENLN TNMFVQFEQP GKKNDGFGWC HVMTYSLARL MLAGHPRRNS LSAAKRVHLA VFGPTEMSAY RRPFELRVYC VPETGAAMES VWKQEDGSRL LCESNDFILN EKGNLCICIE DVIPGFSCDG PEVVEISETQ HRFVAQNGLH CSLKFRPKEI NGSQFSTRVI VYQKASSTEP MVMEVSNEPE LYDATSEERE KGSVCVEFRL PFGVKDELAR LLDMPNESHS DWRGLAKKLH YDRYLQFFAS FPDCSPTSLL LDLWEASSSG SARAVPDLLQ TLRVMGRPDA VMVLERFLSA FPQIVSP</td>
+                                        <td class="pic_col"><img src="assets/display_prototype/B0273.4c.png" alt="B0273.4c Domain Organisation"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class ="checkbox_col">&nbsp;<input type="checkbox" id="B0350.2f" name="B0350.2f" checked="checked"/></td>
+                                        <td class ="gene_col"><a href="http://www.wormbase.org/db/gene/gene?name=unc-44;class=Gene" target="_blank">unc-44</a></td>
+                                        <td class ="gene_col"><a href="http://www.wormbase.org/db/gene/gene?name=B0350.2;class=Gene" target="_blank">B0350.2</a></td>
+                                        <td class ="gene_col"><a href="http://www.wormbase.org/db/gene/gene?name=B0350.2f;class=Protein" target="_blank">B0350.2f</a></td>
+                                        <td class ="gene_col"><a href="http://www.uniprot.org/uniprot/Q17490" target="_blank">Q17490</a></td>
+                                        <td class ="chr_col">IV</td>
+                                        <td class ="gpos_col">2.89</td>
+                                        <td class ="chr_col">IV</td>
+                                        <td class ="chr_col">+</td>
+                                        <td class ="ppos_col">5,975,557</td>
+                                        <td class ="ppos_col">6,004,857</td>
+                                        <td class ="text_col"> </td>						
+                                        <td class ="text_col">Enables cell adhesion molecule binding activity. Involved in several processes, including axon guidance; establishment or maintenance of cytoskeleton polarity; and regulation of cellular component organization. Located in lateral plasma membrane. Expressed in hermaphrodite gonad; hypodermis; intestinal cell; and vulval cell. Human ortholog(s) of this gene implicated in several diseases, including ankyrin-B-related cardiac arrhythmia; autosomal recessive intellectual developmental disorder 37; and heart conduction disease (multiple). Is an ortholog of human ANK2 (ankyrin 2) and ANK3 (ankyrin 3).</td>						
+                                        <td class ="text_col">amplitude_of_sinusoidal_movement_variant, axon_branching_variant, axon_development_variant, axon_outgrowth_variant, backing_decreased, backward_point_velocity_decreased, benzaldehyde_chemotaxis_variant, body_posture_amplitude_variant, body_posture_wavelength_decreased, coiler, coiling_frequency_increased, curly, dumpy, dye_filling_defect, forward_locomotion_decreased, forward_point_velocity_decreased, frequency_of_body_bend_variant, gap_junction_plaque_number_increased, head_bend_angle_decreased, lethal, locomotion_variant, loss_of_asymmetry_AWC, nose_movement_variant, paralyzed, path_curvature_increased, pausing_variant, roaming_reduced, short, small, sterile, tail_bend_angle_variant, thin, turning_frequency_variant</td>						
+                                        <td class ="text_col">axon_guidance_variant, cleavage_furrow_termination_defective_early_emb, dendrite_development_variant, dumpy, germ_cell_morphology_variant, locomotion_variant, meiosis_variant, reduced_brood_size, slow_growth, sluggish, small</td>						
+                                        <td class ="text_col">anal_depressor_muscle, anchor_cell, body_wall_musculature, gonadal_sheath_cell, head_neuron, hypodermal_cell, hypodermis, intestinal_cell, intestine, muscle_cell, nerve_ring, nervous_system, neuron, pharyngeal_neuron, seam_cell, spermatheca, tail_neuron, ventral_cord_neuron, vulval_cell; 1.5-fold_embryo, 2-fold_embryo, 3-fold_embryo, adult, embryo, enclosing_embryo, fully-elongated_embryo, L1_larva, L3_larva, L4_larva, larva</td>						
+                                        <td class ="text_col">anal_depressor_muscle, anal_sphincter_muscle, anchor_cell, AS1, AS10, AS11, AS2, AS3, AS4, AS5, AS6, AS7, AS8, AS9, AVG, AVK, Cappppv, CEM, CEPshDL, CEPshDR, CEPshVL, CEPshVR, Cpppppv, DA_neuron, DA1, DA2, DA3, DA4, DA5, DA6, DA7, DA8, DA9, DB1, DB2, DB3, DB4, DB5, DB6, DB7, DD_neuron, head_mesodermal_cell, hermaphrodite_distal_tip_cell, HOB, HSN, I5_neuron, IL2_neuron, intestinal_muscle, intestine, male_distal_tip_cell, MSapaaap, MSapapap, MSapappp, MSappapp, MSppaaap, MSppapap, MSppappp, MSpppapp, muscle_cell, neuron, NSM, OLL, PDB, PLM, PVC, PVD, PVM, PVT, PVW, ray_neuron_type_B, rect_D, retrovesicular_ganglion, SAB, sensory_neuron, VA_neuron, VA12, VB1, VB10, VB11, VB2, VB3, VB4, VB5, VB6, VB7, VB8, VB9; 1-day_post-L4_adult_hermaphrodite, 10-days_post-L4_adult_hermaphrodite, 2-days_post-L4_adult_hermaphrodite, 20-days_post-L4_adult_hermaphrodite, 3-days_post-L4_adult_hermaphrodite, 4-days_post-L4_adult_hermaphrodite, 5-days_post-L4_adult_hermaphrodite, 6-days_post-L4_adult_hermaphrodite, 7-10_days_post-L4_adult_hermaphrodite, adult, adult_hermaphrodite, adult_male, all_stages, blastula_embryo, dauer_larva, embryo, L1_larva, L2_larva, L3_larva, L4_larva, L4-adult_lethargus, larva, oocyte-laying_stage_adult_hermaphrodite</td>						
+                                        <td class ="text_col">sax-7, C11E4.6, calm-1, cdc-42, chn-1, dlg-1, elks-1, glh-1, gras-1, lgl-1, myrf-1, myrf-2, nhr-111, nrde-2, pak-1, pan-1, rabs-5, sec-6, sip-1, smo-1, spc-1, spe-39, ubq-1, unc-119, vps-45, Y59A8B.12, zen-4</td>
+                                        <td class ="text_col">daf-11, unc-5</td>
+                                        <td class ="text_col">sax-7, inx-19, unc-1, unc-33, unc-9</td>
+                                        <td class ="text_col"></td>
+                                        <td class ="text_col">Ank2, Ank</td>
+                                        <td class ="text_col">ank1a, ank2b, ank2a, ank3a</td>
+                                        <td class ="text_col">Ank1, Ank3, Ank2</td>
+                                        <td class ="text_col">Ank1, Ank2, Ank3</td>
+                                        <td class ="text_col">body_morphogenesis , cell_adhesion_molecule_binding , chemorepulsion_of_axon , cytoplasm , cytoskeleton , dorsal/ventral_axon_guidance , establishment_or_maintenance_of_actin_cytoskeleton_polarity , establishment_or_maintenance_of_microtubule_cytoskeleton_polarity , lateral_plasma_membrane , localization , locomotion , membrane , negative_regulation_of_microtubule_polymerization , netrin-activated_signaling_pathway , positive_regulation_of_multicellular_organism_growth , regulation_of_dorsal/ventral_axon_guidance , signal_transduction</td>						
+                                        <td class ="text_col">anemia, bipolar_disorder, schizophrenia, hereditary_spherocytosis, sick_sinus_syndrome, atrial_fibrillation, autosomal_recessive_intellectual_developmental_disorder_37, hereditary_spherocytosis_type_1, ankyrin-B-related_cardiac_arrhythmia</td>						
+                                        <td class ="protsize_col">6994</td>
+                                        <td class ="seq_col">MSNEGDPPQP QQQQPESQEV QAPAAPEPGR AEGSASFLRA ARAGDLEKVL ELLRAGTDIN TSNANGLNSL HLASKEGHSE VVRELIKRQA QVDAATRKGN TALHIASLAG QSLIVTILVE NGANVNVQSV NGFTPLYMAA QENHEEVVKY LLKHGANQAL STEDGFTPLA VALQQGHDRV VAVLLENDSK GKVRLPALHI AAKKDDTTAA TLLLQNEHNP DVTSKSGFTP LHIAAHYGHE NVGQLLLEKG ANVNYQARHN ISPLHVATKW GRTNMANLLL SRGAIIDSRT KDLLTPLHCA ARSGHDQVVD LLVVQGAPIS AKTKNGLAPL HMAAQGDHVD AARTLLYHRA PVDDVTVDYL TPLHVAAHCG HVRVAKLLLD RSADPNSRAL NGFTPLHIAC KKNRIKVVEL LLKYRAAIEA TTESGLTPLH VAAFMGAINI VIYLLQQGAN PDVETVRGET PLHLAARANQ TDVVRVLIRN GAKVDAQARE LQTPLHIASR LGNTDIVILL LQAGANSNAT TRDNYSPLHI AAKEGQEEVA GILLDHNADK TLLTKKGFTP LHLASKYGNL EVVRLLLERG TPVDIEGKNQ VTPLHVAAHY NNDKVAMLLL ENGASAKAAA KNGYTPLHIA AKKNQMEIAS TLLQFKADPN AKSRAGFTPL HLSAQEGHKE ISGLLIENGS DVGAKANNGL TAMHLCAQED HVPVAQILYN NGAEINSKTN AGYTPLHVAC HFGQLNMVKF LVENGADVGE KTRASYTPLH QAAQQGHNNC VRYLLENGAS PNEQTATGQT PLSIAQRLGY VSVVETLRTV TETTVITETT TVDERYKPQN PEAMNETMFS ESEDEGQAAE HEAVAAHEKD FSDNLTQGLQ DSTGVHMIHT GEQLLQRSQE LENGGAIPKI NSGGMSPEKE FAKIAPVATS SPIATSNSQS FGIAPRAGSI SGQFQQQPLH GAGPEDNLEE LVRRAQNHPI NAGNYDNGGV AMLENGHADN VPIGHHVTQP SKLQHRTFLI SFLVDARGGA MRGCRHSGVR IIVPPRKASQ PIRVTCRYLR KDKLAHPPPL SEGEELASRI LEMAPAGAKF LGPVILEVPH FASLRDRERE IVILRSDDGQ HWKEHQLEAT EDAVQEVLNE SFDAEDLAQL DDLQTPRITR ILTSDFPMYF AVVTRVRQEV HCVGPEGGVI ISSVVPRVQA IFPDGSLTKT IKVSVQAQPV PQEMVTRLHG NRVAVSPIVT VEPRRRKFHK PITLCIPLPQ SNNRGMLTQY SGQQGQEPPT LRLLCSITGG SAPAQWEDIT GTTQLTFTGD EVSFTTTVSA RFWLMDCQTP RDAARMAQEV YNEAISIPYM AKFAVFARRT FPVEGQLRVF CMTDDKEDKT LEKQEHFKLI AKSRDVEVLK GKHQFLEFSG NLVPITKSGD QLSLFFLPFQ ENRLAFMVKT RSNDDNEAAT EGRIGFMAEP KIRSDALPPQ QPICTLAISL PEYTGEIKTA PPPKKDLTPF EQRYGSALEK DLPEFVHQNV LKGIGADWPR LGRALEVPHR DIQHIRQNYP GQECKNTLKI WIHLKKEDAN QDNLDQALRQ IGRDDIVRSI AYGEPDALIN YSQADSPSQK REPIRHFEEV PAATLVKREV RTEDLVTREP VQPTHHVEQA TTVVQEPSYS APVHHSPVPE EPEMEEEAPV AEMRTVVRTE RHVHDSEDGP VVEERTITTT YEDDVAVNEN IVDRTVPLNE DEQQKWEELN RLADESSPSP AQRSTIVAES TSEQVPEDVE QSVESESHRE DDGTIVTTTV TTSHISESPS GSPTRRSVEP EEHRHSQHED HEASGAEQHS GQDSGTTQKK ETAEEGFTNE DGSVVVSKKM TRVVTTTRTT LPGEGEEPSA PDSPVESLGS VKDRIAKFEQ FKTLPIDPSV SGPPPSAHTL QSEEYQEESG NVESAYDVET DRRDSERSLK SERSIPEIHT SPSEEQQSEH FESAEHTEDQ GRDSGRSLKS DRSIPEVQFT ESDSELEKHD LHEDSHLEPT VGIVITPHTP VPPEHPDDKE DIEDEQPQEP LEPSEPEHVA HAELKDTREY SDEELAQELS PSEEHVSTAE IKDIKSYSPT SSDDERSSQK GKVSPPIPQV RHAISPSVAS EVLSSHDDEL AAHFVAESFE KHDEGNVETI EQTPVYKGHH SPGQTSPIVS EHPHAQEYAE SVTSHDEGDN LSLKSGHEPE IARHSVASVQ EEDDDDDEKS ELGDFAKKAG MIVGGVIAAP VALAAVGAKA AYDALNRDDD EEKLEGHEEK EVLTTQTTIM ESPIRHEDIP SPHLEDVTPK VSHQEHPYEH VTETTTTVTR DYYEQPEDHR EASPAPSSHV ESERPISESP AVSEREPSHI ATETTTTVTR EYDQEPKADQ SSARESVRDL VSEEHEHPAC DSERLSEPAQ SPEPVETHAE SQFSNLVETT TTTAVTREFY DEDQEEQASS RATKERIEQS PVASERSIVS TEHRQSPTQE SEQSLEPTSE KNVHTVTETT TVTRECFEEP IASELEHASR EFEQGSNDFR RSVSPVDAQE QVDVPHSPAP SSHAESEQPV PESPHHIVET TTTTTVTREF QDEEYPRPES PAEIFPIPSS EQQSEEPHIV KETTTTTTVT RELYDEPEKG NVTFSPAPSS HAESERQVPE SPVVSHQEYP HVVETTTTTN VTSNIYDDED NVPSSEDPAT QHFQQSETSV HRSHPDSVEE SDGEGLGSKV LGFAKKAGMV AGGVVAAPVA LAAVGAKAAY DAFEKDDEDD ETSHSPESPV PEYQSEQYQD DSAQSSHTDF EHHMPESPIE HEKETEEFDH SHPESPVLSE KEREHQVTSE TTTTTTVTRE YNDEPEDEQE HQGPHSPAPS SHTEAEHPHI VETTTTTTVT REFQEEPEEL EYKQEDNSRK SPSSHSQENL VTETTTTTTV TSEYYDEPEH FEEQETGKSS PAPSSHVESE RQVLESPVAS DPRHVMETTT TTTVTRQFHD DESERSDSPN RDVVEAQSIH SSNIESHQQF SEKDDDSQRG PSPVKSEDEP VKHESYKFET STTETREFDR PELDSERLSE PAQSPMEVSP ITTEENIVRP SSSVKSEYGS EGHVPSVIET KTTTTVTREF YDDDQDEHEN QTQSEELRSS IPTEEEEHEG SHLFKETTTT TTVTREFYDE PENVEELQDP QFSPAPSSHV ESGIHASESP VAQQQEIPQT REFHEDSPAA QYFHEEEYES HVLTEQAPLL TEQQHQPESG DESDGEGLGS KVLGFAKKAG MVAGGVVAAP VALAAVGAKA AYDALKKDDD EEDQEERESL LRQERSIDSP HASEQSQIEE EHERFEESPV PSEKHHVTET TTTTTVTREY FDEHEPLVSQ EIEGEKGSPA DSEKSLPHVV ETTTTTTVTR EFDKNDSESP VPSEKEQEPT TVSREVYETA EGDEPEHHYT ETTTTTVTKE VIDDSQEMGD DDEPKQESPQ VVETTTTTMT SREYDDNDDE TRSEAGDSHI TETTKTTTVV REFHGEQPEE TEETDEVEEL PPKIEEEDNV SEYSESSTSV SREVRPDEPH IIETTTTTTV TREYHNEPEE TYDDQKDAAP ISFSQEHQDD DSQASHDQHD RESPVESEKS VKHTTETTTT TTVTRQLYDD EASEIRGESP VATEEHEHVS STKSDDESEQ HVPSVIETTT TTTVTREFYD DQDELQREDH TQSEERRSSI PTEETEHEDS HLIKETTTTT TVTREFYDEP ENVEKLQDSQ FSLSPSSHVE SEIYVPESPV AKQQEIPQTR EFHEDSPAAQ YFHEDEYEHQ VPTEQAPLLT EQQHQPESGE ESDGEGFGSK VLGFAKKAGM VAGGVVAAPV ALAAVGAKAA YDALKKEDDE EDQEERESLI REERSFDSPH ASEQSQIEKE HKRFEESPVP SEKHHDQSSA LPQESVSQPI EKESRTFNDE SEFGVKSDHY TEDDQESLKS PKESGEAFSQ FTSEKEQDRS DSPIHSQKED ISQFQNESSP EDVKSEQPHD EEKPDLERQG SYSSGYSPKS PGGSITGLDE EKALSGVQEP EDRPENFAES HEKTEATSDE NLFESDKYAP ASPVPSEDSS NRVIETTTTT TVTREHFEPE DDHSYVVESQ EYSSSGSPVP SEKSVDRVIE TTTTTTVTRE HFEAEDEIPT IVESSHDDQA ASPVPSEEDV HEQIQTTTTT TTVTKEHFVP DDEIDSEHMN ESDKYASGSP VPSEEDSSRV TETTTTTTVT REHFEPEDDH SPVVQTQEYS ASESPVPSEK SVERVIETTT TTTVTREHFE DEDHILGQQG ESDSQIPSES ITSENMDRET SSSPVQSNRD EEFVLPAIAP YKQPTEYGRV DSHDAPASPA PSAESPIQAY KQEESQEAHS LEQFQQRSSV SHEDSPAAQY FHDNESDHDS PVPSDRAPLL TEQQHQPESG EESDGEGFGS KVLGFAKKAG MVAGGVVAAP VALAAVGAKA AYDALKKDDD EDENPDEQEK LLPKSPERQV LVNPVEPSDS EISEIELEYT SPSPTEKSES QCYTETVRTT TVTREYLDDP QSVTRSRSPS EHDISEQYAP ESPVEQDPYV VEKTTTVIRQ YHDEPPQEIE EQTIPEEVTV LREVYESPEG DEPEQHYIET KTTTTITKEV HVPVEEDVQI SPVHSETSVS EKQLPADEQL DEPVTESTTT ATVTRERYEE PEEVRPPSGS EADDESHAPK YMETTTTTTV TREYEVSEDE DEHQQSQVQR DESPAPSEDS VKHVIEKTTT TTVTEERYEP EDSHSPVPSE DDVHGFVKTT TTTTTVTHEH FEPEDPPSDE HVVESERYAS GSPVPSEEDS SREIETTTTT TVTREHFELE DDQEHVVESQ EYSASGSPVP SEKSVERVIE TTTTNTVTRE HFEHEDDIPT IVETSHDDPA ASSVPSEEDV HGQIQTTTTT TTVTREHVVP DEEIDSGRMD ELEKYSSESP VPSEEDSSRV IETTTTTTVS REHFEPEDDH SHVVESQEYS ASGSPVPSEK SVERVIETTT TTTVTREHFD TEEDYIPSES RTSHDDGITD QHVPSQSPVP SEEDDHVTHE QIIRDDPIDE QIVESHEYKS ESSIPSEQDS THVIETVMST PITSERYDPE VEKDVVESAD DEIDSSTAQY YKSESPVQTE KSLLLAKQQQ ESGDESDGEG FGSKVLGFAK KAGMVAGGVV AAPVALAAVG AKAAYDALKK DDDEEDQEDK EPLIGGFHKD QDPISQDEPS AVDSETQEPG ATFYEPEEED KVITDSADSS VVQDEPKIVF PVDSTPEHHS NDREEFESIV KSEGPYIVES TDYAQTSAEE PRISSPVHSD AGDASSFKRP ESVTGEDEKN AIPETSETDA PYVIDSEEYE FNNRDEQRIS SPAHSDEEDE NDAEVIDSEF YRHSQEQNNE EDPSIVESGE YISSGHGSPR PFEDSTTTTV LNVHHEPAAI PEPEVDEEEL EQERSIIESE EYKTSSPLPP TSVTTVEHVE PAEIHKYRTT SPTIVTTVSS EHLDRNQEPY VVESEEYTRA SPLGPERPES PSGSPLPREE DDSHVIESHE YTSSPVPSED SVKHVIEKTT TTTVTEERYE PEDSHSPVPS EDDVHGFVKT TTTTTTVTHE HFEPEDHTSD EHVVESERYA SGSPVPSEEN SNRVTETTTT TTVTREHFEP EDDQEHVVES QEYSASGSPV PSEKSVEKVI ETTTTTTVTR EHFEHEDEIP TIVESSHDDQ AASSVPSEED VHGQIQTTTT TTTVTREHVV PDEEIDSGRM DELEKYSSES PVPPEEDSSR VIETTTTTTF IREHFEPEDD HSHVVGSQEY SASGSPVPSE KSVERVIETT TTTTVTSEHF EHEDEHAQLH DTVSSEKTSS SEPVEQTLEE ADITEETHQR FSAEDEHQPT STEKPVHGFM ETTSTSHTAS HVELEHRDDD DESGGEGFGS KVLGFAKKAG MVAGGVVAAP VALAAVGAKA AYDALKKDDD EEATYDLDRE HGSYESAELQ RPTQQVESRQ EDSESEGSFV DHGEDSQHLP VQSTEAAFKL SSEDIAEQTA EKLVSEVFAP LDRTLIESEQ YRASIESLNR RSPVEPKRSV EDLASEALQN VTKISFGHAD ESDDKHDGDN DGEWKVYDRH GEVLEEFSTQ LTDDVIQEAE GDATTHIMMT QAEYSPRRSK FLKQESCQEI SNEPEVDYYS DLQEKLNILA GEKNNLHALV EEEPSSSASD QLDVIHESDQ EAHLEQEHQQ EAAAQKEQDE KEEAAEYTAT LLVDDVLQQV VQEINEEDDD KKTMTSTSYL TATEKDDQEY DTCVTSQDDT YESAQGWTSQ DSEYTTATSQ APSRLSDSDA ELTARDHDQE RQETSTPQAI LSPVDSDRHF TVQQDFEMPV IRAFDPDDFM QTTARSTPDV ALQVTIEEED ESDDKLPISP SGILLPPKHD PGRPISPVPP RKSDGTMQKE GDHFVFVREE DTIAEPTPPP QPAEPEQLAE YEATKESEHQ QITEGDVPQE EEETEMRRQE TERIHSLAME ASSDLGNSES SRYSRQLSDL SSSAESHADT VIRVESERSG SSDSLEVVSV ISAGKDAQMS EKSLTPEDPE KPTDSVQEHQ QKDQEQAEAE DQREAEDLGF EVYDADTEEQ NQQLEELETV EEEPEDSDSL NEGGNHSSGH SSVGVPADTL AMIGKYRHQS SDNLSLTSLQ EFERLEKEVG ARGDGSLTRS EIELLVAGRL NKSGEGSVSS LAEFERLEKE MTENQSPPED VMMLSDIREE SEAEDMSIRD DDEEDAEGSD TELKSRPVQE EDLRVITPIA PSPTDSLDHA VDAVQMQYLE TSTDSLEPTF QEIEVEQRPE SVEDTSLTEY EVIPRVMEAS TTDSLDGTAT IEKDSVLEGA SQGIESTQST HGLLSGDTMG TVVTDDDRDS LDGEMSSMLQ SYPTTLTTFQ TTVVGPDGSL QTISRRVETK VTDPLVSHVT FTGTESQERL DQLPDDEQFE TVDTEGNVTR TTFHREHDQQ QPHF</td>
+                                        <td class="pic_col"><img src="assets/display_prototype/B0350.2f.png" alt="B0350.2f Domain Organisation"></td>  
+                                    </tr>
+                                    <tr>
+                                        <td class ="checkbox_col">&nbsp;<input type="checkbox" id="B0496.3e" name="B0496.3e" checked="checked"/></td>
+                                        <td class ="gene_col"><a href="http://www.wormbase.org/db/gene/gene?name=unc-82;class=Gene" target="_blank">unc-82</a></td>
+                                        <td class ="gene_col"><a href="http://www.wormbase.org/db/gene/gene?name=B0496.3;class=Gene" target="_blank">B0496.3</a></td>
+                                        <td class ="gene_col"><a href="http://www.wormbase.org/db/gene/gene?name=B0496.3e;class=Protein" target="_blank">B0496.3e</a></td>
+                                        <td class ="gene_col"><a href="http://www.uniprot.org/uniprot/H2KYA5" target="_blank">H2KYA5</a></td>
+                                        <td class ="chr_col">IV</td>
+                                        <td class ="gpos_col">3.33</td>
+                                        <td class ="chr_col">IV</td>
+                                        <td class ="chr_col">+</td>
+                                        <td class ="ppos_col">7,424,498</td>
+                                        <td class ="ppos_col">7,444,664</td>
+                                        <td class ="text_col">unc-82 encodes a serine/threonine kinase related to the human ARK5/SNARK ( 1/ 2) and the PAR-1 and SNF1/AMP-Activated kinase (AMPK) protein kinase families; during development, UNC-82 activity is required for proper organization of internal (membrane-distal) proteins of myosin thick filaments and M-lines in conjunction with embryonic elongation; an UNC-82::GFP reporter fusion is expressed in muscle cells and is associated with M lines; UNC-82::GFP expression is also seen in the pharynx.</td>						
+                                        <td class ="text_col">A structural constituent of muscle. Involved in striated muscle myosin thick filament assembly and striated muscle paramyosin thick filament assembly. Located in M band. Expressed in body wall musculature. Human ortholog(s) of this gene implicated in anencephaly. Is an ortholog of human  1 (  family kinase 1) and  2 (  family kinase 2).</td>						
+                                        <td class ="text_col">antibody_subcellular_localization_variant, body_wall_muscle_morphology_variant, body_wall_muscle_thick_filament_variant, body_wall_muscle_thin_filament_variant, M_line_variant, muscle_birefringence_variant, muscle_cell_morphology_variant, pharyngeal_muscle_morphology_variant, sluggish, sperm_pseudopod_variant</td>						
+                                        <td class ="text_col">body_wall_muscle_sarcomere_morphology_variant, body_wall_muscle_thick_filament_variant, locomotion_reduced, locomotion_variant, M_line_variant, mitochondria_morphology_variant, protein_degradation_variant</td>						
+                                        <td class ="text_col">body_wall_musculature;  </td>						
+                                        <td class ="text_col">anal_depressor_muscle, anal_sphincter_muscle, AS_neuron, AS1, body_wall_muscle_cell, body_wall_musculature, Cappppv, Cpppppv, DA_neuron, DA1, DA3, DA9, DB_neuron, DB1, DB2, DB3, DB4, DB5, DB6, DB7, M.vrpaapaa, M.vrpaapap, MSapaaap, MSapapap, MSapappp, MSappapp, MSppaaap, MSppapap, MSppappp, MSpppapp, mu_int_L, muscle_cell, PLM, PVCL, SAA, uterine_muscle, VA_neuron, VA1, VD_neuron, vulval_muscle; 1-day_post-L4_adult_hermaphrodite, 10-days_post-L4_adult_hermaphrodite, 11-days_post-L4_adult_hermaphrodite, 15-days_post-L4_adult_hermaphrodite, 2-days_post-L4_adult_hermaphrodite, 24-cell_embryo, 3-days_post-L4_adult_hermaphrodite, 5-days_post-L4_adult_hermaphrodite, 6-days_post-L4_adult_hermaphrodite, 7-10_days_post-L4_adult_hermaphrodite, 8-days_post-L4_adult_hermaphrodite, 96-cell_embryo, adult, adult_hermaphrodite, all_stages, blastula_embryo, dauer_larva, embryo, L1_larva, L2_larva, L3_larva, L4_larva, L4_larva_male, L4-adult_lethargus, larva, oocyte-laying_stage_adult_hermaphrodite</td>						
+                                        <td class ="text_col">elks-1, glh-1, lin-53</td>
+                                        <td class ="text_col">dim-1, unc-15, unc-54</td>
+                                        <td class ="text_col"></td>
+                                        <td class ="text_col"></td>
+                                        <td class ="text_col">Nuak</td>
+                                        <td class ="text_col">Nuak2, nuak1b, nuak1a</td>
+                                        <td class ="text_col">Nuak2, Nuak1</td>
+                                        <td class ="text_col">Nuak1, Nuak2</td>
+                                        <td class ="text_col">ATP_binding , cellular_response_to_glucose_starvation , intracellular_signal_transduction , kinase_activity , M_band , negative_regulation_of_TOR_signaling , nucleotide_binding , nucleotide-activated_protein_kinase_complex , phosphorylation , protein_kinase_activity , protein_phosphorylation , protein_serine/threonine_kinase_activity , striated_muscle_myosin_thick_filament_assembly , striated_muscle_paramyosin_thick_filament_assembly , structural_constituent_of_muscle</td>						
+                                        <td class ="text_col">uterine_fibroid, anencephaly</td>						
+                                        <td class ="protsize_col">1793</td>
+                                        <td class ="seq_col">MSSKKRYGTY GRAITSPALL SSSVGWTRPD VTSQIDRLRS QATSVVSSPP PHEYAVPHAF SGSSNGTNAS RPPADPKQPQ RSRAERLRHR ISERRTNAYM IPPSSTTGKD PAIDALMNKY LNKSKENLDE GRKSRESSRA QELLARTNRE MSPTIDSLMK RYGNNNSSAH RIKDSTVSRR ESMEIQDNEN SRSLDNKSCR EARLSGSDVR IKWEVTNTEV KPTSSVKRFS VIIDPTGGRM PVGNSGSRSG RLARISQSNI RPFGSNGGGA TNSYGPGTHP MSGAEPCSPT KKEKHRFEIT KKLGSGTYGK VSLAYDHKFD REVAVKLIKK SAIESKADLV RIRREIRIMS ALNHPNIIQI YEVFENKDKI ILVMEYSSGG ELYDYVSRCG SLPEAEARRI FRQITSAVLY CHKHRVAHRD LKLENILLDQ NNNAKIADFG LSNYFADKNL LTTFCGSPLY ASPEIINGTP YKGPEVDCWS LGILLYTLVY GSMPFDGRDF NRMVRQIKRG AYFEPETPST ASMLIRNMLR VNPERRATIF DIASHWWLNL EENMPVIQEL PENQIIDHTP LTEREETMIV QDLADEQDVF MEFGHLSSET RRKIEDFRIR RKEAEEFNDN SPVKPPKARK TDELTGKISK EQPEEMKSAE KSLRGVKEEK EKPKVVDPND PLERLRQIEN RLGQNKKDKE AAKTSARVET VKLKEVKKEK SPEQQPEDPK TARGTSKPAD SRAPSFVPVK DRPETSEPER PRTRPHLTAS AYRIETDSLN MLMNQVLEQM EKGPVNLNII ARIKAHPLYD TRPMVKELLE SIIAAQPEPV QKQTSKVVEQ QTFSRQNTLT RKKKEDPLEE EIPEVPSPSR KMKERPWHSV EVGFDPDEEP EHDRMQESIA SNATEVTVQD TSFEDDSSDE EERKKTPVAS TPKTPVLIVE KQESSTNAED EESDEGDDYS DAEMEELADE VDKKGPSDSK LAPVVENLEA NPPPDPSSSP QFLDAFDRGL IKRQSKGKYQ HTLINNYGRG VSTECESPTQ QRKFFGGPQP SAELSPFLFD KAKEILQTYP NNKLDARGID VELRRKLRME KVKADLLKQP KDGDKPRNSY VGSVPPRSPP PIVVKSDGEE LDDEEEEEED EEEIEETDSE EGSDFENFKP KRPIIAAVRR DDGAVVPVIH QTTRPAVVSP NSQNPRYQVA SPKTSTVIQA TPEKVPVAGT SAKYLVTVAE LKLKPTDKKE EAQLKEQLKD SEINSERKVT KGAAPSTISQ DSDGKDTFES ASAYIRRKNR ERRQRNRTIG TAEEALRALE RPSVDPYDDR AFSPLSTDPF YSHHSSGSAA PSALGYVRPR YHDDSYRTHR DSDYRPMSPT SRYTAAVTRD DRGKSTSYDP HETTRPSYDR GYITSSNASP SYTRKFEHEQ PTLNSWANDR KFEVYKTRAE RDAERNTYHP TGTTGASSYR PSSYYTSASD RPVTGLRRPE ESYTSSTNYG RYDGRSTTPS NDQYAISTAL AENQASSMNN RFRPTARRVA SAMTDADRRN YHRSRSMDRN KVDYEYGSNL LNRLTTPDSH GDYSYVNYHD SSNGRSNITL EKDGQPRSIL KNKQSADIEP RVESSYEPSN GVRSVFERLR RHLSLEKSVS PQRQNTSFYG RQLRVASVGP HSRNIDSTSS ALDNPKKKRS LLSFNRRKTS EVRMGADGKL VTNGYDSTPS SRDFKRPSSP IDRIKSLFRK NESSGTGHSD YYNSSRNYTS SNPVSTTREP YVAQYRKYPG STSRDTSSAL NRYSYTPGLT DQRRHWYDDP NIY</td>
+                                        <td class="pic_col"><img src="assets/display_prototype/B0496.3e.png" alt="B0496.3e Domain Organisation"></td>  
+                                    </tr>
+                                    <tr>
+                                        <td class ="checkbox_col">&nbsp;<input type="checkbox" id="B0564.10b" name="B0564.10b" checked="checked"/></td>
+                                        <td class ="gene_col"><a href="http://www.wormbase.org/db/gene/gene?name=unc-30;class=Gene" target="_blank">unc-30</a></td>
+                                        <td class ="gene_col"><a href="http://www.wormbase.org/db/gene/gene?name=B0564.10;class=Gene" target="_blank">B0564.10</a></td>
+                                        <td class ="gene_col"><a href="http://www.wormbase.org/db/gene/gene?name=B0564.10b;class=Protein" target="_blank">B0564.10b</a></td>
+                                        <td class ="gene_col"><a href="http://www.uniprot.org/uniprot/P52906" target="_blank">P52906</a></td>
+                                        <td class ="chr_col">IV</td>
+                                        <td class ="gpos_col">8.22</td>
+                                        <td class ="chr_col">IV</td>
+                                        <td class ="chr_col">+</td>
+                                        <td class ="ppos_col">13,118,977</td>
+                                        <td class ="ppos_col">13,124,406</td>
+                                        <td class ="text_col">unc-30 encodes a homeodomain-containing protein that is orthologous to the Pitx family of homeodomain transcription factors; during develpoment, UNC-30 controls the terminal differentiation of all 19 type D GABA-ergic motor neurons by directly regulating the expression of UNC-25/GAD and UNC-47/VGAT, which regulate GABA formation and secretion, respectively; UNC-30 is expressed most strongly in type D motor neurons during early L1 and L2 larval stages.</td>						
+                                        <td class ="text_col">Enables sequence-specific DNA binding activity. Involved in neuron differentiation; positive regulation of transcription by RNA polymerase II; and regulation of locomotion. Located in nucleus. Expressed in GABAergic neurons; ganglia; intestine; and ventral cord neurons. Human ortholog(s) of this gene implicated in Arts syndrome; clubfoot; and eye disease (multiple). Is an ortholog of human PITX2 (paired like homeodomain 2) and PITX3 (paired like homeodomain 3).</td>						
+                                        <td class ="text_col">amplitude_of_sinusoidal_movement_variant, antibody_staining_reduced, axon_fasciculation_variant, axon_outgrowth_variant, backing_decreased, backward_locomotion_variant, backward_point_velocity_decreased, body_posture_amplitude_decreased, body_posture_wavelength_decreased, coiling_frequency_increased, embryonic_lethal, forward_locomotion_decreased, forward_point_velocity_decreased, frequency_body_bend_reduced, head_bend_angle_variant, larval_lethal, locomotion_variant, neuron_morphology_variant, nose_movement_variant, path_curvature_increased, pathogen_adherence_decreased, pathogen_resistance_increased, pausing_increased, roaming_reduced, short, shortened_life_span, shrinker, sluggish, small, tail_bend_angle_variant, thin, turning_frequency_variant</td>						
+                                        <td class ="text_col">locomotion_variant, shrinker, transgene_expression_increased</td>						
+                                        <td class ="text_col">ASGL, ASGR, AVJL, AVJR, DD_neuron, DD1, DD2, DD3, DD4, DD5, DD6, GABAergic_neuron, intestine, PVPL, PVPR, RID, RIH, VD_neuron, VD1, VD10, VD11, VD12, VD13, VD2, VD3, VD4, VD5, VD6, VD7, VD8, VD9, ventral_cord_neuron; L1_larva, L2_larva, L3_larva, L4_larva, postembryonic</td>						
+                                        <td class ="text_col">AVDL, AVDR, AVHL, AVHR, AVJ, AVJL, AVJR, DD_neuron, DD1, DD2, DD3, DD4, DD5, DD6, GABAergic_neuron, GLRDL, GLRDR, GLRL, GLRR, GLRVL, GLRVR, intestine, neuron, OLL, PVD, PVP, PVPL, PVPR, PVT, RIBL, RIBR, sensory_neuron, somatic_gonad_precursor, spermathecal-uterine_valve_cell, VD_neuron, VD1, VD10, VD11, VD12, VD13, VD2, VD3, VD4, VD5, VD6, VD7, VD8, VD9, ventral_nerve_cord, Z1, Z4; 1-day_post-L4_adult_hermaphrodite, 10-days_post-L4_adult_hermaphrodite, 11-days_post-L4_adult_hermaphrodite, 15-days_post-L4_adult_hermaphrodite, 2-days_post-L4_adult_hermaphrodite, 2-fold_embryo, 20-days_post-L4_adult_hermaphrodite, 3-days_post-L4_adult_hermaphrodite, 3-fold_embryo, 4-days_post-L4_adult_hermaphrodite, 5-days_post-L4_adult_hermaphrodite, 6-days_post-L4_adult_hermaphrodite, 8-days_post-L4_adult_hermaphrodite, adult, all_stages, blastula_embryo, dauer_larva, embryo, L1_larva, L2_larva, L3_larva, L4_larva, larva</td>						
+                                        <td class ="text_col">alr-1, aptf-1, ceh-10, ceh-13, ceh-18, ceh-37, ceh-43, ceh-45, ceh-8, daf-3, die-1, dsc-1, egl-5, elt-1, eya-1, fkh-6, hlh-30, lin-54, lsl-1, lsy-2, mab-5, mls-2, mml-1, nhr-10, nhr-111, nhr-1, nhr-6, php-3, pie-1, T24C4.2, tbx-8, ttx-1, unc-30, unc-30, unc-42, vab-3, ztf-11, ztf-1, ztf-26</td>
+                                        <td class ="text_col">cdc-48.2, jnk-1</td>
+                                        <td class ="text_col">ckb-2, irx-1, madd-4, odr-2, oig-1, snb-1, syd-1, syd-2, unc-130, unc-25, unc-46, unc-47, unc-49</td>
+                                        <td class ="text_col"></td>
+                                        <td class ="text_col">Ptx1</td>
+                                        <td class ="text_col">Pitx2, Pitx3, Pitx1</td>
+                                        <td class ="text_col">Pitx1, Pitx2, Pitx3</td>
+                                        <td class ="text_col">Pitx1, Pitx2, Pitx3</td>
+                                        <td class ="text_col">anatomical_structure_morphogenesis , axon_guidance , DNA_binding , DNA-binding_transcription_factor_activity , DNA-binding_transcription_factor_activity,_RNA_polymerase_II-specific , dorsal/ventral_axon_guidance , GABAergic_neuron_differentiation , nucleus , positive_regulation_of_transcription_by_RNA_polymerase_II , regulation_of_locomotion , regulation_of_transcription_by_RNA_polymerase_II , RNA_polymerase_II_cis-regulatory_region_sequence-specific_DNA_binding , sequence-specific_DNA_binding</td>						
+                                        <td class ="text_col">cataract, clubfoot, Axenfeld-Rieger_syndrome, Arts_syndrome, anterior_segment_dysgenesis, anterior_segment_dysgenesis_1, anterior_segment_dysgenesis_4, Axenfeld-Rieger_syndrome_type_1, cataract_11_multiple_types, cataract_9_multiple_types, ring_dermoid_of_cornea</td>						
+                                        <td class ="protsize_col">323</td>
+                                        <td class ="seq_col">MDDNTATLTA IHQQQQSHNR FSNPLVCVGQ LDHHSLLPEH SISSSLAPLT HNPYAFNYSI PLPPTDITTK LPKLELLSLD VKQEQDDNHL DTSSPTDSTG NGSTNGGKIQ KPRRQRTHFT SHQLTELENW FSRNRYPDMA CREEIAVWIS LTEPRVRVWF KNRRAKWRKR ERNYVIDNGQ GTTKVTAQSL DPLGSLQNTF PQTLLQSSSS QLDDSAVTSS SFYGYGGAWQ QNPYYSRNNQ TTFNWQIKPQ DQFQFQTIPM SPTTATSRFS TAANLAPLPT AQAAFSTSAT SSNDKLKLMD GLSNSLSSSL GQPYQPCQYS GPL</td>
+                                        <td class="pic_col"><img src="assets/display_prototype/B0564.10b.png" alt="B0564.10b Domain Organisation"></td>
+                                    </tr>
+
+
+
+
+
+
+                                    
+
+
+
+
+
+
+
+
+
+
+
+
+                                    
+
+
+                                    
                                 </tbody>
                             </table>
                         </div>
@@ -379,5 +880,14 @@
     
     <!-- JavaScript file -->
     <script src="script.js"></script>
+
+    <script src="javascript/tablednd.js"></script>
+
+    <script type="text/javascript">
+        var table = document.getElementById('results');
+        var tableDnD = new TableDnD();
+        tableDnD.init(table);
+    </script>
+
 </body>
 </html>
