@@ -136,6 +136,25 @@ html, body {
 
 
 
+#search-vertical-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    background-color: #f9f9f9; /* Light background for contrast */
+    overflow: auto;
+    height: 100%;
+}
+
+
+.compare-result-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding-bottom: 0px;
+}
+
+
 /* ------------------------ Global CSS Rules End ------------------------- */
 
 
@@ -634,16 +653,6 @@ footer {
 
 
 
-#search-vertical-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    background-color: #f9f9f9; /* Light background for contrast */
-    overflow: auto;
-    height: 100%;
-}
-
 
 
 
@@ -663,13 +672,13 @@ footer {
 
 #search-intro .search-hero-section {
     color: #FFFFFF;
-    height: 25vh;
+    min-height: 25vh; /* Ensure the section has a minimum height, but it can expand if needed */
     padding: 30px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%; /* Ensures the section itself is 100% width */
+    justify-content: center; /* Vertically center content */
+    align-items: center; /* Horizontally center content */
+    width: 100%; /* Ensure the section itself is 100% width */
     box-sizing: border-box; /* Ensures padding is included in the width */
     background-image: url('assets/search-hero.jpeg'); /* Add the background image */
     background-size: cover; /* Ensure the image covers the entire section */
@@ -682,14 +691,20 @@ footer {
     padding-bottom: 15px;
     font-size: 24px; /* Slightly larger font size for the heading */
     font-weight: 700;
+    text-align: center; /* Ensure text is centered horizontally */
 }
 
 #search-intro .search-hero-section p {
     line-height: 1.8; /* Slightly more spaced out lines for readability */
-    text-align: center; /* Center the text for better alignment */
+    text-align: left; /* Center the text for better alignment */
     font-weight: 400;
     font-size: 15px;
+    margin-top: 0; /* Ensure no additional margin at the top of the <p> */
+    margin: 0 auto; /* Center the <p> element within the container */
+    max-width: 97%; /* Optional: Limit the width for readability */
+
 }
+
 
 
 
@@ -1022,8 +1037,8 @@ label input[type="radio"] {
 
 /* Style for the help icon */
 .search-page-help-icon {
-    width: 19.82x;
-    height: 16.95px;
+    width: 16.52x;
+    height: 14.125px;
     margin-left: 8px; /* Space between the title and the icon */
     cursor: pointer;  /* Indicate that it’s clickable */
     vertical-align: middle; /* Aligns the icon vertically with the text */
@@ -1039,6 +1054,17 @@ label input[type="radio"] {
     border-radius: 4px;
 }
 
+
+.form-group .search-page-help-content ul {
+    margin-top: 10px; /* Add left padding to indent the list */
+    margin-left: 40px; /* Add left padding to indent the list */
+    padding-left: 0; /* Ensure no extra padding on the list */
+}
+
+.form-group .search-page-help-content ul li {
+    margin-bottom: 5px; /* Add some spacing between list items */
+    font-size: 14px; /* Adjust the font size */
+}
 
 
 
@@ -1266,7 +1292,9 @@ label input[type="radio"] {
     border-radius: 4px;
 }
 
-#stage-expression-page .form-group textarea {
+#stage-expression-page .form-group textarea,
+#tissue-expression-page .form-group textarea,
+#embryo-expression-page .form-group textarea {
     width: 100%;
     max-width: 550px;
     padding: 8px;
@@ -1275,14 +1303,18 @@ label input[type="radio"] {
     transition: border-color 0.3s;
 }
 
-#stage-expression-page .form-group {
+#stage-expression-page .form-group,
+#tissue-expression-page .form-group,
+#embryo-expression-page .form-group {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
 }
 
-#stage-expression-page .form-group .search-page-help-content {
+#stage-expression-page .form-group .search-page-help-content,
+#tissue-expression-page .form-group .search-page-help-content,
+#embryo-expression-page .form-group .search-page-help-content {
     max-width: 550px;
     display: none;
     background-color: #f0f8ff;
@@ -1312,7 +1344,11 @@ label input[type="radio"] {
 
 /* Input and Select Fields */
 #stage-expression-page select,
-#stage-expression-page input[type="text"] {
+#tissue-expression-page select,
+#embryo-expression-page select,
+#stage-expression-page input[type="text"],
+#tissue-expression-page input[type="text"],
+#embryo-expression-page input[type="text"] {
     width: 100%;
     height: 35px;
     margin-bottom: 10px;
@@ -1323,11 +1359,23 @@ label input[type="radio"] {
 }
 
 #stage-expression-page textarea:hover,
+#tissue-expression-page textarea:hover,
+#embryo-expression-page textarea:hover,
 #stage-expression-page textarea:focus,
+#tissue-expression-page textarea:focus,
+#embryo-expression-page textarea:focus,
 #stage-expression-page select:hover,
+#tissue-expression-page select:hover,
+#embryo-expression-page select:hover,
 #stage-expression-page input[type="text"]:hover,
+#tissue-expression-page input[type="text"]:hover,
+#embryo-expression-page input[type="text"]:hover,
 #stage-expression-page select:focus,
-#stage-expression-page input[type="text"]:focus {
+#tissue-expression-page select:focus,
+#embryo-expression-page select:focus,
+#stage-expression-page input[type="text"]:focus,
+#tissue-expression-page input[type="text"]:focus,
+#embryo-expression-page input[type="text"]:focus {
     border-color: #068EF1;
     outline: none;
 }
@@ -1357,7 +1405,9 @@ label input[type="radio"] {
 
 
 /* Ensure consistent styling for all titles */
-#stage-expression-page h4 {
+#stage-expression-page h4,
+#tissue-expression-page h4,
+#embryo-expression-page h4 {
     font-size: 16px; /* Adjusted font size */
     font-weight: 700; /* Bold font weight */
     margin: 0; /* Remove default margins */
@@ -1458,7 +1508,11 @@ label input[type="radio"] {
 
 /* Input and Select Fields */
 #stage-expression-page select,
-#stage-expression-page input[type="text"] {
+#tissue-expression-page select,
+#embryo-expression-page select,
+#stage-expression-page input[type="text"],
+#tissue-expression-page input[type="text"],
+#embryo-expression-page select {
     width: 100%;
     height: 35px;
     margin-bottom: 10px;
@@ -1469,11 +1523,23 @@ label input[type="radio"] {
 }
 
 #stage-expression-page textarea:hover,
+#tissue-expression-page textarea:hover,
+#embryo-expression-page textarea:hover,
 #stage-expression-page textarea:focus,
+#tissue-expression-page textarea:focus,
+#embryo-expression-page textarea:focus,
 #stage-expression-page select:hover,
+#tissue-expression-page select:hover,
+#embryo-expression-page select:hover,
 #stage-expression-page input[type="text"]:hover,
+#tissue-expression-page input[type="text"]:hover,
+#embryo-expression-page input[type="text"]:hover,
 #stage-expression-page select:focus,
-#stage-expression-page input[type="text"]:focus {
+#tissue-expression-page select:focus,
+#embryo-expression-page select:focus,
+#stage-expression-page input[type="text"]:focus,
+#tissue-expression-page input[type="text"]:focus,
+#embryo-expression-page input[type="text"]:focus {
     border-color: #068EF1;
     outline: none;
 }
@@ -1500,13 +1566,16 @@ label input[type="radio"] {
 
 .search-switcher button {
     background-color: #068EF1;
-    color: white;
     border: none;
     padding: 10px 20px;
     margin: 5px;
+    font-family: 'Open Sans', sans-serif; /* Fonts with priority given to 'Open Sans' */
+    font-size: 14px;
+    font-weight: 600; /* Slightly bolder font */
+    color: var(--button_text_color);
     cursor: pointer;
-    border-radius: 4px;
-    transition: background-color 0.3s;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 .search-switcher button.active {
@@ -1538,6 +1607,115 @@ label input[type="radio"] {
 
 
 
+/* ------------------------ Compare Page + Compare Result Start ------------------------- */
+
+
+
+
+
+/* Form Section */
+#compare-param {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+    background-color: #ffffff; /* Card-like appearance */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Ensure each form group takes full width of its column */
+.search-param-column {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+#compare-page .form-group textarea {
+    height: 200px; /* Adjust this value based on your design needs */
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    resize: vertical; /* Allows users to resize the textarea vertically */
+}
+
+/* Input hover effects */
+#compare-page .form-group textarea:hover,
+#compare-page .form-group textarea:focus {
+    border-color: #068EF1;
+    outline: none;
+}
+
+/* Active state of the compare button */
+#compare-button,
+#convert-button {
+    background-color: var(--button_bkgr_color); /* Active background color */
+    color: var(--button_text_color);
+    cursor: pointer; /* Pointer cursor to indicate it's clickable */
+    transition: background-color 0.3s ease-in-out; /* Smooth transition */
+}
+
+#compare-button:hover,
+#convert-button:hover {
+    background-color: var(--button_hover_bkgr_color); /* Hover color when active */
+}
+
+
+/* General Styles */
+#compare-page .search-param-column-full {
+    grid-column: 1 / span 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 0px;
+}
+
+/* Result box styles - replaces the textareas */
+.result-box {
+    width: 100%;
+    min-height: 100px; /* Set a minimum height */
+    padding: 16px 16px;
+    border: 1px solid #ddd; /* Same border as the text area */
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    overflow-y: auto; /* Allow scrolling if content overflows */
+    box-sizing: border-box;
+}
+
+/* Ensures padding is added to the text inside */
+.result-box p {
+    margin: 0; /* Remove default margins */
+    line-height: 1.6;
+    white-space: pre-wrap; /* Preserve white space and wrap the text */
+    word-wrap: break-word; /* Ensure long words break correctly */
+}
+
+
+
+
+/* ------------------------ Compare Page + Compare Result End ------------------------- */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* ------------------------ Display Page Specific Start ------------------------- */
 
@@ -1563,7 +1741,7 @@ label input[type="radio"] {
 
 .sidebar-wrapper {
     display: flex;
-    flex-direction: row;
+    /* flex-direction: row; */
     height: 100%;
     position: relative;
 }
@@ -1606,11 +1784,13 @@ label input[type="radio"] {
     border-radius: 6px; /* Optional: add border-radius for rounded corners */
 }
 
+/* help icon bottom of list icon container 
 .icon-container.help-icon {
     position: absolute;
     margin-bottom: 16px;
     bottom: 0px;
 }
+*/
 
 .icon-container:hover {
     background-color: #ffffff; /* Change this to your desired hover background color */
@@ -1634,7 +1814,7 @@ label input[type="radio"] {
     border-radius: 6px;
     padding: 8px;
     position: absolute;
-    z-index: 1;
+    z-index: 100;
     top: 40%;
     left: 110%;
     transform: translate(10px, -50%);
@@ -1658,6 +1838,8 @@ label input[type="radio"] {
     visibility: visible;
     opacity: 1;
 }
+
+
 
 #sidebar {
     background-color: #F5F5F5;
@@ -1705,56 +1887,164 @@ label input[type="radio"] {
     flex-direction: column;
     transition: margin-left 0.4s ease;
     margin-top: 0;
-    margin-left: 330px; /* Adjust to match the sidebar width */
+    margin-left: 340px; /* Adjust to match the sidebar width */
 }
 
 #main-content.shifted {
     margin-left: 0; /* Shift content back to original position when sidebar is collapsed */
 }
 
+
+
+
+/*-------------------------------- Table Start -------------------------------- */
+
 .table-container {
     flex-grow: 1;
     width: 100%;
     overflow: hidden;
-    padding: 0 0px 0px 0; /* Adjust padding to move the table closer */
+    padding: 0;
     text-align: center;
-    position: relative; /* Ensure the container doesn't affect layout shifts */
+    position: relative;
     display: flex;
     flex-direction: column;
+    border-radius: 8px; /* Rounded corners for a modern look */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow for elevation */
 }
 
 #scrollableTable {
-    flex-grow: 1; /* Ensure the table takes up the remaining space */
+    flex-grow: 1;
     overflow-x: auto;
     overflow-y: auto;
     transition: all 0.3s ease;
+    border-radius: 8px; /* Match border radius of container */
 }
 
 #scrollableTable table {
-    border: 1px solid #ccc; /* Add border to the table */
+    border: none; /* Remove the outer border */
     width: 100%;
     border-collapse: collapse;
+    font-family: 'Open Sans', sans-serif; /* Modern font */
 }
 
 #scrollableTable th, #scrollableTable td {
-    border: 1px solid #ccc;
-    padding: 8px;
+    border: 2px solid #e0e0e0;
+    padding: 12px 16px; /* More padding for better readability */
     text-align: left;
-    box-sizing: border-box; /* Include padding in the width calculation */
-    min-width: 100px; /* Adjust this value as needed */
+    box-sizing: border-box;
+    min-width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    position: relative; /* For positioning pseudo-elements */
+    max-width: 250px;
+    vertical-align: middle;
+    cursor: pointer;
+
+    color: #333; /* Slightly darker text for better contrast */
+    font-size: 14px; /* Clean and modern font size */
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* Clearer custom ellipsis */
+#scrollableTable td::after {
+    content: '...';
+    position: absolute;
+    right: 10px; /* Slight padding from the right */
+    bottom: 0;
+    background-color: #fff; /* To make sure it's visible above content */
+    color: #005BB5; /* Blue color for ellipsis */
+    font-weight: bold;
+    padding-left: 5px;
+    pointer-events: none;
+    display: none; /* Hidden by default */
+}
+
+/* Show custom ellipsis when the text overflows */
+#scrollableTable td.overflow::after {
+    display: inline; /* Display the ellipsis */
+    bottom: 0;
+    background-color: transparent;
+}
+
+/* Ensure pic_col does not have a max-width */
+#scrollableTable .pic_col {
+    padding: 10px;
+    max-width: none;
+    width: auto;
+    padding: 8px;
+    text-align: left;
+    vertical-align: middle;
+    cursor: move;
+}
+
+#scrollableTable td.pic_col {
+    border: none;
+}
+
+/* Override for checkbox_col */
+#scrollableTable .checkbox_col {
+    min-width: 40px; /* Set smaller minimum width for checkbox */
+    max-width: 50px; /* Set smaller maximum width for checkbox */
+    padding: 4px; /* Smaller padding to reduce space around checkbox */
+    text-align: center; /* Center the checkbox within the cell */
+    cursor: auto;
+}
+
+
+
+
+
+
+
+
+
 #scrollableTable th {
-    background-color: #f0f0f0; /* resulting in table header border bug = fix it */ 
+    border: 2px solid #e0e0e0;
+    border-top: none;
+    background-color: #1976D2; /* Blue background for headers */
     position: sticky;
     top: 0;
-    z-index: 10; /* Increase z-index to ensure it stays above other elements */
-    border: 1px solid #ccc; /* Ensure border is defined */
+    z-index: 10;
+    border-bottom: 2px solid #cfd8dc; /* Bolder bottom border for header */
+    text-align: left;
+    font-weight: 600; /* Slightly lighter font weight for a modern feel */
+    padding: 15px; /* More padding for headers */
+    font-size: 15px; 
+    color: #ffffff; /* Darker bluish-gray text for contrast */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 #scrollableTable th:hover {
-    background-color: #d0d0d0;
-    cursor: move;
+    background-color: #0f5ba7; /* Darker blue on hover */
+    cursor: move; /* Change to pointer to indicate interaction */
+}
+
+
+/* Style for links inside table cells */
+#scrollableTable td a {
+    color: #005BB5;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+/* Hover effect for links */
+#scrollableTable td a:hover {
+    color: #004799;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* Focused state for links */
+#scrollableTable td a:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 91, 181, 0.5);
+}
+
+/* Active state for links */
+#scrollableTable td a:active {
+    color: #003E73;
+    text-decoration: underline;
 }
 
 .dragging {
@@ -1777,11 +2067,9 @@ label input[type="radio"] {
     position: absolute;
     top: 0;
     bottom: 0;
-    width: 2px;
-    background-color: #1C5E82;
+    width: 8px;
+    background-color: #ffffff;
 }
-
-
 
 /* Align table title to the sidebar icon container */
 #main-content-header {
@@ -1797,18 +2085,105 @@ label input[type="radio"] {
     font-size: 1em;
     font-weight: bold;
     color: var(--nav_text_color);
-    z-index: 101; /* Higher than the sidebar icon container */
+    z-index: 101;
 }
 
 /* Sidebar content styling */
 .sidebar-content {
-    display: none; /* Hide all sidebar content by default */
+    display: none;
     color: var(--body_sidebar_color);
 }
 
 .sidebar-content.active {
-    display: block; /* Show active sidebar content */
+    display: block;
 }
+
+/* Modern Modal for displaying full text */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 30px;
+    border-radius: 12px;
+    border: none;
+    width: 80%;
+    max-width: 700px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+    max-height: 70%;
+    animation: fadeIn 0.3s ease-out;
+    position: relative;
+}
+
+.close {
+    color: #555;
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close:hover {
+    color: #000;
+}
+
+/* Content styling within the modal */
+.modal-content p {
+    margin: 0;
+    font-size: 16px;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Sequence-specific modal styling */
+#scrollableTable td.seq_col {
+    word-wrap: break-word;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 14px;
+    padding: 10px;
+
+}
+
+/* Subtle hover effect for modal-triggering cells */
+#scrollableTable td:not(.pic_col):not(.checkbox_col):not([data-na="true"]):hover {
+    background-color: #f9f9f9;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+/* Modal fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/*-------------------------------- Table End -------------------------------- */
+
+
+
 
 
 
@@ -1977,6 +2352,8 @@ label input[type="radio"] {
     font-weight: 500; 
     margin-bottom: 5px;                  /* Adds space between labels */
     color: var(--body_sidebar_color);
+    cursor: pointer;
+    user-select: none;
 }
 
 .display-option-form input[type="checkbox"] {
@@ -2023,19 +2400,229 @@ label input[type="radio"] {
 
 
 
-/* ------------------------ sidebar 3 (Search Data) ------------------------ */
+
+
+/* ------------------------ sidebar 3 (Table Search) ------------------------ */
 #search-content {
     padding: 0px 0px 0px 0px;
 }
+
+/* Add padding and styling for the search box */
+#table-search-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px 0 20px 0;
+    border: 1px solid var(--border_color);
+    border-radius: 5px;
+    padding: 10px 10px;
+    background-color: #f9f9f9;
+    position: relative; /* For clear search button positioning */
+}
+
+/* Input wrapper to contain the input and clear button */
+#table-search-container input {
+    font-family: 'Open Sans', sans-serif; /* Consistent font */
+    width: 100%;
+    height: 35px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 8px;
+    padding-right: 40px; /* Add space for the clear button */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+/* Hover and focus styles for input */
+#table-search-container input:hover,
+#table-search-container input:focus {
+    border-color: #068EF1;
+    outline: none;
+}
+
+/* Clear (escape) button inside input field */
+#clear-search {
+    position: absolute;
+    right: 20px;
+    top: 13.5%;
+    transform: translateY(0%);
+    cursor: pointer;
+    font-size: 20px;
+    color: #999;
+    display: none;  /* Initially hidden */
+}
+
+/* Hover effect for clear button */
+#clear-search:hover {
+    color: #333;
+}
+
+/* Search count display (e.g., "1 / 10") */
+#search-count {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    margin: 10px 0;
+}
+
+/* Button container for navigation buttons (Previous/Next) */
+.button-container.search-nav {
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+/* Styling for the Previous/Next buttons */
+.nav-button {
+    background-color: var(--button_bkgr_color);
+    color: var(--button_text_color);
+    font-family: 'Open Sans', sans-serif;
+    width: 100px;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+/* Hover effect for the Previous/Next buttons */
+.nav-button:hover {
+    background-color: var(--button_hover_bkgr_color);
+}
+
+/* Highlighting matched table cells */
+.highlighted {
+    background-color: #FFECB3; /* Softer gold highlight for the table cells */
+    box-shadow: 0 0 5px rgba(255, 193, 7, 0.7); /* Subtle glow to make it stand out */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+}
+
+/* Highlighting the term in the modal */
+.term-highlight {
+    background-color: #FFE082; /* Lighter yellow with orange tint */
+    font-weight: bold;
+    padding: 2px 4px; /* Adding padding for better visibility */
+    border-radius: 4px; /* Rounded corners for better aesthetics */
+    color: #333; /* Darker text color for contrast */
+}
+
+
+
 
 /* ------------------------ sidebar 4 (Export Data) ------------------------ */
 #export-content {
     padding: 0px 0px 0px 0px;
 }
 
+.export-option-container {
+    border: none;
+    padding: 0px 10px 10px 5px;
+    margin: 10px 0 20px 0;
+    
+}
+
+
+/* new
+/* Styling for export buttons in the sidebar */
+.export-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 10px; /* Space between the buttons */
+    padding: 10px 5px;
+}
+
+#export-csv-button, #export-txt-button {
+    font-family: 'Open Sans', sans-serif;
+    width: 140px;
+    height: 40px;
+    font-size: 14px;
+    font-weight: 600;
+    background-color: var(--button_bkgr_color);
+    color: var(--button_text_color);
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    margin: 0 auto; /* Center the button horizontally */
+}
+
+#export-csv-button:hover, #export-txt-button:hover {
+    background-color: var(--button_hover_bkgr_color);
+}
+
+
+
 /* ------------------------ sidebar 5 (Help) ------------------------ */
 #help-content {
     padding: 0px 0px 0px 0px;
+}
+
+.help-content-container {
+    background-color: #f9f9f9; /* Optional: Add background color */
+    border: 1px solid var(--border_color);
+    border-radius: 5px;
+    padding: 10px 10px 10px 10px;
+    margin: 10px 0 20px 0;
+}
+
+.help-content-container p {
+    font-family: 'Open Sans', sans-serif; /* Apply the same font */
+    line-height: 1.6;
+    padding: 10px 0;
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: 500; /* Slightly bolder font */
+    color: #333; /* Slightly darker color */
+    user-select: none;
+}
+
+/* Highlight the selected sub-section title */
+
+.help-content-container p:hover {
+    background-color: #f0f8ff;
+    padding: 10px 0px 10px 0px;
+    border-radius: 4px;
+}
+
+/* Centering a Help button similar to the other sections */
+.help-button-container {
+    background-color: #F5F5F5; /* Match the background color with sidebar */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Center the button horizontally */
+    z-index: 1; /* Ensure it stays above other elements */
+}
+
+.help-button {
+    display: inline-block;
+    line-height: 25px;     /* Match the line-height to the button height for vertical centering */
+    text-align: center;
+    text-decoration: none; /* Remove the underline */
+    font-family: 'Open Sans', sans-serif; /* Fonts with priority given to 'Open Sans' */
+    width: 240px;
+    height: 40px;
+    font-size: 14px;
+    font-weight: 600; /* Slightly bolder font */
+    background-color: var(--button_bkgr_color);
+    color: var(--button_text_color);
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    margin: 0 auto; /* Center the button horizontally */
+}
+
+.help-button:hover {
+    background-color: var(--button_hover_bkgr_color);
 }
 
 
@@ -2044,16 +2631,11 @@ label input[type="radio"] {
 
 
 
-/* ------------------------ Help Page Specific Start ------------------------- */
-/* Help Sidebar */
 
 
 
 
 
-
-/* ------------------------ Help Page Specific Start ------------------------- */
-/* Help Sidebar */
 
 
 
@@ -2065,14 +2647,6 @@ label input[type="radio"] {
 
 
 /* ------------------------ Help Page Specific Start ------------------------- */
-/* Help Sidebar */
-
-
-
-
-
-
-
 
 
 
@@ -2352,6 +2926,7 @@ label input[type="radio"] {
     background-color: #fff;
     max-height: 200px;
     overflow-y: auto;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
     border-radius: 0 0 8px 8px; /* Rounded corners on the bottom */
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1); /* Deeper shadow for a more modern feel */
     transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out; /* Smooth drop-down effect */
@@ -2367,6 +2942,8 @@ label input[type="radio"] {
     font-size: 14px;
     color: var(--body_text_color);
     transition: background-color 0.2s, color 0.2s; /* Smooth transition for hover effect */
+    word-wrap: break-word; /* Break long words */
+    white-space: normal; /* Allow text to wrap within the div */
 }
 
 /* Highlighted suggestion */
@@ -2404,6 +2981,7 @@ label input[type="radio"] {
     background-color: #E6F3FF; /* Lighter blue background for hover */
     color: var(--body_text_color); /* Maintain consistent text color */
 }
+
 
 
 
