@@ -5,6 +5,65 @@ document.addEventListener("DOMContentLoaded", function() {
     var activeLine = document.getElementById("active-line");
     var sidebarContents = document.querySelectorAll(".sidebar-content");
 
+    // Set the default active content to "Search Results" on page load
+    var defaultActiveContent = document.querySelector('#database-content');
+    var defaultActiveIcon = document.querySelector('.icon-container[data-target="database-content"]');
+
+    if (defaultActiveContent && defaultActiveIcon) {
+        // Add active class to "Search Results" content and icon
+        sidebarContents.forEach(function(content) {
+            content.classList.remove('active');
+        });
+        defaultActiveContent.classList.add('active');
+
+        iconContainers.forEach(function(container) {
+            container.classList.remove('active');
+        });
+        defaultActiveIcon.classList.add('active');
+
+        // Update the vertical line position next to the "Search Results" icon
+        updateActiveLinePosition();
+    }
+
+    // Store active sidebar content before form submission and restore it afterward
+    var form = document.getElementById('ge_display_form');
+    var updateButton = document.querySelector('.update-display-btn');
+    var activeSidebarContent;
+
+    if (form && updateButton) {
+        updateButton.addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Save the currently active sidebar content before the update
+            activeSidebarContent = document.querySelector('.sidebar-content.active');
+
+            // Simulate the table update or make the necessary update logic here
+            setTimeout(function() {
+                // Simulate form submission or refresh the table data
+                console.log("Table is updating...");
+
+                // Restore the active sidebar content (Display Options) after the update
+                if (activeSidebarContent) {
+                    sidebarContents.forEach(function(content) {
+                        content.classList.remove('active');
+                    });
+                    activeSidebarContent.classList.add('active');
+
+                    iconContainers.forEach(function(container) {
+                        container.classList.remove('active');
+                    });
+                    document.querySelector('.icon-container[data-target="' + activeSidebarContent.id + '"]').classList.add('active');
+
+                    // Update the vertical line position again
+                    updateActiveLinePosition();
+                }
+
+                // Optionally, submit the form after the table update logic
+                form.submit();
+            }, 1000); // Simulating delay for table update, adjust as needed
+        });
+    }
+
     // Help Page Specific Code
     if (document.getElementById("help-page-content")) {
         var submenuItems = document.querySelectorAll("#help-sidebar li.has-submenu > a");
@@ -321,6 +380,116 @@ document.addEventListener("DOMContentLoaded", function() {
     updateActiveLinePosition();
     window.addEventListener("resize", updateActiveLinePosition);
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+    const tableCells = document.querySelectorAll('#scrollableTable td');
+
+    tableCells.forEach(cell => {
+        if (cell.scrollWidth > cell.clientWidth) {
+            cell.classList.add('overflow');
+        }
+    });
+
+    // Loop through each cell and check if it's empty, and make sure it's not in the checkbox_col class
+    tableCells.forEach(cell => {
+        if (cell.textContent.trim() === '' && !cell.classList.contains('checkbox_col') && !cell.classList.contains('pic_col')) {
+            cell.textContent = 'N/A'; // Replace empty content with "N/A"
+            cell.style.cursor = 'auto'; // Set cursor to 'auto' for empty cells
+            cell.setAttribute('data-na', 'true'); // Mark N/A cells to exclude from hover
+        }
+    });
+
+    tableCells.forEach(cell => {
+        cell.addEventListener('click', function (event) {
+            // Exclude cells from the pic_col, checkbox_col classes, or empty cells (with N/A)
+            if (
+                this.classList.contains('pic_col') ||
+                this.classList.contains('checkbox_col') ||
+                this.textContent.trim() === 'N/A' // Prevent modal for N/A cells
+            ) {
+                return; // Don't trigger the modal
+            }
+    
+            // Prevent modal from opening if an <a> element inside the cell is clicked
+            if (event.target.tagName === 'A') {
+                return;
+            }
+    
+            const fullText = this.textContent.trim();
+    
+            // Create modal elements if they don't exist
+            let modal = document.getElementById('myModal');
+            if (!modal) {
+                modal = document.createElement('div');
+                modal.id = 'myModal';
+                modal.classList.add('modal');
+                document.body.appendChild(modal);
+    
+                modal.innerHTML = `
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <p id="modal-text"></p>
+                    </div>
+                `;
+            }
+    
+            // Set the text in the modal
+            const modalText = document.getElementById('modal-text');
+            modalText.textContent = fullText;
+    
+            // Apply custom styles for seq_col class (monospace font and word-wrap)
+            if (this.classList.contains('seq_col')) {
+                modalText.style.wordWrap = 'break-word';
+                modalText.style.fontFamily = '"Courier New", Courier, monospace';
+            } else {
+                // Reset to default styles for other columns
+                modalText.style.wordWrap = 'normal';
+                modalText.style.fontFamily = '';
+            }
+    
+            // Display the modal
+            modal.style.display = 'block';
+    
+            // Close the modal when the close button is clicked
+            modal.querySelector('.close').onclick = function () {
+                modal.style.display = 'none';
+            };
+    
+            // Close the modal when clicking outside the modal content
+            window.onclick = function (event) {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            };
+        });
+    });
+    
+
+
+
+    
+
+
+
+
+
+
+
     // Variables for drag-and-drop functionality
     let dragSrcEl = null;
     let dragIndex = null;
@@ -461,65 +630,265 @@ document.addEventListener("DOMContentLoaded", function() {
 
     adjustTableHeight();
 
-    // Export functions
 
-    // Get visible table data for export
+
+
+
+    
+    
+
+
+
+
+
+
+
+    // Table Search Feature 
+    const searchInput = document.getElementById('table-search');
+    const nextButton = document.getElementById('search-next');
+    const prevButton = document.getElementById('search-prev');
+    const searchCount = document.getElementById('search-count'); // Display search count
+    const clearSearchButton = document.getElementById('clear-search'); // X (close) button
+
+    let searchResults = [];
+    let currentIndex = -1;
+    let searchTerm = '';
+
+    // Function to clear existing highlights in the table
+    function clearHighlights() {
+        searchResults.forEach(cell => cell.classList.remove('highlighted'));
+        searchResults = [];
+        currentIndex = -1;
+        updateSearchCount(); // Update the count to show 0 of 0 when cleared
+    }
+
+    // Function to highlight the currently selected cell
+    function highlightCurrentCell() {
+        searchResults.forEach(cell => cell.classList.remove('highlighted')); // Clear existing highlights
+
+        // Highlight the current cell and scroll to it
+        if (searchResults[currentIndex]) {
+            searchResults[currentIndex].classList.add('highlighted');
+            searchResults[currentIndex].scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    }
+
+    // Function to find and store all matches in the table
+    function highlightMatches(searchTerm) {
+        clearHighlights(); // Clear previous results and highlights
+        if (!searchTerm) return; // Return if search term is empty
+
+        const tableCells = document.querySelectorAll('#scrollableTable td');
+        tableCells.forEach(cell => {
+            if (cell.textContent.toLowerCase().includes(searchTerm.toLowerCase())) {
+                searchResults.push(cell);
+            }
+        });
+
+        if (searchResults.length > 0) {
+            currentIndex = 0; // Start by highlighting the first match
+            highlightCurrentCell();
+            updateSearchCount(); // Update the count
+        }
+    }
+
+    // Function to navigate between matches
+    function navigateResults(direction) {
+        if (searchResults.length === 0) return; // If no results, do nothing
+
+        if (direction === 'next') {
+            currentIndex = (currentIndex + 1) % searchResults.length; // Loop to the beginning if at the end
+        } else if (direction === 'prev') {
+            currentIndex = (currentIndex - 1 + searchResults.length) % searchResults.length; // Loop to the end if at the beginning
+        }
+        highlightCurrentCell();
+        updateSearchCount(); // Update the count on navigation
+    }
+
+    // Function to update the search count display
+    function updateSearchCount() {
+        if (searchResults.length > 0) {
+            searchCount.textContent = `${currentIndex + 1} of ${searchResults.length}`;
+        } else {
+            searchCount.textContent = '0 of 0';
+        }
+    }
+
+    // Function to reset the search feature and clear modal text highlights
+    function resetSearch() {
+        searchInput.value = ''; // Clear input
+        clearHighlights(); // Clear table highlights
+        clearSearchButton.style.display = 'none'; // Hide the clear button
+        searchTerm = ''; // Clear the search term
+
+        // Reset modal content if open
+        const modalText = document.getElementById('modal-text');
+        if (modalText) {
+            modalText.innerHTML = modalText.textContent; // Remove any highlights by setting raw text
+        }
+
+        updateSearchCount(); // Reset search count to 0 of 0
+    }
+
+    // Event listener for search input
+    searchInput.addEventListener('input', function () {
+        searchTerm = this.value;
+        highlightMatches(searchTerm);
+
+        // Show or hide the clear (escape) button based on the input value
+        if (this.value.length > 0) {
+            clearSearchButton.style.display = 'inline'; // Show clear button
+        } else {
+            clearSearchButton.style.display = 'none'; // Hide clear button
+        }
+    });
+
+    // Event listener for the clear (escape) button
+    clearSearchButton.addEventListener('click', function () {
+        resetSearch();
+    });
+
+    // Event listeners for next and previous buttons
+    nextButton.addEventListener('click', function () {
+        navigateResults('next');
+    });
+
+    prevButton.addEventListener('click', function () {
+        navigateResults('prev');
+    });
+
+    // Modal functionality with term highlighting
+    document.querySelectorAll('#scrollableTable td').forEach(cell => {
+        cell.addEventListener('click', function (event) {
+            // Prevent modal for cells that are empty, contain N/A, or belong to pic_col/checkbox_col
+            if (
+                event.target.tagName === 'A' || 
+                cell.classList.contains('pic_col') || 
+                cell.classList.contains('checkbox_col') || 
+                cell.textContent.trim() === 'N/A' // Prevent modal for N/A cells
+            ) {
+                return;
+            }
+
+            const fullText = this.textContent.trim();
+            let modal = document.getElementById('myModal');
+            if (!modal) {
+                modal = document.createElement('div');
+                modal.id = 'myModal';
+                modal.classList.add('modal');
+                document.body.appendChild(modal);
+
+                modal.innerHTML = `
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <p id="modal-text"></p>
+                    </div>
+                `;
+            }
+
+            // Highlight the searched term within the modal
+            const modalText = document.getElementById('modal-text');
+            if (searchTerm) {
+                const highlightedText = fullText.replace(new RegExp(searchTerm, 'gi'), match => `<span class="term-highlight">${match}</span>`);
+                modalText.innerHTML = highlightedText;
+            } else {
+                modalText.textContent = fullText; // No search term, display the full text without highlights
+            }
+
+            // Apply custom styles for seq_col class (monospace font and word-wrap)
+            if (this.classList.contains('seq_col')) {
+                modalText.style.wordWrap = 'break-word';
+                modalText.style.fontFamily = '"Courier New", Courier, monospace';
+            } else {
+                modalText.style.wordWrap = 'normal';
+                modalText.style.fontFamily = '';
+            }
+
+            // Display the modal
+            modal.style.display = 'block';
+
+            // Close the modal when the close button is clicked
+            modal.querySelector('.close').onclick = function () {
+                modal.style.display = 'none';
+            };
+
+            // Close the modal when clicking outside the modal content
+            window.onclick = function (event) {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            };
+        });
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+    // Function to escape CSV data, handle commas, double quotes, and line breaks
+    function escapeCsvField(field) {
+        if (!field) {
+            return ''; // Return an empty string for missing data
+        }
+        if (field.includes(",") || field.includes("\n") || field.includes('"')) {
+            return `"${field.replace(/"/g, '""')}"`; // Escape double quotes and wrap field in quotes
+        }
+        return field;
+    }
+
+    // Updated Export functions
+
+    // Get visible table data for export and handle missing data, line breaks, and ignore checkbox and pic columns
     function getVisibleTableData() {
         var table = document.querySelector("#scrollableTable table");
-        var headers = Array.from(table.querySelectorAll('thead th')).filter(th => th.style.display !== 'none' && th.className !== 'protein-domains-column');
+
+        // Filter out the checkbox column and hidden columns by class name
+        var headers = Array.from(table.querySelectorAll('thead th'))
+            .filter(th => th.style.display !== 'none' && !th.classList.contains('checkbox_col') && !th.classList.contains('pic_col'));
+
         var rows = Array.from(table.querySelectorAll('tbody tr'));
         var data = rows.map(row => {
-            var cells = Array.from(row.querySelectorAll('td')).filter(td => td.style.display !== 'none' && td.className !== 'protein-domains-column');
+            var cells = Array.from(row.querySelectorAll('td'))
+                .filter(td => td.style.display !== 'none' && !td.classList.contains('checkbox_col') && !td.classList.contains('pic_col'));
+
             var rowData = {};
             cells.forEach((cell, index) => {
-                rowData[headers[index].textContent.trim()] = cell.textContent.trim();
+                rowData[headers[index].textContent.trim()] = (cell.textContent || '').trim(); // Handle missing data with an empty string
             });
             return rowData;
         });
+
         return { headers: headers.map(header => header.textContent.trim()), data: data };
     }
 
-    // Export data as JSON
-    function exportAsJSON({ headers, data }) {
-        var json = JSON.stringify(data, null, 2);
-        downloadFile('data.json', json, 'application/json');
+    // Escape CSV field to handle commas, line breaks, and quotes
+    function escapeCsvField(value) {
+        if (typeof value === 'string' && (value.includes(',') || value.includes('"') || value.includes('\n'))) {
+            // Escape double quotes and wrap the value in double quotes
+            return `"${value.replace(/"/g, '""')}"`;
+        }
+        return value;
     }
 
-    // Export data as XML
-    function exportAsXML({ headers, data }) {
-        var xml = '<?xml version="1.0" encoding="UTF-8"?>\n<items>\n';
-        data.forEach(item => {
-            xml += `  <item>\n`;
-            headers.forEach(header => {
-                xml += `    <${header.replace(/ /g, '_')}>${item[header]}</${header.replace(/ /g, '_')}>\n`;
-            });
-            xml += `  </item>\n`;
-        });
-        xml += '</items>';
-        downloadFile('data.xml', xml, 'application/xml');
-    }
-
-    // Export data as CSV
+    // Export data as CSV with proper escaping for line breaks, commas, and missing data
     function exportAsCSV({ headers, data }) {
-        var csv = headers.join(',') + '\n';
-        csv += data.map(row => headers.map(header => row[header]).join(',')).join('\n');
+        var csv = headers.map(escapeCsvField).join(',') + '\n';
+        csv += data.map(row => headers.map(header => escapeCsvField(row[header] || "")).join(',')).join('\n'); // Handle missing data and escape content
         downloadFile('data.csv', csv, 'text/csv');
     }
 
-    // Export data as TXT
+    // Export data as TXT with tab separation, handle line breaks and missing data
     function exportAsTXT({ headers, data }) {
         var txt = headers.join('\t') + '\n';
-        txt += data.map(row => headers.map(header => row[header]).join('\t')).join('\n');
+        txt += data.map(row => headers.map(header => (row[header] || "").replace(/\n/g, ' ')).join('\t')).join('\n'); // Handle missing data and line breaks
         downloadFile('data.txt', txt, 'text/plain');
-    }
-
-    // Export data as SQL
-    function exportAsSQL({ headers, data }) {
-        var sql = 'CREATE TABLE IF NOT EXISTS data_table (' + headers.join(' TEXT, ') + ' TEXT);\n';
-        data.forEach(item => {
-            sql += `INSERT INTO data_table (${headers.join(', ')}) VALUES ('${headers.map(header => item[header]).join("', '")}');\n`;
-        });
-        downloadFile('data.sql', sql, 'text/sql');
     }
 
     // Helper function to download files
@@ -533,35 +902,32 @@ document.addEventListener("DOMContentLoaded", function() {
         document.body.removeChild(link);
     }
 
-    // Event listener for the export button
-    var exportButton = document.getElementById("export-button");
-    if (exportButton) {
-        exportButton.addEventListener("click", function() {
-            var selectedFormat = document.querySelector('input[name="export-format"]:checked').value;
+    // Event listener for CSV export button
+    var exportCsvButton = document.getElementById("export-csv-button");
+    if (exportCsvButton) {
+        exportCsvButton.addEventListener("click", function() {
             var tableData = getVisibleTableData();
-
-            // Export data based on selected format
-            switch (selectedFormat) {
-                case 'json':
-                    exportAsJSON(tableData);
-                    break;
-                case 'xml':
-                    exportAsXML(tableData);
-                    break;
-                case 'csv':
-                    exportAsCSV(tableData);
-                    break;
-                case 'txt':
-                    exportAsTXT(tableData);
-                    break;
-                case 'sql':
-                    exportAsSQL(tableData);
-                    break;
-                default:
-                    alert('Please select a format to export.');
-            }
+            exportAsCSV(tableData);
         });
     }
+
+    // Event listener for TXT export button
+    var exportTxtButton = document.getElementById("export-txt-button");
+    if (exportTxtButton) {
+        exportTxtButton.addEventListener("click", function() {
+            var tableData = getVisibleTableData();
+            exportAsTXT(tableData);
+        });
+    }
+
+
+
+
+
+
+
+
+
 
     // New code for enabling/disabling the search button based on form inputs
     var searchButton = document.getElementById("search-button");
@@ -615,51 +981,83 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    // New code for handling button clicks to show the associated search content
-    var stageButton = document.getElementById("stage-button");
-    var tissueButton = document.getElementById("tissue-button");
-    var embryoButton = document.getElementById("embryo-button");
+    // Check if we're on the Expression Search page (Stage, Tissue, or Embryo)
+    if (
+        document.body.id === "stage-expression-page" || 
+        document.body.id === "tissue-expression-page" ||
+        document.body.id === "embryo-expression-page"
+    ) {
+        console.log("Expression Search page detected");
 
-    var stageSearch = document.getElementById("stage-search");
-    var tissueSearch = document.getElementById("tissue-search");
-    var embryoSearch = document.getElementById("embryo-search");
+        var searchButton = document.getElementById("search-button");
+        if (searchButton) {
+            console.log("Search button found:", searchButton);
 
-    // Function to hide all search forms
-    function hideAllSearchForms() {
-        stageSearch.style.display = "none";
-        tissueSearch.style.display = "none";
-        embryoSearch.style.display = "none";
+            var inputs = document.querySelectorAll('.form-group input[type="text"], .form-group textarea, .form-group select');
+
+            // Log initial state of the search button
+            console.log("Initial button disabled state:", searchButton.disabled);
+
+            // Define default values for each page type
+            var defaultValues;
+
+            if (document.body.id === "stage-expression-page") {
+                defaultValues = {
+                    1: "e0", 2: "e11", 3: "L2", 4: "Dauer", 5: "L4male"
+                };
+            } else if (document.body.id === "tissue-expression-page") {
+                defaultValues = {
+                    1: "", 2: "5", 3: "0.05", 4: "Body_wall_muscle", 5: "Seam_cells", 6: "Ciliated_sensory_neurons",
+                    7: "Intestine", 8: "Germline"
+                };
+            } else if (document.body.id === "embryo-expression-page") {
+                defaultValues = {
+                    1: "hypodermis", 2: "intestine", 3: "pharynx", 4: "muscle", 5: "neuron", 
+                    6: "t0", 7: "t0", 8: "t0", 9: "t0", 10: "t0"
+                };
+            }
+
+            function checkFormFields() {
+                let isFilled = false;
+
+                inputs.forEach(function(input, index) {
+                    let inputValue = input.value.trim();
+                    console.log(`Input ${index}:`, inputValue);
+
+                    // Check if it's different from the default value (if applicable)
+                    if (inputValue !== "" && (!defaultValues.hasOwnProperty(index) || inputValue !== defaultValues[index])) {
+                        isFilled = true;
+                    }
+                });
+
+                console.log("Is any input filled?", isFilled);
+
+                if (isFilled) {
+                    searchButton.disabled = false; // Enable the button
+                    console.log("Button enabled");
+                } else {
+                    searchButton.disabled = true; // Disable the button
+                    console.log("Button disabled");
+                }
+            }
+
+            // Add event listeners to all inputs, textareas, and select elements
+            inputs.forEach(function(input, index) {
+                console.log(`Adding event listeners to input ${index}`);
+                input.addEventListener('input', checkFormFields);
+                input.addEventListener('change', checkFormFields); // Also listen to change events for select elements
+            });
+
+            // Use setTimeout to delay the initial check, allowing time for any autofill
+            setTimeout(function() {
+                console.log("Initial check after timeout");
+                checkFormFields();
+            }, 100);
+        } else {
+            console.log("Search button not found");
+        }
+    } else {
+        console.log("Not an Expression Search page");
     }
 
-    // Function to remove active class from all buttons
-    function removeActiveClassFromButtons() {
-        stageButton.classList.remove("active");
-        tissueButton.classList.remove("active");
-        embryoButton.classList.remove("active");
-    }
-
-    // Add event listeners to the buttons
-    stageButton.addEventListener("click", function() {
-        hideAllSearchForms();
-        removeActiveClassFromButtons();
-        stageSearch.style.display = "block";
-        this.classList.add("active");
-    });
-
-    tissueButton.addEventListener("click", function() {
-        hideAllSearchForms();
-        removeActiveClassFromButtons();
-        tissueSearch.style.display = "block";
-        this.classList.add("active");
-    });
-
-    embryoButton.addEventListener("click", function() {
-        hideAllSearchForms();
-        removeActiveClassFromButtons();
-        embryoSearch.style.display = "block";
-        this.classList.add("active");
-    });
-
-    // Initialize by showing the stage search by default
-    stageButton.click();
 });
