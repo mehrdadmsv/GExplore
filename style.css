@@ -1913,8 +1913,8 @@ label input[type="radio"] {
     display: flex;
     padding: 0;
     background: var(--switches-bg-color);
-    line-height: 2.2rem;
-    border-radius: 2.2rem;
+    line-height: 1.8rem;
+    border-radius: 1.8rem;
     margin-left: auto;
     margin-right: auto;
 }
