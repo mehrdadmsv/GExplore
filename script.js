@@ -388,96 +388,369 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
+    // Toggle views + modal deactivation in expanded + Table search feature
+
+    // Get references to the toggle buttons (condensed vs expanded)
+    var condensedButton = document.getElementById("condensed-view");
+    var expandedButton = document.getElementById("expanded-view");
+    var table = document.getElementById('scrollableTable');
+
+    // Function to expand the table cells (switch to expanded view)
+    function expandTableView() {
+
+        // Clear existing highlights before switching views
+        clearHighlights(); 
 
 
-
-
-
-    
-
-
-
-    const tableCells = document.querySelectorAll('#scrollableTable td');
-
-    tableCells.forEach(cell => {
-        if (cell.scrollWidth > cell.clientWidth) {
-            cell.classList.add('overflow');
-        }
-    });
-
-    // Loop through each cell and check if it's empty, and make sure it's not in the checkbox_col class
-    tableCells.forEach(cell => {
-        if (cell.textContent.trim() === '' && !cell.classList.contains('checkbox_col') && !cell.classList.contains('pic_col')) {
-            cell.textContent = 'N/A'; // Replace empty content with "N/A"
-            cell.style.cursor = 'auto'; // Set cursor to 'auto' for empty cells
-            cell.setAttribute('data-na', 'true'); // Mark N/A cells to exclude from hover
-        }
-    });
-
-    tableCells.forEach(cell => {
-        cell.addEventListener('click', function (event) {
-            // Exclude cells from the pic_col, checkbox_col classes, or empty cells (with N/A)
-            if (
-                this.classList.contains('pic_col') ||
-                this.classList.contains('checkbox_col') ||
-                this.textContent.trim() === 'N/A' // Prevent modal for N/A cells
-            ) {
-                return; // Don't trigger the modal
-            }
-    
-            // Prevent modal from opening if an <a> element inside the cell is clicked
-            if (event.target.tagName === 'A') {
-                return;
-            }
-    
-            const fullText = this.textContent.trim();
-    
-            // Create modal elements if they don't exist
-            let modal = document.getElementById('myModal');
-            if (!modal) {
-                modal = document.createElement('div');
-                modal.id = 'myModal';
-                modal.classList.add('modal');
-                document.body.appendChild(modal);
-    
-                modal.innerHTML = `
-                    <div class="modal-content">
-                        <span class="close">&times;</span>
-                        <p id="modal-text"></p>
-                    </div>
-                `;
-            }
-    
-            // Set the text in the modal
-            const modalText = document.getElementById('modal-text');
-            modalText.textContent = fullText;
-    
-            // Apply custom styles for seq_col class (monospace font and word-wrap)
-            if (this.classList.contains('seq_col')) {
-                modalText.style.wordWrap = 'break-word';
-                modalText.style.fontFamily = '"Courier New", Courier, monospace';
-            } else {
-                // Reset to default styles for other columns
-                modalText.style.wordWrap = 'normal';
-                modalText.style.fontFamily = '';
-            }
-    
-            // Display the modal
-            modal.style.display = 'block';
-    
-            // Close the modal when the close button is clicked
-            modal.querySelector('.close').onclick = function () {
-                modal.style.display = 'none';
-            };
-    
-            // Close the modal when clicking outside the modal content
-            window.onclick = function (event) {
-                if (event.target === modal) {
-                    modal.style.display = 'none';
-                }
-            };
+        var tableCells = document.querySelectorAll('#scrollableTable td');
+        tableCells.forEach(function (cell) {
+            // Remove text truncation styles (e.g., ellipses)
+            cell.style.whiteSpace = 'normal';
+            cell.style.overflow = 'visible';
+            cell.style.textOverflow = 'unset';
+            cell.style.wordWrap = 'break-word'; // Ensure long words are wrapped
+            cell.style.verticalAlign = 'top'; // Align content to the top
         });
+
+        table.classList.add('expanded-view');
+        table.classList.remove('condensed-view');
+
+        // Update button states
+        condensedButton.classList.remove('active');
+        expandedButton.classList.add('active');
+
+        // Reapply modal logic (to respect the current view)
+        applyModalLogic();
+
+        // Reset search logic after view change
+        resetSearch();
+    }
+
+    // Function to apply the condensed view (ellipsis view)
+    function collapseTableView() {
+        
+        var tableCells = document.querySelectorAll('#scrollableTable td');
+        tableCells.forEach(function (cell) {
+            // Reapply text truncation styles (e.g., ellipses)
+            cell.style.whiteSpace = 'nowrap';
+            cell.style.overflow = 'hidden';
+            cell.style.textOverflow = 'ellipsis'; // Reapply ellipsis
+            cell.style.verticalAlign = 'middle'; // Center-align for condensed view
+
+            // Check if the cell is empty and replace with "N/A"
+            if (cell.textContent.trim() === '' &&
+                !cell.classList.contains('checkbox_col') &&
+                !cell.classList.contains('pic_col')) {
+                cell.textContent = 'N/A'; // Replace empty content with "N/A"
+                cell.style.cursor = 'auto'; // Set cursor to 'auto' for empty cells
+                cell.setAttribute('data-na', 'true'); // Mark N/A cells to exclude from hover
+            }
+        });
+
+        table.classList.remove('expanded-view');
+        table.classList.add('condensed-view');
+
+        // Check for overflow and apply the 'overflow' class to show custom ellipsis
+        checkForOverflow();
+
+        // Update button states
+        expandedButton.classList.remove('active');
+        condensedButton.classList.add('active');
+
+        // Reapply modal logic (to respect the current view)
+        applyModalLogic();
+    }
+
+    // Function to check for overflowing content and apply the 'overflow' class
+    function checkForOverflow() {
+        const tableCells = document.querySelectorAll('#scrollableTable td');
+
+        tableCells.forEach(cell => {
+            // Check if the content of the cell is overflowing
+            if (cell.scrollWidth > cell.clientWidth) {
+                // Add the 'overflow' class if content is overflowing
+                cell.classList.add('overflow');
+            } else {
+                // Remove the 'overflow' class if there's no overflow
+                cell.classList.remove('overflow');
+            }
+        });
+    }
+
+    // Function to apply modal logic to the table cells
+    function applyModalLogic() {
+        const tableCells = document.querySelectorAll('#scrollableTable td');
+
+        tableCells.forEach(cell => {
+            cell.addEventListener('click', function (event) {
+                var table = document.getElementById('scrollableTable');
+
+                if (table.classList.contains('expanded-view')) {
+                    console.log("Expanded view is active. Modal not triggered.");
+                    return;
+                }
+
+                if (
+                    this.classList.contains('pic_col') ||
+                    this.classList.contains('checkbox_col') ||
+                    this.textContent.trim() === 'N/A'
+                ) {
+                    return;
+                }
+
+                if (event.target.tagName === 'A') {
+                    return;
+                }
+
+                const fullText = this.textContent.trim();
+
+                let modal = document.getElementById('myModal');
+                if (!modal) {
+                    modal = document.createElement('div');
+                    modal.id = 'myModal';
+                    modal.classList.add('modal');
+                    document.body.appendChild(modal);
+
+                    modal.innerHTML = `
+                        <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <p id="modal-text"></p>
+                        </div>
+                    `;
+                }
+
+                const modalText = document.getElementById('modal-text');
+                // Highlight the search term in the modal, if any
+                if (searchTerm) {
+                    const highlightedText = fullText.replace(new RegExp(searchTerm, 'gi'), match => `<span class="term-highlight">${match}</span>`);
+                    modalText.innerHTML = highlightedText;
+                } else {
+                    modalText.textContent = fullText;
+                }
+
+                if (this.classList.contains('seq_col')) {
+                    modalText.style.wordWrap = 'break-word';
+                    modalText.style.fontFamily = '"Courier New", Courier, monospace';
+                } else {
+                    modalText.style.wordWrap = 'normal';
+                    modalText.style.fontFamily = '';
+                }
+
+                modal.style.display = 'block';
+
+                modal.querySelector('.close').onclick = function () {
+                    modal.style.display = 'none';
+                };
+
+                window.onclick = function (event) {
+                    if (event.target === modal) {
+                        modal.style.display = 'none';
+                    }
+                };
+            });
+        });
+    }
+
+    // Event listener for the expanded view button
+    expandedButton.addEventListener('click', function () {
+        expandTableView();
+        resetSearch(); // Reset search when view changes
     });
+
+    // Event listener for the condensed view button
+    condensedButton.addEventListener('click', function () {
+        collapseTableView();
+        resetSearch(); // Reset search when view changes
+    });
+
+    // Apply condensed view (ellipses) by default when the page loads
+    collapseTableView();
+
+    // -------------------- Table Search Feature -------------------- //
+
+    const searchInput = document.getElementById('table-search');
+    const nextButton = document.getElementById('search-next');
+    const prevButton = document.getElementById('search-prev');
+    const searchCount = document.getElementById('search-count');
+    const clearSearchButton = document.getElementById('clear-search');
+
+    let searchResults = [];
+    let currentIndex = -1;
+    let searchTerm = '';
+    let termMatches = []; // Store individual matches for expanded view
+
+    function clearHighlights() {
+        searchResults.forEach((cell) => {
+            const highlightedTerms = cell.querySelectorAll('.term-highlight');
+            highlightedTerms.forEach((term) => term.outerHTML = term.innerHTML); // Remove term highlights
+            cell.classList.remove('highlighted');
+        });
+        searchResults = [];
+        termMatches = [];
+        currentIndex = -1;
+        updateSearchCount();
+    }
+
+    function highlightCurrentCell() {
+        if (table.classList.contains('condensed-view')) {
+            // Condensed view: Highlight the entire cell
+            searchResults.forEach((cell) => cell.classList.remove('highlighted'));
+            if (searchResults[currentIndex]) {
+                const currentCell = searchResults[currentIndex];
+                currentCell.classList.add('highlighted');
+    
+                // Scroll to center the current cell in the table with smooth scrolling
+                const parent = currentCell.closest('#scrollableTable');
+                const cellRect = currentCell.getBoundingClientRect();
+                const parentRect = parent.getBoundingClientRect();
+    
+                parent.scrollTo({
+                    top: parent.scrollTop + (cellRect.top - parentRect.top) - (parentRect.height / 2) + (cellRect.height / 2),
+                    left: parent.scrollLeft + (cellRect.left - parentRect.left) - (parentRect.width / 2) + (cellRect.width / 2),
+                    behavior: 'smooth' // Smooth scroll transition
+                });
+            }
+        } else if (table.classList.contains('expanded-view')) {
+            // Expanded view: Highlight individual terms within a cell
+            searchResults.forEach((cell) => {
+                const highlightedTerms = cell.querySelectorAll('.term-highlight');
+                highlightedTerms.forEach((term) => term.outerHTML = term.innerHTML); // Remove old highlights
+            });
+    
+            const { cell, matchIndex } = termMatches[currentIndex];
+            const highlightedText = cell.innerHTML.replace(
+                new RegExp(`(${searchTerm})`, 'gi'),
+                (match, p1, offset) => (offset === matchIndex ? `<span class="term-highlight">${match}</span>` : match)
+            );
+            cell.innerHTML = highlightedText;
+            const highlightedTerm = cell.querySelector('.term-highlight');
+    
+            if (highlightedTerm) {
+                // Scroll to center the current highlighted term in the table with smooth scrolling
+                const parent = cell.closest('#scrollableTable');
+                const termRect = highlightedTerm.getBoundingClientRect();
+                const parentRect = parent.getBoundingClientRect();
+    
+                parent.scrollTo({
+                    top: parent.scrollTop + (termRect.top - parentRect.top) - (parentRect.height / 2) + (termRect.height / 2),
+                    left: parent.scrollLeft + (termRect.left - parentRect.left) - (parentRect.width / 2) + (termRect.width / 2),
+                    behavior: 'smooth' // Smooth scroll transition
+                });
+            }
+        }
+    }
+    
+
+    function highlightMatches(searchTerm) {
+        clearHighlights();
+
+        if (!searchTerm) return;
+
+        const tableCells = document.querySelectorAll('#scrollableTable td');
+        if (table.classList.contains('condensed-view')) {
+            // Condensed view: Highlight entire cells containing the search term
+            tableCells.forEach((cell) => {
+                if (cell.textContent.toLowerCase().includes(searchTerm.toLowerCase())) {
+                    searchResults.push(cell);
+                }
+            });
+        } else if (table.classList.contains('expanded-view')) {
+            // Expanded view: Find and count individual matches within cells
+            tableCells.forEach((cell) => {
+                const cellText = cell.textContent.toLowerCase();
+                const matches = [...cellText.matchAll(new RegExp(searchTerm.toLowerCase(), 'gi'))];
+                if (matches.length > 0) {
+                    searchResults.push(cell);
+                    matches.forEach((match) => {
+                        termMatches.push({
+                            cell,
+                            matchIndex: match.index, // Store the index of each match
+                        });
+                    });
+                }
+            });
+        }
+
+        if (table.classList.contains('condensed-view') && searchResults.length > 0) {
+            currentIndex = 0;
+            highlightCurrentCell();
+        } else if (table.classList.contains('expanded-view') && termMatches.length > 0) {
+            currentIndex = 0;
+            highlightCurrentCell();
+        }
+
+        updateSearchCount(); // Update counts after finding results
+    }
+
+    function navigateResults(direction) {
+        if (table.classList.contains('condensed-view')) {
+            if (searchResults.length === 0) return;
+            currentIndex = (direction === 'next')
+                ? (currentIndex + 1) % searchResults.length
+                : (currentIndex - 1 + searchResults.length) % searchResults.length;
+            highlightCurrentCell();
+        } else if (table.classList.contains('expanded-view')) {
+            if (termMatches.length === 0) return;
+            currentIndex = (direction === 'next')
+                ? (currentIndex + 1) % termMatches.length
+                : (currentIndex - 1 + termMatches.length) % termMatches.length;
+            highlightCurrentCell();
+        }
+
+        updateSearchCount(); // Update counts after navigating
+    }
+
+    function updateSearchCount() {
+        if (table.classList.contains('condensed-view')) {
+            if (searchResults.length > 0) {
+                searchCount.textContent = `${currentIndex + 1} of ${searchResults.length}`;
+            } else {
+                searchCount.textContent = '0 of 0';
+            }
+        } else if (table.classList.contains('expanded-view')) {
+            if (termMatches.length > 0) {
+                searchCount.textContent = `${currentIndex + 1} of ${termMatches.length}`;
+            } else {
+                searchCount.textContent = '0 of 0';
+            }
+        }
+    }
+
+    function resetSearch() {
+        searchInput.value = '';
+        clearHighlights();
+        clearSearchButton.style.display = 'none';
+        searchTerm = '';
+        updateSearchCount();
+    }
+
+    // Event listener for search input
+    searchInput.addEventListener('input', function () {
+        searchTerm = this.value;
+        highlightMatches(searchTerm);
+        clearSearchButton.style.display = this.value.length > 0 ? 'inline' : 'none';
+    });
+
+    clearSearchButton.addEventListener('click', resetSearch);
+
+    nextButton.addEventListener('click', function () {
+        navigateResults('next');
+    });
+
+    prevButton.addEventListener('click', function () {
+        navigateResults('prev');
+    });
+
+
+    // Apply search logic once when the page is loaded
+
+
+
+
+
+
+
+
     
 
 
@@ -643,183 +916,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-    // Table Search Feature 
-    const searchInput = document.getElementById('table-search');
-    const nextButton = document.getElementById('search-next');
-    const prevButton = document.getElementById('search-prev');
-    const searchCount = document.getElementById('search-count'); // Display search count
-    const clearSearchButton = document.getElementById('clear-search'); // X (close) button
+    
 
-    let searchResults = [];
-    let currentIndex = -1;
-    let searchTerm = '';
 
-    // Function to clear existing highlights in the table
-    function clearHighlights() {
-        searchResults.forEach(cell => cell.classList.remove('highlighted'));
-        searchResults = [];
-        currentIndex = -1;
-        updateSearchCount(); // Update the count to show 0 of 0 when cleared
-    }
-
-    // Function to highlight the currently selected cell
-    function highlightCurrentCell() {
-        searchResults.forEach(cell => cell.classList.remove('highlighted')); // Clear existing highlights
-
-        // Highlight the current cell and scroll to it
-        if (searchResults[currentIndex]) {
-            searchResults[currentIndex].classList.add('highlighted');
-            searchResults[currentIndex].scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-    }
-
-    // Function to find and store all matches in the table
-    function highlightMatches(searchTerm) {
-        clearHighlights(); // Clear previous results and highlights
-        if (!searchTerm) return; // Return if search term is empty
-
-        const tableCells = document.querySelectorAll('#scrollableTable td');
-        tableCells.forEach(cell => {
-            if (cell.textContent.toLowerCase().includes(searchTerm.toLowerCase())) {
-                searchResults.push(cell);
-            }
-        });
-
-        if (searchResults.length > 0) {
-            currentIndex = 0; // Start by highlighting the first match
-            highlightCurrentCell();
-            updateSearchCount(); // Update the count
-        }
-    }
-
-    // Function to navigate between matches
-    function navigateResults(direction) {
-        if (searchResults.length === 0) return; // If no results, do nothing
-
-        if (direction === 'next') {
-            currentIndex = (currentIndex + 1) % searchResults.length; // Loop to the beginning if at the end
-        } else if (direction === 'prev') {
-            currentIndex = (currentIndex - 1 + searchResults.length) % searchResults.length; // Loop to the end if at the beginning
-        }
-        highlightCurrentCell();
-        updateSearchCount(); // Update the count on navigation
-    }
-
-    // Function to update the search count display
-    function updateSearchCount() {
-        if (searchResults.length > 0) {
-            searchCount.textContent = `${currentIndex + 1} of ${searchResults.length}`;
-        } else {
-            searchCount.textContent = '0 of 0';
-        }
-    }
-
-    // Function to reset the search feature and clear modal text highlights
-    function resetSearch() {
-        searchInput.value = ''; // Clear input
-        clearHighlights(); // Clear table highlights
-        clearSearchButton.style.display = 'none'; // Hide the clear button
-        searchTerm = ''; // Clear the search term
-
-        // Reset modal content if open
-        const modalText = document.getElementById('modal-text');
-        if (modalText) {
-            modalText.innerHTML = modalText.textContent; // Remove any highlights by setting raw text
-        }
-
-        updateSearchCount(); // Reset search count to 0 of 0
-    }
-
-    // Event listener for search input
-    searchInput.addEventListener('input', function () {
-        searchTerm = this.value;
-        highlightMatches(searchTerm);
-
-        // Show or hide the clear (escape) button based on the input value
-        if (this.value.length > 0) {
-            clearSearchButton.style.display = 'inline'; // Show clear button
-        } else {
-            clearSearchButton.style.display = 'none'; // Hide clear button
-        }
-    });
-
-    // Event listener for the clear (escape) button
-    clearSearchButton.addEventListener('click', function () {
-        resetSearch();
-    });
-
-    // Event listeners for next and previous buttons
-    nextButton.addEventListener('click', function () {
-        navigateResults('next');
-    });
-
-    prevButton.addEventListener('click', function () {
-        navigateResults('prev');
-    });
-
-    // Modal functionality with term highlighting
-    document.querySelectorAll('#scrollableTable td').forEach(cell => {
-        cell.addEventListener('click', function (event) {
-            // Prevent modal for cells that are empty, contain N/A, or belong to pic_col/checkbox_col
-            if (
-                event.target.tagName === 'A' || 
-                cell.classList.contains('pic_col') || 
-                cell.classList.contains('checkbox_col') || 
-                cell.textContent.trim() === 'N/A' // Prevent modal for N/A cells
-            ) {
-                return;
-            }
-
-            const fullText = this.textContent.trim();
-            let modal = document.getElementById('myModal');
-            if (!modal) {
-                modal = document.createElement('div');
-                modal.id = 'myModal';
-                modal.classList.add('modal');
-                document.body.appendChild(modal);
-
-                modal.innerHTML = `
-                    <div class="modal-content">
-                        <span class="close">&times;</span>
-                        <p id="modal-text"></p>
-                    </div>
-                `;
-            }
-
-            // Highlight the searched term within the modal
-            const modalText = document.getElementById('modal-text');
-            if (searchTerm) {
-                const highlightedText = fullText.replace(new RegExp(searchTerm, 'gi'), match => `<span class="term-highlight">${match}</span>`);
-                modalText.innerHTML = highlightedText;
-            } else {
-                modalText.textContent = fullText; // No search term, display the full text without highlights
-            }
-
-            // Apply custom styles for seq_col class (monospace font and word-wrap)
-            if (this.classList.contains('seq_col')) {
-                modalText.style.wordWrap = 'break-word';
-                modalText.style.fontFamily = '"Courier New", Courier, monospace';
-            } else {
-                modalText.style.wordWrap = 'normal';
-                modalText.style.fontFamily = '';
-            }
-
-            // Display the modal
-            modal.style.display = 'block';
-
-            // Close the modal when the close button is clicked
-            modal.querySelector('.close').onclick = function () {
-                modal.style.display = 'none';
-            };
-
-            // Close the modal when clicking outside the modal content
-            window.onclick = function (event) {
-                if (event.target === modal) {
-                    modal.style.display = 'none';
-                }
-            };
-        });
-    });
 
 
 
@@ -1059,5 +1158,28 @@ document.addEventListener("DOMContentLoaded", function() {
     } else {
         console.log("Not an Expression Search page");
     }
+
+    
+
+
+
+
+
+    
+
+    
+
+
+    
+
+
+
+
+
+
+
+
+
+
 
 });
