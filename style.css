@@ -24,6 +24,11 @@
     --button_hover_bkgr_color: #005bb5;
     --button_text_color: #FFFFFF;
     --active_icon_border_color: #059BD8; /* Blue color for active icon border */
+
+    --switches-bg-color: white; 
+    --switches-label-color: #2874A6;
+    --switch-bg-color: #2874A6;
+    --switch-text-color: white;
 }
 
 
@@ -1720,6 +1725,7 @@ label input[type="radio"] {
 /* ------------------------ Display Page Specific Start ------------------------- */
 
 
+
 /* Add keyframes for modern slide-in and slide-out animations */
 @keyframes slideIn {
     from {
@@ -1897,7 +1903,103 @@ label input[type="radio"] {
 
 
 
-/*-------------------------------- Table Start -------------------------------- */
+/*-------------------------------- Toggle Switch Start -------------------------------- */
+
+
+.switches-container {
+    border: solid 2px var(--switches-label-color);
+    width: 16rem;
+    position: relative;
+    display: flex;
+    padding: 0;
+    background: var(--switches-bg-color);
+    line-height: 2.2rem;
+    border-radius: 2.2rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* input (radio) for toggling. hidden - use labels for clicking on */
+.switches-container input {
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+}
+
+/* labels for the input (radio) boxes - something to click on */
+.switches-container label {
+    font-size: 14px;
+    font-weight: 500;
+    width: 50%;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    cursor: pointer;
+    color: var(--switches-label-color);
+}
+
+/* switch highlighters wrapper (sliding left / right) */
+.switch-wrapper {
+    font-size: 14px;
+    font-weight: 500;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50%;
+    padding: 0.15rem;
+    z-index: 3;
+    transition: transform .5s cubic-bezier(.77, 0, .175, 1);
+}
+
+/* switch box highlighter */
+.switch {
+    border-radius: 3rem;
+    background: var(--switch-bg-color);
+    height: 100%;
+}
+
+/* switch box labels */
+.switch div {
+    width: 100%;
+    text-align: center;
+    opacity: 0;
+    display: block;
+    color: var(--switch-text-color);
+    transition: opacity .2s cubic-bezier(.77, 0, .175, 1) .125s;
+    will-change: opacity;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* slide the switch box from right to left */
+.switches-container input:nth-of-type(1):checked~.switch-wrapper {
+    transform: translateX(0%);
+}
+
+/* slide the switch box from left to right */
+.switches-container input:nth-of-type(2):checked~.switch-wrapper {
+    transform: translateX(100%);
+}
+
+/* toggle the switch box labels - first checkbox:checked - show first switch div */
+.switches-container input:nth-of-type(1):checked~.switch-wrapper .switch div:nth-of-type(1) {
+    opacity: 1;
+}
+
+/* toggle the switch box labels - second checkbox:checked - show second switch div */
+.switches-container input:nth-of-type(2):checked~.switch-wrapper .switch div:nth-of-type(2) {
+    opacity: 1;
+}
+
+
+/*-------------------------------- Toggle Switch End -------------------------------- */
+
+
+
+
+
+/*-------------------------------- Condensed (Base) Table Start -------------------------------- */
 
 .table-container {
     flex-grow: 1;
@@ -1918,17 +2020,142 @@ label input[type="radio"] {
     overflow-y: auto;
     transition: all 0.3s ease;
     border-radius: 8px; /* Match border radius of container */
+
 }
 
 #scrollableTable table {
-    border: none; /* Remove the outer border */
+    
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+    border-bottom: 1px solid #e0e0e0;    ;
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
     font-family: 'Open Sans', sans-serif; /* Modern font */
+    border-spacing: 0px;
+    
+
 }
 
-#scrollableTable th, #scrollableTable td {
+
+
+
+
+/*
+STICKY ROW
+Normal css box-shadow works for the header as it is a single html element
+*/
+
+#scrollableTable tr.sticky {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background: #1976D2; /* Blue background for headers */
+    box-shadow: 0 0 6px rgba(0,0,0,0.25);
+}
+
+
+#scrollableTable th {
+    border-top: none;
+    border-left: none;
+    border-right: 2px solid #e0e0e0;
+    border-bottom: 2px solid #e0e0e0;
+    padding: 12px 16px; /* More padding for better readability */
+    text-align: left;
+    box-sizing: border-box;
+    min-width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    position: relative; /* For positioning pseudo-elements */
+    max-width: 250px;
+    vertical-align: middle;
+    cursor: pointer;
+
+    color: #ffffff; /* Slightly darker text for better contrast */
+    font-size: 14px; /* Clean and modern font size */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+
+/*
+#scrollableTable th {
     border: 2px solid #e0e0e0;
+    border-top: none;
+    background-color: #1976D2; 
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    border-bottom: 2px solid #cfd8dc; 
+    text-align: left;
+    font-weight: 600; 
+    padding: 15px; 
+    font-size: 15px; 
+    color: #ffffff; 
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+*/
+
+#scrollableTable th:hover {
+    background-color: #0f5ba7; /* Darker blue on hover */
+    cursor: move; /* Change to pointer to indicate interaction */
+}
+
+
+
+
+/*
+STICKY COLUMN
+Avoid undesirable overlapping shadows by creating a faux shadow on the ::after psudo-element instead of using the css box-shadow property.
+*/
+
+#scrollableTable th.sticky {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  background: #1976D2; /* Blue background for headers */
+}
+
+#scrollableTable th.sticky:hover {
+    background-color: #0f5ba7; /* Darker blue on hover */
+    cursor: move; /* Change to pointer to indicate interaction */
+  }
+
+#scrollableTable td.sticky {
+position: sticky;
+left: 0;
+z-index: 1;
+background: #F3F8FD;
+}
+
+  
+
+#scrollableTable th.sticky::after,
+#scrollableTable td.sticky::after {
+  content: "";
+  position: absolute;
+  right: -6px;
+  top: 0;
+  bottom: -1px;
+  width: 5px;
+  border-left: 2px solid #e0e0e0;
+  background: linear-gradient(90deg, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0) 100%);
+}
+
+
+
+
+
+
+
+
+
+
+#scrollableTable td {
+    border-top: none;
+    border-left: none;
+    border-right: 2px solid #e0e0e0;
+    border-bottom: 2px solid #e0e0e0;    
     padding: 12px 16px; /* More padding for better readability */
     text-align: left;
     box-sizing: border-box;
@@ -1957,6 +2184,11 @@ label input[type="radio"] {
     padding-left: 5px;
     pointer-events: none;
     display: none; /* Hidden by default */
+}
+
+/* Show the ellipsis only when the content is overflowing */
+#scrollableTable td.overflow::after {
+    display: inline; /* Display the ellipsis when the text overflows */
 }
 
 /* Show custom ellipsis when the text overflows */
@@ -1997,27 +2229,6 @@ label input[type="radio"] {
 
 
 
-
-#scrollableTable th {
-    border: 2px solid #e0e0e0;
-    border-top: none;
-    background-color: #1976D2; /* Blue background for headers */
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    border-bottom: 2px solid #cfd8dc; /* Bolder bottom border for header */
-    text-align: left;
-    font-weight: 600; /* Slightly lighter font weight for a modern feel */
-    padding: 15px; /* More padding for headers */
-    font-size: 15px; 
-    color: #ffffff; /* Darker bluish-gray text for contrast */
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-#scrollableTable th:hover {
-    background-color: #0f5ba7; /* Darker blue on hover */
-    cursor: move; /* Change to pointer to indicate interaction */
-}
 
 
 /* Style for links inside table cells */
@@ -2162,7 +2373,7 @@ label input[type="radio"] {
 }
 
 /* Subtle hover effect for modal-triggering cells */
-#scrollableTable td:not(.pic_col):not(.checkbox_col):not([data-na="true"]):hover {
+#scrollableTable.condensed-view td:not(.pic_col):not(.checkbox_col):not([data-na="true"]):hover {
     background-color: #f9f9f9;
     transition: background-color 0.3s ease;
     cursor: pointer;
@@ -2180,7 +2391,109 @@ label input[type="radio"] {
     }
 }
 
-/*-------------------------------- Table End -------------------------------- */
+/*-------------------------------- Condensed (Base) Table End -------------------------------- */
+
+
+
+
+
+
+
+
+
+/*-------------------------------- Expanded Table Start -------------------------------- */
+
+/* #scrollableTable.expanded-view ... */
+
+
+
+#scrollableTable.expanded-view th {
+    max-width: 250px;
+    min-width: 150px;
+
+}
+
+#scrollableTable.expanded-view td {
+    max-width: 250px;
+    min-width: 150px;
+
+}
+
+/* Overrides */
+#scrollableTable.expanded-view .checkbox_col {
+    min-width: 40px; /* Set smaller minimum width for checkbox */
+    max-width: 50px; /* Set smaller maximum width for checkbox */
+    padding: 12px 4px 4px 4px;
+}
+
+
+/* Ensure pic_col does not have a max-width */
+#scrollableTable.expanded-view .pic_col {
+    padding: 10px;
+    max-width: none; 
+    width: auto;
+    padding: 8px;
+    text-align: left;
+    vertical-align: middle;
+    cursor: move;
+}
+
+#scrollableTable.expanded-view td.pic_col {
+    border: none;
+}
+
+/* Sequence-specific modal styling */
+#scrollableTable.expanded-view td.seq_col {
+    min-width: 500px; /* Set smaller minimum width for checkbox */
+    max-width: 600px; /* Set smaller maximum width for checkbox */
+
+}
+
+
+#scrollableTable.expanded-view td:not(.pic_col):not(.checkbox_col):not([data-na="true"]) {
+    user-select: none;
+}
+
+/* Subtle hover effect for modal-triggering cells */
+#scrollableTable.expanded-view td:not(.pic_col):not(.checkbox_col):not([data-na="true"]):hover {
+    cursor: auto;
+    user-select: none;
+}
+
+/*-------------------------------- Expanded Table End -------------------------------- */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -2514,6 +2827,9 @@ label input[type="radio"] {
 
 
 
+
+
+
 /* ------------------------ sidebar 4 (Export Data) ------------------------ */
 #export-content {
     padding: 0px 0px 0px 0px;
@@ -2627,8 +2943,6 @@ label input[type="radio"] {
 
 
 /* ------------------------ Display Page Specific End ------------------------- */
-
-
 
 
 
