@@ -2559,38 +2559,7 @@ background: #F3F8FD;
 
 
 
-.display-option-form h5 {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--body_sidebar_color);
-    margin-top: 10px;
-    margin-bottom: 5px;
-    margin-right: 0px;
-}
 
-.display-option-form textarea {
-    height: 50px; /* Adjust this value based on your design needs */
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    margin-bottom: 5px;
-    resize: vertical; /* Allows users to resize the textarea vertically */
-}
-
-
-
-/* General style for all text inputs and textareas */
-.display-option-form textarea:hover,
-.display-option-form textarea:focus {
-    border-color: #068EF1; /* Change to your desired color */
-    outline: none; /* Remove the default outline */
-}
-
-/* Optional: Add a transition for smooth color change */
-.display-option-form textarea {
-    transition: border-color 0.3s ease-in-out;
-}
 
 
 
