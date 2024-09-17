@@ -2047,8 +2047,8 @@ background: #F3F8FD;
   top: 0;
   bottom: -1px;
   width: 5px;
-  border-left: 2px solid #e0e0e0;
-  background: linear-gradient(90deg, rgba(0,0,0,0.) 0%, rgba(0,0,0,0) 100%);
+  border-left: 1px solid #e0e0e0;
+  background: linear-gradient(90deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0) 100%);
 }
 
 
@@ -2090,6 +2090,12 @@ background: #F3F8FD;
     padding: 12px 4px 4px 4px;
     text-align: center; /* Center the checkbox within the cell */
     cursor: auto;
+}
+
+
+#scrollableTable .gene_col {
+    min-width: 90px; 
+    max-width: 150px; 
 }
 
 #scrollableTable .seqname_col {
