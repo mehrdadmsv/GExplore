@@ -385,189 +385,34 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-
-
-
-    // Toggle views + modal deactivation in expanded + Table search feature
-
-    // Get references to the toggle buttons (condensed vs expanded)
-    var condensedButton = document.getElementById("condensed-view");
-    var expandedButton = document.getElementById("expanded-view");
-    var table = document.getElementById('scrollableTable');
-
-    // Function to expand the table cells (switch to expanded view)
-    function expandTableView() {
-
-        // Clear existing highlights before switching views
-        clearHighlights(); 
-
-
-        var tableCells = document.querySelectorAll('#scrollableTable td');
-        tableCells.forEach(function (cell) {
-            // Remove text truncation styles (e.g., ellipses)
-            cell.style.whiteSpace = 'normal';
-            cell.style.overflow = 'visible';
-            cell.style.textOverflow = 'unset';
-            cell.style.wordWrap = 'break-word'; // Ensure long words are wrapped
-            cell.style.verticalAlign = 'top'; // Align content to the top
-        });
-
-        table.classList.add('expanded-view');
-        table.classList.remove('condensed-view');
-
-        // Update button states
-        condensedButton.classList.remove('active');
-        expandedButton.classList.add('active');
-
-        // Reapply modal logic (to respect the current view)
-        applyModalLogic();
-
-        // Reset search logic after view change
-        resetSearch();
-    }
-
-    // Function to apply the condensed view (ellipsis view)
-    function collapseTableView() {
+    // -------------------- Replace Empty td Feature -------------------- //
+    function replaceEmptyTDsInScrollableTable() {
+        // Select all td elements within the table that has the id "scrollableTable"
+        const tableCells = document.querySelectorAll('#scrollableTable td');
         
-        var tableCells = document.querySelectorAll('#scrollableTable td');
-        tableCells.forEach(function (cell) {
-            // Reapply text truncation styles (e.g., ellipses)
-            cell.style.whiteSpace = 'nowrap';
-            cell.style.overflow = 'hidden';
-            cell.style.textOverflow = 'ellipsis'; // Reapply ellipsis
-            cell.style.verticalAlign = 'middle'; // Center-align for condensed view
-
-            // Check if the cell is empty and replace with "N/A"
-            if (cell.textContent.trim() === '' &&
-                !cell.classList.contains('checkbox_col') &&
-                !cell.classList.contains('pic_col')) {
-                cell.textContent = 'N/A'; // Replace empty content with "N/A"
-                cell.style.cursor = 'auto'; // Set cursor to 'auto' for empty cells
-                cell.setAttribute('data-na', 'true'); // Mark N/A cells to exclude from hover
-            }
-        });
-
-        table.classList.remove('expanded-view');
-        table.classList.add('condensed-view');
-
-        // Check for overflow and apply the 'overflow' class to show custom ellipsis
-        checkForOverflow();
-
-        // Update button states
-        expandedButton.classList.remove('active');
-        condensedButton.classList.add('active');
-
-        // Reapply modal logic (to respect the current view)
-        applyModalLogic();
-    }
-
-    // Function to check for overflowing content and apply the 'overflow' class
-    function checkForOverflow() {
-        const tableCells = document.querySelectorAll('#scrollableTable td');
-
-        tableCells.forEach(cell => {
-            // Check if the content of the cell is overflowing
-            if (cell.scrollWidth > cell.clientWidth) {
-                // Add the 'overflow' class if content is overflowing
-                cell.classList.add('overflow');
-            } else {
-                // Remove the 'overflow' class if there's no overflow
-                cell.classList.remove('overflow');
+        // Loop through each td element
+        tableCells.forEach(td => {
+            // Exclude td elements with class "checkbox_col" or "pic_col"
+            if (!td.classList.contains('checkbox_col') && !td.classList.contains('pic_col')) {
+                if (!td.textContent.trim()) {  // Check if the td is empty or contains only whitespace
+                    td.textContent = 'N/A';    // Replace the content with "N/A"
+                }
             }
         });
     }
+    
+    // Ensure that this function runs after the page's content has been fully loaded
+    window.addEventListener('load', replaceEmptyTDsInScrollableTable);
+    
 
-    // Function to apply modal logic to the table cells
-    function applyModalLogic() {
-        const tableCells = document.querySelectorAll('#scrollableTable td');
 
-        tableCells.forEach(cell => {
-            cell.addEventListener('click', function (event) {
-                var table = document.getElementById('scrollableTable');
+    
+    
+    
 
-                if (table.classList.contains('expanded-view')) {
-                    console.log("Expanded view is active. Modal not triggered.");
-                    return;
-                }
 
-                if (
-                    this.classList.contains('pic_col') ||
-                    this.classList.contains('checkbox_col') ||
-                    this.textContent.trim() === 'N/A'
-                ) {
-                    return;
-                }
-
-                if (event.target.tagName === 'A') {
-                    return;
-                }
-
-                const fullText = this.textContent.trim();
-
-                let modal = document.getElementById('myModal');
-                if (!modal) {
-                    modal = document.createElement('div');
-                    modal.id = 'myModal';
-                    modal.classList.add('modal');
-                    document.body.appendChild(modal);
-
-                    modal.innerHTML = `
-                        <div class="modal-content">
-                            <span class="close">&times;</span>
-                            <p id="modal-text"></p>
-                        </div>
-                    `;
-                }
-
-                const modalText = document.getElementById('modal-text');
-                // Highlight the search term in the modal, if any
-                if (searchTerm) {
-                    const highlightedText = fullText.replace(new RegExp(searchTerm, 'gi'), match => `<span class="term-highlight">${match}</span>`);
-                    modalText.innerHTML = highlightedText;
-                } else {
-                    modalText.textContent = fullText;
-                }
-
-                if (this.classList.contains('seq_col')) {
-                    modalText.style.wordWrap = 'break-word';
-                    modalText.style.fontFamily = '"Courier New", Courier, monospace';
-                } else {
-                    modalText.style.wordWrap = 'normal';
-                    modalText.style.fontFamily = '';
-                }
-
-                modal.style.display = 'block';
-
-                modal.querySelector('.close').onclick = function () {
-                    modal.style.display = 'none';
-                };
-
-                window.onclick = function (event) {
-                    if (event.target === modal) {
-                        modal.style.display = 'none';
-                    }
-                };
-            });
-        });
-    }
-
-    // Event listener for the expanded view button
-    expandedButton.addEventListener('click', function () {
-        expandTableView();
-        resetSearch(); // Reset search when view changes
-    });
-
-    // Event listener for the condensed view button
-    condensedButton.addEventListener('click', function () {
-        collapseTableView();
-        resetSearch(); // Reset search when view changes
-    });
-
-    // Apply condensed view (ellipses) by default when the page loads
-    collapseTableView();
 
     // -------------------- Table Search Feature -------------------- //
-
     const searchInput = document.getElementById('table-search');
     const nextButton = document.getElementById('search-next');
     const prevButton = document.getElementById('search-prev');
@@ -577,13 +422,12 @@ document.addEventListener("DOMContentLoaded", function() {
     let searchResults = [];
     let currentIndex = -1;
     let searchTerm = '';
-    let termMatches = []; // Store individual matches for expanded view
+    let termMatches = [];
 
     function clearHighlights() {
-        searchResults.forEach((cell) => {
-            const highlightedTerms = cell.querySelectorAll('.term-highlight');
+        searchResults.forEach(({ cell }) => {
+            const highlightedTerms = cell.querySelectorAll('.term-highlight, .current-term-highlight');
             highlightedTerms.forEach((term) => term.outerHTML = term.innerHTML); // Remove term highlights
-            cell.classList.remove('highlighted');
         });
         searchResults = [];
         termMatches = [];
@@ -591,46 +435,32 @@ document.addEventListener("DOMContentLoaded", function() {
         updateSearchCount();
     }
 
-    function highlightCurrentCell() {
-        if (table.classList.contains('condensed-view')) {
-            // Condensed view: Highlight the entire cell
-            searchResults.forEach((cell) => cell.classList.remove('highlighted'));
-            if (searchResults[currentIndex]) {
-                const currentCell = searchResults[currentIndex];
-                currentCell.classList.add('highlighted');
-    
-                // Scroll to center the current cell in the table with smooth scrolling
-                const parent = currentCell.closest('#scrollableTable');
-                const cellRect = currentCell.getBoundingClientRect();
-                const parentRect = parent.getBoundingClientRect();
-    
-                parent.scrollTo({
-                    top: parent.scrollTop + (cellRect.top - parentRect.top) - (parentRect.height / 2) + (cellRect.height / 2),
-                    left: parent.scrollLeft + (cellRect.left - parentRect.left) - (parentRect.width / 2) + (cellRect.width / 2),
-                    behavior: 'smooth' // Smooth scroll transition
-                });
+    function highlightCurrentTerm() {
+        if (termMatches.length === 0) return;
+
+        // Remove 'current-term-highlight' class from the previous current match
+        searchResults.forEach(({ cell }) => {
+            const currentHighlight = cell.querySelector('.current-term-highlight');
+            if (currentHighlight) {
+                currentHighlight.classList.remove('current-term-highlight');
+                currentHighlight.classList.add('term-highlight');
             }
-        } else if (table.classList.contains('expanded-view')) {
-            // Expanded view: Highlight individual terms within a cell
-            searchResults.forEach((cell) => {
-                const highlightedTerms = cell.querySelectorAll('.term-highlight');
-                highlightedTerms.forEach((term) => term.outerHTML = term.innerHTML); // Remove old highlights
-            });
-    
-            const { cell, matchIndex } = termMatches[currentIndex];
-            const highlightedText = cell.innerHTML.replace(
-                new RegExp(`(${searchTerm})`, 'gi'),
-                (match, p1, offset) => (offset === matchIndex ? `<span class="term-highlight">${match}</span>` : match)
-            );
-            cell.innerHTML = highlightedText;
-            const highlightedTerm = cell.querySelector('.term-highlight');
-    
-            if (highlightedTerm) {
+        });
+
+        const { cell, matchIndex } = termMatches[currentIndex];
+        const highlightedTerms = cell.querySelectorAll('.term-highlight');
+
+        if (highlightedTerms.length > 0) {
+            const currentTerm = highlightedTerms[matchIndex];
+            if (currentTerm) {
+                currentTerm.classList.remove('term-highlight');
+                currentTerm.classList.add('current-term-highlight');
+
                 // Scroll to center the current highlighted term in the table with smooth scrolling
                 const parent = cell.closest('#scrollableTable');
-                const termRect = highlightedTerm.getBoundingClientRect();
+                const termRect = currentTerm.getBoundingClientRect();
                 const parentRect = parent.getBoundingClientRect();
-    
+
                 parent.scrollTo({
                     top: parent.scrollTop + (termRect.top - parentRect.top) - (parentRect.height / 2) + (termRect.height / 2),
                     left: parent.scrollLeft + (termRect.left - parentRect.left) - (parentRect.width / 2) + (termRect.width / 2),
@@ -639,80 +469,82 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         }
     }
-    
 
     function highlightMatches(searchTerm) {
         clearHighlights();
-
         if (!searchTerm) return;
-
+    
         const tableCells = document.querySelectorAll('#scrollableTable td');
-        if (table.classList.contains('condensed-view')) {
-            // Condensed view: Highlight entire cells containing the search term
-            tableCells.forEach((cell) => {
-                if (cell.textContent.toLowerCase().includes(searchTerm.toLowerCase())) {
-                    searchResults.push(cell);
-                }
-            });
-        } else if (table.classList.contains('expanded-view')) {
-            // Expanded view: Find and count individual matches within cells
-            tableCells.forEach((cell) => {
-                const cellText = cell.textContent.toLowerCase();
-                const matches = [...cellText.matchAll(new RegExp(searchTerm.toLowerCase(), 'gi'))];
-                if (matches.length > 0) {
-                    searchResults.push(cell);
-                    matches.forEach((match) => {
-                        termMatches.push({
-                            cell,
-                            matchIndex: match.index, // Store the index of each match
-                        });
+        const regex = new RegExp(`(${searchTerm})`, 'gi'); // Global and case-insensitive
+    
+        tableCells.forEach((cell) => {
+            const walker = document.createTreeWalker(cell, NodeFilter.SHOW_TEXT, null, false);
+            let node;
+            let matchFound = false;
+    
+            while ((node = walker.nextNode())) {
+                const matches = node.textContent.match(regex);
+    
+                if (matches) {
+                    matchFound = true;
+    
+                    // Split the text content and replace with highlighted span
+                    const highlightedFragments = node.textContent.split(regex).map((fragment, index) => {
+                        if (index % 2 === 1) {
+                            const span = document.createElement('span');
+                            span.className = 'term-highlight';
+                            span.textContent = fragment;
+                            return span;
+                        }
+                        return document.createTextNode(fragment);
                     });
+    
+                    // Replace the original node with the highlighted content
+                    highlightedFragments.forEach(fragment => {
+                        node.parentNode.insertBefore(fragment, node);
+                    });
+    
+                    node.parentNode.removeChild(node); // Remove the original text node
                 }
-            });
-        }
-
-        if (table.classList.contains('condensed-view') && searchResults.length > 0) {
+            }
+    
+            if (matchFound) {
+                const termHighlights = cell.querySelectorAll('.term-highlight');
+                termHighlights.forEach((match, index) => {
+                    termMatches.push({
+                        cell,
+                        matchIndex: index,
+                    });
+                });
+                searchResults.push({ cell });
+            }
+        });
+    
+        if (termMatches.length > 0) {
             currentIndex = 0;
-            highlightCurrentCell();
-        } else if (table.classList.contains('expanded-view') && termMatches.length > 0) {
-            currentIndex = 0;
-            highlightCurrentCell();
+            highlightCurrentTerm();
         }
-
-        updateSearchCount(); // Update counts after finding results
+    
+        updateSearchCount();
     }
+    
 
     function navigateResults(direction) {
-        if (table.classList.contains('condensed-view')) {
-            if (searchResults.length === 0) return;
-            currentIndex = (direction === 'next')
-                ? (currentIndex + 1) % searchResults.length
-                : (currentIndex - 1 + searchResults.length) % searchResults.length;
-            highlightCurrentCell();
-        } else if (table.classList.contains('expanded-view')) {
-            if (termMatches.length === 0) return;
-            currentIndex = (direction === 'next')
-                ? (currentIndex + 1) % termMatches.length
-                : (currentIndex - 1 + termMatches.length) % termMatches.length;
-            highlightCurrentCell();
-        }
+        if (termMatches.length === 0) return;
 
+        currentIndex = (direction === 'next')
+            ? (currentIndex + 1) % termMatches.length
+            : (currentIndex - 1 + termMatches.length) % termMatches.length;
+
+        highlightCurrentTerm();
         updateSearchCount(); // Update counts after navigating
     }
 
     function updateSearchCount() {
-        if (table.classList.contains('condensed-view')) {
-            if (searchResults.length > 0) {
-                searchCount.textContent = `${currentIndex + 1} of ${searchResults.length}`;
-            } else {
-                searchCount.textContent = '0 of 0';
-            }
-        } else if (table.classList.contains('expanded-view')) {
-            if (termMatches.length > 0) {
-                searchCount.textContent = `${currentIndex + 1} of ${termMatches.length}`;
-            } else {
-                searchCount.textContent = '0 of 0';
-            }
+        if (termMatches.length > 0) {
+            searchCount.textContent = `${currentIndex + 1} of ${termMatches.length}`;
+        } else {
+            searchCount.textContent = '0 of 0';
         }
     }
 
@@ -742,7 +574,12 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
 
-    // Apply search logic once when the page is loaded
+    
+    
+
+
+
+
 
 
 
