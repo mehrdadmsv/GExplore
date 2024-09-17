@@ -2135,11 +2135,19 @@ background: #F3F8FD;
     max-width: 100px; 
 }
 
-#scrollableTable .pic_col {
-    padding: 10px;
+
+#scrollableTable th.pic_col {
     max-width: none; /* Ensure pic_col does not have a max-width */
     width: auto;
-    padding: 8px;
+    text-align: left;
+    vertical-align: middle;
+    cursor: move;
+}
+
+#scrollableTable td.pic_col {
+    padding: 12px 10px 12px 10px;
+    max-width: none; /* Ensure pic_col does not have a max-width */
+    width: auto;
     text-align: left;
     vertical-align: top;
     cursor: move;
@@ -2525,6 +2533,12 @@ background: #F3F8FD;
 .column-filter-container {
     border: none;
     padding: 0px 10px 10px 5px;
+    margin: 10px 0 0px 0;
+}
+
+.display-filter-container {
+    border: none;
+    padding: 0px 10px 10px 5px;
     margin: 10px 0 20px 0;
 }
 
@@ -2542,6 +2556,43 @@ background: #F3F8FD;
 .display-option-form input[type="checkbox"] {
     margin-right: 5px;                   /* Adds space between checkbox and label text */
 }
+
+
+
+.display-option-form h5 {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--body_sidebar_color);
+    margin-top: 10px;
+    margin-bottom: 5px;
+    margin-right: 0px;
+}
+
+.display-option-form textarea {
+    height: 50px; /* Adjust this value based on your design needs */
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    resize: vertical; /* Allows users to resize the textarea vertically */
+}
+
+
+
+/* General style for all text inputs and textareas */
+.display-option-form textarea:hover,
+.display-option-form textarea:focus {
+    border-color: #068EF1; /* Change to your desired color */
+    outline: none; /* Remove the default outline */
+}
+
+/* Optional: Add a transition for smooth color change */
+.display-option-form textarea {
+    transition: border-color 0.3s ease-in-out;
+}
+
+
 
 /* Centering the Update Display button */
 .button-container {
@@ -2577,6 +2628,10 @@ background: #F3F8FD;
 .update-display-btn:hover {
     background-color: var(--button_hover_bkgr_color);
 }
+
+
+
+
 
 
 
