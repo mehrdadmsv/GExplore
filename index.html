@@ -211,7 +211,6 @@
                                     <p>Click on the active Icon to hide the sidebar.</p>
                                     <p>Click a column header to sort the table.</p>
                                     <p>Uncheck a box in the table and then click 'Update Display' to remove a gene from the list.</p>
-                                    <p>To view the full content of a cell, simply click on the cell to open its details in a modal pop-up window. You can also copy the content directly from this window.</p>
                                     <p>Drag a column header to rearrange columns.</p>
                                     <p>When the domain organization of the proteins is shown, you can drag rows to rearrange the table.</p>
                                 </div>                                
@@ -228,22 +227,7 @@
 
                 <!-- Main content area -->
                 <div id="main-content">
-                    <div id="main-content-header">
-                        <!-- <h3 class="table-title">Result Table</h3> -->
-                        <div class="switches-container">
-                            <input type="radio" id="condensed-view" name="viewMode" value="Condensed View" checked="checked" />
-                            <input type="radio" id="expanded-view" name="viewMode" value="Expanded View" />
-                            <label for="condensed-view">Condensed View</label>
-                            <label for="expanded-view">Expanded View</label>
-                            <div class="switch-wrapper">
-                              <div class="switch">
-                                <div>Condensed View</div>
-                                <div>Expanded View</div>
-                              </div>
-                            </div>
-                        </div>
-                        
-                    </div>
+                    
 
                     
                     
@@ -256,32 +240,32 @@
                                     <tr class="sticky">
                                         <th class ="checkbox_col sorttable_nosort"></th>
                                         <th class ="gene_col sticky">Gene</th>
-                                        <th class ="seqname_col">Sequence name</th>
+                                        <th class ="seqname_col">Sequence Name</th>
                                         <th class ="cds_col">CDS</th>
                                         <th class ="uniprot_col">UniProt ID</th>
                                         <th class ="chr_col">Chr.</th>
-                                        <th>Pos</th>
+                                        <th class ="gpos_col">Pos</th>
                                         <th class ="chr_col">Chr.</th>
                                         <th class ="chr_col">Strand</th>
-                                        <th>Start</th>
-                                        <th>End</th>
+                                        <th class ="ppos_col">Start</th>
+                                        <th class ="ppos_col">End</th>
                                         <th class ="text_col">Legacy Description</th>
                                         <th class ="text_col">Automated Description</th>
                                         <th class ="text_col">Mutant Phenotype</th>
                                         <th class ="text_col">RNAi Phenotype</th>
                                         <th class ="text_col">Expression</th>
-                                        <th class ="text_col">Expression (genomic studies)</th>
-                                        <th>Physical Interactors</th>
-                                        <th>Genetic Interactors</th>
-                                        <th>Regulatory Interactors</th>
-                                        <th>Yeast homologs</th>
-                                        <th>Fly homologs</th>
-                                        <th>Fish homologs</th>
-                                        <th>Mouse homologs</th>
-                                        <th>Human homologs</th>
-                                        <th class ="GOterm_col">GO terms</th>
-                                        <th class ="text_col">Disease association</th>
-                                        <th class ="protsize_col">size aa</th>
+                                        <th class ="text_col">Expression (Genomic Studies)</th>
+                                        <th class ="text_col">Physical Interactors</th>
+                                        <th class ="text_col">Genetic Interactors</th>
+                                        <th class ="text_col">Regulatory Interactors</th>
+                                        <th class ="text_col">Yeast Homologs</th>
+                                        <th class ="text_col">Fly Homologs</th>
+                                        <th class ="text_col">Fish Homologs</th>
+                                        <th class ="text_col">Mouse Homologs</th>
+                                        <th class ="text_col">Human Homologs</th>
+                                        <th class ="GOterm_col">GO Terms</th>
+                                        <th class ="text_col">Disease Association</th>
+                                        <th class ="protsize_col">Size aa</th>
                                         <th class ="seq_col">Protein Sequence</th>
                                         <th class="sorttable_nosort pic_col">Domain Organization</th>    
                                     </tr>
