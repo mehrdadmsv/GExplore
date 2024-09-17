@@ -1903,105 +1903,15 @@ label input[type="radio"] {
 
 
 
-/*-------------------------------- Toggle Switch Start -------------------------------- */
-
-
-.switches-container {
-    border: solid 2px var(--switches-label-color);
-    width: 16rem;
-    position: relative;
-    display: flex;
-    padding: 0;
-    background: var(--switches-bg-color);
-    line-height: 1.8rem;
-    border-radius: 1.8rem;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* input (radio) for toggling. hidden - use labels for clicking on */
-.switches-container input {
-    visibility: hidden;
-    position: absolute;
-    top: 0;
-}
-
-/* labels for the input (radio) boxes - something to click on */
-.switches-container label {
-    font-size: 14px;
-    font-weight: 500;
-    width: 50%;
-    padding: 0;
-    margin: 0;
-    text-align: center;
-    cursor: pointer;
-    color: var(--switches-label-color);
-}
-
-/* switch highlighters wrapper (sliding left / right) */
-.switch-wrapper {
-    font-size: 14px;
-    font-weight: 500;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 50%;
-    padding: 0.15rem;
-    z-index: 3;
-    transition: transform .5s cubic-bezier(.77, 0, .175, 1);
-}
-
-/* switch box highlighter */
-.switch {
-    border-radius: 3rem;
-    background: var(--switch-bg-color);
-    height: 100%;
-}
-
-/* switch box labels */
-.switch div {
-    width: 100%;
-    text-align: center;
-    opacity: 0;
-    display: block;
-    color: var(--switch-text-color);
-    transition: opacity .2s cubic-bezier(.77, 0, .175, 1) .125s;
-    will-change: opacity;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-/* slide the switch box from right to left */
-.switches-container input:nth-of-type(1):checked~.switch-wrapper {
-    transform: translateX(0%);
-}
-
-/* slide the switch box from left to right */
-.switches-container input:nth-of-type(2):checked~.switch-wrapper {
-    transform: translateX(100%);
-}
-
-/* toggle the switch box labels - first checkbox:checked - show first switch div */
-.switches-container input:nth-of-type(1):checked~.switch-wrapper .switch div:nth-of-type(1) {
-    opacity: 1;
-}
-
-/* toggle the switch box labels - second checkbox:checked - show second switch div */
-.switches-container input:nth-of-type(2):checked~.switch-wrapper .switch div:nth-of-type(2) {
-    opacity: 1;
-}
-
-
-/*-------------------------------- Toggle Switch End -------------------------------- */
 
 
 
 
 
-/*-------------------------------- Condensed (Base) Table Start -------------------------------- */
+/*-------------------------------- Table Start -------------------------------- */
 
 .table-container {
+    margin-top: 20px;
     flex-grow: 1;
     width: 100%;
     overflow: hidden;
@@ -2069,7 +1979,6 @@ Normal css box-shadow works for the header as it is a single html element
     position: relative; /* For positioning pseudo-elements */
     max-width: 250px;
     vertical-align: middle;
-    cursor: pointer;
 
     color: #ffffff; /* Slightly darker text for better contrast */
     font-size: 14px; /* Clean and modern font size */
@@ -2139,7 +2048,7 @@ background: #F3F8FD;
   bottom: -1px;
   width: 5px;
   border-left: 2px solid #e0e0e0;
-  background: linear-gradient(90deg, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0) 100%);
+  background: linear-gradient(90deg, rgba(0,0,0,0.) 0%, rgba(0,0,0,0) 100%);
 }
 
 
@@ -2159,53 +2068,74 @@ background: #F3F8FD;
     padding: 12px 16px; /* More padding for better readability */
     text-align: left;
     box-sizing: border-box;
-    min-width: 150px;
-    white-space: nowrap;
-    overflow: hidden;
+    min-width: 90px; 
+    max-width: 160px; 
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+    word-wrap: break-word;
     position: relative; /* For positioning pseudo-elements */
-    max-width: 250px;
-    vertical-align: middle;
-    cursor: pointer;
+    vertical-align: top;
+    cursor: default;
+    line-height: 1.6;
 
     color: #333; /* Slightly darker text for better contrast */
     font-size: 14px; /* Clean and modern font size */
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Clearer custom ellipsis */
-#scrollableTable td::after {
-    content: '...';
-    position: absolute;
-    right: 10px; /* Slight padding from the right */
-    bottom: 0;
-    background-color: #fff; /* To make sure it's visible above content */
-    color: #005BB5; /* Blue color for ellipsis */
-    font-weight: bold;
-    padding-left: 5px;
-    pointer-events: none;
-    display: none; /* Hidden by default */
+#scrollableTable .checkbox_col {
+    min-width: 40px; /* Set smaller minimum width for checkbox */
+    max-width: 50px; 
+    padding: 12px 4px 4px 4px;
+    text-align: center; /* Center the checkbox within the cell */
+    cursor: auto;
 }
 
-/* Show the ellipsis only when the content is overflowing */
-#scrollableTable td.overflow::after {
-    display: inline; /* Display the ellipsis when the text overflows */
+#scrollableTable .seqname_col {
+    min-width: 150px; 
+    max-width: 160px; 
 }
 
-/* Show custom ellipsis when the text overflows */
-#scrollableTable td.overflow::after {
-    display: inline; /* Display the ellipsis */
-    bottom: 0;
-    background-color: transparent;
+#scrollableTable .cds_col {
+    min-width: 150px; 
+    max-width: 160px; 
 }
 
-/* Ensure pic_col does not have a max-width */
+#scrollableTable .uniprot_col {
+    min-width: 110px; 
+    max-width: 160px; 
+}
+
+
+#scrollableTable .chr_col,
+#scrollableTable .gpos_col {
+    min-width: 90px; 
+    max-width: 100px; 
+}
+
+#scrollableTable .ppos_col {
+    min-width: 90px; 
+    max-width: 150px; 
+}
+
+#scrollableTable .text_col {
+    min-width: 350px;
+    max-width: 350px;
+}
+
+#scrollableTable .protsize_col {
+    min-width: 90px; 
+    max-width: 100px; 
+}
+
 #scrollableTable .pic_col {
     padding: 10px;
-    max-width: none;
+    max-width: none; /* Ensure pic_col does not have a max-width */
     width: auto;
     padding: 8px;
     text-align: left;
-    vertical-align: middle;
+    vertical-align: top;
     cursor: move;
 }
 
@@ -2213,14 +2143,8 @@ background: #F3F8FD;
     border: none;
 }
 
-/* Override for checkbox_col */
-#scrollableTable .checkbox_col {
-    min-width: 40px; /* Set smaller minimum width for checkbox */
-    max-width: 50px; /* Set smaller maximum width for checkbox */
-    padding: 4px; /* Smaller padding to reduce space around checkbox */
-    text-align: center; /* Center the checkbox within the cell */
-    cursor: auto;
-}
+
+
 
 
 
@@ -2365,6 +2289,8 @@ background: #F3F8FD;
 
 /* Sequence-specific modal styling */
 #scrollableTable td.seq_col {
+    min-width: 500px; /* Set smaller minimum width for checkbox */
+    max-width: 600px; 
     word-wrap: break-word;
     font-family: "Courier New", Courier, monospace;
     font-size: 14px;
@@ -2391,7 +2317,7 @@ background: #F3F8FD;
     }
 }
 
-/*-------------------------------- Condensed (Base) Table End -------------------------------- */
+/*-------------------------------- Table End -------------------------------- */
 
 
 
@@ -2399,68 +2325,6 @@ background: #F3F8FD;
 
 
 
-
-
-/*-------------------------------- Expanded Table Start -------------------------------- */
-
-/* #scrollableTable.expanded-view ... */
-
-
-
-#scrollableTable.expanded-view th {
-    max-width: 250px;
-    min-width: 150px;
-
-}
-
-#scrollableTable.expanded-view td {
-    max-width: 250px;
-    min-width: 150px;
-
-}
-
-/* Overrides */
-#scrollableTable.expanded-view .checkbox_col {
-    min-width: 40px; /* Set smaller minimum width for checkbox */
-    max-width: 50px; /* Set smaller maximum width for checkbox */
-    padding: 12px 4px 4px 4px;
-}
-
-
-/* Ensure pic_col does not have a max-width */
-#scrollableTable.expanded-view .pic_col {
-    padding: 10px;
-    max-width: none; 
-    width: auto;
-    padding: 8px;
-    text-align: left;
-    vertical-align: middle;
-    cursor: move;
-}
-
-#scrollableTable.expanded-view td.pic_col {
-    border: none;
-}
-
-/* Sequence-specific modal styling */
-#scrollableTable.expanded-view td.seq_col {
-    min-width: 500px; /* Set smaller minimum width for checkbox */
-    max-width: 600px; /* Set smaller maximum width for checkbox */
-
-}
-
-
-#scrollableTable.expanded-view td:not(.pic_col):not(.checkbox_col):not([data-na="true"]) {
-    user-select: none;
-}
-
-/* Subtle hover effect for modal-triggering cells */
-#scrollableTable.expanded-view td:not(.pic_col):not(.checkbox_col):not([data-na="true"]):hover {
-    cursor: auto;
-    user-select: none;
-}
-
-/*-------------------------------- Expanded Table End -------------------------------- */
 
 
 
@@ -2815,14 +2679,22 @@ background: #F3F8FD;
     transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
 }
 
-/* Highlighting the term in the modal */
 .term-highlight {
-    background-color: #FFE082; /* Lighter yellow with orange tint */
-    font-weight: bold;
-    padding: 2px 4px; /* Adding padding for better visibility */
-    border-radius: 4px; /* Rounded corners for better aesthetics */
-    color: #333; /* Darker text color for contrast */
+    background-color: #FFE082; /* Soft yellow with an orange tint */
+    padding: 0px 0px; /* Small padding for better visibility */
+    border-radius: 4px; /* Rounded corners for a modern look */
+    color: #333; /* Dark text color for good contrast */
 }
+
+/* Current highlighted search term */
+.current-term-highlight {
+    /* font-weight: bold; */
+    background-color: #FFB74D; /* Richer orange-yellow for current highlight */
+    color: #000; /* Dark text color for contrast */
+    padding: 0px 0px; /* Consistent padding */
+    border-radius: 4px; /* Rounded corners for consistency */
+}
+
 
 
 
