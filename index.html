@@ -238,48 +238,55 @@
                 <!-- Main content area -->
                 <div id="main-content">
                     
-
-                    
-                    
-
                     <div class="table-container">
                         <div id="scrollableTable" class="scroll-unlocked">
                             <table id="results" class="sortable result_table">
                                 <!-- Table headers -->
                                 <thead>
                                     <tr class="sticky">
-                                        <th class ="checkbox_col sorttable_nosort"></th>
-                                        <th class ="gene_col sticky">Gene</th>
-                                        <th class ="seqname_col">Sequence Name</th>
-                                        <th class ="cds_col">CDS</th>
-                                        <th class ="uniprot_col">UniProt ID</th>
-                                        <th class ="chr_col">Chr.</th>
-                                        <th class ="gpos_col">Pos</th>
-                                        <th class ="chr_col">Chr.</th>
-                                        <th class ="chr_col">Strand</th>
-                                        <th class ="ppos_col">Start</th>
-                                        <th class ="ppos_col">End</th>
-                                        <th class ="text_col">Legacy Description</th>
-                                        <th class ="text_col">Automated Description</th>
-                                        <th class ="text_col">Mutant Phenotype</th>
-                                        <th class ="text_col">RNAi Phenotype</th>
-                                        <th class ="text_col">Expression</th>
-                                        <th class ="text_col">Expression (Genomic Studies)</th>
-                                        <th class ="text_col">Physical Interactors</th>
-                                        <th class ="text_col">Genetic Interactors</th>
-                                        <th class ="text_col">Regulatory Interactors</th>
-                                        <th class ="text_col">Yeast Homologs</th>
-                                        <th class ="text_col">Fly Homologs</th>
-                                        <th class ="text_col">Fish Homologs</th>
-                                        <th class ="text_col">Mouse Homologs</th>
-                                        <th class ="text_col">Human Homologs</th>
-                                        <th class ="GOterm_col">GO Terms</th>
-                                        <th class ="text_col">Disease Association</th>
-                                        <th class ="protsize_col">Size aa</th>
-                                        <th class ="seq_col">Protein Sequence</th>
-                                        <th class="sorttable_nosort pic_col">Domain Organization</th>    
+                                        <th class="checkbox_col sorttable_nosort"></th>
+                                        <!-- 
+                                        Expanded th element setup example (this is used for sorting arrows):
+                                        <th class="gene_col sticky sortable">
+                                            Gene
+                                            <span class="sort-icons">
+                                              <i class="arrow-up"></i>
+                                              <i class="arrow-down"></i>
+                                            </span>
+                                        </th>
+                                        -->
+                                        <th class="gene_col sticky sortable">Gene<span class="sort-icons"><i class="arrow-up"></i><i class="arrow-down"></i></span></th>
+                                        <th class="seqname_col sortable">Sequence Name<span class="sort-icons"><i class="arrow-up"></i><i class="arrow-down"></i></span></th>
+                                        <th class="cds_col sortable">CDS<span class="sort-icons"><i class="arrow-up"></i><i class="arrow-down"></i></span></th>
+                                        <th class="uniprot_col sortable">UniProt ID<span class="sort-icons"><i class="arrow-up"></i><i class="arrow-down"></i></span></th>
+                                        <th class="chr_col sortable">Chr.<span class="sort-icons"><i class="arrow-up"></i><i class="arrow-down"></i></span></th>
+                                        <th class="gpos_col sortable">Pos<span class="sort-icons"><i class="arrow-up"></i><i class="arrow-down"></i></span></th>
+                                        <th class="chr_col sortable">Chr.<span class="sort-icons"><i class="arrow-up"></i><i class="arrow-down"></i></span></th>
+                                        <th class="chr_col sortable">Strand<span class="sort-icons"><i class="arrow-up"></i><i class="arrow-down"></i></span></th>
+                                        <th class="ppos_col sortable">Start<span class="sort-icons"><i class="arrow-up"></i><i class="arrow-down"></i></span></th>
+                                        <th class="ppos_col sortable">End<span class="sort-icons"><i class="arrow-up"></i><i class="arrow-down"></i></span></th>
+                                        <th class="text_col sortable">Legacy Description<span class="sort-icons"><i class="arrow-up"></i><i class="arrow-down"></i></span></th>
+                                        <th class="text_col sortable">Automated Description<span class="sort-icons"><i class="arrow-up"></i><i class="arrow-down"></i></span></th>
+                                        <th class="text_col sortable">Mutant Phenotype<span class="sort-icons"><i class="arrow-up"></i><i class="arrow-down"></i></span></th>
+                                        <th class="text_col sortable">RNAi Phenotype<span class="sort-icons"><i class="arrow-up"></i><i class="arrow-down"></i></span></th>
+                                        <th class="text_col sortable">Expression<span class="sort-icons"><i class="arrow-up"></i><i class="arrow-down"></i></span></th>
+                                        <th class="text_col sortable">Expression (Genomic Studies)<span class="sort-icons"><i class="arrow-up"></i><i class="arrow-down"></i></span></th>
+                                        <th class="text_col sortable">Physical Interactors<span class="sort-icons"><i class="arrow-up"></i><i class="arrow-down"></i></span></th>
+                                        <th class="text_col sortable">Genetic Interactors<span class="sort-icons"><i class="arrow-up"></i><i class="arrow-down"></i></span></th>
+                                        <th class="text_col sortable">Regulatory Interactors<span class="sort-icons"><i class="arrow-up"></i><i class="arrow-down"></i></span></th>
+                                        <th class="text_col sortable">Yeast Homologs<span class="sort-icons"><i class="arrow-up"></i><i class="arrow-down"></i></span></th>
+                                        <th class="text_col sortable">Fly Homologs<span class="sort-icons"><i class="arrow-up"></i><i class="arrow-down"></i></span></th>
+                                        <th class="text_col sortable">Fish Homologs<span class="sort-icons"><i class="arrow-up"></i><i class="arrow-down"></i></span></th>
+                                        <th class="text_col sortable">Mouse Homologs<span class="sort-icons"><i class="arrow-up"></i><i class="arrow-down"></i></span></th>
+                                        <th class="text_col sortable">Human Homologs<span class="sort-icons"><i class="arrow-up"></i><i class="arrow-down"></i></span></th>
+                                        <th class="GOterm_col sortable">GO Terms<span class="sort-icons"><i class="arrow-up"></i><i class="arrow-down"></i></span></th>
+                                        <th class="text_col sortable">Disease Association<span class="sort-icons"><i class="arrow-up"></i><i class="arrow-down"></i></span></th>
+                                        <th class="protsize_col sortable">Size aa<span class="sort-icons"><i class="arrow-up"></i><i class="arrow-down"></i></span></th>
+                                        <th class="seq_col sortable">Protein Sequence<span class="sort-icons"><i class="arrow-up"></i><i class="arrow-down"></i></span></th>
+                                        <th class="sorttable_nosort pic_col">Domain Organization</th>
                                     </tr>
                                 </thead>
+                                
                                 
                                 <!-- Table body with data rows -->
                                 <tbody id="result_tbody">
@@ -411,82 +418,6 @@
                                         <td class ="seq_col">MDDNTATLTA IHQQQQSHNR FSNPLVCVGQ LDHHSLLPEH SISSSLAPLT HNPYAFNYSI PLPPTDITTK LPKLELLSLD VKQEQDDNHL DTSSPTDSTG NGSTNGGKIQ KPRRQRTHFT SHQLTELENW FSRNRYPDMA CREEIAVWIS LTEPRVRVWF KNRRAKWRKR ERNYVIDNGQ GTTKVTAQSL DPLGSLQNTF PQTLLQSSSS QLDDSAVTSS SFYGYGGAWQ QNPYYSRNNQ TTFNWQIKPQ DQFQFQTIPM SPTTATSRFS TAANLAPLPT AQAAFSTSAT SSNDKLKLMD GLSNSLSSSL GQPYQPCQYS GPL</td>
                                         <td class="pic_col"><img src="assets/display_prototype/B0564.10b.png" alt="B0564.10b Domain Organisation"></td>
                                     </tr>
-
-
-
-
-
-
-
-
-
-
-
-
-                                    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                    
-
-
-
-
-
-
-                                    
-
-
-
-
-
-
-
-
-
-
-
-
-                                    
-
-
-                                    
                                 </tbody>
                             </table>
                         </div>
@@ -498,7 +429,7 @@
     
     <!-- JavaScript file -->
     <script src="script.js"></script>
-
+    <script src="javascript/sortable_feature.js"></script>
     <script src="javascript/tablednd.js"></script>
 
     <script type="text/javascript">
