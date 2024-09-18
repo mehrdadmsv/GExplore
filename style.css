@@ -1908,6 +1908,7 @@ label input[type="radio"] {
 
 
 
+
 /*-------------------------------- Table Start -------------------------------- */
 
 .table-container {
@@ -1962,6 +1963,7 @@ Normal css box-shadow works for the header as it is a single html element
     z-index: 2;
     background: #1976D2; /* Blue background for headers */
     box-shadow: 0 0 6px rgba(0,0,0,0.25);
+
 }
 
 
@@ -1983,27 +1985,15 @@ Normal css box-shadow works for the header as it is a single html element
     color: #ffffff; /* Slightly darker text for better contrast */
     font-size: 14px; /* Clean and modern font size */
     transition: background-color 0.3s ease, color 0.3s ease;
+
+
 }
 
-
-
-/*
-#scrollableTable th {
-    border: 2px solid #e0e0e0;
-    border-top: none;
-    background-color: #1976D2; 
-    position: sticky;
-    top: 0;
-    z-index: 2;
-    border-bottom: 2px solid #cfd8dc; 
-    text-align: left;
-    font-weight: 600; 
-    padding: 15px; 
-    font-size: 15px; 
-    color: #ffffff; 
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+/* Remove the right border from the last th element */
+#scrollableTable th:last-child {
+    border-right: none; /* This removes the right border of the last th */
 }
-*/
+
 
 #scrollableTable th:hover {
     background-color: #0f5ba7; /* Darker blue on hover */
@@ -2037,7 +2027,6 @@ z-index: 1;
 background: #F3F8FD;
 }
 
-  
 
 #scrollableTable th.sticky::after,
 #scrollableTable td.sticky::after {
@@ -2048,15 +2037,71 @@ background: #F3F8FD;
   bottom: -1px;
   width: 5px;
   border-left: 1px solid #e0e0e0;
-  background: linear-gradient(90deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0) 100%);
+  background: linear-gradient(90deg, rgba(0,0,0,0.04) 0%, rgba(0,0,0,0) 100%);
+}
+
+/*------------------------- Sorting Arrow Styling Start -------------------------*/
+
+/* Container for the sorting icons - only applies to sortable columns */
+th.sortable .sort-icons {
+    display: inline-flex;
+    flex-direction: column;
+    position: absolute;
+    right: 8px; /* Position the arrows to the right side of the header */
+    top: 50%;
+    transform: translateY(-50%);
+    justify-content: center;
+    align-items: center;
+}
+
+/* Upward and downward arrows - both are initially visible but faded */
+th.sortable .arrow-up, 
+th.sortable .arrow-down {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    opacity: 0.5; /* Light, inactive state */
+    transition: opacity 0.3s, border-color 0.3s; /* Smooth transitions */
+}
+
+/* Upward arrow specific style */
+th.sortable .arrow-up {
+    border-bottom: 7px solid white; /* White border for the upward arrow */
+    margin-bottom: 2px; /* Space between up and down arrows */
+}
+
+/* Downward arrow specific style */
+th.sortable .arrow-down {
+    border-top: 7px solid white; /* White border for the down arrow */
+    margin-top: 2px;
+}
+
+/* Active state for the ascending arrow */
+th.sorted-asc .arrow-up {
+    opacity: 1; /* Fully visible when active */
+    border-bottom-color: #fff; /* Ensure the arrow is filled with white */
+}
+
+/* Inactive state for the descending arrow when sorted in ascending */
+th.sorted-asc .arrow-down {
+    opacity: 0.3; /* Fade the down arrow when ascending */
+}
+
+/* Active state for the descending arrow */
+th.sorted-desc .arrow-down {
+    opacity: 1; /* Fully visible when active */
+    border-top-color: #fff; /* Ensure the arrow is filled with white */
+}
+
+/* Inactive state for the ascending arrow when sorted in descending */
+th.sorted-desc .arrow-up {
+    opacity: 0.3; /* Fade the up arrow when descending */
 }
 
 
 
-
-
-
-
+/*------------------------- Sorting Arrow Styling End -------------------------*/
 
 
 
@@ -2084,6 +2129,13 @@ background: #F3F8FD;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+
+/* Remove the right border from the last td element */
+#scrollableTable td:last-child {
+    border-right: none; /* This removes the right border of the last td */
+}
+
+
 #scrollableTable .checkbox_col {
     min-width: 40px; /* Set smaller minimum width for checkbox */
     max-width: 50px; 
@@ -2095,33 +2147,37 @@ background: #F3F8FD;
 
 #scrollableTable .gene_col {
     min-width: 90px; 
-    max-width: 150px; 
+    max-width: 250px; 
 }
 
 #scrollableTable .seqname_col {
-    min-width: 150px; 
-    max-width: 160px; 
+    min-width: 160px; 
+    max-width: 170px; 
 }
 
 #scrollableTable .cds_col {
-    min-width: 150px; 
-    max-width: 160px; 
+    min-width: 130px; 
+    max-width: 140px; 
 }
 
 #scrollableTable .uniprot_col {
-    min-width: 110px; 
+    min-width: 120px; 
     max-width: 160px; 
 }
 
 
-#scrollableTable .chr_col,
+#scrollableTable .chr_col {
+    min-width: 100px; 
+    max-width: 110px; 
+}
+
 #scrollableTable .gpos_col {
     min-width: 90px; 
     max-width: 100px; 
 }
 
 #scrollableTable .ppos_col {
-    min-width: 90px; 
+    min-width: 110px; 
     max-width: 150px; 
 }
 
@@ -2131,8 +2187,8 @@ background: #F3F8FD;
 }
 
 #scrollableTable .protsize_col {
-    min-width: 90px; 
-    max-width: 100px; 
+    min-width: 100px; 
+    max-width: 110px; 
 }
 
 
@@ -2156,17 +2212,6 @@ background: #F3F8FD;
 #scrollableTable td.pic_col {
     border: none;
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 /* Style for links inside table cells */
