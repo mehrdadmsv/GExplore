@@ -21,14 +21,14 @@
                             <li><a href="mutation_search.html">Mutations</a></li>
                             <li><a href="protein_search.html">Proteins</a></li>
                             <li><a href="expression_stage_search.html">Stage Expressions</a></li>
-                            <li><a href="#">Tissue Expressions</a></li>
-                            <li><a href="#">Embryo Expressions</a></li>
+                            <li><a href="expression_tissue_search.html">Tissue Expressions</a></li>
+                            <li><a href="expression_embryo_search.html">Embryo Expressions</a></li>
                         </ul>
                     </li>
                     <li><a><span class="text">Tools</span> <span class="angle"></span></a>
                         <ul class="dropdown">
-                            <li><a href="#">Compare</a></li>
-                            <li><a href="#">Convert</a></li>
+                            <li><a href="compare.html">Compare</a></li>
+                            <li><a href="convert.html">Convert</a></li>
                         </ul>
                     </li>
                     <li><a href="help.html"><span class="text">Help</span></a></li>
@@ -70,14 +70,13 @@
                             <a href="#search-fields">Search Fields</a>
                             <ul>
                                 <li><a href="#general-comments">Overview</a></li> 
-                                <li><a href="#gene-search-field">Gene search field</a></li>
-                                <li><a href="#domain-search-field">Domain search field</a></li>
-                                <li><a href="#domain-pattern-search-field">Domain Pattern search field</a></li>
-                                <li><a href="#description-search-field">Description search field</a></li>
-                                <li><a href="#phenotype-expression-search-fields">Phenotype and Expression search fields</a></li>
-                                <li><a href="#ontology-disease-fields">Gene Ontology and Disease Association search fields</a></li>
-                                <li><a href="#mutation-search-page">Search fields on the Mutation search page</a></li>
-                                <li><a href="#expression-search-pages">Search fields on the Expression search pages (stages, tissues, embryos)</a></li>
+                                <li><a href="#gene-search-field">Gene Search Field</a></li>
+                                <li><a href="#protein-domain-search-fields">Protein Domain Search Fields</a></li>
+                                <li><a href="#description-search-field">Description Search Field</a></li>
+                                <li><a href="#phenotype-expression-search-fields">Phenotype and Expression Search Fields</a></li>
+                                <li><a href="#ontology-disease-fields">Gene Ontology and Disease Association Search Fields</a></li>
+                                <li><a href="#mutation-search-page">Search Fields on the Mutation Search Page</a></li>
+                                <li><a href="#expression-search-pages">Search Fields on the Expression Search Pages (Stages, Tissues, Embryos)</a></li>
                             </ul>
                         </li>
                         <li class="has-submenu">
@@ -116,6 +115,7 @@
                     <p>Start at the beginning, or visit each section individually to work your way through a project session. Each section of this guide provides detailed information and instructions on how to use GExplore's features effectively.</p>
                 </div>
 
+                <!----------------------- Introduction Subpages Start ----------------------->
                 <div id="introduction" class="help-content-section">
                     <div class="date-last-updated">
                         <h4>Last updated on Aug 1, 2024</h4>
@@ -154,7 +154,10 @@
                         <a href="https://academic.oup.com/database" target="_blank" class="update-article-button">Read update article</a>
                     </div>
                 </div>
+                <!----------------------- Introduction Subpages End ----------------------->
 
+
+                <!----------------------- Database Subpages Start ----------------------->
                 <div id="databases" class="help-content-section">
                     <div class="date-last-updated">
                         <h4>Last updated on Aug 26, 2024</h4>
@@ -219,85 +222,183 @@
                         </div>
                     </div>
                 </div>
+                <!----------------------- Database Subpages End ----------------------->
 
+                <!----------------------- Search Fields Subpages Start ----------------------->
                 <div id="search-fields" class="help-content-section">
                     <div class="date-last-updated">
-                        <h4>Last updated on Aug 26, 2024</h4>
+                        <h4>Last updated on Sep 20, 2024</h4>
                     </div>
                     <div class="help-content-section-title">
                         <h4>Search Fields</h4>
                     </div>
+                    <!-- Serach Fields: Overview Start -->
                     <div id="general-comments">
                         <h5>Overview</h5>
+                    
                         <p>
-                            You only need to enter search terms in one of the search fields. If you enter search terms in multiple search fields, they will be combined for an AND search, i.e. the result will contain only genes that fulfil all search criteria.
-                            Text search fields on the "Genes" search page (Description, Phenotype, Expression, Gene ontology, Disease associations) will return any match to the search term(s). Comma-separated lists of search terms will be combined for an 'or' search. You can use Boolean logic to combine search terms, e.g. "((axon and dendrite) or neuron) not muscle". On the output page, search terms will be highlighted for easier recognition.
-                            Once the search is executed the results will be displayed in table format. On the display/output page the user can choose which additional data will be shown and determine the output format. 
+                            You only need to enter search terms in <strong>one</strong> of the search fields. If you enter search terms in multiple fields, they will be combined for an <strong>AND Search</strong> (the result will contain only genes that fulfill all search criteria).
                         </p>
-                    </div>
+                    
+                        <p>
+                            Text search fields on the "Genes" search page (Description, Phenotype, Expression, Gene Ontology, and Disease Associations) will return any match to the search term(s). You can:
+                        </p>
+                        <ul>
+                            <li>Use <strong>comma-separated lists</strong> for an <strong>OR Search</strong></li>
+                            <li>Use <strong>Boolean logic</strong> to combine search terms: <code>((axon <strong>and</strong> dendrite) <strong>or</strong> neuron) <strong>not</strong> muscle</code></li>
+                        </ul>
+                    
+                        <div class="table-wrapper">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th class="search_type">Search Type</th>
+                                        <th class="example">Example</th>
+                                        <th>Result</th>
+                                        <th>Use Case</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="search_type"><strong>AND Search</strong></td>
+                                        <td class="example"><code>axon <strong>and</strong> dendrite</code></td>
+                                        <td>Only results containing <strong>both</strong> "axon" and "dendrite".</td>
+                                        <td>Use when you want to <strong>narrow down</strong> results to items that meet <strong>all</strong> criteria. This gives fewer, more specific results.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="search_type"><strong>OR Search</strong></td>
+                                        <td class="example"><code>axon <strong>or</strong> dendrite</code></td>
+                                        <td>Results containing <strong>either</strong> "axon", <strong>or</strong> "dendrite", or <strong>both</strong>.</td>
+                                        <td>Use when you want to <strong>broaden</strong> the search to include items that match <strong>any</strong> of the criteria, increasing the number of results.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
 
+                        <h6>What to expect?</h6>
+                        <p>
+                            On the output page, search terms for the text search fields will be <span class="highlight_style">highlighted</span> for easier recognition.
+                        </p>
+                    
+                        <p>
+                            Once the search is executed, the results will be displayed in table format. On the output page, you can:
+                        </p>
+                        <ul>
+                            <li>Choose which additional data to display.</li>
+                            <li>Determine the output format (example: table columns, export options).</li>
+                        </ul>
+                    </div>
+                    <!-- Serach Fields: Overview End -->
+                    
+
+                    <!-- Serach Fields: Gene Search Field Start -->
                     <div id="gene-search-field">
-                        <h5>Gene search field</h5>
-                        <p>
-                            The gene search field accepts the following identifiers (or any combination)
-                            - Wormbase gene ID (WBGene00003738)
-                            - gene sequence name (F54F3.1)
-                            - locus (nid-1)
-                            - protein sequence name (F54F3.1a)
-                            Names can be separated by commas or any ‘whitespace’ character (space, tab, newline). You can enter (or copy) a list of 1000s of gene names for a single search. * can be used as wildcard character, e.g. "unc-*" means all gene names beginning with "unc-".
+                        <h5>Gene Search Field</h5>
+                        <p>The gene search field accepts the following identifiers (or any combination):</p>
+                            <ul>
+                                <li>Wormbase gene ID: <code>WBGene00003738</code></li>
+                                <li>Gene sequence name: <code>F54F3.1</code></li>
+                                <li>Locus name: <code>nid-1</code></li>
+                                <li>Protein sequence name: <code>F54F3.1a</code></li>
+                            </ul>
+                            <p>Names can be separated by commas or any whitespace character (space, tab, newline). You can enter (or copy) a list of thousands of gene names for a single search.</p>
+                            <p><code>*</code> can be used as a wildcard character. For example, <code>unc-*</code> means all gene names beginning with <code>unc-</code>.
                         </p>
                     </div>
+                    <!-- Serach Fields: Gene Search Field End -->
 
+                    <!-- Serach Fields: Gene search field Start -->
                     <div id="protein-domain-search-fields">
-                        <h5>Protein domain search fields</h5>
+                        <h5>Protein Domain Search Fields</h5>
+                    
                         <div id="domain-search-field">
                             <h6>Domain</h6>
-                            <p>Enter one or more of the domain abbreviations from the table of abbreviations or SMART/Pfam identifiers (SM00273, PF12423).</p>
+                            <p>Enter one or more of the domain abbreviations from the <a href="http://mbb-apps.dc.sfu.ca/gexplore/gexplore_help_domains.html" target="_blank">table of abbreviations</a> or SMART/Pfam identifiers (example: <code>SM00273</code>, <code>PF12423</code>).</p>
                         </div>
+                    
                         <div id="domain-pattern-search-field">
                             <h6>Domain Pattern</h6>
-                            <p>
-                                Use this field to search for certain domain combinations. Think of a protein as a linear sequence of domains like 'IG IG IG FN3 FN3 TM 324'. Domain abbreviations in this field (but not in the domain field) are case-sensitive! You can use wildcards (* acts as wildcard for 0 or more domains of any kind between the specified domains) and numbers (but no boolean terms) in the following way: 
-                                •	"IG IG IG' means three IGs in a row with no other domain in between.
-                                •	'IG*FN3' means IG domain eventually followed by a FN3 domain
-                                •	'3IG' will be expanded to 'IG IG IG', i.e. 3 IG domains in a row. Make sure you don't have any space between the number and the domain abbreviation.
-                                •	'3IG%' means 'IG*IG*IG', i.e. three IGs potentially with other domains interspersed (% simply acting as * wildcards during expansion of the search term).
-                                •	'3-5IG' not surprisingly means 'IG IG IG' or 'IG IG IG IG' or 'IG IG IG IG IG'.
-                                •	'<3IG FN3' is translated as 'IG FN3' or 'IG IG FN3', i.e. at least one, but not more than 2 followed by ...
-                                •	'>3IG FN3' is actually 'IG IG IG IG*FN3', i.e. at least 4 IGs followed by ...
-                            </p>
+                            <p>Use this field to search for certain domain combinations. Think of a protein as a linear sequence of domains like <code>IG IG IG FN3 FN3 TM 324</code>. Domain abbreviations in this field (but not in the domain field) are case-sensitive! You can use wildcards (<code>*</code> acts as a wildcard for 0 or more domains) and numbers (but no Boolean terms) in the following way:</p>
+                    
+                            <!-- Adding a div wrapper around the table -->
+                            <div class="table-wrapper">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Pattern Input</th>
+                                            <th>Description</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><code>IG IG IG</code></td>
+                                            <td>3 IGs in a row with no other domain in between.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>IG*FN3</code></td>
+                                            <td>The IG domain is eventually followed by an FN3 domain.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>3IG</code></td>
+                                            <td>Expanded to <code>IG IG IG</code>: 3 IG domains in a row. Ensure there’s no space between the number and the domain abbreviation.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>3IG%</code></td>
+                                            <td>Represents <code>IG*IG*IG</code>: 3 IGs with other domains interspersed (<code>%</code> acts as a wildcard during expansion).</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>3-5IG</code></td>
+                                            <td>Represents 3 to 5 IG domains: <code>IG IG IG</code>, <code>IG IG IG IG</code>, or <code>IG IG IG IG IG</code>.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>&lt;3IG FN3</code></td>
+                                            <td>Translated as <code>IG FN3</code> or <code>IG IG FN3</code>: meaning at least 1 but no more than 2 IGs followed by FN3.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>&gt;3IG FN3</code></td>
+                                            <td>Translated as <code>IG IG IG IG*FN3</code>: meaning at least 4 IGs followed by FN3.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
+                    
+                    
+                    
 
                     <div id="text-search-fields">
                         <h5>Text search fields</h5>
                         <div id="description-search-field">
-                            <h6>Description search field</h6>
+                            <h6>Description Search Field</h6>
                             <p>" Legacy description" is equivalent to "Legacy manual gene description" in Wormbase, the "automated description" is the top level description under the “Overview” tab in Wormbase. </p>
                         </div>
                         <div id="phenotype-expression-search-fields">
-                            <h6>Phenotype and Expression search fields</h6>
+                            <h6>Phenotype and Expression Search Fields</h6>
                             <p>
                                 Phenotype and expression data is Wormbase used defined vocabularies. The search fields have an autosuggest function, which suggest search terms when the user starts to type into the field. You do not have to use the suggested terms, you can use any word for searching, the search will find any term that contains the search word. 
                                 "Tissues and Stages (genomic studies)" refers to data that either came from single-cell RNAseq studies or from enrichment analysis of high-throughput studies, where expression in specific tissues was compared to whole animals.
                             </p>
                         </div>
                         <div id="ontology-disease-fields">
-                            <h6>Gene Ontology and Disease Association search fields</h6>
+                            <h6>Gene Ontology and Disease Association Search Fields</h6>
                             <p>These search fields also use defined vocabularies and have an autosuggest function.</p>
                         </div>
                     </div>
 
                     <div id="mutation-search-page">
-                        <h5>Search fields on the Mutation search page</h5>
+                        <h5>Search Fields on the Mutation Search Page</h5>
                         <p>This is the Search fields on the Mutation search page content.</p>
                     </div>
+
                     <div id="expression-search-pages">
-                        <h5>Search fields on the Expression search pages (stages, tissues, embryos)</h5>
+                        <h5>Search Fields on the Expression Search Pages (Stages, Tissues, Embryos)</h5>
                         <p>This is the Search fields on the Expression search pages (stages, tissues, embryos) content.</p>
                     </div>
                 </div>
+                <!----------------------- Search Fields Subpages Start ----------------------->
 
+                <!----------------------- Display Options Subpages Start ----------------------->
                 <div id="display-options" class="help-content-section">
                     <div class="date-last-updated">
                         <h4>Last updated on Aug 1, 2024</h4>
@@ -322,7 +423,9 @@
                         <p>This is the Special display options for expression data (stages, tissues, embryo) content.</p>
                     </div>
                 </div>
+                <!----------------------- Display Options Subpages End ----------------------->
 
+                <!----------------------- Tools Subpages Start ----------------------->
                 <div id="tools" class="help-content-section">
                     <div class="date-last-updated">
                         <h4>Last updated on Aug 1, 2024</h4>
@@ -339,6 +442,7 @@
                         <p>The convert input field accepts any combination of <em>C. elegans</em> gene identifiers: Wormbase gene ID (WBGene00003738), gene sequence name (F54F3.1), locus (nid-1), protein sequence name (F54F3.1a), wormpep ID (CE18731), Uniprot ID (Q93791). The output consists of a table with all the identifiers for all the genes in the input field. This can be used to standardize identifiers that come from different sources or to convert one set of identifiers into another one. </p>
                     </div>
                 </div>
+                <!----------------------- Tools Subpages End ----------------------->
             </div>
         </div>
     </div>
