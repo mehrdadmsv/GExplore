@@ -66,10 +66,6 @@
                             <img id="display-icon" src="assets/display-options-icon.png" alt="Display Options Icon" class="list-icon" draggable="false">
                             <span class="tooltip-text">Display Options</span>
                         </div>
-                        <div class="icon-container" data-target="search-content">
-                            <img id="search-icon" src="assets/search-icon.png" alt="Search Icon" class="list-icon" draggable="false">
-                            <span class="tooltip-text">Search Table</span>
-                        </div>
                         <div class="icon-container" data-target="export-content">
                             <img id="export-icon" src="assets/export-icon.png" alt="Export Icon" class="list-icon" draggable="false">
                             <span class="tooltip-text">Export Data</span>
@@ -154,6 +150,8 @@
                                     <div class="display-option-form">
                                         <label><input name="one_term_per_line_display" type="checkbox" id="one_term_per_line_display" />&nbsp;Show only one term per line</label> 
                  
+                                        <h5>Highlight:</h5>
+                                        <textarea name="highlight_term"  id="highlight_term" placeholder="Enter a term. Separate each additional term with a comma."></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -165,28 +163,7 @@
 
 
 
-                        <!-- Search content in sidebar -->
-                        <div id="search-content" class="sidebar-content">
-                            <div class="sidebar-title">
-                                <h4>Search Table</h4>
-                            </div>
-                            <!-- Add a search bar and buttons for search navigation -->
-                            <div id="sidebar-info">
-                                <div class="first-content-title">
-                                    <p>Search in Results</p>
-                                </div>
-                                <div id="table-search-container">
-                                    <input type="text" id="table-search" placeholder="Search table..." />
-                                    <span id="clear-search" class="clear-search" style="display:none;">&times;</span>
-                                    <span id="search-count">0 of 0</span>
-                                    <div class="button-container search-nav">
-                                        <button id="search-prev" type="button" class="nav-button">Previous</button>
-                                        <button id="search-next" type="button" class="nav-button">Next</button>
-                                    </div>
-                                </div>
-                                                             
-                            </div>
-                        </div>
+                        
 
 
                         <!-- Export content in sidebar -->
@@ -433,7 +410,6 @@
     <!-- JavaScript file -->
     <script src="script.js"></script>
     <script src="javascript/sortable_feature.js"></script>
-    <script src="javascript/table_search_feature.js"></script>
     <script src="javascript/tablednd.js"></script>
     
     <script type="text/javascript">
