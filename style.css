@@ -252,6 +252,7 @@ html, body {
 }
 
 #topnav ul.dropdown {
+    width: 200px;
     display: block;
     visibility: hidden;
     opacity: 0;
@@ -274,7 +275,7 @@ html, body {
 
 #topnav ul.dropdown li {
     float: none;
-    width: 180px;
+    width: 200px;
 }
 
 #topnav ul.dropdown li a {
@@ -305,6 +306,7 @@ html, body {
 
 #topnav ul.dropdown li:hover > a {
     color: var(--body_link_hover_color);
+    font-weight: 600;
 }
 
 #topnav ul.dropdown li:hover a::after {
@@ -840,6 +842,8 @@ label input[type="radio"] {
     transition: border-color 0.3s;
 }
 
+
+
 .form-group textarea {
     height: 50px; /* Adjust this value based on your design needs */
     width: 100%;
@@ -1052,12 +1056,50 @@ label input[type="radio"] {
 .form-group .search-page-help-content {
     display: none; /* Ensure it is hidden by default */
     background-color: #f0f8ff; /* Light blue background */
+    color: #484848;
     font-size: 14px;
+    font-weight: 500;
     padding: 10px;
     margin-top: 10px;
     margin-bottom: 10px;
-    border-radius: 4px;
+    border-radius: 8px;
 }
+
+
+
+.form-group .search-page-help-content a {
+    color: #005BB5;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.form-group .search-page-help-content a:hover {
+    color: #004799;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.form-group .search-page-help-content a:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 91, 181, 0.5);
+}
+
+.form-group .search-page-help-content a:active {
+    color: #003E73;
+    text-decoration: underline;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 .form-group .search-page-help-content ul {
@@ -1323,11 +1365,13 @@ label input[type="radio"] {
     max-width: 550px;
     display: none;
     background-color: #f0f8ff;
+    color: #484848;
     font-size: 14px;
+    font-weight: 500;    
     padding: 10px;
     margin-top: 0px;
     margin-bottom: 10px;
-    border-radius: 4px;
+    border-radius: 8px;
 }
 
 /* Two-column layout */
@@ -2605,6 +2649,44 @@ th.sorted-desc .arrow-up {
 
 
 
+.display-option-form h5 {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    margin-right: 0px;
+
+    font-size: 14px;                 
+    font-weight: 500; 
+    margin-bottom: 5px;                
+    color: var(--body_sidebar_color);
+}
+
+.display-option-form textarea {
+    height: 50px; /* Adjust this value based on your design needs */
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    resize: vertical; /* Allows users to resize the textarea vertically */
+}
+
+
+
+/* General style for all text inputs and textareas */
+.display-option-form textarea:hover,
+.display-option-form textarea:focus {
+    border-color: #068EF1; /* Change to your desired color */
+    outline: none; /* Remove the default outline */
+}
+
+/* Optional: Add a transition for smooth color change */
+.display-option-form textarea {
+    transition: border-color 0.3s ease-in-out;
+}
+
+
+
+
 
 
 
@@ -2654,98 +2736,13 @@ th.sorted-desc .arrow-up {
 
 
 
-/* ------------------------ sidebar 3 (Table Search) ------------------------ */
-#search-content {
-    padding: 0px 0px 0px 0px;
-}
 
-/* Add padding and styling for the search box */
-#table-search-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 10px 0 20px 0;
-    border: 1px solid var(--border_color);
-    border-radius: 5px;
-    padding: 10px 10px;
-    background-color: #f9f9f9;
-    position: relative; /* For clear search button positioning */
-}
 
-/* Input wrapper to contain the input and clear button */
-#table-search-container input {
-    font-family: 'Open Sans', sans-serif; /* Consistent font */
-    width: 100%;
-    height: 35px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding: 8px;
-    padding-right: 40px; /* Add space for the clear button */
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-sizing: border-box;
-    transition: border-color 0.3s;
-}
 
-/* Hover and focus styles for input */
-#table-search-container input:hover,
-#table-search-container input:focus {
-    border-color: #068EF1;
-    outline: none;
-}
 
-/* Clear (escape) button inside input field */
-#clear-search {
-    position: absolute;
-    right: 20px;
-    top: 13.5%;
-    transform: translateY(0%);
-    cursor: pointer;
-    font-size: 20px;
-    color: #999;
-    display: none;  /* Initially hidden */
-}
 
-/* Hover effect for clear button */
-#clear-search:hover {
-    color: #333;
-}
 
-/* Search count display (e.g., "1 / 10") */
-#search-count {
-    font-size: 14px;
-    font-weight: 600;
-    color: #333;
-    margin: 10px 0;
-}
 
-/* Button container for navigation buttons (Previous/Next) */
-.button-container.search-nav {
-    background-color: #f9f9f9;
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-}
-
-/* Styling for the Previous/Next buttons */
-.nav-button {
-    background-color: var(--button_bkgr_color);
-    color: var(--button_text_color);
-    font-family: 'Open Sans', sans-serif;
-    width: 100px;
-    font-size: 14px;
-    font-weight: 600;
-    padding: 8px 16px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
-
-/* Hover effect for the Previous/Next buttons */
-.nav-button:hover {
-    background-color: var(--button_hover_bkgr_color);
-}
 
 /* Highlighting matched table cells */
 .highlighted {
@@ -2758,7 +2755,14 @@ th.sorted-desc .arrow-up {
     background-color: #FFE082; /* Soft yellow with an orange tint */
     padding: 0px 0px; /* Small padding for better visibility */
     border-radius: 4px; /* Rounded corners for a modern look */
-    color: #333; /* Dark text color for good contrast */
+    color: #333; /* Dark text color for good contrast + also the color used for texts in td */
+}
+
+.highlight_style {
+    background-color: #FFE082; /* Soft yellow with an orange tint */
+    padding: 0px 0px; /* Small padding for better visibility */
+    border-radius: 4px; /* Rounded corners for a modern look */
+    color: #333; /* Dark text color for good contrast + also the color used for texts in td */
 }
 
 /* Current highlighted search term */
@@ -2777,7 +2781,7 @@ th.sorted-desc .arrow-up {
 
 
 
-/* ------------------------ sidebar 4 (Export Data) ------------------------ */
+/* ------------------------ sidebar 3 (Export Data) ------------------------ */
 #export-content {
     padding: 0px 0px 0px 0px;
 }
@@ -2821,7 +2825,7 @@ th.sorted-desc .arrow-up {
 
 
 
-/* ------------------------ sidebar 5 (Help) ------------------------ */
+/* ------------------------ sidebar 4 (Help) ------------------------ */
 #help-content {
     padding: 0px 0px 0px 0px;
 }
@@ -3034,6 +3038,10 @@ th.sorted-desc .arrow-up {
     border-radius: 5px;
 }
 
+
+
+
+
 /* Help Contents */
 #help-page-content {
     padding: 0 40px 60px 40px;
@@ -3071,39 +3079,74 @@ th.sorted-desc .arrow-up {
     font-size: 12px;
 }
 
+/* help content section main title for subpages */
 .help-content-section-title h4 {
-    padding: 0 0 20px 0;
+    padding: 0 0 0px 0;
+    line-height: 1.188;
+    /* margin-bottom: 1.5rem; */
+    color: #0A2347;
     font-weight: 700;
-    font-size: 18px;
+    font-size: 1.8rem;
 }
 
+/* help content section titles whithin the subpages */
 .help-content-section h5 {
     padding: 10px 0px 10px 0px; /* here */
+    margin-top: 1.5rem;
+    margin-bottom: 10px;
     font-weight: 700;
-    font-size: 16px;
+    color: #0A2347;
+    font-size: 1.2rem;
+    line-height: 1.333;
 }
 
+/* help content section sub-titles whithin the subpages */
 .help-content-section h6 {
     padding: 10px 0px 10px 0px; /* here */
     font-weight: 700;
-    font-size: 14px;
+    color: #0A2347;
+    font-size: 1rem;
+    line-height: 1.333;
 }
 
 .help-content-section p {
-    padding: 0 0 20px 0;
-    font-weight: 600;
-    font-size: 14px;
+    padding: 0 0 0px 0;
+    font-weight: 500;
+    font-size: 0.95rem;
+    letter-spacing: 0.15px;
     line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.highlight_style {
+    background-color: #FFE082; /* Soft yellow with an orange tint */
+    padding: 0px 0px; /* Small padding for better visibility */
+    border-radius: 4px; /* Rounded corners for a modern look */
+    color: #333; /* Dark text color for good contrast + also the color used for texts in td */
+}
+
+#general-comments,
+#gene-search-field,
+#protein-domain-search-fields,
+#text-search-fields,
+#mutation-search-page,
+#expression-search-pages {
+    margin-bottom: 40px;
 }
 
 .help-content-section ul {
-    padding: 10px 0px 0px 40px;
-    font-weight: 600;
-    font-size: 14px;
+    padding: 0px 0px 0px 40px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    letter-spacing: 0.15px;
     line-height: 1.6;
 }
 
-.update-article-button {
+#gene-search-field ul {
+    margin-bottom: 20px;
+}
+
+#introduction .update-article-button {
     display: inline-block;
     padding: 10px 20px;
     margin-top: 10px;
@@ -3117,9 +3160,12 @@ th.sorted-desc .arrow-up {
     transition: background-color 0.3s ease;
 }
 
-.update-article-button:hover {
+#introduction .update-article-button:hover {
     background-color: #005bb5;
+    color: #fff;
+    text-decoration: none;
 }
+
 
 /* Highlight the selected sub-section title */
 .help-content-section div.highlight h5, .help-content-section div.highlight h6 {
@@ -3134,20 +3180,118 @@ th.sorted-desc .arrow-up {
 }
 
 
+code {
+    background-color: #f0f4f8; /* Light blue-gray background similar to the screenshot */
+    padding: 2px 6px; /* Padding to make it stand out */
+    border-radius: 4px; /* Rounded corners for smooth look */
+    font-size: 90%; /* Slightly smaller font size for code elements */
+    color: #333; /* Dark gray for the text color */
+    font-family: 'Consolas', 'Courier New', Courier, monospace; /* Consolas font is really good! */
+    border: 1px solid #d1e3f0; /* Subtle border to give it depth */
+}
 
 
 
 
 
+#help-page-content a {
+    color: #005BB5;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+#help-page-content a:hover {
+    color: #004799;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#help-page-content a:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 91, 181, 0.5);
+}
+
+#help-page-content a:active {
+    color: #003E73;
+    text-decoration: underline;
+}
 
 
 
 
 
+/* Scoped Table Styling for Help Page */
+#help-page-content .table-wrapper {
+    border: 1px solid #ddd; /* Apply border to the wrapper */
+    border-radius: 8px; /* Rounded corners for the entire table section */
+    overflow: hidden; /* Ensure content doesn't overflow the rounded corners */
+    margin: 20px 0;
+}
+
+/* Table Styling */
+#help-page-content table {
+    width: 100%;
+    border-collapse: collapse; /* Ensures internal borders between cells */
+}
+
+/* General styles for table header and cells */
+#help-page-content th, 
+#help-page-content td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd; /* Apply bottom border for rows */
+    border-right: 1px solid #ddd;  /* Vertical borders between cells */
+}
+
+/* Remove right border from the last column to avoid double borders */
+#help-page-content th:last-child, 
+#help-page-content td:last-child {
+    border-right: none;
+}
+
+/* Remove the bottom border from the last row */
+#help-page-content tr:last-child td {
+    border-bottom: none;
+}
+
+/* Table header background styling */
+#help-page-content th {
+    background-color: #f0f8ff; /* Light blue background for headers */
+    font-weight: 600;
+    color: #333;
+    font-size: 0.95rem;
+    letter-spacing: 0.15px;
+    line-height: 1.333;
+    margin-bottom: 1.5rem;
+}
+
+#help-page-content td {
+    background-color: #fff; /* White background for table cells */
+    line-height: 1.6;
+    font-weight: 400;
+    /* font-size: 15px; */
+}
 
 
+#help-page-content td.search_type {
+    min-width: 130px;
+    max-width: 140px;
+    background-color: #fff; /* White background for table cells */
+    line-height: 1.6;
+    font-weight: 400;
+    /* font-size: 15px; */
+}
 
 
+#help-page-content td.example {
+    min-width: 180px;
+    max-width: 200px;
+    background-color: #fff; /* White background for table cells */
+    line-height: 1.6;
+    font-weight: 400;
+    /* font-size: 15px; */
+}
 
 
 
