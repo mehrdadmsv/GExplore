@@ -22,14 +22,14 @@
                             <li><a href="mutation_search.html">Mutations</a></li>
                             <li><a href="protein_search.html">Proteins</a></li>
                             <li><a href="expression_stage_search.html">Stage Expressions</a></li>
-                            <li><a href="#">Tissue Expressions</a></li>
-                            <li><a href="#">Embryo Expressions</a></li>
+                            <li><a href="expression_tissue_search.html">Tissue Expressions</a></li>
+                            <li><a href="expression_embryo_search.html">Embryo Expressions</a></li>
                         </ul>
                     </li>
                     <li><a><span class="text">Tools</span> <span class="angle"></span></a>
                         <ul class="dropdown">
-                            <li><a href="#">Compare</a></li>
-                            <li><a href="#">Convert</a></li>
+                            <li><a href="compare.html">Compare</a></li>
+                            <li><a href="convert.html">Convert</a></li>
                         </ul>
                     </li>
                     <li><a href="help.html"><span class="text">Help</span></a></li>
@@ -42,8 +42,10 @@
             <!-- Hero Section -->
             <div id="search-intro">
                 <div class="search-hero-section">
-                    <h2>Search for stage-specific expression profiles</h2>
+                    <h2>Search for Stage-Specific Expression Profiles</h2>
                     <p>text</p>
+                    <p>text</p>
+                    <a href="help.html#expression-stages" target="_blank">Learn More</a>
                 </div>
             </div>
 
@@ -58,7 +60,7 @@
                                 <img src="assets/help-icon.png" alt="Help" class="search-page-help-icon">
                             </h4>
                             <div class="search-page-help-content">
-                                <p>This is the help content for Gene Name(s). It provides details on how to use this section.</p>
+                                <p>Enter gene identifiers like WormBase gene IDs, locus names, or gene/protein sequence names. You can use commas, spaces, or wildcards to search multiple genes at once. <a href="help.html#gene-search-field" target="_blank">Learn more</a></p>
                             </div>
                             <textarea id="gene-names" name="gene-names" placeholder="Enter a gene name. Separate each additional name with a comma."></textarea>
                         </div>
@@ -66,13 +68,14 @@
                     
                     <div class="search-param-column-full">
                         <h4>
-                            Search for Expression Profiles
+                            Stage Expression Profiles
                             <img src="assets/help-icon.png" alt="Help" class="search-page-help-icon">
                         </h4>
                         <div class="search-page-help-content search-for-expression-help-content">
                             <p>
-                                Time or Stage: Development post P0 division based on the times given by Sulston et al.
-                                dcpm: Depth of coverage per million reads (see Suppl. Methods in Gerstein et al, 2010).
+                                <strong>Time:</strong> Development post P<sub>0</sub> division based on the times given by <a href="https://www.sciencedirect.com/science/article/abs/pii/0012160677901580?via%3Dihub" target="_blank">Sulston et al.</a> 
+                                <br />
+                                <strong>dcpm:</strong> Depth of coverage per million reads. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3142569/" target="_blank">Suppl. Methods in Gerstein et al.</a> 
                             </p>
                         </div>                    
                     </div>
@@ -83,7 +86,7 @@
                             <div class="two-column-wrapper">
                                 <div class="form-column">
                                     <h4>Time or Stage</h4>
-                                    <select>
+                                    <select name="el1" id="el1">
                                         <option value="e0" selected="selected">4-cell stage</option>
                                         <option value="e1" >44 min</option>
                                         <option value="e2" >83 min (~ 27-cell)</option>
@@ -115,7 +118,7 @@
                                         <option value="AdultSterile" >sterile adult</option>
                                         <option value="AdultGonad" >adult gonad</option>
                                     </select>
-                                    <select>
+                                    <select name="el2" id="el2">
                                         <option value="e0">4-cell stage</option>
                                         <option value="e1" >44 min</option>
                                         <option value="e2" >83 min (~ 27-cell)</option>
@@ -147,7 +150,7 @@
                                         <option value="AdultSterile" >sterile adult</option>
                                         <option value="AdultGonad" >adult gonad</option>
                                     </select>
-                                    <select>
+                                    <select name="el3" id="el3">
                                         <option value="e0" >4-cell stage</option>
                                         <option value="e1" >44 min</option>
                                         <option value="e2" >83 min (~ 27-cell)</option>
@@ -179,7 +182,7 @@
                                         <option value="AdultSterile" >sterile adult</option>
                                         <option value="AdultGonad" >adult gonad</option>
                                     </select>
-                                    <select>
+                                    <select name="el4" id="el4">
                                         <option value="e0" >4-cell stage</option>
                                         <option value="e1" >44 min</option>
                                         <option value="e2" >83 min (~ 27-cell)</option>
@@ -211,7 +214,7 @@
                                         <option value="AdultSterile" >sterile adult</option>
                                         <option value="AdultGonad" >adult gonad</option>
                                     </select>
-                                    <select>
+                                    <select name="el5" id="el5">
                                         <option value="e0" >4-cell stage</option>
                                         <option value="e1" >44 min</option>
                                         <option value="e2" >83 min (~ 27-cell)</option>
@@ -244,21 +247,29 @@
                                         <option value="AdultGonad" >adult gonad</option>
                                     </select>
                                 </div>
+
+
                                 <div class="form-column">
                                     <h4>Expression (dcpm)</h4>
-                                    <input type="text">
-                                    <input type="text">
-                                    <input type="text">
-                                    <input type="text">
-                                    <input type="text">
+                                    <input name="ev1" type="text" value="">
+                                    <input name="ev2" type="text" value="">
+                                    <input name="ev3" type="text" value="">
+                                    <input name="ev4" type="text" value="">
+                                    <input name="ev5" type="text" value="">
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Footer Notes -->
+                    <!-- Notes -->
                     <div class="search-param-column-full">
-                        <p class="more-explanation">In the expression field to specify a range use '&gt;0.5' or '&lt;0.5' or '2-10'. To compare relative expression levels between stages specify x-fold difference and stage for comparison in the following way: '&gt;10x adult' translates into 'more than 10-fold higher than in the 'adult' stage' (compared to the stage specified by the value in the pull-down menu. Use values from the pull-down menu (e.g. '44 min', or 'Dauer entry') to specify times or stages.</p>
+                        <div class="more-explanation">
+                            <ul>
+                                <li>In the expression field to specify a range use <code>&gt;0.5</code> or <code>&lt;0.5</code> or <code>2-10</code>.</li>
+                                <li>To compare relative expression levels between stages specify x-fold difference and stage for comparison in the following way: <code>&gt;10x adult</code> translates into 'more than 10-fold higher than in the 'adult' stage' (compared to the stage specified by the value in the pull-down menu).</li>  
+                                <li>Use values from the drop-down menu (e.g. <code>44 min</code>, or <code>Dauer entry</code>) to specify times or stages.</li>
+                            </ul>
+                        </div>
                     </div>
 
                     <!-- Sample Profiles Section -->
@@ -268,16 +279,38 @@
                             <img src="assets/help-icon.png" alt="Help" class="search-page-help-icon">
                         </h4>
                         <div class="search-page-help-content search-for-expression-help-content">
-                            <p>
-                                sample profile help content
-                            </p>
+                            <p>The Sample Profile field offers three pre-defined profiles: Maternally Enriched, Early Embryo Enriched, and Male Enriched. Selecting any of these profiles will automatically populate the Time or Stage and Expression fields with appropriate values based on each profile’s criteria.</p>
                         </div>    
-                        <select id="sample-profiles" name="sample-profiles">
+                        <select name="profile" id="profile" onchange="insert_values()">
                             <option value="" disabled selected>Select a sample profile</option>
+                            <option value="el1,e0,ev1,,el2,e11,ev2,,el3,L2,ev3,,el4,Dauer,ev4,,el5,L4male,ev5,,">-</option>
                             <option value="el1,YA,ev1,>2x L4,el2,e1,ev2,>2x 122 min,el3,e1,ev3,>0.3,el4,,ev4,,el5,,ev5,,">Maternally Enriched</option>
                             <option value="el1,e2,ev1,>0.3,el2,e1,ev2,<0.5x 83 min,el3,e2,ev3,>3x 548 min,el4,,ev4,,el5,,ev5,,">Early Embryo Enriched</option>
                             <option value="el1,L4male,ev1,>0.1,el2,L4male,ev2,>10x L3,el3,L4male,ev3,>5x Young Adult,el4,L4male,ev4,>3x 626 min,el5,L4male,ev5,>3x Dauer">Male Enriched</option>
                         </select>
+
+                        <script type="text/javascript">
+                            // Dr. Hutter's JS for sample profile input population
+                            function insert_values() {
+                                var a = document.getElementById('profile').value.split(',');
+                                for (var i = 0; i < a.length; i += 2) {
+                                    var input = document.getElementsByName(a[i])[0];
+                                    input.value = a[i + 1];
+                                    
+                                    // Added JS to activate the Search button with above code
+                                    // Manually trigger the input event to ensure it's detected
+                                    var event = new Event('input', {
+                                        'bubbles': true,
+                                        'cancelable': true
+                                    });
+                                    input.dispatchEvent(event);
+                                }
+
+                                // Call the checkFormFields function after populating the fields (this is in script.js file)
+                                checkFormFields(); 
+                            }
+
+                        </script>
                         
                     </div>
                 </div>
