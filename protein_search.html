@@ -22,14 +22,14 @@
                             <li><a href="mutation_search.html">Mutations</a></li>
                             <li><a href="protein_search.html">Proteins</a></li>
                             <li><a href="expression_stage_search.html">Stage Expressions</a></li>
-                            <li><a href="#">Tissue Expressions</a></li>
-                            <li><a href="#">Embryo Expressions</a></li>
+                            <li><a href="expression_tissue_search.html">Tissue Expressions</a></li>
+                            <li><a href="expression_embryo_search.html">Embryo Expressions</a></li>
                         </ul>
                     </li>
                     <li><a><span class="text">Tools</span> <span class="angle"></span></a>
                         <ul class="dropdown">
-                            <li><a href="#">Compare</a></li>
-                            <li><a href="#">Convert</a></li>
+                            <li><a href="compare.html">Compare</a></li>
+                            <li><a href="convert.html">Convert</a></li>
                         </ul>
                     </li>
                     <li><a href="help.html"><span class="text">Help</span></a></li>
@@ -42,8 +42,10 @@
             <!-- Hero Section -->
             <div id="search-intro">
                 <div class="search-hero-section">
-                    <h2>Search for proteins</h2>
+                    <h2>Search for Proteins</h2>
                     <p>text</p>
+                    <p>text</p>
+                    <a href="help.html#protein-database" target="_blank">Learn More</a>
                 </div>
             </div>
 
@@ -52,39 +54,57 @@
                 <div id="search-param">
                     <div id="species-selection">
                         <label for="species">Species</label>
-                        <select id="species" name="species">
-                            <option value="all">All species</option>
+                        <select name="species" id="species">
+                            <option value="all_species">All species</option>
                             <optgroup label="Caenorhabditis species">
-                                <option value="Caenorhabditis becei">Caenorhabditis becei</option>
-                                <option value="Caenorhabditis brenneri">Caenorhabditis brenneri</option>
-                                <option value="Caenorhabditis briggsae">Caenorhabditis briggsae</option>
-                                <option value="Caenorhabditis elegans" selected>Caenorhabditis elegans</option>
-                                <option value="Caenorhabditis japonica">Caenorhabditis japonica</option>
-                                <option value="Caenorhabditis parvicauda">Caenorhabditis parvicauda</option>
-                                <option value="Caenorhabditis quiockensis">Caenorhabditis quiockensis</option>
-                                <option value="Caenorhabditis remanei">Caenorhabditis remanei</option>
-                                <option value="Caenorhabditis sulstoni">Caenorhabditis sulstoni</option>
-                                <option value="Caenorhabditis tropicalis">Caenorhabditis tropicalis</option>
-                                <option value="Caenorhabditis uteleia">Caenorhabditis uteleia</option>
-                                <option value="Caenorhabditis waitukubuli">Caenorhabditis waitukubuli</option>
-                                <option value="Caenorhabditis zanzibari">Caenorhabditis zanzibari</option>
+                                <option value="C_becei">Caenorhabditis becei</option>
+                                <option value="C_brenneri">Caenorhabditis brenneri</option>
+                                <option value="C_briggsae">Caenorhabditis briggsae</option>
+                                <option value="C_elegans" selected>Caenorhabditis elegans</option>
+                                <option value="C_japonica">Caenorhabditis japonica</option>
+                                <option value="C_parvicauda">Caenorhabditis parvicauda</option>
+                                <option value="C_quiockensis">Caenorhabditis quiockensis</option>
+                                <option value="C_remanei">Caenorhabditis remanei</option>
+                                <option value="C_sulstoni">Caenorhabditis sulstoni</option>
+                                <option value="C_tropicalis">Caenorhabditis tropicalis</option>
+                                <option value="C_uteleia">Caenorhabditis uteleia</option>
+                                <option value="C_waitukubuli">Caenorhabditis waitukubuli</option>
+                                <option value="C_zanzibari">Caenorhabditis zanzibari</option>
                             </optgroup>
                             <optgroup label="Other nematodes">
-                                <option value="Brugia malayi">Brugia malayi</option>
-                                <option value="Onchocerca volvulus">Onchocerca volvulus</option>
-                                <option value="Oscheius tipulae">Oscheius tipulae</option>
-                                <option value="Pristionchus pacificus">Pristionchus pacificus</option>
-                                <option value="Strongyloides ratti">Strongyloides ratti</option>
-                                <option value="Trichuris muris">Trichuris muris</option>
+                                <option value="B_malayi">Brugia malayi</option>
+                                <option value="O_volvulus">Onchocerca volvulus</option>
+                                <option value="O_tipulae">Oscheius tipulae</option>
+                                <option value="P_pacificus">Pristionchus pacificus</option>
+                                <option value="S_ratti">Strongyloides ratti</option>
+                                <option value="T_muris">Trichuris muris</option>
                             </optgroup>
                             <optgroup label="Non-nematodes">
-                                <option value="Saccharomyces cerevisiae">Saccharomyces cerevisiae</option>
-                                <option value="Drosophila melanogaster">Drosophila melanogaster</option>
-                                <option value="Danio rerio">Danio rerio</option>
-                                <option value="Mus musculus">Mus musculus</option>
-                                <option value="Homo sapiens">Homo sapiens</option>
+                                <option value="S_cerevisiae">Saccharomyces cerevisiae</option>
+                                <option value="D_melanogaster">Drosophila melanogaster</option>
+                                <option value="D_rerio">Danio rerio</option>
+                                <option value="M_musculus">Mus musculus</option>
+                                <option value="H_sapiens">Homo sapiens</option>
                             </optgroup>
                         </select>
+
+                        <script type="text/javascript">
+                            document.getElementById("species").addEventListener("change", function() {
+                          var species = this.value;
+                            // Show content2 initially ('Show only genes with orthologs in')
+                            document.getElementById("content2").style.display = "block";				
+    
+                            // Hide content2 if a non-nematode species is selected
+                            if (species === "S_cerevisiae" || species === "D_melanogaster" || species === "D_rerio" ||
+                                    species === "M_musculus" || species === "H_sapiens") {
+                                document.getElementById("content2").style.display = "none";
+                            } 
+                            else {
+                                document.getElementById("content2").style.display = "block";
+                            }
+                        });
+                            
+                        </script>
                     </div>
 
                     <div class="search-param-column-1">
@@ -95,7 +115,7 @@
                                 <img src="assets/help-icon.png" alt="Help" class="search-page-help-icon">
                             </h4>
                             <div class="search-page-help-content">
-                                <p>This is the help content for Gene Name(s). It provides details on how to use this section.</p>
+                                <p>Enter gene identifiers like WormBase gene IDs, locus names, or gene/protein sequence names. You can use commas, spaces, or wildcards to search multiple genes at once. <a href="help.html#gene-search-field" target="_blank">Learn more</a></p>
                             </div>
                             <textarea id="sequence-names" name="sequence-names" placeholder="Enter a sequence name. Separate each additional name with a comma."></textarea>
                             <div class="splice-variant-row">
@@ -113,7 +133,7 @@
                                 <img src="assets/help-icon.png" alt="Help" class="search-page-help-icon">
                             </h4>
                             <div class="search-page-help-content">
-                                <p>This is the help content for Gene Name(s). It provides details on how to use this section.</p>
+                                <p>Enter domain abbreviations or SMART/Pfam IDs to search for specific protein domains. Use wildcards, numbers, or combinations of both to define complex domain patterns. <a href="help.html#protein-domain-search-fields" target="_blank">Learn more</a></p>
                             </div>
                             <h5>Domain</h5>
                             <textarea id="protein-domain" name="protein-domain" placeholder="Enter a protein domain. Separate each additional domain with a comma."></textarea>
@@ -126,32 +146,32 @@
 
                     <div class="search-param-column-2">
                         <!-- Orthologs group -->
-                        <div class="form-group">
+                        <div class="form-group" id="content2">
                             <h4>
                                 Show only genes with orthologs in
                                 <img src="assets/help-icon.png" alt="Help" class="search-page-help-icon">
                             </h4>
                             <div class="search-page-help-content">
-                                <p>This is the help content for Orthologs. It provides details on how to use this section.</p>
+                                <p>Use this section to filter genes that have orthologs in specific Caenorhabditis species. Select one or more species to limit your search results to genes shared with the chosen species.</p>
                             </div>
                             
                             <!-- Caenorhabditis species -->
-                            <div class="orthologs-category">
+                            <div class="orthologs-category" id="Caeno_plus">
                                 <h5>Caenorhabditis species</h5>
                                 <div class="orthologs-container">
-                                    <label><input type="checkbox" name="orthologs" value="Caenorhabditis becei"> <i>Caenorhabditis becei</i></label>
-                                    <label><input type="checkbox" name="orthologs" value="Caenorhabditis brenneri"> <i>Caenorhabditis brenneri</i></label>
-                                    <label><input type="checkbox" name="orthologs" value="Caenorhabditis briggsae"> <i>Caenorhabditis briggsae</i></label>
-                                    <label><input type="checkbox" name="orthologs" value="Caenorhabditis elegans"> <i>Caenorhabditis elegans</i></label>
-                                    <label><input type="checkbox" name="orthologs" value="Caenorhabditis japonica"> <i>Caenorhabditis japonica</i></label>
-                                    <label><input type="checkbox" name="orthologs" value="Caenorhabditis parvicauda"> <i>Caenorhabditis parvicauda</i></label>
-                                    <label><input type="checkbox" name="orthologs" value="Caenorhabditis quiockensis"> <i>Caenorhabditis quiockensis</i></label>
-                                    <label><input type="checkbox" name="orthologs" value="Caenorhabditis remanei"> <i>Caenorhabditis remanei</i></label>
-                                    <label><input type="checkbox" name="orthologs" value="Caenorhabditis sulstoni"> <i>Caenorhabditis sulstoni</i></label>
-                                    <label><input type="checkbox" name="orthologs" value="Caenorhabditis tropicalis"> <i>Caenorhabditis tropicalis</i></label>
-                                    <label><input type="checkbox" name="orthologs" value="Caenorhabditis uteleia"> <i>Caenorhabditis uteleia</i></label>
-                                    <label><input type="checkbox" name="orthologs" value="Caenorhabditis waitukubuli"> <i>Caenorhabditis waitukubuli</i></label>
-                                    <label><input type="checkbox" name="orthologs" value="Caenorhabditis zanzibari"> <i>Caenorhabditis zanzibari</i></label>
+                                    <label><input name="C_becei_ortholog" type="checkbox" id="C_becei_ortholog"> <i>Caenorhabditis becei</i></label>
+                                    <label><input name="C_brenneri_ortholog" type="checkbox" id="C_brenneri_ortholog"> <i>Caenorhabditis brenneri</i></label>
+                                    <label><input name="C_briggsae_ortholog" type="checkbox" id="C_briggsae_ortholog"> <i>Caenorhabditis briggsae</i></label>
+                                    <label><input name="C_elegans_ortholog" type="checkbox" id="C_elegans_ortholog"> <i>Caenorhabditis elegans</i></label>
+                                    <label><input name="C_japonica_ortholog" type="checkbox" id="C_japonica_ortholog"> <i>Caenorhabditis japonica</i></label>
+                                    <label><input name="C_parvicauda_ortholog" type="checkbox" id="C_parvicauda_ortholog"> <i>Caenorhabditis parvicauda</i></label>
+                                    <label><input name="C_quiockensis_ortholog" type="checkbox" id="C_quiockensis_ortholog"> <i>Caenorhabditis quiockensis</i></label>
+                                    <label><input name="C_remanei_ortholog" type="checkbox" id="C_remanei_ortholog"> <i>Caenorhabditis remanei</i></label>
+                                    <label><input name="C_sulstoni_ortholog" type="checkbox" id="C_sulstoni_ortholog"> <i>Caenorhabditis sulstoni</i></label>
+                                    <label><input name="C_tropicalis_ortholog" type="checkbox" id="C_tropicalis_ortholog"> <i>Caenorhabditis tropicalis</i></label>
+                                    <label><input name="C_uteleia_ortholog" type="checkbox" id="C_uteleia_ortholog"> <i>Caenorhabditis uteleia</i></label>
+                                    <label><input name="C_waitukubuli_ortholog" type="checkbox" id="C_waitukubuli_ortholog"> <i>Caenorhabditis waitukubuli</i></label>
+                                    <label><input name="C_zanzibari_ortholog" type="checkbox" id="C_zanzibari_ortholog"> <i>Caenorhabditis zanzibari</i></label>
                                 </div>
                             </div>
                     
@@ -159,12 +179,12 @@
                             <div class="orthologs-category">
                                 <h5>Other nematodes</h5>
                                 <div class="orthologs-container">
-                                    <label><input type="checkbox" name="orthologs" value="Brugia malayi"> <i>Brugia malayi</i></label>
-                                    <label><input type="checkbox" name="orthologs" value="Onchocerca volvulus"> <i>Onchocerca volvulus</i></label>
-                                    <label><input type="checkbox" name="orthologs" value="Oscheius tipulae"> <i>Oscheius tipulae</i></label>
-                                    <label><input type="checkbox" name="orthologs" value="Pristionchus pacificus"> <i>Pristionchus pacificus</i></label>
-                                    <label><input type="checkbox" name="orthologs" value="Strongyloides ratti"> <i>Strongyloides ratti</i></label>
-                                    <label><input type="checkbox" name="orthologs" value="Trichuris muris"> <i>Trichuris muris</i></label>
+                                    <label><input name="B_malayi_ortholog" type="checkbox" id="B_malayi_ortholog"> <i>Brugia malayi</i></label>
+                                    <label><input name="O_volvulus_ortholog" type="checkbox" id="O_volvulus_ortholog"> <i>Onchocerca volvulus</i></label>
+                                    <label><input name="O_tipulae_ortholog" type="checkbox" id="O_tipulae_ortholog"> <i>Oscheius tipulae</i></label>
+                                    <label><input name="P_pacificus_ortholog" type="checkbox" id="P_pacificus_ortholog"> <i>Pristionchus pacificus</i></label>
+                                    <label><input name="S_ratti_ortholog" type="checkbox" id="S_ratti_ortholog"> <i>Strongyloides ratti</i></label>
+                                    <label><input name="T_muris_ortholog" type="checkbox" id="T_muris_ortholog"> <i>Trichuris muris</i></label>
                                 </div>
                             </div>
                     
@@ -172,11 +192,11 @@
                             <div class="orthologs-category">
                                 <h5>Non-nematodes</h5>
                                 <div class="orthologs-container">
-                                    <label><input type="checkbox" name="orthologs" value="Saccharomyces cerevisiae"> <i>Saccharomyces cerevisiae</i></label>
-                                    <label><input type="checkbox" name="orthologs" value="Drosophila melanogaster"> <i>Drosophila melanogaster</i></label>
-                                    <label><input type="checkbox" name="orthologs" value="Danio rerio"> <i>Danio rerio</i></label>
-                                    <label><input type="checkbox" name="orthologs" value="Mus musculus"> <i>Mus musculus</i></label>
-                                    <label><input type="checkbox" name="orthologs" value="Homo sapiens"> <i>Homo sapiens</i></label>
+                                    <label><input name="S_cerevisiae_ortholog" type="checkbox" id="S_cerevisiae_ortholog"> <i>Saccharomyces cerevisiae</i></label>
+                                    <label><input name="D_melanogaster_ortholog" type="checkbox" id="D_melanogaster_ortholog"> <i>Drosophila melanogaster</i></label>
+                                    <label><input name="D_rerio_ortholog" type="checkbox" id="D_rerio_ortholog"> <i>Danio rerio</i></label>
+                                    <label><input name="M_musculus_ortholog" type="checkbox" id="M_musculus_ortholog"> <i>Mus musculus</i></label>
+                                    <label><input name="H_sapiens_ortholog" type="checkbox" id="H_sapiens_ortholog"> <i>Homo sapiens</i></label>
                                 </div>
                             </div>
                         </div>
