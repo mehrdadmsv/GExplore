@@ -72,9 +72,7 @@
                                 <li><a href="#general-comments">Overview</a></li> 
                                 <li><a href="#gene-search-field">Gene Search Field</a></li>
                                 <li><a href="#protein-domain-search-fields">Protein Domain Search Fields</a></li>
-                                <li><a href="#description-search-field">Description Search Field</a></li>
-                                <li><a href="#phenotype-expression-search-fields">Phenotype and Expression Search Fields</a></li>
-                                <li><a href="#ontology-disease-fields">Gene Ontology and Disease Association Search Fields</a></li>
+                                <li><a href="#text-search-fields">Text Search Fields</a></li>
                                 <li><a href="#mutation-search-page">Search Fields on the Mutation Search Page</a></li>
                                 <li><a href="#expression-search-pages">Search Fields on the Expression Search Pages (Stages, Tissues, Embryos)</a></li>
                             </ul>
@@ -83,9 +81,9 @@
                             <a href="#display-options">Display Options</a>
                             <ul>
                                 <li><a href="#general-comments-display">Overview</a></li>
-                                <li><a href="#protein-domain-organization">Protein domain organization</a></li>
-                                <li><a href="#display-options-mutations">Special display options for mutations</a></li>
-                                <li><a href="#display-options-expression-data">Special display options for expression data (stages, tissues, embryo)</a></li>
+                                <li><a href="#protein-domain-organization">Protein Domain Organization</a></li>
+                                <li><a href="#display-options-mutations">Special Display Options for Mutations</a></li>
+                                <li><a href="#display-options-expression-data">Special Display Options for Expression Data (Stages, Tissues, Embryo)</a></li>
                             </ul>
                         </li>
                         <li class="has-submenu">
@@ -105,12 +103,13 @@
                 <!-- Main help content for each help menu item will go here -->
                 <div id="user-guide" class="help-content-section active">
                     <div class="date-last-updated">
-                        <h4>Last updated on Aug 1, 2024</h4>
+                        <h4>Last updated on Sep 20, 2024</h4>
                     </div>
                     <div class="help-content-section-title">
                         <h4>Welcome to the GExplore User Guide</h4>
                     </div>
-                    <p>Use this guide to help you learn GExplore's features and accelerate your research and analysis. GExplore provides comprehensive data on genes, mutations, proteins, and their expressions, making it easier for you to explore and analyze genetic information.</p>
+
+                    <p>Use this guide to help you learn GExplore's features and accelerate your research and analysis. GExplore provides comprehensive data on genes, mutations, proteins, and their expression profiles, making it easier for you to explore and analyze genetic information.</p>
                     <br>
                     <p>Start at the beginning, or visit each section individually to work your way through a project session. Each section of this guide provides detailed information and instructions on how to use GExplore's features effectively.</p>
                 </div>
@@ -118,7 +117,7 @@
                 <!----------------------- Introduction Subpages Start ----------------------->
                 <div id="introduction" class="help-content-section">
                     <div class="date-last-updated">
-                        <h4>Last updated on Aug 1, 2024</h4>
+                        <h4>Last updated on Sep 20, 2024</h4>
                     </div>
                     <div class="help-content-section-title">
                         <h4>Introduction</h4>
@@ -127,7 +126,7 @@
                         <h5>GExplore Overview</h5>
                         <p>GExplore is a tool for large-scale mining of data related to gene or protein function in <em>C. elegans</em>. The interface is simple, and response times are fast to encourage large-scale exploratory searches. GExplore is designed to offer detailed insights into genetic data, enabling researchers and analysts to delve deep into genetic information.</p>
                         <br>
-                        <p>The database contains selected genome-wide data sets, including protein domain organization, gene expression, and phenotype data, which are important indicators for gene and protein function. Data sets were obtained from Wormbase and processed to integrate data and to simplify searches.</p>
+                        <p>The database contains selected genome-wide data sets, including protein domain organization, gene expression, and phenotype data, which are important indicators for gene and protein function. Data sets were obtained from WormBase and processed to integrate data and to simplify searches.</p>
                         <br>
                         <p>This site should be useful for experimental planning of genome-scale experiments and survey-type queries. With this interface, you should be able to get quick answers to questions such as:</p>
                         <ul>
@@ -136,19 +135,19 @@
                             <li>How many kinases expressed in muscle cells have mutants available?</li>
                         </ul>
                         <br>
-                        <p>We are continuously improving GExplore and its features. If you have any questions or feedback, please contact Dr. Harald Hutter.</p>
+                        <p>We are continuously improving GExplore and its features. If you have any questions or feedback, please contact <a href="mailto:hutter@sfu.ca">Dr. Harald Hutter</a>.</p>
                     </div>
                     <div id="whats-new">
                         <h5>Learn what's new in the latest release of GExplore.</h5>
-                        <h4>August 2024 release (version 1.5)</h4>
+                        <h6>September 2024 release (version 1.5)</h6>
                         <p>GExplore version 1.5 is a major update including the following novel data sets and features:</p>
                         <ul>
-                            <li>All databases were updated to Wormbase release 292.</li>
-                            <li>The domain organization for the proteomes of all nine core species in Wormbase was added to allow searches for proteins with certain domains in different nematode species.</li>
+                            <li>All databases were updated to WormBase release 292 (April 2024).</li>
+                            <li>The domain organization for the proteomes of all nine core species in WormBase was added to allow searches for proteins with certain domains in different nematode species.</li>
                             <li>Gene ontology data were added for all species.</li>
                             <li>The location of <em>C. elegans</em> mutations was mapped onto the domain organization of the proteins.</li>
                             <li>SAGE and RNAseq expression data were replaced by new stage-specific expression profiles from the modENCODE project (provided by the Waterston lab).</li>
-                            <li>Best BLAST hits were replaced by orthologs as listed by Wormbase; a search option to identify <em>C. elegans</em> orthologs of human, mouse, <em>Drosophila</em>, or yeast genes was added.</li>
+                            <li>Best BLAST hits were replaced by orthologs as listed by WormBase; a search option to identify <em>C. elegans</em> orthologs of human, mouse, <em>Drosophila</em>, and yeast genes was added.</li>
                         </ul>
                         <br>
                         <a href="https://academic.oup.com/database" target="_blank" class="update-article-button">Read update article</a>
@@ -160,7 +159,7 @@
                 <!----------------------- Database Subpages Start ----------------------->
                 <div id="databases" class="help-content-section">
                     <div class="date-last-updated">
-                        <h4>Last updated on Aug 26, 2024</h4>
+                        <h4>Last updated on Sep 20, 2024</h4>
                     </div>
                     <div class="help-content-section-title">
                         <h4>Databases</h4>
@@ -169,23 +168,63 @@
                     <div id="gene-database">
                         <h5>Genes</h5>
                         <p>
-                            The gene database contains selected datasets relevant to predict the putative function of genes/proteins. These include the domain organization of the protein, the general gene description, phenotype and expression data, gene interaction data, as well as gene ontology and disease associations. All data were downloaded from Wormbase. The database will be regularly updated. The current version is based on Wormbase release 292 (April 2024).
-                            The search interface allows the user to quickly identify groups of genes sharing certain features, e.g. all kinases that are expressed in muscle cells. Alternatively, the user can start with a large list (100s or 1000s) of candidate genes and filter them for certain characteristics. The quick response time and flexible output options allow for quick survey-type queries with large groups of genes in the input and/or output.
+                            The gene database contains curated datasets designed to predict the putative functions of genes and proteins. These datasets include:
+                        </p>
+                        <ul style="margin-bottom: 20px;">
+                            <li>Protein domain organization</li>
+                            <li>General gene descriptions</li>
+                            <li>Phenotype and expression data</li>
+                            <li>Gene interaction data</li>
+                            <li>Gene ontology (GO) terms</li>
+                            <li>Disease associations</li>
+                        </ul>
+                        <p>
+                            All data have been sourced from WormBase and are regularly updated. The current version is based on WormBase release 292 (April 2024).
+                        </p>
+
+                        <p>
+                            The search interface allows users to quickly identify groups of genes that share specific features, such as kinases expressed in muscle cells. Alternatively, users can input large lists (hundreds or thousands) of candidate genes and filter them based on certain characteristics.
+                        </p>
+                        <p>
+                            The system’s fast response time and flexible output options make it easy to perform efficient, survey-type queries with large groups of genes in both the input and output.
                         </p>
                     </div>
                     <div id="mutation-database">
                         <h5>Mutations</h5>
                         <p>
-                            Mutation data were downloaded from Wormbase (release 292, April 2024). Only exonic alleles and alleles affecting splice junctions are included. SNPs from wildtype isolates were excluded. The curated list of mutations should be enriched for alleles affecting the function of the protein. The location of the mutations was mapped onto the domain organization of the protein for a visual display of the location and nature of the mutations. For deletions a color code indicates whether the deletion is in-frame (purple) or causes a frameshift (red). Mutations were mapped to all known splice variants of the gene, so that splice-variant specific allele can be easily identified. For deletions the location of the endpoints is indicated ('outside' the gene, in an 'intron' or in an 'exon'). Display options include the possibility to show the protein sequence with the affected amino acid(s) highlighted. The WS292 version of the database contains 227,110 alleles in 19,661 genes (28,240 splice variants) with 12,998 deletions, 183,547 missense and 10,014 nonsense allele. The database contains an additional 8,763 alleles without molecular information.
+                            Mutation data were downloaded from WormBase release 292 (April 2024). The dataset includes only exonic alleles and alleles affecting splice junctions, while SNPs from wildtype isolates have been excluded. This curated list of mutations is enriched for alleles likely to affect protein function.
                         </p>
+                        <p>
+                            The location of the mutations is mapped onto the domain organization of the protein, providing a visual display of both the location and nature of the mutations. For deletions, a color code is used to distinguish between in-frame deletions (purple) and frameshift deletions (red). Mutations are mapped to all known splice variants of the gene, enabling easy identification of splice-variant-specific alleles.
+                        </p>
+                        <p>
+                            For deletions, the endpoints are indicated as being located either 'outside' the gene, in an 'intron', or in an 'exon'. Display options also include the ability to show the protein sequence with the affected amino acids highlighted.
+                        </p>
+
+                        <p>
+                            The WS292 version of the database contains:
+                        </p>
+                        <ul>
+                            <li>227,110 alleles in 19,661 genes (28,240 splice variants)</li>
+                            <li>12,998 deletions</li>
+                            <li>183,547 missense alleles</li>
+                            <li>10,014 nonsense alleles</li>
+                            <li>An additional 8,763 alleles without molecular information</li>
+                        </ul>   
                     </div>
                     <div id="protein-database">
                         <h5>Proteins</h5>
                         <p>
-                            The protein database contains data from 13 Caenorhabditis species (C. becei, C. brenneri, C. briggsae, C. elegans, C. japonica, C. parvicauda, C. quiockensis, C. remanei, C. sulstoni, C. uteleia, C. tropicalis, C. waitukubuli, C. zanzibari) representing all branches of the Caenorhabditis phylogenetic tree. In addition, the database contains proteome data from 7 other namatode species (B. malayi, O. tipulae, O. volvulus, P. pacificus, P. redivivus, S. ratti, T. muris) that have high-quality data available. For comparison the database also contains the proteomes of the major "model organisms" (S. cerevisiae, D. melanogaster, D. rerio, M. musculus, H. sapiens). 
-                            Protein data were downloaded either from Wormbase (nematode species) or the 'reference proteome site (https://www.ebi.ac.uk/reference_proteomes/) (model organisms). SMART was used for protein domain prediction. 
-                            To allow for comparisons across species the database also contains information about homologs in all species in the database.
-                            The search interface allows the user to selected proteins with certain protein domains or certain domain arrangements for a selected species. The output can be limited to proteins with homologs in one or more of the other species. This can be used to quickly identify either nematode-specific genes or evolutionary conserved genes of a certain type (e.g. kinases).
+                            The protein database contains data from 13 <i>Caenorhabditis</i> species (<i>C. becei</i>, <i>C. brenneri</i>, <i>C. briggsae</i>, <i>C. elegans</i>, <i>C. japonica</i>, <i>C. parvicauda</i>, <i>C. quiockensis</i>, <i>C. remanei</i>, <i>C. sulstoni</i>, <i>C. uteleia</i>, <i>C. tropicalis</i>, <i>C. waitukubuli</i>, <i>C. zanzibari</i>), representing all branches of the <i>Caenorhabditis</i> phylogenetic tree.
+                        </p>
+                        <p>
+                            In addition, the database contains proteome data from 7 other nematode species (<i>B. malayi</i>, <i>O. tipulae</i>, <i>O. volvulus</i>, <i>P. pacificus</i>, <i>P. redivivus</i>, <i>S. ratti</i>, <i>T. muris</i>) that have high-quality data available. For comparison, the database also includes the proteomes of major model organisms (<i>S. cerevisiae</i>, <i>D. melanogaster</i>, <i>D. rerio</i>, <i>M. musculus</i>, <i>H. sapiens</i>).
+                        </p>
+                        <p>
+                            Protein data were downloaded either from WormBase (for nematode species) or from the <a href="https://www.ebi.ac.uk/reference_proteomes/" target="_blank">reference proteome site</a> for model organisms. <a href="http://smart.embl-heidelberg.de/" target="_blank">SMART</a> was used for protein domain prediction.
+                        </p>
+                        <p>
+                            To facilitate comparisons across species, the database also contains information about homologs in all species included in the database. The search interface allows users to select proteins with specific protein domains or domain arrangements for a chosen species. The output can be limited to proteins with homologs in one or more other species, enabling quick identification of either nematode-specific genes or evolutionarily conserved genes of a certain type (e.g. kinases).
                         </p>
                     </div>
                     <div id="expression-database">
@@ -193,31 +232,52 @@
                         <div id="expression-stages">
                             <h6>Expression (Stages)</h6>
                             <p>
-                                The expression data for the different stages of the life cycle of C. elegans was obtained as part of the NHGRI modENCODE project in a collaboration of the Waterston (Max Boeck, Chau Huynh, LaDeana Hillier, University of Washington), Reinke (Guilin Wang, Dionna Kasper, Yale University) and Miller (Clay Spencer, Vanderbilt University) labs 1,2,3,4 
-                                Briefly, 18 samples were analyzed with RNA-seq. The results provided here are a subset of that data, derived from synchronized whole animals from embryonic and post-embryonic stages. For post-embryonic stages, two or more biological replicates were obtained; the weighted averages are provided. For the embryonic stages, 4 independent time series were collected, taking samples every 30 minutes (some samples were lost from technical failures). For details of data collection and analysis see ref 4.
-                                
-                                Expression units
-                                Expression for each gene is given in dcpm units (depth of coverage per million 35 base reads)1. This measure has the advantage of providing a base-pair resolution estimate of expression, simplifying the analysis of shorter features such as exons and splice junctions. A dcpm value of 1.5 reflects an average level of expression. Values between 0.003 and 0.1 generally represent significant expression.  As a rough approximation, dcpm can be converted to rpkm values using the following equation: rpkm=dcpm*1000/35.
-                                
-                                
-                                1. Hillier LW, Reinke V, Green P, Hirst M, Marra MA, Waterston RH. Massively parallel sequencing of the polyadenylated transcriptome of C. elegans. Genome Res. 2009 Apr;19(4):657-66. PMID: 19181841 PMCID: PMC2665784. DOI: 10.1101/gr.088112.108
-                                2. Gerstein MB, Lu ZJ, Van Nostrand EL, et al. Integrative analysis of the Caenorhabditis elegans genome by the modENCODE project. Science. 2010 Dec 24;330(6012):1775-87. PMID: 21177976 PMCID: PMC3142569 DOI: 10.1126/science.1196914.
-                                3. Gerstein MB, Rozowsky J, Yan K, Wang D, et al. Comparative analysis of the transcriptome across distant species. Nature. 2014 Aug 28;512(7515):445-8. PMID: 25164755 PMCID: PMC4155737 DOI: 10.1038/nature13424.
-                                4. Boeck, M et al. The time-resolved transcriptome of C. elegans. Genome Res. 2016 Oct;26(10):1441-1450. PMID: 27531719 PMCID: PMC5052054 DOI: 10.1101/gr.202663.115
+                                The expression data for the different stages of the life cycle of <i>C. elegans</i> were obtained as part of the NHGRI modENCODE project, in collaboration with the Waterston (Max Boeck, Chau Huynh, LaDeana Hillier, University of Washington), Reinke (Guilin Wang, Dionna Kasper, Yale University), and Miller (Clay Spencer, Vanderbilt University) labs<sup>1,2,3,4</sup>. Briefly, 18 samples were analyzed using RNA-seq. The results provided here represent a subset of that data, derived from synchronized whole animals at embryonic and post-embryonic stages.
                             </p>
+                            <p>
+                                For post-embryonic stages, two or more biological replicates were obtained, and weighted averages are provided. For embryonic stages, four independent time series were collected, with samples taken every 30 minutes (though some samples were lost due to technical failures). For detailed data collection and analysis, refer to reference 4.
+                            </p>
+                            
+                            <p>
+                                Expression for each gene is provided in dcpm units (depth of coverage per million 35 base reads)<sup>1</sup>. This measure offers base-pair resolution, which simplifies the analysis of shorter features such as exons and splice junctions. A dcpm value of 1.5 represents an average expression level. Values between 0.003 and 0.1 generally indicate significant expression. To approximate rpkm values, use the following equation: <code>rpkm = dcpm * 1000 / 35</code>.
+                            </p>
+                            
+                            <div >
+                                <h2>References</h2>
+                                <ol style="margin-bottom: 40px;">
+                                    <li style="margin-bottom: 10px;">Hillier LW, Reinke V, Green P, Hirst M, Marra MA, Waterston RH. Massively parallel sequencing of the polyadenylated transcriptome of <i>C. elegans</i>. Genome Res. 2009 Apr;19(4):657-66. PMID: 19181841 PMCID: PMC2665784. DOI: <a href="https://doi.org/10.1101/gr.088112.108" target="_blank">10.1101/gr.088112.108</a></li>
+                                    <li style="margin-bottom: 10px;">Gerstein MB, Lu ZJ, Van Nostrand EL, et al. Integrative analysis of the <i>Caenorhabditis elegans</i> genome by the modENCODE project. Science. 2010 Dec 24;330(6012):1775-87. PMID: 21177976 PMCID: PMC3142569 DOI: <a href="https://doi.org/10.1126/science.1196914" target="_blank">10.1126/science.1196914</a></li>
+                                    <li style="margin-bottom: 10px;">Gerstein MB, Rozowsky J, Yan K, Wang D, et al. Comparative analysis of the transcriptome across distant species. Nature. 2014 Aug 28;512(7515):445-8. PMID: 25164755 PMCID: PMC4155737 DOI: <a href="https://doi.org/10.1038/nature13424" target="_blank">10.1038/nature13424</a></li>
+                                    <li>Boeck, M et al. The time-resolved transcriptome of <i>C. elegans</i>. Genome Res. 2016 Oct;26(10):1441-1450. PMID: 27531719 PMCID: PMC5052054 DOI: <a href="https://doi.org/10.1101/gr.202663.115" target="_blank">10.1101/gr.202663.115</a></li>
+                                </ol>
+                            </div>
                         </div>
                         <div id="expression-tissues">
                             <h6>Expression (Tissues)</h6>
                             <p>
-                                The expression data for cells/tissues at the L2 stage was generated using Single cell Combinatorial Indexing RNAseq (sci-RNAseq). For details of data collection and analysis see Cao et al. (2017).
-                                Briefly, the expression profile of nearly 50,000 cells from L2 larval stage was determined by sci-RNA-seq. From these data, consensus expression profiles for 27 cell types were defined. The profiles available through GExplore correspond to data in Tables S2 to S4 of Cao et al. (2017). Images of expression profiles correspond to the sample shown in Figure S14. Expression levels of each gene are shown in transcripts per million (TPM). Enrichment data were precalculated and are presented as the "ratio" of the gene's expression in the most highly vs. the 2nd-most highly expressing cell type. "qval" is the false detection rate at which you can say the gene is differentially expressed between the highest and 2nd-highest expressing cell types. For reference: in Cao et al. (2017) a gene is called "cell type enriched" if ratio >= 5 and q-val < 0.05. 
+                                The expression data for cells and tissues at the L2 larval stage were generated using Single-cell Combinatorial Indexing RNA-seq (sci-RNA-seq). For details on data collection and analysis, refer to Cao et al. (2017). In brief, the expression profiles of nearly 50,000 cells from the L2 stage were determined using sci-RNA-seq. From this dataset, consensus expression profiles for 27 cell types were defined.
+                            </p>
+                            <p>
+                                The profiles available through GExplore correspond to the data in Tables S2 to S4 of Cao et al. (2017), while images of the expression profiles align with Figure S14. Expression levels for each gene are presented in transcripts per million (TPM).
+                            </p>
+                            
+                            <p>
+                                Enrichment data were pre-calculated and are presented as the "ratio" of a gene's expression in the most highly expressing cell type compared to the second-most highly expressing cell type. "qval" represents the false detection rate (FDR) at which the gene is considered differentially expressed between the highest and second-highest expressing cell types.
+                            </p>
+                            <p style="margin-bottom: 40px;">
+                                For reference, in Cao et al. (2017), a gene is labeled as "cell type enriched" if the <code>ratio >= 5</code> and <code>q-val &lt; 0.05</code>.
                             </p>
                         </div>
                         <div id="expression-embryo">
                             <h6>Expression (Embryo)</h6>
                             <p>
-                                The expression data for the embryonic tissues was generated using RNA-seq. For details of data collection and analysis see Warner et al. (2019). 
-                                Briefly, synchronized populations of embryos expressing tissue-specific fluorescent markers were sampled at 90-min intervals for five time points starting 120 min after embryo isolation about halfway through gastrulation (t0).  The last time point (480 min after isolation, t4) corresponds to the early 3-fold stage, when cells begin terminal differentiation, but before the cuticle forms. In total, time series data for five different tissues/organs (hypodermis, intestine, pharynx, muscle and neuron) and two lineage-specific populations (ABa and ABala) were produced. Expression levels were calculated in transcripts per million (TPM).
+                                The expression data for embryonic tissues were generated using RNA-seq. For detailed information on data collection and analysis, refer to Warner et al. (2019). In brief, synchronized populations of embryos expressing tissue-specific fluorescent markers were sampled at 90-minute intervals over five time points, starting 120 minutes after embryo isolation (about halfway through gastrulation, referred to as t<sub>0</sub>).
+                            </p>
+                            <p>
+                                The final time point (480 minutes after isolation, t<sub>4</sub>) corresponds to the early 3-fold stage, when cells begin terminal differentiation, but before cuticle formation. Time series data were collected for five different tissues/organs—hypodermis, intestine, pharynx, muscle, and neurons—as well as for two lineage-specific populations (ABa and ABala).
+                            </p>
+                            <p>
+                                Expression levels are reported in transcripts per million (TPM).
                             </p>
                         </div>
                     </div>
@@ -260,16 +320,16 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td class="search_type"><strong>AND Search</strong></td>
+                                        <td class="search_type">AND Search</td>
                                         <td class="example"><code>axon <strong>and</strong> dendrite</code></td>
-                                        <td>Only results containing <strong>both</strong> "axon" and "dendrite".</td>
-                                        <td>Use when you want to <strong>narrow down</strong> results to items that meet <strong>all</strong> criteria. This gives fewer, more specific results.</td>
+                                        <td>Only results containing both "axon" and "dendrite".</td>
+                                        <td>Use when you want to narrow down results to items that meet all criteria. This gives fewer, more specific results.</td>
                                     </tr>
                                     <tr>
-                                        <td class="search_type"><strong>OR Search</strong></td>
+                                        <td class="search_type">OR Search</td>
                                         <td class="example"><code>axon <strong>or</strong> dendrite</code></td>
-                                        <td>Results containing <strong>either</strong> "axon", <strong>or</strong> "dendrite", or <strong>both</strong>.</td>
-                                        <td>Use when you want to <strong>broaden</strong> the search to include items that match <strong>any</strong> of the criteria, increasing the number of results.</td>
+                                        <td>Results containing either "axon", or "dendrite", or both.</td>
+                                        <td>Use when you want to broaden the search to include items that match any of the criteria, increasing the number of results.</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -296,7 +356,7 @@
                         <h5>Gene Search Field</h5>
                         <p>The gene search field accepts the following identifiers (or any combination):</p>
                             <ul>
-                                <li>Wormbase gene ID: <code>WBGene00003738</code></li>
+                                <li>WormBase gene ID: <code>WBGene00003738</code></li>
                                 <li>Gene sequence name: <code>F54F3.1</code></li>
                                 <li>Locus name: <code>nid-1</code></li>
                                 <li>Protein sequence name: <code>F54F3.1a</code></li>
@@ -367,33 +427,82 @@
                     
                     
 
-                    <div id="text-search-fields">
-                        <h5>Text search fields</h5>
+                    <div id="text-search-fields" class="help-section">
+                        <h5>Text Search Fields</h5>
+                        <p>
+                            On the output page, search terms for the text search fields will be <span class="highlight_style">highlighted</span> for easier recognition.
+                        </p>
+                    
+                        <!-- Description Search Field -->
                         <div id="description-search-field">
                             <h6>Description Search Field</h6>
-                            <p>" Legacy description" is equivalent to "Legacy manual gene description" in Wormbase, the "automated description" is the top level description under the “Overview” tab in Wormbase. </p>
+                            <p>
+                                The Legacy Description is equivalent to the "Legacy manual gene description" in WormBase, while the Automated Description is the top-level description under the “Overview” tab in WormBase.
+                            </p>
+                            
+                            <!-- Image Section -->
+                            <div class="image-wrapper">
+                                <img src="assets/Wormbase_Descriptions.png" alt="Wormbase Descriptions" class="description-image">
+                            </div>
                         </div>
+                        
+                    
+                        <!-- Phenotype and Expression Search Fields -->
                         <div id="phenotype-expression-search-fields">
                             <h6>Phenotype and Expression Search Fields</h6>
                             <p>
-                                Phenotype and expression data is Wormbase used defined vocabularies. The search fields have an autosuggest function, which suggest search terms when the user starts to type into the field. You do not have to use the suggested terms, you can use any word for searching, the search will find any term that contains the search word. 
-                                "Tissues and Stages (genomic studies)" refers to data that either came from single-cell RNAseq studies or from enrichment analysis of high-throughput studies, where expression in specific tissues was compared to whole animals.
+                                The Phenotype and Expression search fields use WormBase-defined vocabularies. These fields include an autosuggest function, which suggests search terms as you type. You are not required to use the suggested terms—you can search using any word, and GExplore will find matches containing your search word.
+                            </p>
+                            <p>
+                                The Tissues and Stages (Genomic Studies) search field refers to data from single-cell RNAseq studies or enrichment analysis of high-throughput studies, where expression in specific tissues is compared to whole animals.
                             </p>
                         </div>
+                    
+                        <!-- Gene Ontology and Disease Association Search Fields -->
                         <div id="ontology-disease-fields">
                             <h6>Gene Ontology and Disease Association Search Fields</h6>
-                            <p>These search fields also use defined vocabularies and have an autosuggest function.</p>
+                            <p>
+                                These search fields also use predefined vocabularies and feature an autosuggest function to help find relevant terms.
+                            </p>
                         </div>
                     </div>
+                    
 
-                    <div id="mutation-search-page">
+                    <div id="mutation-search-page" class="help-section">
                         <h5>Search Fields on the Mutation Search Page</h5>
-                        <p>This is the Search fields on the Mutation search page content.</p>
+                    
+                        <!-- Checkbox: Do Not Show Deletions Affecting More Than One Gene -->
+                        <h6>Checkbox: "Do not show deletions affecting more than one gene"</h6>
+                        <p>
+                            Some deletions are large and affect multiple genes. If your goal is to identify mutations in a single gene, you can use this checkbox to exclude large deletions that affect more than one gene.
+                        </p>
+                    
+                        <!-- Mutation Type -->
+                        <h6>Mutation Type</h6>
+                        <p>
+                            The Mutation Type checkboxes allow you to limit the output to mutations that significantly impact the protein. Nonsense and Deletion mutation types give you more flexibility:
+                        </p>
+
+                        <p><code>Nonsenses removing greater than x%</code> and <code>Deletions removing greater than x%</code>:</p>
+                        <p>Limits the output to nonsense allele/deletions that truncate the proteins by at least <code>x%</code>. This might be useful to identify putative null alleles by eliminating alleles that only affect the C-terminus of the protein.</p>
+
+
+                        <!-- Mutation Source -->
+                        <h6>Mutation Source (Million Mutation Project, KO Consortium, Other)</h6>
+                        <p>
+                            The Mutation Source field allows you to filter mutations based on their origin:
+                        </p>
+                        <ul>
+                            <li><strong>Million Mutation Project</strong>: A large number of mutations were identified by whole-genome sequencing. However, many of these mutations might not result in strong loss-of-function (lof) alleles.</li>
+                            <li><strong>KO Consortium</strong>: Mutations from the KO Consortium were designed to be putative null alleles, typically resulting in complete gene knockouts.</li>
+                            <li><strong>Other Sources</strong>: Includes mutations from other research projects, which may vary in their functional impact.</li>
+                        </ul>
                     </div>
+                    
 
                     <div id="expression-search-pages">
                         <h5>Search Fields on the Expression Search Pages (Stages, Tissues, Embryos)</h5>
-                        <p>This is the Search fields on the Expression search pages (stages, tissues, embryos) content.</p>
+                        <p>Each of the three pages has unique search fields based on the underlying expression database. Details can be found directly on the search pages.</p>
                     </div>
                 </div>
                 <!----------------------- Search Fields Subpages Start ----------------------->
@@ -401,34 +510,81 @@
                 <!----------------------- Display Options Subpages Start ----------------------->
                 <div id="display-options" class="help-content-section">
                     <div class="date-last-updated">
-                        <h4>Last updated on Aug 1, 2024</h4>
+                        <h4>Last updated on Sep 20, 2024</h4>
                     </div>
+
                     <div class="help-content-section-title">
                         <h4>Display Options</h4>
                     </div>
+
                     <div id="general-comments-display">
-                        <h5>General comments</h5>
-                        <p>This is the General comments display content.</p>
+                        <h5>General Comments</h5>
+                        <p>
+                            All result pages are now displayed in HTML format, providing a webpage with various display options and data presented in a table format. Users can export the results to <strong>TXT</strong> or <strong>CSV</strong> using the available export options for further processing locally.
+                        </p>
+                        <p>
+                            The <strong>"List of proteins/genes found"</strong> section contains the list of genes or proteins that meet the search criteria. This list can be copied and used to compare different search results using the <strong>Compare</strong> tool (refer to the Tools section for details).
+                        </p>
+                        <p>
+                            Most display options add an extra column to the results table with the relevant data. The names of these options are generally self-explanatory.
+                        </p>
                     </div>
+                    
                     <div id="protein-domain-organization">
-                        <h5>Protein domain organization</h5>
-                        <p>This is the Protein domain organization content.</p>
+                        <h5>Protein Domain Organization</h5>
+                        <p>
+                            Protein domains, such as <strong>SMART</strong> or <strong>Pfam</strong> domains, are displayed as small rectangles containing a unique domain abbreviation. Larger meta-domains, like <code>7TM_chemorcpt_1</code>, which typically span the entire protein, are represented as larger rectangles. Note that the size of the rectangle does not correspond to the actual size of the domain.
+                        </p>
+                        <p>
+                            A <a href="http://mbb-apps.dc.sfu.ca/gexplore/gexplore_help_domains.html" target="_blank">table of abbreviations</a> is used for selected domains that are found in multiple proteins. SMART/Pfam domains that are not listed in the abbreviation table are shown as gray rectangles with the SMART/Pfam identifier inside. These rectangles link to the corresponding SMART or Pfam entry.
+                        </p>
+                        <p>
+                            Numbers within the rectangles represent the number of amino acids and indicate parts of the protein that are not assigned to any domain. To improve performance, images representing the domain organization of all proteins were pre-calculated for faster response times.
+                        </p>
+                        <p>
+                            Gaps between domains that are smaller than 30 amino acids are suppressed, as they likely reflect artificial boundaries of the consensus sequences used to predict domains, which tend to be smaller than the actual domain. For example, an Immunoglobulin (IG) domain is approximately 125 amino acids in size, while the consensus sequence for the SMART IG domain (SM000409) is only 100 amino acids.
+                        </p>
+                        <p>
+                            On the mutation results page, users can adjust the suppression of gaps to a smaller value for more precise output.
+                        </p>
                     </div>
+
                     <div id="display-options-mutations">
-                        <h5>Special display options for mutations</h5>
-                        <p>This is the Special display options for mutations content.</p>
+                        <h5>Special Display Options for Mutations</h5>
+                        <p>
+                            <code>Wrap after x domains</code>:
+                            Some proteins contain a large number of domains, which can make it challenging to view them all on a single line. This option allows users to specify the maximum number of domains to display per line for better visualization.
+                        </p>
+                        <p>
+                            <code>Show gaps > x amino acids</code>:
+                            By default, gaps greater than 30 amino acids are suppressed (as explained above). If a more precise location of the mutation is needed, users can lower this threshold to show smaller gaps between domains.
+                        </p>
                     </div>
+                    
+
                     <div id="display-options-expression-data">
-                        <h5>Special display options for expression data (stages, tissues, embryo)</h5>
-                        <p>This is the Special display options for expression data (stages, tissues, embryo) content.</p>
+                        <h5>Special Display Options for Expression Data (Stages, Tissues, Embryo)</h5>
+                        <p>
+                            <strong>Checkboxes:</strong>  
+                            Each of the three expression data sets (stages, tissues, embryo) has a graphic display of expression data for each gene. To provide a complete overview of these data sets, each results page includes checkboxes that allow users to display the graphs for:
+                        </p>
+                        <ul style="margin-bottom: 20px;">
+                            <li><code>also display graph for stage-specific expression data</code></li>
+                            <li><code>also display graph for L2 tissue expression data</code></li>
+                            <li><code>also display graph for embryonic tissue expression data</code></li>
+                        </ul>
+                        <p>
+                            By selecting these options, users can easily access all three graphical representations, offering a comprehensive view of the gene expression across different stages, tissues, and embryonic development.
+                        </p>
                     </div>
+
                 </div>
                 <!----------------------- Display Options Subpages End ----------------------->
 
                 <!----------------------- Tools Subpages Start ----------------------->
                 <div id="tools" class="help-content-section">
                     <div class="date-last-updated">
-                        <h4>Last updated on Aug 1, 2024</h4>
+                        <h4>Last updated on Sep 20, 2024</h4>
                     </div>
                     <div class="help-content-section-title">
                         <h4>Tools</h4>
@@ -439,7 +595,18 @@
                     </div>
                     <div id="convert-tool">
                         <h5>Convert Tool</h5>
-                        <p>The convert input field accepts any combination of <em>C. elegans</em> gene identifiers: Wormbase gene ID (WBGene00003738), gene sequence name (F54F3.1), locus (nid-1), protein sequence name (F54F3.1a), wormpep ID (CE18731), Uniprot ID (Q93791). The output consists of a table with all the identifiers for all the genes in the input field. This can be used to standardize identifiers that come from different sources or to convert one set of identifiers into another one. </p>
+                        <p>The convert input field accepts any combination of <em>C. elegans</em> gene identifiers:</p>
+
+                        <ul style="margin-bottom: 20px;">
+                            <li>Locus Name: <code>nid-1</code></li>
+                            <li>Gene Sequence Name: <code>F54F3.1</code></li>
+                            <li>WormBase Gene ID: <code>WBGene00003738</code></li>
+                            <li>Protein Sequence Name: <code>F54F3.1a</code></li>
+                            <li>Wormpep ID: <code>CE18731</code></li>
+                            <li>Uniprot ID: <code>Q93791</code></li>
+                        </ul>
+                        
+                        <p>The output consists of a table with all the identifiers for all the genes in the input field. This can be used to standardize identifiers that come from different sources or to convert one set of identifiers into another one.</p>
                     </div>
                 </div>
                 <!----------------------- Tools Subpages End ----------------------->
