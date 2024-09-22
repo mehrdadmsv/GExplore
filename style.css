@@ -630,36 +630,13 @@ footer {
 
 
 
+
+
+
+
+
+
 /* ------------------------ Gene Search Page Specific Start ------------------------- */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -672,45 +649,86 @@ footer {
 
 #search-intro {
     position: relative;
-    width: 100%; /* Ensures the container takes up the full width of the screen */
-    margin-bottom: 20px; /* Adds some spacing below the section */
-    box-sizing: border-box; /* Ensures padding is included in the width */
+    width: 100%; /* Full width of the page */
+    margin-bottom: 20px; /* Space below the hero section */
+    box-sizing: border-box; /* Include padding and borders in width */
 }
 
 #search-intro .search-hero-section {
     color: #FFFFFF;
-    min-height: 25vh; /* Ensure the section has a minimum height, but it can expand if needed */
     padding: 30px;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Vertically center content */
-    align-items: center; /* Horizontally center content */
-    width: 100%; /* Ensure the section itself is 100% width */
-    box-sizing: border-box; /* Ensures padding is included in the width */
-    background-image: url('assets/search-hero.jpeg'); /* Add the background image */
-    background-size: cover; /* Ensure the image covers the entire section */
-    background-position: center; /* Center the image */
-    background-repeat: no-repeat; /* Prevent the image from repeating */
+    justify-content: center; /* Vertically centers content */
+    align-items: center; /* Horizontally centers content */
+    width: 100%; /* Full width of the section */
+    box-sizing: border-box;
+    background-image: url('assets/search-hero.jpeg'); /* Background image */
+    background-size: cover; /* Image covers entire section */
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    min-height: 180px; /* Minimum height to surround content without too much space */
+    max-height: 220px; /* Optional: Cap the maximum height */
+    padding: 20px 15px; /* Adjust padding to make it more compact */
+    text-align: center; /* Center text horizontally */
     opacity: 1;
 }
 
+#search-intro .search-hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.4); /* Slight dark overlay to enhance text readability */
+    z-index: 0;
+}
+
+#search-intro .search-hero-section * {
+    position: relative;
+    z-index: 1; /* Ensures text is above the background overlay */
+}
+
 #search-intro .search-hero-section h2 {
-    padding-bottom: 15px;
-    font-size: 24px; /* Slightly larger font size for the heading */
+    font-size: 24px; /* Larger font size for the heading */
     font-weight: 700;
-    text-align: center; /* Ensure text is centered horizontally */
+    margin-bottom: 10px; /* Space below the heading */
+    text-align: center; /* Horizontal centering */
+    letter-spacing: 1px; /* Subtle letter spacing for improved legibility */
 }
 
 #search-intro .search-hero-section p {
-    line-height: 1.8; /* Slightly more spaced out lines for readability */
-    text-align: left; /* Center the text for better alignment */
+    line-height: 1.6; /* Adjusted line-height for readability */
+    text-align: center; /* Center text */
     font-weight: 400;
-    font-size: 15px;
-    margin-top: 0; /* Ensure no additional margin at the top of the <p> */
-    margin: 0 auto; /* Center the <p> element within the container */
-    max-width: 97%; /* Optional: Limit the width for readability */
-
+    font-size: 14px;
+    margin: 0 auto; /* Ensures paragraphs are centered */
+    max-width: 90%; /* Limits width for better readability */
 }
+
+#search-intro .search-hero-section a {
+    margin-top: 15px; /* Adds some space above the link */
+    padding: 8px 16px;
+    background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent button background */
+    color: #fff; /* Button text color */
+    border-radius: 4px;
+    text-decoration: none; /* Remove underline */
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+#search-intro .search-hero-section a:hover {
+    background-color: rgba(255, 255, 255, 0.3); /* Lighter background on hover */
+}
+
+
+
+
+
+
+
+
 
 
 
@@ -1093,15 +1111,6 @@ label input[type="radio"] {
 
 
 
-
-
-
-
-
-
-
-
-
 .form-group .search-page-help-content ul {
     margin-top: 10px; /* Add left padding to indent the list */
     margin-left: 40px; /* Add left padding to indent the list */
@@ -1112,37 +1121,6 @@ label input[type="radio"] {
     margin-bottom: 5px; /* Add some spacing between list items */
     font-size: 14px; /* Adjust the font size */
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1230,6 +1208,7 @@ label input[type="radio"] {
     display: flex;
     align-items: center;
     cursor: pointer;
+    user-select: none;
 }
 
 .orthologs-container i {
@@ -1332,12 +1311,80 @@ label input[type="radio"] {
 
 .search-param-column-full .more-explanation {
     background-color: #f0f8ff;
+    color: #484848;
     font-size: 14px;
+    font-weight: 500;
     padding: 10px;
-    margin-top: 10px;
+    margin-top: 0px;
     margin-bottom: 10px;
-    border-radius: 4px;
+    border-radius: 8px;
 }
+
+
+.search-param-column-full .more-explanation {
+    line-height: 1.6;
+}
+
+
+
+
+
+
+/* -------- */
+
+.search-param-column-full .more-explanation a {
+    color: #005BB5;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.search-param-column-full .more-explanation a:hover {
+    color: #004799;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.search-param-column-full .more-explanation a:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 91, 181, 0.5);
+}
+
+.search-param-column-full .more-explanation a:active {
+    color: #003E73;
+    text-decoration: underline;
+}
+
+
+
+
+.search-param-column-full .more-explanation ul {
+    margin-top: 10px; /* Add left padding to indent the list */
+    margin-left: 40px; /* Add left padding to indent the list */
+    padding-left: 0; /* Ensure no extra padding on the list */
+}
+
+.search-param-column-full .more-explanation ul li {
+    margin-bottom: 5px; /* Add some spacing between list items */
+    font-size: 14px; /* Adjust the font size */
+}
+
+/* -------- */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #stage-expression-page .form-group textarea,
 #tissue-expression-page .form-group textarea,
@@ -1359,20 +1406,7 @@ label input[type="radio"] {
     width: 100%;
 }
 
-#stage-expression-page .form-group .search-page-help-content,
-#tissue-expression-page .form-group .search-page-help-content,
-#embryo-expression-page .form-group .search-page-help-content {
-    max-width: 550px;
-    display: none;
-    background-color: #f0f8ff;
-    color: #484848;
-    font-size: 14px;
-    font-weight: 500;    
-    padding: 10px;
-    margin-top: 0px;
-    margin-bottom: 10px;
-    border-radius: 8px;
-}
+
 
 /* Two-column layout */
 .two-column-wrapper {
@@ -1431,25 +1465,75 @@ label input[type="radio"] {
 
 
 
-/* Styling for the Sample Profiles dropdown */
-#sample-profiles {
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+
+
+
+#stage-expression-page .form-group .search-page-help-content,
+#tissue-expression-page .form-group .search-page-help-content,
+#embryo-expression-page .form-group .search-page-help-content {
+    max-width: 550px;
+    display: none;
+    background-color: #f0f8ff;
+    color: #484848;
     font-size: 14px;
+    font-weight: 500;    
+    padding: 10px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    border-radius: 8px;
 }
 
 
 .search-for-expression-help-content {
     display: none;
     max-width: 550px;
-    display: none;
     background-color: #f0f8ff;
+    color: #484848;
+    font-weight: 500;
     font-size: 14px;
     padding: 10px;
     margin-top: 0px;
     margin-bottom: 10px;
-    border-radius: 4px;
+    border-radius: 8px;
+}
+
+
+
+.search-for-expression-help-content a {
+    color: #005BB5;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.search-for-expression-help-content a:hover {
+    color: #004799;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.search-for-expression-help-content a:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 91, 181, 0.5);
+}
+
+.search-for-expression-help-content a:active {
+    color: #003E73;
+    text-decoration: underline;
+}
+
+
+
+
+.search-for-expression-help-content ul {
+    margin-top: 10px; /* Add left padding to indent the list */
+    margin-left: 40px; /* Add left padding to indent the list */
+    padding-left: 0; /* Ensure no extra padding on the list */
+}
+
+.search-for-expression-help-content ul li {
+    margin-bottom: 5px; /* Add some spacing between list items */
+    font-size: 14px; /* Adjust the font size */
 }
 
 
@@ -1463,22 +1547,17 @@ label input[type="radio"] {
     padding-bottom: 20px; /* Add some space below the title */
 }
 
-/* Specific styles for the "Sample Profiles" section */
-#sample-profiles-title {
-    margin-top: 20px; /* Add space above the title to separate it from previous content */
-    margin-bottom: 10px; /* Ensure consistent spacing below the title */
-    text-align: center; /* Center the title */
-}
+
+
 
 /* Styling for the Sample Profiles dropdown */
-#sample-profiles {
+#profile {
     max-width: 550px;
     padding: 8px;
     border: 1px solid #ddd;
     border-radius: 4px;
     font-size: 14px;
 }
-
 
 
 
@@ -1497,18 +1576,27 @@ label input[type="radio"] {
 
 /* ------------------------ Expression (Tissues) Search Page Specific Start ------------------------- */
 
+/* Wrapper for Enrichment fields */
+.enrichment-wrapper {
+    display: flex;
+    flex-wrap: wrap; /* Allow the elements to wrap when there's not enough space */
+    justify-content: space-between;
+    gap: 20px; /* Maintain spacing between the elements */
+    width: 100%; /* Take the full width */
+    padding: 0 40px;
+}
 
-/* Container for Enrichment fields */
+/* Flexbox container for rows */
 .enrichment-row {
     display: flex;
     align-items: center;
-    gap: 0px; /* Adjust the gap as needed */
+    flex: 1 1 45%; /* Flex-grow: 1, Flex-shrink: 1, Flex-basis: 45% - ensures they shrink and take up half the width */
+    gap: 10px; /* Adjust the gap between the fields */
     margin-bottom: 0px;
+    min-width: 460px; /* Set a minimum width to ensure readability */
 }
 
-.enrichment-row h5 {
-    margin: 0 10px 0 0; /* Remove the bottom margin to keep the elements aligned */
-}
+
 
 
 
@@ -1599,58 +1687,6 @@ label input[type="radio"] {
 /* ------------------------ Expression (Embryos) Search Page Specific End ------------------------- */
 
 
-
-
-/* ------------------------ Combined Expression Search Page Specific Start ------------------------- */
-
-
-
-
-
-/* Add styles for the search switcher buttons */
-.search-switcher {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.search-switcher button {
-    background-color: #068EF1;
-    border: none;
-    padding: 10px 20px;
-    margin: 5px;
-    font-family: 'Open Sans', sans-serif; /* Fonts with priority given to 'Open Sans' */
-    font-size: 14px;
-    font-weight: 600; /* Slightly bolder font */
-    color: var(--button_text_color);
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s, transform 0.2s;
-}
-
-.search-switcher button.active {
-    background-color: #005bb5;
-}
-
-.search-switcher button:hover {
-    background-color: #005bb5;
-}
-
-/* Style the search forms */
-.search-form {
-    display: none;
-}
-
-/* Ensure the active form is visible */
-.search-form.active {
-    display: block;
-}
-
-
-
-
-
-
-/* ------------------------ Combined Expression Search Page Specific End ------------------------- */
 
 
 
@@ -3089,6 +3125,17 @@ th.sorted-desc .arrow-up {
     font-size: 1.8rem;
 }
 
+/* help content section main title for subpages */
+#user-guide .help-content-section-title h4,
+#databases .help-content-section-title h4 {
+    padding: 0 0 0px 0;
+    line-height: 1.188;
+    margin-bottom: 3rem;
+    color: #0A2347;
+    font-weight: 700;
+    font-size: 1.8rem;
+}
+
 /* help content section titles whithin the subpages */
 .help-content-section h5 {
     padding: 10px 0px 10px 0px; /* here */
@@ -3102,6 +3149,15 @@ th.sorted-desc .arrow-up {
 
 /* help content section sub-titles whithin the subpages */
 .help-content-section h6 {
+    padding: 10px 0px 10px 0px; /* here */
+    font-weight: 700;
+    color: #0A2347;
+    font-size: 1rem;
+    line-height: 1.333;
+}
+
+/* help content section sub-titles whithin the subpages */
+.help-content-section h2 {
     padding: 10px 0px 10px 0px; /* here */
     font-weight: 700;
     color: #0A2347;
@@ -3134,7 +3190,8 @@ th.sorted-desc .arrow-up {
     margin-bottom: 40px;
 }
 
-.help-content-section ul {
+.help-content-section ul,
+.help-content-section ol {
     padding: 0px 0px 0px 40px;
     font-weight: 500;
     font-size: 0.95rem;
@@ -3292,6 +3349,37 @@ code {
     font-weight: 400;
     /* font-size: 15px; */
 }
+
+
+
+#help-page-content td.mutation_type {
+    min-width: 250px;
+    max-width: 260px;
+    background-color: #fff; /* White background for table cells */
+    line-height: 1.6;
+    font-weight: 400;
+    /* font-size: 15px; */
+}
+
+
+/* Styling for the image section in Description Search Field */
+#description-search-field .image-wrapper {
+    text-align: center; 
+    margin-top: 20px; 
+    margin-bottom: 20px; 
+}
+
+#description-search-field .description-image {
+    width: 100%; /* Make the image responsive */
+    max-width: 700px; /* Set a max-width for the image */
+    height: auto; /* Maintain aspect ratio */
+    border: 1px solid #ddd; /* Light border around the image */
+    border-radius: 8px; /* Rounded corners */
+    padding: 5px; /* Add some padding inside the border */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow for depth */
+}
+
+
 
 
 
