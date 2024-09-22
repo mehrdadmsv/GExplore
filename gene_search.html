@@ -42,9 +42,10 @@
             <!-- Hero Section -->
             <div id="search-intro">
                 <div class="search-hero-section">
-                    <h2>Search for <i>C. elegans</i> genes</h2>
-                    <p>The database contains all protein-coding genes from Wormbase release 292 (April 2024).</p>
+                    <h2>Search for <i>C. elegans</i> Genes</h2>
+                    <p>The database contains all protein-coding genes from WormBase release 292 (April 2024).</p>
                     <p>Search for genes with particular protein domains, expression patterns, phenotypes, GO terms or human disease associations.</p>
+                    <a href="help.html#gene-database" target="_blank">Learn More</a>
                 </div>
             </div>
 
@@ -59,7 +60,7 @@
                                 <img src="assets/help-icon.png" alt="Help" class="search-page-help-icon">
                             </h4>
                             <div class="search-page-help-content">
-                                <p>Enter gene identifiers like Wormbase gene IDs, locus names, or gene/protein sequence names. You can use commas, spaces, or wildcards to search multiple genes at once. <a href="help.html#gene-search-field" target="_blank">Learn more</a></p>
+                                <p>Enter gene identifiers like WormBase gene IDs, locus names, or gene/protein sequence names. You can use commas, spaces, or wildcards to search multiple genes at once. <a href="help.html#gene-search-field" target="_blank">Learn more</a></p>
                             </div>
                             <textarea id="gene-names" name="gene-names" placeholder="Enter a gene name. Separate each additional name with a comma."></textarea>
                             <div class="splice-variant-row">
@@ -92,8 +93,9 @@
                                 <img src="assets/help-icon.png" alt="Help" class="search-page-help-icon">
                             </h4>
                             <div class="search-page-help-content">
-                                <p>This is the help content for Gene Name(s). It provides details on how to use this section.</p>
+                                <p>The expression fields use WormBase-defined vocabularies with autosuggest functionality. The Genomic Studies field contains data from single-cell RNAseq or enrichment analysis studies. <a href="help.html#text-search-fields" target="_blank">Learn more</a></p>
                             </div>
+                            
                             <h5>Tissues and stages</h5>
                             <textarea id="expression" name="expression" placeholder="Enter a text. Separate each additional text with a comma."></textarea>
                             <h5>Tissues and stages (Genomic Studies)</h5>
@@ -109,8 +111,8 @@
                                 <img src="assets/help-icon.png" alt="Help" class="search-page-help-icon">
                             </h4>
                             <div class="search-page-help-content">
-                                <p>This is the help content for Gene Name(s). It provides details on how to use this section.</p>
-                            </div>
+                                <p>The Genetic position represents a value that indicates the position relative to a reference point on the chromosome. The Nucleotide position outputs the start and end nucleotide positions, along with the strand direction.</p>
+                            </div>                            
                             <div class="location-type-row">
                                 <label for="genetic">
                                     <input type="radio" id="genetic" name="location-type" value="genetic" checked>
@@ -149,8 +151,8 @@
                                 <img src="assets/help-icon.png" alt="Help" class="search-page-help-icon">
                             </h4>
                             <div class="search-page-help-content">
-                                <p>This is the help content for Gene Name(s). It provides details on how to use this section.</p>
-                            </div>
+                                <p>The description field includes both legacy and automated descriptions from WormBase. The phenotype field uses WormBase-defined vocabularies and features autosuggest. <a href="help.html#text-search-fields" target="_blank">Learn more</a></p>
+                            </div>                            
                             <div class="label-container">
                                 <h5>Description</h5>
                                 <div class="checkbox-container">
@@ -189,7 +191,7 @@
                                 <img src="assets/help-icon.png" alt="Help" class="search-page-help-icon">
                             </h4>
                             <div class="search-page-help-content">
-                                <p>This is the help content for Gene Name(s). It provides details on how to use this section.</p>
+                                <p>This search field uses defined vocabularies and have an autosuggest function. <a href="help.html#text-search-fields" target="_blank">Learn more</a></p>
                             </div>
                             <textarea id="go-terms" name="go-terms" placeholder="Enter a GO term. Separate each additional term with a semicolon."></textarea>
                         </div>
@@ -201,7 +203,7 @@
                                 <img src="assets/help-icon.png" alt="Help" class="search-page-help-icon">
                             </h4>
                             <div class="search-page-help-content">
-                                <p>This is the help content for Gene Name(s). It provides details on how to use this section.</p>
+                                <p>This search field uses defined vocabularies and have an autosuggest function. <a href="help.html#text-search-fields" target="_blank">Learn more</a></p>
                             </div>
                             <textarea id="disease-associations" name="disease-associations" placeholder="Enter a disease name. Separate each additional name with a comma."></textarea>
                         </div>
