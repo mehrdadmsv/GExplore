@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags for character set and responsive design -->
+    <meta charset="utf-8">
+    <title>Convert Results - GExplore</title>
+    <!-- Linking CSS stylesheet -->
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <!-- Favicon for the browser tab -->
+    <link rel="icon" href="assets/favicon.png" type="image/png">
+</head>
+
+<body id="top">
+
+    <!-- Main wrapper div -->
+    <div class="wrapper">
+        <!-- Header section -->
+        <div id="header">
+            <a href="home.html">
+                <img src="assets/GExplore_logo.png" alt="GExplore Logo" class="logo">
+            </a>            
+            <div id="topnav">
+                <ul>
+                    <li class="active"><a href="home.html"><span class="text">Home</span></a></li>
+                    <li><a><span class="text">Search</span> <span class="angle"></span></a>
+                        <ul class="dropdown">
+                            <li><a href="gene_search.html">Genes</a></li>
+                            <li><a href="mutation_search.html">Mutations</a></li>
+                            <li><a href="protein_search.html">Proteins</a></li>
+                            <li><a href="expression_stage_search.html">Stage Expressions</a></li>
+                            <li><a href="expression_tissue_search.html">Tissue Expressions</a></li>
+                            <li><a href="expression_embryo_search.html">Embryo Expressions</a></li>
+                        </ul>
+                    </li>
+                    <li><a><span class="text">Tools</span> <span class="angle"></span></a>
+                        <ul class="dropdown">
+                            <li><a href="compare.html">Compare</a></li>
+                            <li><a href="convert.html">Convert</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="help.html"><span class="text">Help</span></a></li>
+                    <li><a href="about.html"><span class="text">About</span></a></li>
+                </ul>
+            </div>
+        </div>
+
+        
+         
+        <!-- Content section -->
+        <div id="content">
+       
+                
+                <!-- Sidebar wrapper -->
+                <div class="sidebar-wrapper">
+                    <!-- Sidebar icon container -->
+                    <div id="sidebar-icon-container" class="active">
+                        <!-- Active line indicator -->
+                        <div id="active-line"></div>
+                        <!-- Icon container for sidebar items -->
+                        <div class="icon-container" data-target="database-content">
+                            <img id="list-icon" src="assets/database-icon.png" alt="Database Icon" class="list-icon" draggable="false">
+                            <span class="tooltip-text">Convert Results</span>
+                        </div>
+                        <div class="icon-container" data-target="export-content">
+                            <img id="export-icon" src="assets/export-icon.png" alt="Export Icon" class="list-icon" draggable="false">
+                            <span class="tooltip-text">Export Data</span>
+                        </div>
+                        <div class="icon-container help-icon" data-target="help-content">
+                            <img id="help-icon" src="assets/help-icon.png" alt="Help Icon" class="list-icon" draggable="false">
+                            <span class="tooltip-text">Help</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Sidebar content -->
+                    <div id="sidebar">
+                        <!-- Database content in sidebar -->
+                        <div id="database-content" class="sidebar-content "> <!--add class active if any issue-->
+                            <div class="sidebar-title">
+                                <h4>Convert Results</h4> 
+                            </div>
+                            <div id="sidebar-info">
+                                <div class="first-content-title">                                
+                                    <p>Input Identifiers</p>
+                                </div>
+                                <div class="content-info">
+                                    <p>unc-101, unc-105, unc-1, unc-103, unc-104, unc-10</p>
+                                </div>
+
+                                <div class="content-title">                                
+                                    <div class="list-header">
+                                        <p>Locus Names</p>                             
+                                    </div>
+                                </div>
+                                <div class="gene-list-container">
+                                    <div class="list-info">
+                                        <p>unc-1, unc-10, unc-101, unc-103, unc-104, unc-105</p>
+                                    </div>
+                                </div>
+
+                                <div class="content-title">                                
+                                    <div class="list-header">
+                                        <p>Gene Sequence Names</p>                             
+                                    </div>
+                                </div>
+                                <div class="gene-list-container">
+                                    <div class="list-info">
+                                        <p>K03E6.5, T10A3.1, K11D2.3, C30D11.1, C52E12.2, C41C4.5</p>
+                                    </div>
+                                </div>
+
+                                <div class="content-title">                                
+                                    <div class="list-header">
+                                        <p>WormBase Gene Identifier</p>                             
+                                    </div>
+                                </div>
+                                <div class="gene-list-container">
+                                    <div class="list-info">
+                                        <p>WBGene00006741, WBGene00006750, WBGene00006829, WBGene00006830, WBGene00006831, WBGene00006832</p>
+                                    </div>
+                                </div>
+
+                                <div class="content-title">                                
+                                    <div class="list-header">
+                                        <p>Protein Sequence Names</p>                             
+                                    </div>
+                                </div>
+                                <div class="gene-list-container">
+                                    <div class="list-info">
+                                        <p>K03E6.5b, T10A3.1f, K11D2.3c, C30D11.1s, C52E12.2b, C41C4.5h</p>
+                                    </div>
+                                </div>
+
+                                <div class="content-title">                                
+                                    <div class="list-header">
+                                        <p>Wormpep Identifiers</p>                             
+                                    </div>
+                                </div>
+                                <div class="gene-list-container">
+                                    <div class="list-info">
+                                        <p>CE42275, CE53547, CE45092, CE54333, CE47855, CE46939</p>
+                                    </div>
+                                </div>
+
+                                <div class="content-title">                                
+                                    <div class="list-header">
+                                        <p>Uniprot Identifiers</p>                             
+                                    </div>
+                                </div>
+                                <div class="gene-list-container">
+                                    <div class="list-info">
+                                        <p>G5ED08, A0A5E4M2M0, D7SFR1, A0A8D8EJ82, P23678, H2FLG0</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        
+
+
+
+                        
+
+
+                        <!-- Export content in sidebar -->
+                        <div id="export-content" class="sidebar-content">
+                            <div class="sidebar-title">
+                                <h4>Export Data</h4>
+                            </div>
+                            <div id="sidebar-info">
+                                <div class="first-content-title">                                
+                                    <p>Select Export Format</p>
+                                </div>
+                                <div class="export-option-container">
+                                    <form class="export-option-form">
+                                        <div class="export-buttons">
+                                            <button type="button" id="export-csv-button">Export as CSV</button>
+                                            <button type="button" id="export-txt-button">Export as TXT</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        
+
+
+                        <!-- Help content in sidebar -->
+                        <div id="help-content" class="sidebar-content">
+                            <div class="sidebar-title">
+                                <h4>Help</h4>
+                            </div>
+                            <div id="sidebar-info">
+                                <div class="help-content-container">
+                                    <p>Click on the active Icon to hide the sidebar.</p>
+                                    <p>Click a column header to sort the table.</p>
+                                    <p>Drag a column header to rearrange columns.</p>
+                                </div>                                
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <!-- Main content area -->
+                <div id="main-content">
+                    
+
+                    
+                    
+
+                    <div class="table-container">
+                        <div id="scrollableTable" class="scroll-unlocked">
+                            <table id = "results" class="sortable result_table">
+                                <thead>
+                                    <tr class="sticky">
+                                        <th class="gene_col sortable">Locus Name<span class="sort-icons"><i class="arrow-up"></i><i class="arrow-down"></i></span></th>
+                                        <th class="gene_col sortable">Gene Sequence Name<span class="sort-icons"><i class="arrow-up"></i><i class="arrow-down"></i></span></th>
+                                        <th class="gene_col sortable">WormBase Gene Identifier<span class="sort-icons"><i class="arrow-up"></i><i class="arrow-down"></i></span></th>
+                                        <th class="gene_col sortable">Protein Sequence Name<span class="sort-icons"><i class="arrow-up"></i><i class="arrow-down"></i></span></th>
+                                        <th class="gene_col sortable">Wormpep Identifier<span class="sort-icons"><i class="arrow-up"></i><i class="arrow-down"></i></span></th>
+                                        <th class="gene_col sortable">Uniprot Identifier<span class="sort-icons"><i class="arrow-up"></i><i class="arrow-down"></i></span></th>
+                                    </tr>
+                                </thead>
+                                
+                                <tbody id="result_tbody">
+                                    <tr>
+                                        <td class ="gene_col">unc-1</td>
+                                        <td class ="gene_col">K03E6.5</td>
+                                        <td class ="gene_col">WBGene00006741</td>
+                                        <td class ="gene_col">K03E6.5b</td>
+                                        <td class ="gene_col">CE42275</td>
+                                        <td class ="gene_col">G5ED08</td>
+                                    </tr>
+                                    <tr>
+                                        <td class ="gene_col">unc-10</td>
+                                        <td class ="gene_col">T10A3.1</td>
+                                        <td class ="gene_col">WBGene00006750</td>
+                                        <td class ="gene_col">T10A3.1f</td>
+                                        <td class ="gene_col">CE53547</td>
+                                        <td class ="gene_col">A0A5E4M2M0</td>
+                                    </tr>
+                                    <tr>
+                                        <td class ="gene_col">unc-101</td>
+                                        <td class ="gene_col">K11D2.3</td>
+                                        <td class ="gene_col">WBGene00006829</td>
+                                        <td class ="gene_col">K11D2.3c</td>
+                                        <td class ="gene_col">CE45092</td>
+                                        <td class ="gene_col">D7SFR1</td>
+                                    </tr>
+                                    <tr>
+                                        <td class ="gene_col">unc-103</td>
+                                        <td class ="gene_col">C30D11.1</td>
+                                        <td class ="gene_col">WBGene00006830</td>
+                                        <td class ="gene_col">C30D11.1s</td>
+                                        <td class ="gene_col">CE54333</td>
+                                        <td class ="gene_col">A0A8D8EJ82</td>
+                                    </tr>
+                                    <tr>
+                                        <td class ="gene_col">unc-104</td>
+                                        <td class ="gene_col">C52E12.2</td>
+                                        <td class ="gene_col">WBGene00006831</td>
+                                        <td class ="gene_col">C52E12.2b</td>
+                                        <td class ="gene_col">CE47855</td>
+                                        <td class ="gene_col">P23678</td>
+                                    </tr>
+                                    <tr>
+                                        <td class ="gene_col">unc-105</td>
+                                        <td class ="gene_col">C41C4.5</td>
+                                        <td class ="gene_col">WBGene00006832</td>
+                                        <td class ="gene_col">C41C4.5h</td>
+                                        <td class ="gene_col">CE46939</td>
+                                        <td class ="gene_col">H2FLG0</td>
+                                    </tr>
+                        
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </form>    
+        </div>
+    </div>
+    
+    <!-- JavaScript file -->
+    <script src="script.js"></script>
+    <script src="javascript/sortable_feature.js"></script>
+
+    
+
+</body>
+</html>

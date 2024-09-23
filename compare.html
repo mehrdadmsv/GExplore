@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Compare - GExplore</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="icon" href="assets/favicon.png" type="image/png">
+</head>
+
+<body id="compare-page">
+    <div class="search-wrapper">
+        <div id="header">
+            <a href="home.html">
+                <img src="assets/GExplore_logo.png" alt="GExplore Logo" class="logo">
+            </a>            
+            <div id="topnav">
+                <ul>
+                    <li class="active"><a href="home.html"><span class="text">Home</span></a></li>
+                    <li><a><span class="text">Search</span> <span class="angle"></span></a>
+                        <ul class="dropdown">
+                            <li><a href="gene_search.html">Genes</a></li>
+                            <li><a href="mutation_search.html">Mutations</a></li>
+                            <li><a href="protein_search.html">Proteins</a></li>
+                            <li><a href="expression_stage_search.html">Stage Expressions</a></li>
+                            <li><a href="expression_tissue_search.html">Tissue Expressions</a></li>
+                            <li><a href="expression_embryo_search.html">Embryo Expressions</a></li>
+                        </ul>
+                    </li>
+                    <li><a><span class="text">Tools</span> <span class="angle"></span></a>
+                        <ul class="dropdown">
+                            <li><a href="compare.html">Compare</a></li>
+                            <li><a href="convert.html">Convert</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="help.html"><span class="text">Help</span></a></li>
+                    <li><a href="about.html"><span class="text">About</span></a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="search-vertical-content">
+            <!-- Hero Section -->
+            <div id="search-intro">
+                <div class="search-hero-section">
+                    <h2>Compare</h2>
+                    <p>Find unique and common genes within two sets of genes.</p>
+                </div>
+            </div>
+
+            <!-- Wrapper for padding -->
+            <div class="search-param-wrapper">
+                <div id="compare-param">
+                    <div class="search-param-column">
+                        <div class="form-group">
+                            <h5>Gene Set 1</h5>
+                            <textarea name="gene_set1" id="gene_set1" placeholder="Enter the first comma-separated list of gene names"></textarea>
+                        </div>
+                    </div>
+                    <div class="search-param-column">
+                        <div class="form-group">
+                            <h5>Gene Set 2</h5>
+                            <textarea name="gene_set2" id="gene_set2" placeholder="Enter the second comma-separated list of gene names"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="reset">Clear</button>
+                <button type="submit" id="compare-button">Compare</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript file -->
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Compare - GExplore</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="icon" href="assets/favicon.png" type="image/png">
+</head>
+
+<body id="compare-page">
+    <div class="compare-result-wrapper">
+        <div id="header">
+            <a href="home.html">
+                <img src="assets/GExplore_logo.png" alt="GExplore Logo" class="logo">
+            </a>            
+            <div id="topnav">
+                <ul>
+                    <li class="active"><a href="home.html"><span class="text">Home</span></a></li>
+                    <li><a><span class="text">Search</span> <span class="angle"></span></a>
+                        <ul class="dropdown">
+                            <li><a href="gene_search.html">Genes</a></li>
+                            <li><a href="mutation_search.html">Mutations</a></li>
+                            <li><a href="protein_search.html">Proteins</a></li>
+                            <li><a href="expression_stage_search.html">Stage Expressions</a></li>
+                            <li><a href="expression_tissue_search.html">Tissue Expressions</a></li>
+                            <li><a href="expression_embryo_search.html">Embryo Expressions</a></li>
+                        </ul>
+                    </li>
+                    <li><a><span class="text">Tools</span> <span class="angle"></span></a>
+                        <ul class="dropdown">
+                            <li><a href="compare.html">Compare</a></li>
+                            <li><a href="convert.html">Convert</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="help.html"><span class="text">Help</span></a></li>
+                    <li><a href="about.html"><span class="text">About</span></a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="search-vertical-content">
+            <!-- Hero Section -->
+            <div id="search-intro">
+                <div class="search-hero-section">
+                    <h2>Compare</h2>
+                    <p>Find unique and common genes within two sets of genes.</p>
+                </div>
+            </div>
+
+            <!-- Wrapper for padding -->
+            <div class="search-param-wrapper">
+                <div id="compare-param">
+                    <div class="search-param-column-full">
+                        <div class="form-group">
+                            <h5>X genes found in both sets</h5>
+                            <div class="result-box">
+                                <p>unc-30, unc-78, unc-98</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="search-param-column-full">
+                        <div class="form-group">
+                            <h5>Y genes found only in set 1</h5>
+                            <div class="result-box">
+                                <p>unc-1, unc-10, unc-101, unc-103, unc-104, unc-105...</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="search-param-column-full">
+                        <div class="form-group">
+                            <h5>Z genes found only in set 2</h5>
+                            <div class="result-box">
+                                <p>unc-110</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+            
+        </div>
+    </div>
+
+    <!-- JavaScript file -->
+    <script src="script.js"></script>
+</body>
+</html>
