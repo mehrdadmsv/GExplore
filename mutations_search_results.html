@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags for character set and responsive design -->
+    <meta charset="utf-8">
+    <title>Mutation Results - GExplore</title>
+    <!-- Linking CSS stylesheet -->
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <!-- Favicon for the browser tab -->
+    <link rel="icon" href="assets/favicon.png" type="image/png">
+</head>
+
+<body id="top">
+
+    <!-- Main wrapper div -->
+    <div class="wrapper">
+        <!-- Header section -->
+        <div id="header">
+            <a href="home.html">
+                <img src="assets/GExplore_logo.png" alt="GExplore Logo" class="logo">
+            </a>            
+            <div id="topnav">
+                <ul>
+                    <li class="active"><a href="home.html"><span class="text">Home</span></a></li>
+                    <li><a><span class="text">Search</span> <span class="angle"></span></a>
+                        <ul class="dropdown">
+                            <li><a href="gene_search.html">Genes</a></li>
+                            <li><a href="mutation_search.html">Mutations</a></li>
+                            <li><a href="protein_search.html">Proteins</a></li>
+                            <li><a href="expression_stage_search.html">Stage Expressions</a></li>
+                            <li><a href="expression_tissue_search.html">Tissue Expressions</a></li>
+                            <li><a href="expression_embryo_search.html">Embryo Expressions</a></li>
+                        </ul>
+                    </li>
+                    <li><a><span class="text">Tools</span> <span class="angle"></span></a>
+                        <ul class="dropdown">
+                            <li><a href="compare.html">Compare</a></li>
+                            <li><a href="convert.html">Convert</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="help.html"><span class="text">Help</span></a></li>
+                    <li><a href="about.html"><span class="text">About</span></a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Content section -->
+        <div id="content">
+
+            <!-- IMPORTANT = Perl Connection-->
+            <form action="display.pl" method="post" name="ge_display_form" target="_self" id="ge_display_form">
+        
+                
+                <!-- Sidebar wrapper -->
+                <div class="sidebar-wrapper">
+                    <!-- Sidebar icon container -->
+                    <div id="sidebar-icon-container" class="active">
+                        <!-- Active line indicator -->
+                        <div id="active-line"></div>
+                        <!-- Icon container for sidebar items -->
+                        <div class="icon-container" data-target="database-content">
+                            <img id="list-icon" src="assets/database-icon.png" alt="Database Icon" class="list-icon" draggable="false">
+                            <span class="tooltip-text">Search Results</span>
+                        </div>
+                        <div class="icon-container" data-target="display-options-content">
+                            <img id="display-icon" src="assets/display-options-icon.png" alt="Display Options Icon" class="list-icon" draggable="false">
+                            <span class="tooltip-text">Display Options</span>
+                        </div>
+                        <div class="icon-container" data-target="export-content">
+                            <img id="export-icon" src="assets/export-icon.png" alt="Export Icon" class="list-icon" draggable="false">
+                            <span class="tooltip-text">Export Data</span>
+                        </div>
+                        <div class="icon-container help-icon" data-target="help-content">
+                            <img id="help-icon" src="assets/help-icon.png" alt="Help Icon" class="list-icon" draggable="false">
+                            <span class="tooltip-text">Help</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Sidebar content -->
+                    <div id="sidebar">
+                        <!-- Database content in sidebar -->
+                        <div id="database-content" class="sidebar-content "> <!--add class active if any issue-->
+                            <div class="sidebar-title">
+                                <h4>Search Results</h4> 
+                            </div>
+                            <div id="sidebar-info">
+                                <div class="first-content-title">                                
+                                    <p>Search Parameters</p>
+                                </div>
+                                <div class="content-info">
+                                    <p>Database: Wormbase 292</p>
+                                    <p>Gene: unc-5</p>
+                                </div>
+                                <div class="content-title">                                
+                                    <div class="list-header">
+                                        <p>Results</p>                             
+                                    </div>
+                                </div>
+                                <div class="gene-list-container">
+                                    <div class="copy-icon-row">
+                                        <div class="genes-found-info">37 mutations found</div>
+                                        <div class="copy-icon-container">
+                                            <img id="copy-icon" src="assets/copy-icon.png" alt="Copy Icon" draggable="true">
+                                            <span class="copy-tooltip-text">Copy List</span>
+                                        </div>
+                                    </div>
+                                    <div class="list-info">
+                                        <!-- List of genes found -->
+                                        <p>B0273.4c</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Display options content in sidebar -->
+                        <div id="display-options-content" class="sidebar-content ">
+                            <div class="sidebar-title">
+                                <h4>Display Options</h4> 
+                            </div>
+                            <div id="sidebar-info">
+                                <div class="first-content-title">                                
+                                    <p>Add/Remove Columns</p>
+                                </div>
+                                <div class="column-filter-container">                             
+                                    <div class="display-option-form">
+                                        <!-- Checkbox options for display columns -->
+                                        <label><input name="locus_display" type="checkbox" id="locus_display" />&nbsp;&nbsp;Gene Name</label>
+                                        <label><input name="uniprot_display" type="checkbox" id="uniprot_display" />&nbsp;&nbsp;UniProt ID</label>
+                                        <label><input name="nt_display" type="checkbox" id="nt_display" />&nbsp;&nbsp;Nucleotide Position</label>
+                                    </div>
+                                </div>
+
+                                <div class="display-filter-container">   
+                                    <div class="content-title">                                
+                                        <p>Protein Domain or Sequence</p>    
+                                    </div>
+
+                                    <div class="display-option-form">
+                                        <!-- Checkbox options for display columns -->
+                                        <label><input type="radio" name="domain_display" value="domains" id="show_domains" checked="checked"/>&nbsp;&nbsp;Show protein domains</label>
+                                        <label><input type="radio" name="domain_display" value="sequence" id="show_sequence"/>&nbsp;&nbsp;Show protein sequence</label>
+                                    </div>
+                                </div>
+
+                                <div class="display-filter-container">   
+                                    <div class="content-title">                                
+                                        <p>Display Features</p>    
+                                    </div>
+                                    <div class="display-option-form">
+                                        <p>Wrap after <input type="number" name="domain_wrap" id="domain_wrap"> domains.</p>
+                                        <p>Show gaps > <input type="number" name="aaThres" id="aaThres"> amino acids.</p>
+
+                 
+                                        <h5>Show only mutations in this domain:</h5>
+                                        <textarea name="mut_domains" id="mut_domains" placeholder="Enter a domain. Separate each additional domain with a comma."></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Update display button -->
+                            <div class="button-container">
+                                <button type="submit" class="update-display-btn">Update Display</button>
+                            </div>
+                        </div>
+
+
+
+                        
+
+
+                        <!-- Export content in sidebar -->
+                        <div id="export-content" class="sidebar-content">
+                            <div class="sidebar-title">
+                                <h4>Export Data</h4>
+                            </div>
+                            <div id="sidebar-info">
+                                <div class="first-content-title">                                
+                                    <p>Select Export Format</p>
+                                </div>
+                                <div class="export-option-container">
+                                    <form class="export-option-form">
+                                        <div class="export-buttons">
+                                            <button type="button" id="export-csv-button">Export as CSV</button>
+                                            <button type="button" id="export-txt-button">Export as TXT</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        
+
+
+                        <!-- Help content in sidebar -->
+                        <div id="help-content" class="sidebar-content">
+                            <div class="sidebar-title">
+                                <h4>Help</h4>
+                            </div>
+                            <div id="sidebar-info">
+                                <div class="help-content-container">
+                                    <p>Click on the active Icon to hide the sidebar.</p>
+                                    <p>Click a column header to sort the table: <br/>
+                                        <span style="color: #1976D2;">▲</span> The column is sorted in ascending order (A-Z or 0-9).<br/>
+                                        <span style="color: #1976D2;">▼</span> The column is sorted in descending order (Z-A or 9-0).
+                                    </p>
+                                    <p>Uncheck a box in the table and then click 'Update Display' to remove a gene from the list.</p>
+                                    <p>Drag a column header to rearrange columns.</p>
+                                    <p>When the domain organization of the proteins is shown, you can drag rows to rearrange the table.</p>
+                                </div>                                
+                            </div>
+                            <!-- Help button linking to help.html#display-options -->
+                            <div class="help-button-container">
+                                <a href="help.html#display-options" target="_blank" class="help-button">View Display Options Guide</a>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <!-- Main content area -->
+                <div id="main-content">
+                    
+                    <div class="table-container">
+                        <div id="scrollableTable" class="scroll-unlocked">
+                            <table id="results" class="sortable result_table">
+                                <!-- Table headers -->
+                                <thead>
+                                    <tr class="sticky">
+                                        <!-- 
+                                        Expanded th element setup example (this is used for sorting arrows):
+                                        <th class="gene_col sticky sortable">
+                                            Gene
+                                            <span class="sort-icons">
+                                              <i class="arrow-up"></i>
+                                              <i class="arrow-down"></i>
+                                            </span>
+                                        </th>
+                                        -->
+                                        <th class="checkbox_col sorttable_nosort"></th>
+                                        <th class="gene_col sortable">Protein<span class="sort-icons"><i class="arrow-up"></i><i class="arrow-down"></i></span></th>
+                                        <th class="gene_col sticky sortable">Gene<span class="sort-icons"><i class="arrow-up"></i><i class="arrow-down"></i></span></th>
+                                        <th class="uniprot_col sortable">UniProt ID<span class="sort-icons"><i class="arrow-up"></i><i class="arrow-down"></i></span></th>
+                                        <th class="gene_col sortable">Allele<span class="sort-icons"><i class="arrow-up"></i><i class="arrow-down"></i></span></th>
+                                        <th class="gene_col sortable">Type<span class="sort-icons"><i class="arrow-up"></i><i class="arrow-down"></i></span></th>
+                                        <th class="nuc_pos_col sortable">Nucleotide Position<span class="sort-icons"><i class="arrow-up"></i><i class="arrow-down"></i></span></th>
+                                        <th class="protsize_col sortable">Size aa<span class="sort-icons"><i class="arrow-up"></i><i class="arrow-down"></i></span></th>
+                                        <th class="sorttable_nosort pic_col">Domain Organization<span class="sort-icons"><i class="arrow-up"></i><i class="arrow-down"></i></span></th>    
+                                    </tr>
+                                </thead>
+                                
+                                
+                                <!-- Table body with data rows -->
+                                <tbody id="result_tbody">
+                                    <tr>
+                                        <td class ="checkbox_col">&nbsp;<input type="checkbox" id="4170" name="4170" checked="checked"/></td>
+                                        <td class ="gene_col"><a href="http://www.wormbase.org/db/gene/gene?name=B0273.4c;class=Protein" target="_blank">B0273.4c</a></td>
+                                        <td class ="gene_co sticky"><a href="http://www.wormbase.org/db/gene/gene?name=unc-5;class=Gene" target="_blank">unc-5</a></td>
+                                        <td class ="uniprot_col"><a href="http://www.uniprot.org/uniprot/Q26261" target="_blank">Q26261</a></td>
+                                        <td class ="gene_col"><a href="http://www.wormbase.org/db/gene/variation?name=gk928440;class=Variation" target="_blank">gk928440</a></td>
+                                        <td class ="type_col">R138W</td>
+                                        <td class ="nuc_pos_col"><a href="https://wormbase.org/tools/genome/jbrowse2/index.html?assembly=c_elegans_PRJNA13758&loc=X%3A5500935..5502935&tracks=c_elegans_PRJNA13758_curated_genes%2Cc_elegans_PRJNA13758_classical_alleles%2Cc_elegans_PRJNA13758_change-of-function_alleles" target="_blank">	5,501,935</a></td>
+                                        <td class ="protsize_col">947</td>
+                                        <td class ="pic_col"><img src="assets/display_prototype/4170.png" usemap="#B0273.4c" border="0">
+                                            <map Name="B0273.4c">
+                                                <area shape="rect" coords="57,22,109,42" title="IG" href="help.html#IG" target="_blank">
+                                                <area shape="rect" coords="109,22,161,42" title="T1" href="help.html#T1" target="_blank">
+                                                <area shape="rect" coords="161,22,213,42" title="T1" href="help.html#T1" target="_blank">
+                                                <area shape="rect" coords="213,22,265,42" title="TM" href="help.html#TM" target="_blank">
+                                                <area shape="rect" coords="317,22,369,42" title="ZU5" href="help.html#ZU5" target="_blank">
+                                                <area shape="rect" coords="421,22,473,42" title="PF17217" href="http://pfam.xfam.org/family/PF17217" target="_blank">
+                                                <area shape="rect" coords="473,22,525,42" title="Death" href="help.html#Death" target="_blank">
+                                            </map>
+                                        </td>
+                                    </tr>					
+                                    <tr>
+                                        <td class ="checkbox_col">&nbsp;<input type="checkbox" id="4145" name="4145" checked="checked"/></td>
+                                        <td class ="gene_col"><a href="http://www.wormbase.org/db/gene/gene?name=B0273.4c;class=Protein" target="_blank">B0273.4c</a></td>
+                                        <td class ="gene_col sticky"><a href="http://www.wormbase.org/db/gene/gene?name=unc-5;class=Gene" target="_blank">unc-5</a></td>
+                                        <td class ="uniprot_col"><a href="http://www.uniprot.org/uniprot/Q26261" target="_blank">Q26261</a></td>
+                                        <td class ="gene_col"><a href="http://www.wormbase.org/db/gene/variation?name=e791;class=Variation" target="_blank">e791</a></td>
+                                        <td class ="type_col">Q346*</td>
+                                        <td class ="nuc_pos_col"><a href="https://wormbase.org/tools/genome/jbrowse2/index.html?assembly=c_elegans_PRJNA13758&loc=X%3A5498156..5500156&tracks=c_elegans_PRJNA13758_curated_genes%2Cc_elegans_PRJNA13758_classical_alleles%2Cc_elegans_PRJNA13758_change-of-function_alleles" target="_blank">	5,499,156</a></td>
+                                        <td class ="protsize_col">947</td>
+                                        <td class ="pic_col"><img src="assets/display_prototype/4145.png" usemap="#B0273.4c" border="0">
+                                            <map Name="B0273.4c">
+                                                <area shape="rect" coords="57,22,109,42" title="IG" href="help.html#IG" target="_blank">
+                                                <area shape="rect" coords="109,22,161,42" title="T1" href="help.html#T1" target="_blank">
+                                                <area shape="rect" coords="161,22,213,42" title="T1" href="help.html#T1" target="_blank">
+                                                <area shape="rect" coords="213,22,265,42" title="TM" href="help.html#TM" target="_blank">
+                                                <area shape="rect" coords="317,22,369,42" title="ZU5" href="help.html#ZU5" target="_blank">
+                                                <area shape="rect" coords="421,22,473,42" title="PF17217" href="http://pfam.xfam.org/family/PF17217" target="_blank">
+                                                <area shape="rect" coords="473,22,525,42" title="Death" href="help.html#Death" target="_blank">
+                                            </map>
+                                        </td>
+                                    </tr>					
+                                    <tr>
+                                        <td class ="checkbox_col">&nbsp;<input type="checkbox" id="4174" name="4174" checked="checked"/></td>
+                                        <td class ="gene_col"><a href="http://www.wormbase.org/db/gene/gene?name=B0273.4c;class=Protein" target="_blank">B0273.4c</a></td>
+                                        <td class ="gene_col sticky"><a href="http://www.wormbase.org/db/gene/gene?name=unc-5;class=Gene" target="_blank">unc-5</a></td>
+                                        <td class ="uniprot_col"><a href="http://www.uniprot.org/uniprot/Q26261" target="_blank">Q26261</a></td>
+                                        <td class ="gene_col"><a href="http://www.wormbase.org/db/gene/variation?name=op460;class=Variation" target="_blank">op460</a></td>
+                                        <td class ="type_col">C53Y</td>
+                                        <td class ="nuc_pos_col"><a href="https://wormbase.org/tools/genome/jbrowse2/index.html?assembly=c_elegans_PRJNA13758&loc=X%3A5515190..5517190&tracks=c_elegans_PRJNA13758_curated_genes%2Cc_elegans_PRJNA13758_classical_alleles%2Cc_elegans_PRJNA13758_change-of-function_alleles" target="_blank">	5,516,190</a></td>
+                                        <td class ="protsize_col">947</td>
+                                        <td class ="pic_col"><img src="assets/display_prototype/4174.png" usemap="#B0273.4c" border="0">
+                                            <map Name="B0273.4c">
+                                                <area shape="rect" coords="57,22,109,42" title="IG" href="help.html#IG" target="_blank">
+                                                <area shape="rect" coords="109,22,161,42" title="T1" href="help.html#T1" target="_blank">
+                                                <area shape="rect" coords="161,22,213,42" title="T1" href="help.html#T1" target="_blank">
+                                                <area shape="rect" coords="213,22,265,42" title="TM" href="help.html#TM" target="_blank">
+                                                <area shape="rect" coords="317,22,369,42" title="ZU5" href="help.html#ZU5" target="_blank">
+                                                <area shape="rect" coords="421,22,473,42" title="PF17217" href="http://pfam.xfam.org/family/PF17217" target="_blank">
+                                                <area shape="rect" coords="473,22,525,42" title="Death" href="help.html#Death" target="_blank">
+                                            </map>
+                                        </td>
+                                    </tr>					
+                                    <tr>
+                                        <td class ="checkbox_col">&nbsp;<input type="checkbox" id="4157" name="4157" checked="checked"/></td>
+                                        <td class ="gene_col"><a href="http://www.wormbase.org/db/gene/gene?name=B0273.4c;class=Protein" target="_blank">B0273.4c</a></td>
+                                        <td class ="gene_col sticky"><a href="http://www.wormbase.org/db/gene/gene?name=unc-5;class=Gene" target="_blank">unc-5</a></td>
+                                        <td class ="uniprot_col"><a href="http://www.uniprot.org/uniprot/Q26261" target="_blank">Q26261</a></td>
+                                        <td class ="gene_col"><a href="http://www.wormbase.org/db/gene/variation?name=gk537571;class=Variation" target="_blank">gk537571</a></td>
+                                        <td class ="type_col">A58V</td>
+                                        <td class ="nuc_pos_col"><a href="https://wormbase.org/tools/genome/jbrowse2/index.html?assembly=c_elegans_PRJNA13758&loc=X%3A5515175..5517175&tracks=c_elegans_PRJNA13758_curated_genes%2Cc_elegans_PRJNA13758_classical_alleles%2Cc_elegans_PRJNA13758_change-of-function_alleles" target="_blank">	5,516,175</a></td>
+                                        <td class ="protsize_col">947</td>
+                                        <td class ="pic_col"><img src="assets/display_prototype/4157.png" usemap="#B0273.4c" border="0">
+                                            <map Name="B0273.4c">
+                                            <area shape="rect" coords="57,22,109,42" title="IG" href="help.html#IG" target="_blank">
+                                            <area shape="rect" coords="109,22,161,42" title="T1" href="help.html#T1" target="_blank">
+                                            <area shape="rect" coords="161,22,213,42" title="T1" href="help.html#T1" target="_blank">
+                                            <area shape="rect" coords="213,22,265,42" title="TM" href="help.html#TM" target="_blank">
+                                            <area shape="rect" coords="317,22,369,42" title="ZU5" href="help.html#ZU5" target="_blank">
+                                            <area shape="rect" coords="421,22,473,42" title="PF17217" href="http://pfam.xfam.org/family/PF17217" target="_blank">
+                                            <area shape="rect" coords="473,22,525,42" title="Death" href="help.html#Death" target="_blank">
+                                            </map>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </form>    
+        </div>
+    </div>
+    
+    <!-- JavaScript file -->
+    <script src="script.js"></script>
+    <script src="javascript/sortable_feature.js"></script>
+    <script src="javascript/tablednd.js"></script>
+    
+    <script type="text/javascript">
+        var table = document.getElementById('results');
+        var tableDnD = new TableDnD();
+        tableDnD.init(table);
+    </script>
+
+    <!--
+    Important Note: 
+    Order Matters: The order of <script> tags is crucial. The array files must be loaded first, so when autosuggest.js is loaded, it can access these arrays.
+    -->
+    <!-- Include the array files first so they are available as global variables -->
+    <script src="javascript/autosuggest_list_domains.js"></script>
+    <!-- Include the autosuggest.js file that uses these arrays -->
+    <script src="javascript/autosuggest.js"></script>
+
+
+</body>
+</html>
