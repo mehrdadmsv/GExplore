@@ -13,28 +13,24 @@
     --header_bkgr_color: #e3f3fb;
     --submenu_bkgr_color: #fcffff;
     --footer_bkgr_color: #e3f3fb;
-    --border_color: #E0E0E0; /* previous border color was #cccccc */
+    --border_color: #E0E0E0; 
     --nav_text_color: #2f322a;
-    --body_text_color: #222222; /* previous color was #000000 */
+    --body_text_color: #0A2347; 
     --background-sidebar-color: #F5F5F5;
     --body_sidebar_color: #22252A;
     --body_link_color: #010e45;
-    --body_link_hover_color: #059BD8;
+    --body_link_hover_color: #058BC3;
     --button_bkgr_color: #0070d2;
     --button_hover_bkgr_color: #005bb5;
     --button_text_color: #FFFFFF;
-    --active_icon_border_color: #059BD8; /* Blue color for active icon border */
-
-    --switches-bg-color: white; 
-    --switches-label-color: #1976D2;
-    --switch-bg-color: #1976D2;
-    --switch-text-color: white;
+    --active_icon_border_color: #059BD8; 
 }
 
+/* ------------------------ Global CSS Rules End ------------------------- */
 
-/* ------------------- Import local font start ------------------------ */
+/* ------------------- Import Local Font Start ------------------------ */
 
-/* Regular Weights */
+/* Importing different font-weights (300-800) */
 @font-face {
     font-family: 'Open Sans';
     src: url('fonts/Open_Sans/static/OpenSans-Light.ttf') format('truetype');
@@ -77,32 +73,27 @@
     font-style: normal;
 }
 
-/* ------------------- Import local font end ------------------------ */
+/* ------------------- Import Local Font End ------------------------ */
 
-
-
-
-/* ------------------------ Global CSS Rules Start ------------------------- */
+/* ------------------------ Global CSS Layouts Start ------------------------- */
 
 html, body {
-    font-family: 'Open Sans', sans-serif; /* Fonts with priority given to 'Open Sans' */
+    font-family: 'Open Sans', sans-serif; /* Fonts with priority given to imported 'Open Sans' */
     background: var(--body_bkgr_color);
     color: var(--body_text_color); 
     margin: 0;
     padding: 0;
     height: 100%;
-    overflow: hidden; /*this was hidden before if there was scroll problem in help and display pages revert back */
-    min-width: 760px;
+    overflow: hidden;
+    min-width: 768px;
     min-height: 335px;
 }
-
 
 .clearfix:after {
     content: "";
     display: table;
     clear: both;
 }
-
 
 .wrapper {
     display: flex;
@@ -117,7 +108,7 @@ html, body {
     padding-bottom: 80px;
 }
 
-/* horizontal layout content for display page and help page */
+/* Horizontal layout content for display page and help page */
 #content {
     display: flex;
     flex: 1 1 auto;
@@ -129,7 +120,7 @@ html, body {
 
 /* vs */
 
-/* vertical layout content for home page */
+/* Vertical layout content for home page */
 #vertical-content {
     display: flex;
     flex-direction: column;
@@ -138,8 +129,6 @@ html, body {
     position: relative;
     overflow: auto;
 }
-
-
 
 #search-vertical-content {
     display: flex;
@@ -151,7 +140,6 @@ html, body {
     height: 100%;
 }
 
-
 .compare-result-wrapper {
     display: flex;
     flex-direction: column;
@@ -159,13 +147,9 @@ html, body {
     padding-bottom: 0px;
 }
 
+/* ------------------------ Global CSS Layouts End ------------------------- */
 
-/* ------------------------ Global CSS Rules End ------------------------- */
-
-
-
-/* ------------------------ Navbar Header Menu Start ------------------------- */
-
+/* ------------------------ Navbar (Menu) Start ------------------------- */
 
 #header {
     display: flex;
@@ -177,22 +161,21 @@ html, body {
 }
 
 #header .logo {
-    max-height: 30px; /* it was 20px before the new changes */
+    max-height: 30px;
     margin-left: 20px;
     margin-right: 20px;
     position: absolute;
     left: 20px;
-    user-select: none; /* Prevent logo from being highlightable */
+    user-select: none;
 }
 
-/* Fine-tune the alignment if needed */
 #header a {
     display: flex;
     align-items: center;
 }
 
 #topnav {
-    font-size: 13px;
+    font-size: 14px;
     background-color: #FFFFFF;
     text-align: center;
 }
@@ -207,10 +190,10 @@ html, body {
 
 #topnav ul li {
     position: relative;
-    margin-right: 40px; /* Adds a 20px gap between each list item */
+    margin-right: 40px; 
 }
 
-/* Optionally, you can use this to remove the margin on the last item */
+/* Remove the margin on the last item */
 #topnav ul li:last-child {
     margin-right: 0;
 }
@@ -229,7 +212,7 @@ html, body {
 #topnav ul li a .text {
     display: inline-block;
     position: relative;
-    user-select: none; /* Prevent text from being highlightable */
+    user-select: none; 
 }
 
 #topnav ul li:hover > a {
@@ -240,11 +223,10 @@ html, body {
     content: '';
     position: absolute;
     width: 0;
-    height: 2px;
+    height: 2.5px;
     bottom: 0px;
     left: 0;
     background: var(--body_link_hover_color);
-    transition: width 0.5s ease;
 }
 
 #topnav ul li:hover .text::after {
@@ -263,7 +245,7 @@ html, body {
     box-shadow: 0 8px 16px rgba(0,0,0,0.15);
     border-radius: 8px;
     transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
-    transform: translateY(0px); /* it was -10 before */
+    transform: translateY(0px);
     z-index: 1000;
 }
 
@@ -327,76 +309,114 @@ html, body {
     transform: rotate(-180deg);
 }
 
-/* ------------------------ Navbar Header Menu End ------------------------- */
+/* ------------------------ Media Queries for Different Screens ------------------------- */
+
+@media screen and (min-width: 1920px) {
+    #topnav {
+        font-size: 15px;
+    }
+
+    #header .logo {
+        max-height: 35px;
+    }
+
+    #topnav ul li {
+        margin-right: 60px; 
+    }
+
+    .angle {
+        width: 26px;
+        height: 26px;
+    }
+
+    #topnav ul li a .text::after {
+        height: 3px;
+    }
+}
+
+@media screen and (min-width: 2560px) {
+    #topnav {
+        font-size: 15px;
+    }
+
+    #header .logo {
+        max-height: 35px;
+    }
+
+    #topnav ul li {
+        margin-right: 60px; 
+    }
+
+    .angle {
+        width: 26px;
+        height: 26px;
+    }
+
+    #topnav ul li a .text::after {
+        height: 3px;
+    }
+}
 
 
 
+/* ------------------------ Navbar (Menu) End ------------------------- */
 
+/* ------------------------ Home Page Start ------------------------- */
 
+/* Default (base) global styles (for all screens) */
 
-
-
-
-
-
-
-
-
-
-
-/* ------------------------ Home Page Specific Start ------------------------- */
-
-
-
-
-
-
-
-
-
-
-
-
-/* Hero Section */
+/* Hero (banner) section */
 #intro {
     position: relative;
-    margin-bottom: 50px;
+    margin-bottom: 0px;
+    width: 100%; 
+    box-sizing: border-box; 
+    margin: 0 auto; 
 }
 
 #intro .hero-section {
-    background-color: #000;
-    height: 400px; /* Increased height for better visual impact */
+    height: auto; 
     position: relative;
-    padding: 40px 10%;
+    /* padding: 20px 12%;  Default padding (will change for different screen sizes) */
+    padding: 0; /* Remove default padding to control `.hero-section-content` positioning */ 
     color: #ffffff;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Vertically center content */
-    z-index: 1;
+    justify-content: center;
+    align-items: center; /* Center `.hero-section-content` vertically */
+    background-image: url('assets/home-hero.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
 
-    background-image: url('assets/home-hero.jpeg'); 
-    background-size: cover; 
-    background-position: center; 
-    background-repeat: no-repeat; 
-    opacity: 1;
+#intro .hero-section .hero-section-content {
+    padding: 30px 0px 30px 0px; /* Adjust the top and bottom padding for spacing */
+    position: relative; /* Allows for manual adjustment if needed */
+    width: auto;
+    max-width: 80%; /* Maintain max width similar to text elements */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Ensure content aligns to the left within `.hero-section-content` */
 }
 
 #intro .hero-section h2 {
-    font-size: 33px; /* Larger font size */
+    font-size: 20px; /* Base font size */
+    font-weight: 800;
     opacity: 0.9;
     font-weight: bold;
-    margin-bottom: 20px;
-    max-width: 500px; /* Control width for better readability */
-    line-height: 1.2; /* Adjust line height for better spacing */
+    margin-bottom: 10px;
+    max-width: 70%; 
+    line-height: 1.2;
 }
 
 #intro .hero-section p {
     opacity: 0.9;
     font-weight: 400;
-    font-size: 15px;
+    font-size: 14px; /* Base font size */
     line-height: 1.6;
-    max-width: 500px; /* Align text width with the heading */
-    margin-bottom: 30px;
+    max-width: 70%; 
+    margin-bottom: 10px;
 }
 
 #intro .hero-section .read-more {
@@ -404,7 +424,7 @@ html, body {
     display: inline-flex;
     align-items: center;
     font-size: 13px;
-    color: #ffffff; /* Keep the text color white */
+    color: #ffffff;
     text-decoration: none;
     font-weight: 400;
     position: relative;
@@ -416,7 +436,7 @@ html, body {
 }
 
 #intro .hero-section .read-more span {
-    position: relative; /* Enable positioning for the sliding underline */
+    position: relative;
     line-height: 2.0;
 }
 
@@ -424,142 +444,134 @@ html, body {
     content: '';
     position: absolute;
     width: 0;
-    height: 2px;
+    height: 2.5px;
     bottom: 0;
     left: 0;
-    background: var(--body_link_hover_color); /* Same color as header underline */
-    transition: width 0.5s ease; /* Same transition time as header */
+    background: var(--body_link_hover_color);
+}
+
+@media screen and (min-width: 1920px) {
+    #intro .hero-section .read-more span::after {
+        height: 3px;
+    }
 }
 
 #intro .hero-section .read-more:hover span::after {
-    width: 100%; /* Expand the underline to the full width of the text */
+    width: 100%;
 }
 
 #intro .hero-section .read-more img.external-link-icon {
-    margin-left: 5px; /* Space between text and icon */
-    width: 19.82px;
-    height: 16.95px;
-    vertical-align: middle; /* Align icon with text */
+    margin-left: 5px;
+    width: 17px;
+    height: 15px;
+    vertical-align: middle;
 }
 
+#intro .hero-section .link-container {
+    display: flex; /* Apply flexbox to make the links appear in a row */
+    gap: 20px; /* Optional: Add space between the links */
+}
 
-
-
-
-
-
-
-
-/* Cards Section */
-.cards-title {
-    font-weight: 700;
-    font-size: 16px;
-    display: flex;
-    flex-direction: column;
+#intro .hero-section .read-more {
+    opacity: 0.9;
+    display: inline-flex;
     align-items: center;
-    margin-bottom: 10px;
+    font-size: 13px;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 400;
+    position: relative;
 }
 
+/* Cards section */
 #cards {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 25px;
-    padding: 20px 20px 80px 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns always */
+    gap: 20px;
+    padding: 20px 0;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .card {
-    padding: 5px 5px 5px 5px;
+    padding: 10px;
+    position: relative; 
     background-color: #ffffff;
-    width: 300px;
     text-align: center;
     overflow: hidden;
-    transition: transform 0.6s;
     display: flex;
     flex-direction: column;
     cursor: pointer;
 }
 
 .card img {
-    border-radius: 10px;
+    border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    height: auto;
+    height: 130px;
     margin-bottom: 10px;
     user-select: none;
-    -moz-user-select: none;
     -webkit-user-drag: none;
     -webkit-user-select: none;
-    -ms-user-select: none;
 }
 
 .card-subtitle {
-    padding: 15px 0px 0px 0px;
+    padding: 0px 0 0 0;
 }
 
 .card-subtitle h3 {
+    color: var(--body_text_color); ;
     font-weight: 700;
-    font-size: 14px;
-    margin-bottom: 10px;
+    font-size: 16px;
+    margin-bottom: 5px;
 }
 
 .card-subtitle p {
-    font-weight: 400;
-    font-size: 12px;
-    color: #555;
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--body_text_color); ;
     text-align: left;
-
 }
 
-.card:hover {
-    transform: translateY(-10px);
+.card a {
+    text-decoration: none;
 }
 
+.card img:hover {
+    box-shadow: 0 8px 16px rgba(13, 71, 161, 0.2); 
+}
 
-
-
-
-
-
-
-
-
-
+.card:hover img {
+    box-shadow: 0 8px 16px rgba(13, 71, 161, 0.2); 
+}
 
 /* Footer Section */
 footer {
     background-color: #111;
     color: #ccc;
-    padding: 50px 0 0 0;
-    font-size: 12px;
-    /*
-    background-image: url('assets/footer-background.jpeg'); 
-    background-size: cover; 
-    background-position: center; 
-    background-repeat: no-repeat; 
-    opacity: 1;
-    */
+    padding: 30px 20px 10px 20px;
+    font-size: 0.85rem;
 }
 
 .footer-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between;
+    align-items: flex-start;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    gap: 20px;
 }
 
 .footer-section {
     flex: 1;
     min-width: 200px;
-    margin-bottom: 50px;
+    text-align: center;
 }
 
 .footer-section h3 {
     color: #ffffff;
-    font-size: 14px;
-    margin-bottom: 15px;
+    font-size: 1rem;
+    margin-bottom: 10px;
 }
 
 .footer-section ul {
@@ -568,7 +580,7 @@ footer {
 }
 
 .footer-section ul li {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .footer-section ul li a {
@@ -581,18 +593,17 @@ footer {
     color: #fff;
 }
 
-
-
 .footer-bottom {
     text-align: center;
-    font-size: 12px;
+    font-size: 0.8rem;
     color: #777;
+    margin-top: 20px;
 }
 
 .footer-bottom-container {
     max-width: 1200px;
-    margin: 0 auto; /* Center the footer content */
-    padding: 20px 20px 30px 20px; /* Match the padding of .footer-container */
+    margin: 0 auto;
+    padding: 20px;
     border-top: 1px solid #333;
 }
 
@@ -609,2798 +620,139 @@ footer {
     margin: 0;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* ------------------------ Home Page Specific End ------------------------- */
-
-
-
-
-
-
-
-
-
-
-
-/* ------------------------ Gene Search Page Specific Start ------------------------- */
-
-
-
-
-
-
-
-
-
-
-#search-intro {
-    position: relative;
-    width: 100%; /* Full width of the page */
-    margin-bottom: 20px; /* Space below the hero section */
-    box-sizing: border-box; /* Include padding and borders in width */
-}
-
-#search-intro .search-hero-section {
-    color: #FFFFFF;
-    padding: 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Vertically centers content */
-    align-items: center; /* Horizontally centers content */
-    width: 100%; /* Full width of the section */
-    box-sizing: border-box;
-    background-image: url('assets/search-hero.jpeg'); /* Background image */
-    background-size: cover; /* Image covers entire section */
-    background-position: center;
-    background-repeat: no-repeat;
-    position: relative;
-    min-height: 180px; /* Minimum height to surround content without too much space */
-    max-height: 220px; /* Optional: Cap the maximum height */
-    padding: 20px 15px; /* Adjust padding to make it more compact */
-    text-align: center; /* Center text horizontally */
-    opacity: 1;
-}
-
-#search-intro .search-hero-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: rgba(0, 0, 0, 0.4); /* Slight dark overlay to enhance text readability */
-    z-index: 0;
-}
-
-#search-intro .search-hero-section * {
-    position: relative;
-    z-index: 1; /* Ensures text is above the background overlay */
-}
-
-#search-intro .search-hero-section h2 {
-    font-size: 24px; /* Larger font size for the heading */
-    font-weight: 700;
-    margin-bottom: 10px; /* Space below the heading */
-    text-align: center; /* Horizontal centering */
-    letter-spacing: 1px; /* Subtle letter spacing for improved legibility */
-}
-
-#search-intro .search-hero-section p {
-    line-height: 1.6; /* Adjusted line-height for readability */
-    text-align: center; /* Center text */
-    font-weight: 400;
-    font-size: 14px;
-    margin: 0 auto; /* Ensures paragraphs are centered */
-    max-width: 90%; /* Limits width for better readability */
-}
-
-#search-intro .search-hero-section a {
-    margin-top: 15px; /* Adds some space above the link */
-    padding: 8px 16px;
-    background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent button background */
-    color: #fff; /* Button text color */
-    border-radius: 4px;
-    text-decoration: none; /* Remove underline */
-    transition: background-color 0.3s ease; /* Smooth hover effect */
-}
-
-#search-intro .search-hero-section a:hover {
-    background-color: rgba(255, 255, 255, 0.3); /* Lighter background on hover */
-}
-
-
-
-
-
-
-
-
-
-
-
-
-.search-param-wrapper {
-    width: 100%;
-    display: flex;
-    justify-content: center; /* Center the content horizontally */
-    padding: 0px 20px 40px 20px; /* Add padding around the #search-param container */
-    box-sizing: border-box; /* Ensure padding is included in the width */
-}
-
-
-
-/* Form Section */
-#search-param {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0px 100px;
-    width: 100%;
-    max-width: 1200px;
-    background-color: #ffffff; /* Card-like appearance */
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-
-
-
-.search-param-column-1 {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: end;
-}
-
-
-.search-param-column-2 {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-}
-
-.form-group {
-    width: 100%; /* Adjust width of form groups */
-    margin-bottom: 20px; /* Add margin for spacing */
-}
-
-/* Group Headers = group title */
-.form-group h4 {
-    font-size: 16px; /* or 14 ?*/
-    font-weight: 700;
-    color: #333;
-    margin-bottom: 20px;
-}
-
-
-
-/* Labels */
-.form-group h5 {
-    font-size: 14px;
-    font-weight: 600;
-    color: #666;
-    margin-bottom: 5px;
-    margin-right: 0px;
-}
-
-
-/* Adjust label styling */
-.splice-variant-row label {
-    display: flex;
-    align-items: center;
-    cursor: pointer; /* Change cursor to pointer when hovering over the label */
-    margin-right: 20px;
-}
-
-.more-than-one-gene-deletion label {
-    display: flex;
-    align-items: center;
-    cursor: pointer; /* Change cursor to pointer when hovering over the label */
-    margin-right: 20px;
-}
-
-.location-type-row label {
-    display: flex;
-    align-items: center;
-    cursor: pointer; /* Change cursor to pointer when hovering over the label */
-    margin-right: 20px;
-}
-
-.label-container label {
-    display: flex;
-    align-items: center;
-    cursor: pointer; /* Change cursor to pointer when hovering over the label */
-    margin-right: 20px;
-}
-
-
-
-
-label h5 {
-    margin-bottom: 0; /* Remove bottom margin from h5 within labels */
-}
-
-/*
-label input[type="checkbox"],
-label input[type="radio"] {
-    margin-right: 8px;  Space between checkbox/radio and text 
-}
-*/
-
-
-
-
-
-
-
-/* Input Fields */
-.form-group input[type="text"],
-.form-group select {
-    height: 35px;
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    margin-bottom: 5px;
-    transition: border-color 0.3s;
-}
-
-
-
-.form-group textarea {
-    height: 50px; /* Adjust this value based on your design needs */
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    margin-bottom: 5px;
-    resize: vertical; /* Allows users to resize the textarea vertically */
-}
-
-
-
-/* General style for all text inputs and textareas */
-.form-group input[type="text"]:hover,
-.form-group textarea:hover,
-.form-group input[type="text"]:focus,
-.form-group textarea:focus,
-.form-group select:hover,
-.form-group select:focus {
-    border-color: #068EF1; /* Change to your desired color */
-    outline: none; /* Remove the default outline */
-}
-
-/* Optional: Add a transition for smooth color change */
-.form-group input[type="text"],
-.form-group textarea,
-.form-group select {
-    transition: border-color 0.3s ease-in-out;
-}
-
-
-/* Checkbox and Radio */
-.form-group input[type="checkbox"],
-.form-group input[type="radio"] {
-    margin-right: 8px;
-}
-
-
-.form-group .location-type-row {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-
-
-
-
-
-
-
-
-
-/* Ensure the form actions span both columns */
-.form-actions {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    height: 80px;
-    right: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 50px;
-    width: 100%;
-    padding: 10px;
-    background-color: #ffffff; /* Optional: Background color to distinguish the buttons */
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for better visibility */
-    z-index: 1000; /* Ensure it appears above other content */
-}
-
-/* Buttons */
-
-.form-actions button {
-    font-family: 'Open Sans', sans-serif; /* Fonts with priority given to 'Open Sans' */
-    width: 140px;
-    height: 40px;
-    font-size: 14px;
-    font-weight: 600; /* Slightly bolder font */
-    color: var(--button_text_color);
-    padding: 8px 16px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s, transform 0.2s;
-}
-
-
-
-.form-actions button[type="reset"] {
-    background-color: #F2F7F9; 
-    color: #222222;
-}
-
-.form-actions button[type="reset"]:hover {
-    background-color: #DFEAEE;
-}
-
-
-/* Inactive state of the search button */
-#search-button:disabled {
-    background-color: #6ABBF7; /* Inactive background color */
-    cursor: not-allowed; /* Change cursor to indicate it's not clickable */
-}
-
-/* Active state of the search button */
-#search-button {
-    background-color: var(--button_bkgr_color); /* Active background color */
-    color: var(--button_text_color);
-    cursor: pointer; /* Pointer cursor to indicate it's clickable */
-    transition: background-color 0.3s ease-in-out; /* Smooth transition */
-}
-
-#search-button:hover:not(:disabled) {
-    background-color: var(--button_hover_bkgr_color); /* Hover color when active */
-}
-
-
-
-
-
-
-
-
-/* ------- Group Specific ------- */
-
-/* Container for longest splice variant row */
-.splice-variant-row {
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 20px;
-}
-
-.more-than-one-gene-deletion {
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 20px;
-}
-
-.splice-variant-row h5 {
-    margin: 0 0 0 0; /* Remove the bottom margin to keep the elements aligned */
-}
-
-.more-than-one-gene-deletion h5 {
-    margin: 0 0 0 0; /* Remove the bottom margin to keep the elements aligned */
-}
-
-
-
-
-
-/* Container for location fields */
-.location-row {
-    display: flex;
-    align-items: center;
-    gap: 0px; /* Adjust the gap as needed */
-    margin-bottom: 20px;
-}
-
-.location-row h5 {
-    margin: 0 10px 0 0; /* Remove the bottom margin to keep the elements aligned */
-}
-
-.location-row h5:nth-of-type(2),
-.location-row h5:nth-of-type(3) {
-    margin-left: 30px; /* Apply left margin only to the second and third h5 elements (From and To) */
-}
-
-.location-row select {
-    flex: 1; /* Make the select and input fields take up available space equally */
-}
-
-.location-row input[type="text"] {
-    flex: 1; /* Make the select and input fields take up available space equally */
-}
-
-.location-type-row {
-    margin-bottom: 20px;
-}
-
-
-/* Description and Phenotype checkboxes next to text area titles*/
-.label-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between; /* Ensure the h5 and checkboxes are on opposite sides */
-    width: 100%; /* Ensures the container takes up the full width */
-    margin-bottom: 10px; /* Add some space below the container */
-}
-
-.checkbox-container {
-    display: flex;
-    gap: 10px; /* Space between each checkbox label */
-}
-
-.label-container h5 {
-    margin: 0;
-}
-
-
-/* Style for the help icon */
-.search-page-help-icon {
-    width: 16.52x;
-    height: 14.125px;
-    margin-left: 8px; /* Space between the title and the icon */
-    cursor: pointer;  /* Indicate that it’s clickable */
-    vertical-align: middle; /* Aligns the icon vertically with the text */
-}
-
-.form-group .search-page-help-content {
-    display: none; /* Ensure it is hidden by default */
-    background-color: #f0f8ff; /* Light blue background */
-    color: #484848;
-    font-size: 14px;
-    font-weight: 500;
-    padding: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border-radius: 8px;
-}
-
-
-
-.form-group .search-page-help-content a {
-    color: #005BB5;
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.3s ease, text-decoration 0.3s ease;
-}
-
-.form-group .search-page-help-content a:hover {
-    color: #004799;
-    text-decoration: underline;
-    cursor: pointer;
-}
-
-.form-group .search-page-help-content a:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(0, 91, 181, 0.5);
-}
-
-.form-group .search-page-help-content a:active {
-    color: #003E73;
-    text-decoration: underline;
-}
-
-
-
-
-.form-group .search-page-help-content ul {
-    margin-top: 10px; /* Add left padding to indent the list */
-    margin-left: 40px; /* Add left padding to indent the list */
-    padding-left: 0; /* Ensure no extra padding on the list */
-}
-
-.form-group .search-page-help-content ul li {
-    margin-bottom: 5px; /* Add some spacing between list items */
-    font-size: 14px; /* Adjust the font size */
-}
-
-
-
-
-
-
-
-
-
-
-
-
-/* ------------------------ Gene Search Page Specific End ------------------------- */
-
-
-
-
-
-
-
-/* ------------------------ Mutation Search Page Specific Start ------------------------- */
-
-
-
-.mutation-type-container, .mutation-source-container {
-    display: flex;
-    flex-direction: column;
-    gap: 0px; /* Space between each label */
-}
-
-.mutation-type-container label, .mutation-source-container label {
-    display: block; /* Ensure each label is treated as a block element */
-    margin-bottom: 10px; /* Space between each checkbox group */
-    cursor: pointer;
-}
-
-.mutation-type-container label input, .mutation-source-container label input {
-    display: inline-block; /* Keep the checkbox inline with the text */
-    margin-bottom: 5px; /* Add some space below the checkbox */
-}
-
-.mutation-type-container input[type="text"],
-.mutation-source-container input[type="text"] {
-    width: 60px;
-    padding: 4px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    display: inline-block; /* Make the input field block-level */
-    margin-top: 5px; /* Add space above the input field */
-}
-
-
-
-/* ------------------------ Mutation Search Page Specific End ------------------------- */
-
-
-
-
-
-
-
-
-/* ------------------------ Protein Search Page Specific Start ------------------------- */
-
-
-
-
-.orthologs-category {
-    margin-bottom: 20px; /* Add space between categories */
-}
-
-.orthologs-category h5 {
-    font-size: 16px;
-    font-weight: 700;
-    margin-bottom: 10px;
-}
-
-.orthologs-container {
-    display: flex;
-    flex-direction: column;
-    gap: 5px; /* Space between each label */
-}
-
-.orthologs-container label {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    user-select: none;
-}
-
-.orthologs-container i {
-    font-style: italic; /* Ensure the species names are italic */
-}
-
-
-
-
-
-
-#species-selection {
-    grid-column: 1 / span 2; /* Span across both columns */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 50px; /* Space below the dropdown */
-}
-
-#species-selection label {
-    margin-right: 15px; /* Slightly more space between label and dropdown */
-    font-size: 16px; /* Adjust label font size */
-    font-weight: 600; /* Make label text a bit bolder */
-    color: #333; /* Darker color for better visibility */
-}
-
-#species-selection select {
-    padding: 8px 12px; /* Increase padding for a more comfortable clickable area */
-    font-size: 14px; /* Adjust dropdown font size */
-    border-radius: 4px;
-    border: 1px solid #ccc; /* Slightly darker border for better definition */
-    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for interactions */
-}
-
-/* Hover and focus effects for the dropdown */
-#species-selection select:hover,
-#species-selection select:focus {
-    border-color: #0070d2; /* Blue border on hover/focus */
-    box-shadow: 0 0 5px rgba(0, 112, 210, 0.5); /* Subtle shadow for focus */
-    outline: none; /* Remove default outline */
-}
-
-/* Optgroup styling within the dropdown */
-#species-selection select optgroup {
-    font-weight: bold; /* Make the optgroup label bold */
-    color: #555; /* Slightly softer color for optgroup label */
-    padding: 5px 0; /* Add some padding to the label */
-    background-color: #f0f0f0; /* Light background color for distinction */
-}
-
-/* Options styling within the dropdown */
-#species-selection select option {
-    padding-left: 10px; /* Indent the options within optgroup */
-    color: #333; /* Standard text color for options */
-    background-color: #fff; /* Default background for options */
-}
-
-/* Hover effect for options */
-#species-selection select option:hover {
-    background-color: #e0e0e0; /* Slightly darker background on hover */
-}
-
-
-
-
-
-
-
-
-
-
-
-/* ------------------------ Protein Search Page Specific End ------------------------- */
-
-
-
-
-
-
-
-
-
-/* ------------------------ Expression (Stages) Search Page Specific Start ------------------------- */
-
-
-
-
-
-
-
-/* General Styles */
-.search-param-column-full {
-    grid-column: 1 / span 2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    margin-bottom: 20px;
-}
-
-.search-param-column-full .more-explanation {
-    background-color: #f0f8ff;
-    color: #484848;
-    font-size: 14px;
-    font-weight: 500;
-    padding: 10px;
-    margin-top: 0px;
-    margin-bottom: 10px;
-    border-radius: 8px;
-}
-
-
-.search-param-column-full .more-explanation {
-    line-height: 1.6;
-}
-
-
-
-
-
-
-/* -------- */
-
-.search-param-column-full .more-explanation a {
-    color: #005BB5;
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.3s ease, text-decoration 0.3s ease;
-}
-
-.search-param-column-full .more-explanation a:hover {
-    color: #004799;
-    text-decoration: underline;
-    cursor: pointer;
-}
-
-.search-param-column-full .more-explanation a:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(0, 91, 181, 0.5);
-}
-
-.search-param-column-full .more-explanation a:active {
-    color: #003E73;
-    text-decoration: underline;
-}
-
-
-
-
-.search-param-column-full .more-explanation ul {
-    margin-top: 10px; /* Add left padding to indent the list */
-    margin-left: 40px; /* Add left padding to indent the list */
-    padding-left: 0; /* Ensure no extra padding on the list */
-}
-
-.search-param-column-full .more-explanation ul li {
-    margin-bottom: 5px; /* Add some spacing between list items */
-    font-size: 14px; /* Adjust the font size */
-}
-
-/* -------- */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#stage-expression-page .form-group textarea,
-#tissue-expression-page .form-group textarea,
-#embryo-expression-page .form-group textarea {
-    width: 100%;
-    max-width: 550px;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    transition: border-color 0.3s;
-}
-
-#stage-expression-page .form-group,
-#tissue-expression-page .form-group,
-#embryo-expression-page .form-group {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-}
-
-
-
-/* Two-column layout */
-.two-column-wrapper {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    width: 100%;
-    max-width: 1000px;
-    margin-bottom: 0px;
-}
-
-.form-column {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-/* Input and Select Fields */
-#stage-expression-page select,
-#tissue-expression-page select,
-#embryo-expression-page select,
-#stage-expression-page input[type="text"],
-#tissue-expression-page input[type="text"],
-#embryo-expression-page input[type="text"] {
-    width: 100%;
-    height: 35px;
-    margin-bottom: 10px;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    transition: border-color 0.3s;
-}
-
-#stage-expression-page textarea:hover,
-#tissue-expression-page textarea:hover,
-#embryo-expression-page textarea:hover,
-#stage-expression-page textarea:focus,
-#tissue-expression-page textarea:focus,
-#embryo-expression-page textarea:focus,
-#stage-expression-page select:hover,
-#tissue-expression-page select:hover,
-#embryo-expression-page select:hover,
-#stage-expression-page input[type="text"]:hover,
-#tissue-expression-page input[type="text"]:hover,
-#embryo-expression-page input[type="text"]:hover,
-#stage-expression-page select:focus,
-#tissue-expression-page select:focus,
-#embryo-expression-page select:focus,
-#stage-expression-page input[type="text"]:focus,
-#tissue-expression-page input[type="text"]:focus,
-#embryo-expression-page input[type="text"]:focus {
-    border-color: #068EF1;
-    outline: none;
-}
-
-
-
-
-
-
-#stage-expression-page .form-group .search-page-help-content,
-#tissue-expression-page .form-group .search-page-help-content,
-#embryo-expression-page .form-group .search-page-help-content {
-    max-width: 550px;
-    display: none;
-    background-color: #f0f8ff;
-    color: #484848;
-    font-size: 14px;
-    font-weight: 500;    
-    padding: 10px;
-    margin-top: 0px;
-    margin-bottom: 10px;
-    border-radius: 8px;
-}
-
-
-.search-for-expression-help-content {
-    display: none;
-    max-width: 550px;
-    background-color: #f0f8ff;
-    color: #484848;
-    font-weight: 500;
-    font-size: 14px;
-    padding: 10px;
-    margin-top: 0px;
-    margin-bottom: 10px;
-    border-radius: 8px;
-}
-
-
-
-.search-for-expression-help-content a {
-    color: #005BB5;
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.3s ease, text-decoration 0.3s ease;
-}
-
-.search-for-expression-help-content a:hover {
-    color: #004799;
-    text-decoration: underline;
-    cursor: pointer;
-}
-
-.search-for-expression-help-content a:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(0, 91, 181, 0.5);
-}
-
-.search-for-expression-help-content a:active {
-    color: #003E73;
-    text-decoration: underline;
-}
-
-
-
-
-.search-for-expression-help-content ul {
-    margin-top: 10px; /* Add left padding to indent the list */
-    margin-left: 40px; /* Add left padding to indent the list */
-    padding-left: 0; /* Ensure no extra padding on the list */
-}
-
-.search-for-expression-help-content ul li {
-    margin-bottom: 5px; /* Add some spacing between list items */
-    font-size: 14px; /* Adjust the font size */
-}
-
-
-/* Ensure consistent styling for all titles */
-#stage-expression-page h4,
-#tissue-expression-page h4,
-#embryo-expression-page h4 {
-    font-size: 16px; /* Adjusted font size */
-    font-weight: 700; /* Bold font weight */
-    margin: 0; /* Remove default margins */
-    padding-bottom: 20px; /* Add some space below the title */
-}
-
-
-
-
-/* Styling for the Sample Profiles dropdown */
-#profile {
-    max-width: 550px;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 14px;
-}
-
-
-
-
-/* ------------------------ Expression (Stages) Search Page Specific End ------------------------- */
-
-
-
-
-
-
-
-
-
-
-
-/* ------------------------ Expression (Tissues) Search Page Specific Start ------------------------- */
-
-/* Wrapper for Enrichment fields */
-.enrichment-wrapper {
-    display: flex;
-    flex-wrap: wrap; /* Allow the elements to wrap when there's not enough space */
-    justify-content: space-between;
-    gap: 20px; /* Maintain spacing between the elements */
-    width: 100%; /* Take the full width */
-    padding: 0 40px;
-}
-
-/* Flexbox container for rows */
-.enrichment-row {
-    display: flex;
-    align-items: center;
-    flex: 1 1 45%; /* Flex-grow: 1, Flex-shrink: 1, Flex-basis: 45% - ensures they shrink and take up half the width */
-    gap: 10px; /* Adjust the gap between the fields */
-    margin-bottom: 0px;
-    min-width: 460px; /* Set a minimum width to ensure readability */
-}
-
-
-
-
-
-.enrichment-row h5:nth-of-type(2),
-.enrichment-row h5:nth-of-type(3) {
-    margin-left: 30px; /* Apply left margin only to the second and third h5 elements (From and To) */
-}
-
-.enrichment-row select {
-    flex: 1; /* Make the select and input fields take up available space equally */
-}
-
-
-
-
-
-/* ------------------------ Expression (Tissues) Search Page Specific End ------------------------- */
-
-
-
-
-
-
-
-
-
-/* ------------------------ Expression (Embryos) Search Page Specific Start ------------------------- */
-
-
-/* Three-column layout */
-.three-column-wrapper {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    width: 100%;
-    max-width: 1000px;
-    margin-bottom: 20px;
-}
-
-.form-column {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-/* Input and Select Fields */
-#stage-expression-page select,
-#tissue-expression-page select,
-#embryo-expression-page select,
-#stage-expression-page input[type="text"],
-#tissue-expression-page input[type="text"],
-#embryo-expression-page select {
-    width: 100%;
-    height: 35px;
-    margin-bottom: 10px;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    transition: border-color 0.3s;
-}
-
-#stage-expression-page textarea:hover,
-#tissue-expression-page textarea:hover,
-#embryo-expression-page textarea:hover,
-#stage-expression-page textarea:focus,
-#tissue-expression-page textarea:focus,
-#embryo-expression-page textarea:focus,
-#stage-expression-page select:hover,
-#tissue-expression-page select:hover,
-#embryo-expression-page select:hover,
-#stage-expression-page input[type="text"]:hover,
-#tissue-expression-page input[type="text"]:hover,
-#embryo-expression-page input[type="text"]:hover,
-#stage-expression-page select:focus,
-#tissue-expression-page select:focus,
-#embryo-expression-page select:focus,
-#stage-expression-page input[type="text"]:focus,
-#tissue-expression-page input[type="text"]:focus,
-#embryo-expression-page input[type="text"]:focus {
-    border-color: #068EF1;
-    outline: none;
-}
-
-
-
-
-/* ------------------------ Expression (Embryos) Search Page Specific End ------------------------- */
-
-
-
-
-
-
-
-/* ------------------------ Compare Page + Compare Result Start ------------------------- */
-
-
-
-
-
-/* Form Section */
-#compare-param {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    width: 100%;
-    max-width: 1200px;
-    background-color: #ffffff; /* Card-like appearance */
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Ensure each form group takes full width of its column */
-.search-param-column {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-
-#compare-page .form-group textarea {
-    height: 200px; /* Adjust this value based on your design needs */
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    margin-bottom: 5px;
-    resize: vertical; /* Allows users to resize the textarea vertically */
-}
-
-/* Input hover effects */
-#compare-page .form-group textarea:hover,
-#compare-page .form-group textarea:focus {
-    border-color: #068EF1;
-    outline: none;
-}
-
-/* Active state of the compare button */
-#compare-button,
-#convert-button {
-    background-color: var(--button_bkgr_color); /* Active background color */
-    color: var(--button_text_color);
-    cursor: pointer; /* Pointer cursor to indicate it's clickable */
-    transition: background-color 0.3s ease-in-out; /* Smooth transition */
-}
-
-#compare-button:hover,
-#convert-button:hover {
-    background-color: var(--button_hover_bkgr_color); /* Hover color when active */
-}
-
-
-/* General Styles */
-#compare-page .search-param-column-full {
-    grid-column: 1 / span 2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    margin-bottom: 0px;
-}
-
-/* Result box styles - replaces the textareas */
-.result-box {
-    width: 100%;
-    min-height: 100px; /* Set a minimum height */
-    padding: 16px 16px;
-    border: 1px solid #ddd; /* Same border as the text area */
-    border-radius: 4px;
-    background-color: #f9f9f9;
-    overflow-y: auto; /* Allow scrolling if content overflows */
-    box-sizing: border-box;
-}
-
-/* Ensures padding is added to the text inside */
-.result-box p {
-    margin: 0; /* Remove default margins */
-    line-height: 1.6;
-    white-space: pre-wrap; /* Preserve white space and wrap the text */
-    word-wrap: break-word; /* Ensure long words break correctly */
-}
-
-
-
-
-/* ------------------------ Compare Page + Compare Result End ------------------------- */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* ------------------------ Display Page Specific Start ------------------------- */
-
-
-
-/* Add keyframes for modern slide-in and slide-out animations */
-@keyframes slideIn {
-    from {
-        transform: translateX(-100%);
-    }
-    to {
-        transform: translateX(0);
+/* ------------------------ Media Queries for Different Screens ------------------------- */
+
+/* For screens smaller than 1380px */
+@media screen and (max-width: 1380px) {
+    #intro .hero-section .hero-section-content {
+        padding: 43px 0px 43px 0px; 
     }
 }
 
-@keyframes slideOut {
-    from {
-        transform: translateX(0);
+/* For screens wider than 1920px (like your PC monitor) */
+@media screen and (min-width: 1920px) {
+    #intro .hero-section {
+        margin-bottom: 25px;
     }
-    to {
-        transform: translateX(-100%);
+
+    #intro .hero-section .hero-section-content {
+        padding: 50px 0px 50px 0px; 
+        max-width: 63%;
     }
-}
 
-.sidebar-wrapper {
-    display: flex;
-    /* flex-direction: row; */
-    height: 100%;
-    position: relative;
-}
-
-#sidebar-icon-container {
-    width: 50px;
-    height: 100%;
-    background-color: #F0F0F0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 16px;
-    position: relative; /* Important for absolute positioning of help icon */
-    z-index: 100;
-    border-right: 1px solid var(--border_color);
-    transition: transform 0.4s ease;
-}
-
-#active-line {
-    position: absolute;
-    border-radius: 2px;
-    left: 2px;
-    width: 3px;
-    height: 31.5px; /* Adjust height to match icon container height */
-    background-color: var(--active_icon_border_color);
-    transition: top 0.3s ease; /* Smooth transition */
-    top: 16px; /* Ensure there's an initial value for top */
-}
-
-.icon-container {
-    user-select: none;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px; /* Add bottom margin for vertical spacing */
-    cursor: pointer;
-    transition: background-color 0.3s ease, border-color 0.3s ease; /* Add transition for smooth background change */
-    border: 7px solid transparent; /* Default transparent border to maintain size */
-    border-radius: 6px; /* Optional: add border-radius for rounded corners */
-}
-
-/* help icon bottom of list icon container 
-.icon-container.help-icon {
-    position: absolute;
-    margin-bottom: 16px;
-    bottom: 0px;
-}
-*/
-
-.icon-container:hover {
-    background-color: #ffffff; /* Change this to your desired hover background color */
-    border-radius: 6px; /* Optional: add border-radius for rounded corners */
-    border-color: #ffffff; /* Change border color on hover */
-}
-
-.icon-container .list-icon {
-    width: 21.8px;
-    height: 18.65px;
-    transition: transform 0.4s ease;
-}
-
-.tooltip-text {
-    font-weight: 400;
-    font-size: 14px;
-    visibility: hidden;
-    background-color: #555;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 8px;
-    position: absolute;
-    z-index: 100;
-    top: 40%;
-    left: 110%;
-    transform: translate(10px, -50%);
-    white-space: nowrap;
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-
-.tooltip-text::after {
-    content: "";
-    position: absolute;
-    top: 37%;
-    left: -4px; /* Offset the arrow to the left of the tooltip */
-    transform: translateX(-65%);
-    border-width: 5px;
-    border-style: solid;
-    border-color: transparent #555 transparent transparent; /* Triangle pointing left */
-}
-
-.icon-container:hover .tooltip-text {
-    visibility: visible;
-    opacity: 1;
-}
-
-
-
-#sidebar {
-    background-color: #F5F5F5;
-    width: 380px; /* Adjust the width to match your layout */
-    height: 100%;
-    padding: 0 0 0px 50px;
-    height: 100%;
-    overflow-y: auto;
-    overflow-x: hidden;
-    display: flex;
-    flex-direction: column;
-    margin-top: 0;
-    border-right: 1px solid var(--border_color);
-    white-space: normal;
-    position: absolute;
-    left: 0;
-    top: 0;
-    transform: translateX(0);
-    transition: transform 0.4s ease;
-    display: flex;
-    flex-direction: column;
-}
-
-#sidebar.collapsed {
-    animation: slideOut 0.4s forwards;
-}
-
-#sidebar.collapsed #active-line {
-    opacity: 0;
-}
-
-#sidebar.expanded #active-line {
-    opacity: 1;
-}
-
-#sidebar.expanded {
-    animation: slideIn 0.4s forwards;
-}
-
-#main-content {
-    padding: 0 20px;
-    flex-grow: 1;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    transition: margin-left 0.4s ease;
-    margin-top: 0;
-    margin-left: 340px; /* Adjust to match the sidebar width */
-}
-
-#main-content.shifted {
-    margin-left: 0; /* Shift content back to original position when sidebar is collapsed */
-}
-
-
-
-
-
-
-
-
-
-
-/*-------------------------------- Table Start -------------------------------- */
-
-.table-container {
-    margin-top: 20px;
-    flex-grow: 1;
-    width: 100%;
-    overflow: hidden;
-    padding: 0;
-    text-align: center;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    border-radius: 8px; /* Rounded corners for a modern look */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow for elevation */
-}
-
-#scrollableTable {
-    flex-grow: 1;
-    overflow-x: auto;
-    overflow-y: auto;
-    transition: all 0.3s ease;
-    border-radius: 8px; /* Match border radius of container */
-
-}
-
-#scrollableTable table {
-    
-    border-top: 0;
-    border-right: 0;
-    border-left: 0;
-    border-bottom: 1px solid #e0e0e0;    ;
-    width: 100%;
-    border-collapse: separate;
-    font-family: 'Open Sans', sans-serif; /* Modern font */
-    border-spacing: 0px;
-    
-
-}
-
-
-
-
-
-/*
-STICKY ROW
-Normal css box-shadow works for the header as it is a single html element
-*/
-
-#scrollableTable tr.sticky {
-    position: sticky;
-    top: 0;
-    z-index: 2;
-    background: #1976D2; /* Blue background for headers */
-    box-shadow: 0 0 6px rgba(0,0,0,0.25);
-
-}
-
-
-#scrollableTable th {
-    border-top: none;
-    border-left: none;
-    border-right: 2px solid #e0e0e0;
-    border-bottom: 2px solid #e0e0e0;
-    padding: 12px 16px; /* More padding for better readability */
-    text-align: left;
-    box-sizing: border-box;
-    min-width: 150px;
-    white-space: nowrap;
-    overflow: hidden;
-    position: relative; /* For positioning pseudo-elements */
-    max-width: 250px;
-    vertical-align: middle;
-
-    color: #ffffff; /* Slightly darker text for better contrast */
-    font-size: 14px; /* Clean and modern font size */
-    transition: background-color 0.3s ease, color 0.3s ease;
-
-
-}
-
-/* Remove the right border from the last th element */
-#scrollableTable th:last-child {
-    border-right: none; /* This removes the right border of the last th */
-}
-
-
-#scrollableTable th:hover {
-    background-color: #0f5ba7; /* Darker blue on hover */
-    cursor: move; /* Change to pointer to indicate interaction */
-}
-
-
-
-
-/*
-STICKY COLUMN
-Avoid undesirable overlapping shadows by creating a faux shadow on the ::after psudo-element instead of using the css box-shadow property.
-*/
-
-#scrollableTable th.sticky {
-  position: sticky;
-  left: 0;
-  z-index: 1;
-  background: #1976D2; /* Blue background for headers */
-}
-
-#scrollableTable th.sticky:hover {
-    background-color: #0f5ba7; /* Darker blue on hover */
-    cursor: move; /* Change to pointer to indicate interaction */
-  }
-
-#scrollableTable td.sticky {
-position: sticky;
-left: 0;
-z-index: 1;
-background: #F3F8FD;
-}
-
-
-#scrollableTable th.sticky::after,
-#scrollableTable td.sticky::after {
-  content: "";
-  position: absolute;
-  right: -6px;
-  top: 0;
-  bottom: -1px;
-  width: 5px;
-  border-left: 1px solid #e0e0e0;
-  background: linear-gradient(90deg, rgba(0,0,0,0.04) 0%, rgba(0,0,0,0) 100%);
-}
-
-/*------------------------- Sorting Arrow Styling Start -------------------------*/
-
-/* Container for the sorting icons - only applies to sortable columns */
-th.sortable .sort-icons {
-    display: inline-flex;
-    flex-direction: column;
-    position: absolute;
-    right: 8px; /* Position the arrows to the right side of the header */
-    top: 50%;
-    transform: translateY(-50%);
-    justify-content: center;
-    align-items: center;
-}
-
-/* Upward and downward arrows - both are initially visible but faded */
-th.sortable .arrow-up, 
-th.sortable .arrow-down {
-    width: 0;
-    height: 0;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    opacity: 0.5; /* Light, inactive state */
-    transition: opacity 0.3s, border-color 0.3s; /* Smooth transitions */
-}
-
-/* Upward arrow specific style */
-th.sortable .arrow-up {
-    border-bottom: 7px solid white; /* White border for the upward arrow */
-    margin-bottom: 2px; /* Space between up and down arrows */
-}
-
-/* Downward arrow specific style */
-th.sortable .arrow-down {
-    border-top: 7px solid white; /* White border for the down arrow */
-    margin-top: 2px;
-}
-
-/* Active state for the ascending arrow */
-th.sorted-asc .arrow-up {
-    opacity: 1; /* Fully visible when active */
-    border-bottom-color: #fff; /* Ensure the arrow is filled with white */
-}
-
-/* Inactive state for the descending arrow when sorted in ascending */
-th.sorted-asc .arrow-down {
-    opacity: 0.3; /* Fade the down arrow when ascending */
-}
-
-/* Active state for the descending arrow */
-th.sorted-desc .arrow-down {
-    opacity: 1; /* Fully visible when active */
-    border-top-color: #fff; /* Ensure the arrow is filled with white */
-}
-
-/* Inactive state for the ascending arrow when sorted in descending */
-th.sorted-desc .arrow-up {
-    opacity: 0.3; /* Fade the up arrow when descending */
-}
-
-
-
-/*------------------------- Sorting Arrow Styling End -------------------------*/
-
-
-
-#scrollableTable td {
-    border-top: none;
-    border-left: none;
-    border-right: 2px solid #e0e0e0;
-    border-bottom: 2px solid #e0e0e0;    
-    padding: 12px 16px; /* More padding for better readability */
-    text-align: left;
-    box-sizing: border-box;
-    min-width: 90px; 
-    max-width: 160px; 
-    white-space: normal;
-    overflow: visible;
-    text-overflow: unset;
-    word-wrap: break-word;
-    position: relative; /* For positioning pseudo-elements */
-    vertical-align: top;
-    cursor: default;
-    line-height: 1.6;
-
-    color: #333; /* Slightly darker text for better contrast */
-    font-size: 14px; /* Clean and modern font size */
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-
-/* Remove the right border from the last td element */
-#scrollableTable td:last-child {
-    border-right: none; /* This removes the right border of the last td */
-}
-
-
-#scrollableTable .checkbox_col {
-    min-width: 40px; /* Set smaller minimum width for checkbox */
-    max-width: 50px; 
-    padding: 12px 4px 4px 4px;
-    text-align: center; /* Center the checkbox within the cell */
-    cursor: auto;
-}
-
-
-#scrollableTable .gene_col {
-    min-width: 90px; 
-    max-width: 250px; 
-}
-
-#scrollableTable .seqname_col {
-    min-width: 160px; 
-    max-width: 170px; 
-}
-
-#scrollableTable .cds_col {
-    min-width: 130px; 
-    max-width: 140px; 
-}
-
-#scrollableTable .uniprot_col {
-    min-width: 120px; 
-    max-width: 160px; 
-}
-
-
-#scrollableTable .chr_col {
-    min-width: 100px; 
-    max-width: 110px; 
-}
-
-#scrollableTable .gpos_col {
-    min-width: 90px; 
-    max-width: 100px; 
-}
-
-#scrollableTable .ppos_col {
-    min-width: 110px; 
-    max-width: 150px; 
-}
-
-#scrollableTable .text_col {
-    min-width: 350px;
-    max-width: 350px;
-}
-
-#scrollableTable .protsize_col {
-    min-width: 100px; 
-    max-width: 110px; 
-}
-
-
-#scrollableTable th.pic_col {
-    max-width: none; /* Ensure pic_col does not have a max-width */
-    width: auto;
-    text-align: left;
-    vertical-align: middle;
-    cursor: move;
-}
-
-#scrollableTable td.pic_col {
-    padding: 12px 10px 12px 10px;
-    max-width: none; /* Ensure pic_col does not have a max-width */
-    width: auto;
-    text-align: left;
-    vertical-align: top;
-    cursor: move;
-}
-
-#scrollableTable td.pic_col {
-    border: none;
-}
-
-
-/* Style for links inside table cells */
-#scrollableTable td a {
-    color: #005BB5;
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.3s ease, text-decoration 0.3s ease;
-}
-
-/* Hover effect for links */
-#scrollableTable td a:hover {
-    color: #004799;
-    text-decoration: underline;
-    cursor: pointer;
-}
-
-/* Focused state for links */
-#scrollableTable td a:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(0, 91, 181, 0.5);
-}
-
-/* Active state for links */
-#scrollableTable td a:active {
-    color: #003E73;
-    text-decoration: underline;
-}
-
-.dragging {
-    opacity: 0.5;
-}
-
-.drag-over {
-    border: 2px dashed #000;
-}
-
-.drag-left-border {
-    border-left: 2px dashed #000;
-}
-
-.drag-right-border {
-    border-right: 2px dashed #000;
-}
-
-.drag-indicator {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 8px;
-    background-color: #ffffff;
-}
-
-/* Align table title to the sidebar icon container */
-#main-content-header {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    padding: 16px 0px 16px 0px;
-    justify-content: center;
-}
-
-.table-title {
-    margin: 0;
-    font-size: 1em;
-    font-weight: bold;
-    color: var(--nav_text_color);
-    z-index: 101;
-}
-
-/* Sidebar content styling */
-.sidebar-content {
-    display: none;
-    color: var(--body_sidebar_color);
-}
-
-.sidebar-content.active {
-    display: block;
-}
-
-/* Modern Modal for displaying full text */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 999;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(4px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-content {
-    background-color: #fff;
-    margin: 10% auto;
-    padding: 30px;
-    border-radius: 12px;
-    border: none;
-    width: 80%;
-    max-width: 700px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    overflow-y: auto;
-    max-height: 70%;
-    animation: fadeIn 0.3s ease-out;
-    position: relative;
-}
-
-.close {
-    color: #555;
-    position: absolute;
-    right: 15px;
-    top: 15px;
-    font-size: 24px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: color 0.3s ease;
-}
-
-.close:hover {
-    color: #000;
-}
-
-/* Content styling within the modal */
-.modal-content p {
-    margin: 0;
-    font-size: 16px;
-    color: #333;
-    line-height: 1.6;
-}
-
-/* Sequence-specific modal styling */
-#scrollableTable td.seq_col {
-    min-width: 500px; /* Set smaller minimum width for checkbox */
-    max-width: 600px; 
-    word-wrap: break-word;
-    font-family: "Courier New", Courier, monospace;
-    font-size: 14px;
-    padding: 10px;
-
-}
-
-/* Subtle hover effect for modal-triggering cells */
-#scrollableTable.condensed-view td:not(.pic_col):not(.checkbox_col):not([data-na="true"]):hover {
-    background-color: #f9f9f9;
-    transition: background-color 0.3s ease;
-    cursor: pointer;
-}
-
-/* Modal fade-in animation */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: scale(0.95);
+    #intro .hero-section h2 {
+        font-size: 24px; /* Larger font size for better readability */
     }
-    to {
-        opacity: 1;
-        transform: scale(1);
+
+    #intro .hero-section p {
+        font-size: 16px;
     }
-}
-
-/*-------------------------------- Table End -------------------------------- */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* ------------------------ sidebar content ------------------------ */
-
-/* all sidebar titles */
-.sidebar-title {
-    padding: 16px 0 16px 0;
-    position: sticky; /* Use sticky positioning for flexibility */
-    top: 0; /* Align it at the top of its container */
-    background-color: #F5F5F5; /* Ensure it has a background color */
-    z-index: 1; /* Ensure it stays above other elements */
-    border-bottom: 1px solid var(--border_color); /* Optional: Add a bottom border for visual separation */
-}
-
-.sidebar-content h4 {
-    font-weight: 600;
-    font-size: 14px;
-    padding: 0 0 0 20px;
-}
-
-/* all sidebar left and right padding */
-#sidebar-info {
-    padding: 0px 20px 0px 20px;
-    overflow-y: auto;
-    flex: 1; /* Allows this section to grow and shrink as needed */
-}
-
-/* ------------------------ sidebar 1 (Search Results) ------------------------ */
-#database-content {
-    padding: 0px 0px 0px 0px;
-}
-
-.first-content-title {
-    font-weight: 700; 
-    font-size: 15px; 
-    margin: 15px 0 10px 0;
-}
-
-.content-title{
-    font-weight: 700; 
-    font-size: 15px; 
-    margin: 0 0 10px 0;
-}
-
-.content-info {
-    font-weight: 500; 
-    font-size: 14px;
-    margin: 0 0 20px 0;
-    line-height: 1.6;
-}
-
-.list-info {
-    font-weight: 500; 
-    font-size: 14px;
-    margin: 0 0 0 0;
-    line-height: 1.6;
-}
-
-.list-header {
-    display: flex; /* Use flexbox to align items */
-    align-items: center; /* Vertically center items */
-    justify-content: space-between; /* Adjust the space between items */
-}
-
-.list-header p {
-    margin: 0; /* Remove margin to align text vertically with the icon */
-    font-weight: 700; /* Make the title bold */
-    font-size: 15px; /* Set the font size */
-}
-
-.gene-list-container {
-    border: 1px solid var(--border_color);
-    border-radius: 5px;
-    padding: 10px 10px 10px 10px;
-    margin: 10px 0 20px 0;
-    background-color: #f9f9f9; /* Optional: Add background color */
-}
-
-.copy-icon-row {
-    display: flex;
-    justify-content: space-between; /* Space between the info and the icon */
-    align-items: center;
-    margin-bottom: 10px;
-    padding-bottom: 10px; /* Add padding for spacing */
-    border-bottom: 1px solid var(--border_color); /* Horizontal line for separation */
-}
-
-.genes-found-info {
-    font-size: 14px;
-    font-weight: 600; /* Slightly bolder font */
-    color: #333; /* Slightly darker color */
-    margin-right: auto; /* Aligns the text to the left */
-    line-height: 18.65px;
-}
-
-.copy-icon-container {
-    position: relative; /* Needed for positioning the tooltip */
-    display: inline-block; /* Ensure the tooltip aligns properly */
-}
-
-#copy-icon {
-    width: 21.8px;
-    height: 18.65px;
-    cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
-    transition: transform 0.2s ease;
-    margin-right: 10px; /* Space between icon and tooltip */
-}
-
-.copy-tooltip-text {
-    font-size: 14px;
-    font-weight: 400;
-    visibility: hidden;
-    opacity: 0;
-    position: absolute;
-    background-color: #555;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 8px;
-    width: 130px; /* Fixed width for the tooltip */
-    bottom: 125%; /* Position above the icon */
-    right: 10%; /* Align tooltip to the right edge of the copy icon */
-    transform: translateX(0); /* Reset the transform if needed */
-    white-space: nowrap;
-    transition: opacity 0.3s;
-    z-index: 10;
-    margin-bottom: 5px;
-    display: flex; /* Use flexbox for centering */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-}
-
-.copy-tooltip-text::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    right: 10%; /* Adjust position to align properly */
-    transform: translateX(0);
-    border-width: 5px;
-    border-style: solid;
-    border-color: #555 transparent transparent transparent;
-}
-
-.copy-icon-container:hover .copy-tooltip-text,
-.copy-icon-container:focus .copy-tooltip-text {
-    visibility: visible;
-    opacity: 1;
-}
-
-/* ------------------------ sidebar 2 (Display Options) ------------------------ */
-#display-options-content {
-    padding: 0px 0px 0px 0px;
-}
-
-.column-filter-container {
-    border: none;
-    padding: 0px 10px 10px 5px;
-    margin: 10px 0 0px 0;
-}
-
-.display-filter-container {
-    border: none;
-    padding: 0px 10px 10px 5px;
-    margin: 10px 0 20px 0;
-}
-
-.display-option-form label {
-    display: block;                       /* Makes labels block-level elements */
-    font-family: 'Open Sans', sans-serif; /* Apply Open Sans font */
-    font-size: 14px;                      /* Set font size */
-    font-weight: 500; 
-    margin-bottom: 5px;                  /* Adds space between labels */
-    color: var(--body_sidebar_color);
-    cursor: pointer;
-    user-select: none;
-}
-
-.display-option-form input[type="checkbox"] {
-    margin-right: 5px;                   /* Adds space between checkbox and label text */
-}
-
-
-
-
-.display-option-form h5 {
-    margin-top: 10px;
-    margin-bottom: 5px;
-    margin-right: 0px;
-
-    font-size: 14px;                 
-    font-weight: 500; 
-    margin-bottom: 5px;                
-    color: var(--body_sidebar_color);
-}
-
-.display-option-form textarea {
-    height: 50px; /* Adjust this value based on your design needs */
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    margin-bottom: 5px;
-    resize: vertical; /* Allows users to resize the textarea vertically */
-}
-
-
-
-/* General style for all text inputs and textareas */
-.display-option-form textarea:hover,
-.display-option-form textarea:focus {
-    border-color: #068EF1; /* Change to your desired color */
-    outline: none; /* Remove the default outline */
-}
-
-/* Optional: Add a transition for smooth color change */
-.display-option-form textarea {
-    transition: border-color 0.3s ease-in-out;
-}
-
-
-
-
-
-
-
-/* Centering the Update Display button */
-.button-container {
-    background-color: #F5F5F5; /* Match the background color with sidebar */
-    padding: 15px;
-    border-top: 1px solid var(--border_color); /* Optional: a border for visual separation */
-    position: sticky; /* Keep the button at the bottom of the viewport */
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    /* box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); Optional: a shadow for emphasis */
-    display: flex;
-    justify-content: center; /* Center the button horizontally */
-    z-index: 1; /* Ensure it stays above other elements */
-}
-
-.update-display-btn {
-    font-family: 'Open Sans', sans-serif; /* Fonts with priority given to 'Open Sans' */
-    width: 140px;
-    height: 40px;
-    font-size: 14px;
-    font-weight: 600; /* Slightly bolder font */
-    background-color: var(--button_bkgr_color);
-    color: var(--button_text_color);
-    padding: 8px 16px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-    margin: 0 auto; /* Center the button horizontally */
-}
-
-.update-display-btn:hover {
-    background-color: var(--button_hover_bkgr_color);
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Highlighting matched table cells */
-.highlighted {
-    background-color: #FFECB3; /* Softer gold highlight for the table cells */
-    box-shadow: 0 0 5px rgba(255, 193, 7, 0.7); /* Subtle glow to make it stand out */
-    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
-}
-
-.term-highlight {
-    background-color: #FFE082; /* Soft yellow with an orange tint */
-    padding: 0px 0px; /* Small padding for better visibility */
-    border-radius: 4px; /* Rounded corners for a modern look */
-    color: #333; /* Dark text color for good contrast + also the color used for texts in td */
-}
-
-.highlight_style {
-    background-color: #FFE082; /* Soft yellow with an orange tint */
-    padding: 0px 0px; /* Small padding for better visibility */
-    border-radius: 4px; /* Rounded corners for a modern look */
-    color: #333; /* Dark text color for good contrast + also the color used for texts in td */
-}
-
-/* Current highlighted search term */
-.current-term-highlight {
-    /* font-weight: bold; */
-    background-color: #FFB74D; /* Richer orange-yellow for current highlight */
-    color: #000; /* Dark text color for contrast */
-    padding: 0px 0px; /* Consistent padding */
-    border-radius: 4px; /* Rounded corners for consistency */
-}
-
-
-
-
-
-
-
-
-/* ------------------------ sidebar 3 (Export Data) ------------------------ */
-#export-content {
-    padding: 0px 0px 0px 0px;
-}
-
-.export-option-container {
-    border: none;
-    padding: 0px 10px 10px 5px;
-    margin: 10px 0 20px 0;
-    
-}
-
-
-/* new
-/* Styling for export buttons in the sidebar */
-.export-buttons {
-    display: flex;
-    flex-direction: row;
-    gap: 10px; /* Space between the buttons */
-    padding: 10px 5px;
-}
-
-#export-csv-button, #export-txt-button {
-    font-family: 'Open Sans', sans-serif;
-    width: 140px;
-    height: 40px;
-    font-size: 14px;
-    font-weight: 600;
-    background-color: var(--button_bkgr_color);
-    color: var(--button_text_color);
-    padding: 8px 16px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-    margin: 0 auto; /* Center the button horizontally */
-}
-
-#export-csv-button:hover, #export-txt-button:hover {
-    background-color: var(--button_hover_bkgr_color);
-}
-
-
-
-/* ------------------------ sidebar 4 (Help) ------------------------ */
-#help-content {
-    padding: 0px 0px 0px 0px;
-}
-
-.help-content-container {
-    background-color: #f9f9f9; /* Optional: Add background color */
-    border: 1px solid var(--border_color);
-    border-radius: 5px;
-    padding: 10px 10px 10px 10px;
-    margin: 10px 0 20px 0;
-}
-
-.help-content-container p {
-    font-family: 'Open Sans', sans-serif; /* Apply the same font */
-    line-height: 1.6;
-    padding: 10px 0;
-    margin-bottom: 5px;
-    font-size: 14px;
-    font-weight: 500; /* Slightly bolder font */
-    color: #333; /* Slightly darker color */
-    user-select: none;
-}
 
-/* Highlight the selected sub-section title */
-
-.help-content-container p:hover {
-    background-color: #f0f8ff;
-    padding: 10px 0px 10px 0px;
-    border-radius: 4px;
-}
-
-/* Centering a Help button similar to the other sections */
-.help-button-container {
-    background-color: #F5F5F5; /* Match the background color with sidebar */
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    display: flex;
-    justify-content: center; /* Center the button horizontally */
-    z-index: 1; /* Ensure it stays above other elements */
-}
-
-.help-button {
-    display: inline-block;
-    line-height: 25px;     /* Match the line-height to the button height for vertical centering */
-    text-align: center;
-    text-decoration: none; /* Remove the underline */
-    font-family: 'Open Sans', sans-serif; /* Fonts with priority given to 'Open Sans' */
-    width: 240px;
-    height: 40px;
-    font-size: 14px;
-    font-weight: 600; /* Slightly bolder font */
-    background-color: var(--button_bkgr_color);
-    color: var(--button_text_color);
-    padding: 8px 16px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-    margin: 0 auto; /* Center the button horizontally */
-}
-
-.help-button:hover {
-    background-color: var(--button_hover_bkgr_color);
-}
-
-
-/* ------------------------ Display Page Specific End ------------------------- */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* ------------------------ Help Page Specific Start ------------------------- */
-
-
-
-/* Help Sidebar */
-.help-sidebar-wrapper {
-    display: flex;
-    flex-direction: row;
-    height: 100%;
-    position: relative;
-}
-
-#help-sidebar {
-    background-color: #F5F5F5;
-    width: 340px;
-    height: 100%;
-    padding: 0 30px 60px 30px;
-    overflow-y: auto;
-    overflow-x: hidden;
-    display: flex;
-    flex-direction: column;
-    margin-top: 0;
-    border-right: 1px solid var(--border_color);
-    white-space: normal;
-    position: absolute;
-    left: 0;
-    top: 0;
-}
-
-.help-sidebar-title {
-    padding: 16px 0 0px 0;
-    position: sticky; /* Use sticky positioning for flexibility */
-    top: 0; /* Align it at the top of its container */
-    background-color: #F5F5F5; /* Ensure it has a background color */
-    z-index: 1; /* Ensure it stays above other elements */
-}
-
-#help-sidebar h4 {
-    font-size: 16px;
-    font-weight: 700;
-    margin-bottom: 16px;
-}
-
-#help-sidebar ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
-
-#help-sidebar ul li {
-    margin: 10px 0;
-    position: relative;
-}
-
-#help-sidebar ul li a {
-    color: var(--nav_text_color);
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 700;
-    padding: 5px 30px; /* Adjusted padding to cover full width including icon */
-    display: block;
-    position: relative;
-    border-radius: 5px;
-}
-
-#help-sidebar ul li a.active {
-    background-color: #E4E4E4;
-    border-radius: 5px;
-}
-
-#help-sidebar ul ul li a.active {
-    background-color: transparent;
-}
-
-#help-sidebar ul li a:hover {
-    background-color: #FAFAFA;
-    border-radius: 5px;
-}
-
-#help-sidebar ul li.has-submenu > a:hover {
-    background-color: #FAFAFA;
-    border-radius: 5px;
-}
-
-#help-sidebar ul ul li a {
-    font-size: 14px;
-    font-weight: 600;
-}
-
-#help-sidebar ul ul li a:hover {
-    background-color: #FAFAFA;
-    border-radius: 5px;
-}
-
-#help-sidebar ul ul {
-    padding-left: 0px;
-    overflow: hidden;
-    max-height: 0;
-    transition: max-height 0.3s ease-in-out;
-}
-
-#help-sidebar ul li.has-submenu > a::before {
-    content: '';
-    display: inline-block;
-    width: 24px;
-    height: 24px;
-    background: url('assets/angle-down.png') no-repeat center center;
-    background-size: contain;
-    position: absolute;
-    left: 5px; /* Adjusted position to align with padding */
-    top: 50%;
-    transform: translateY(-50%) rotate(-90deg);
-    transition: transform 0.3s;
-}
-
-#help-sidebar ul li.has-submenu.open > a::before {
-    transform: translateY(-50%) rotate(0deg);
-}
-
-#help-sidebar ul li.has-submenu > a {
-    cursor: pointer;
-}
-
-#help-sidebar ul li a[href="#user-guide"]:hover {
-    border-radius: 5px;
-}
-
-
-
-
-
-/* Help Contents */
-#help-page-content {
-    padding: 0 40px 60px 40px;
-    flex-grow: 1;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    margin-top: 0;
-    margin-left: 340px; /* This margin should match the sidebar width */
-    position: relative;
-}
-
-#help-content-header {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    padding: 0px 0px;
-    justify-content: center;
-}
-
-.help-content-section {
-    display: none;   
-}
-
-.help-content-section.active {
-    display: block;
-}
-
-.date-last-updated {
-    padding: 16px 0 20px 0;
-}
-
-.date-last-updated h4 {
-    font-weight: 400;
-    font-size: 12px;
-}
-
-/* help content section main title for subpages */
-.help-content-section-title h4 {
-    padding: 0 0 0px 0;
-    line-height: 1.188;
-    /* margin-bottom: 1.5rem; */
-    color: #0A2347;
-    font-weight: 700;
-    font-size: 1.8rem;
-}
-
-/* help content section main title for subpages */
-#user-guide .help-content-section-title h4,
-#databases .help-content-section-title h4 {
-    padding: 0 0 0px 0;
-    line-height: 1.188;
-    margin-bottom: 3rem;
-    color: #0A2347;
-    font-weight: 700;
-    font-size: 1.8rem;
-}
-
-/* help content section titles whithin the subpages */
-.help-content-section h5 {
-    padding: 10px 0px 10px 0px; /* here */
-    margin-top: 1.5rem;
-    margin-bottom: 10px;
-    font-weight: 700;
-    color: #0A2347;
-    font-size: 1.2rem;
-    line-height: 1.333;
-}
-
-/* help content section sub-titles whithin the subpages */
-.help-content-section h6 {
-    padding: 10px 0px 10px 0px; /* here */
-    font-weight: 700;
-    color: #0A2347;
-    font-size: 1rem;
-    line-height: 1.333;
-}
-
-/* help content section sub-titles whithin the subpages */
-.help-content-section h2 {
-    padding: 10px 0px 10px 0px; /* here */
-    font-weight: 700;
-    color: #0A2347;
-    font-size: 1rem;
-    line-height: 1.333;
-}
-
-.help-content-section p {
-    padding: 0 0 0px 0;
-    font-weight: 500;
-    font-size: 0.95rem;
-    letter-spacing: 0.15px;
-    line-height: 1.6;
-    margin-bottom: 20px;
-}
-
-.highlight_style {
-    background-color: #FFE082; /* Soft yellow with an orange tint */
-    padding: 0px 0px; /* Small padding for better visibility */
-    border-radius: 4px; /* Rounded corners for a modern look */
-    color: #333; /* Dark text color for good contrast + also the color used for texts in td */
-}
-
-#general-comments,
-#gene-search-field,
-#protein-domain-search-fields,
-#text-search-fields,
-#mutation-search-page,
-#expression-search-pages {
-    margin-bottom: 40px;
-}
-
-.help-content-section ul,
-.help-content-section ol {
-    padding: 0px 0px 0px 40px;
-    font-weight: 500;
-    font-size: 0.95rem;
-    letter-spacing: 0.15px;
-    line-height: 1.6;
-}
-
-#gene-search-field ul {
-    margin-bottom: 20px;
-}
-
-#introduction .update-article-button {
-    display: inline-block;
-    padding: 10px 20px;
-    margin-top: 10px;
-    background-color: #0070d2;
-    color: #fff;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: bold;
-    border-radius: 20px;
-    text-align: center;
-    transition: background-color 0.3s ease;
-}
-
-#introduction .update-article-button:hover {
-    background-color: #005bb5;
-    color: #fff;
-    text-decoration: none;
-}
-
-
-/* Highlight the selected sub-section title */
-.help-content-section div.highlight h5, .help-content-section div.highlight h6 {
-    background-color: #f0f8ff;
-    padding: 10px 0px 10px 0px;
-    border-radius: 4px;
-}
-
-/* Ensure that only the title is highlighted, not the whole section */
-.help-content-section div.highlight {
-    background-color: transparent;
-}
-
-
-code {
-    background-color: #f0f4f8; /* Light blue-gray background similar to the screenshot */
-    padding: 2px 6px; /* Padding to make it stand out */
-    border-radius: 4px; /* Rounded corners for smooth look */
-    font-size: 90%; /* Slightly smaller font size for code elements */
-    color: #333; /* Dark gray for the text color */
-    font-family: 'Consolas', 'Courier New', Courier, monospace; /* Consolas font is really good! */
-    border: 1px solid #d1e3f0; /* Subtle border to give it depth */
-}
-
-
-
-
-
-#help-page-content a {
-    color: #005BB5;
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.3s ease, text-decoration 0.3s ease;
-}
-
-#help-page-content a:hover {
-    color: #004799;
-    text-decoration: underline;
-    cursor: pointer;
-}
-
-#help-page-content a:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(0, 91, 181, 0.5);
-}
-
-#help-page-content a:active {
-    color: #003E73;
-    text-decoration: underline;
-}
-
-
-
-
-
-/* Scoped Table Styling for Help Page */
-#help-page-content .table-wrapper {
-    border: 1px solid #ddd; /* Apply border to the wrapper */
-    border-radius: 8px; /* Rounded corners for the entire table section */
-    overflow: hidden; /* Ensure content doesn't overflow the rounded corners */
-    margin: 20px 0;
+    #intro .hero-section .read-more {
+        font-size: 16px;
+    }
+
+    #cards {
+        gap: 60px; /* Larger gap between cards */
+        margin-top: 65px;
+        max-width: 1700px;
+    }
+
+    .card {
+        width: 450px;
+    }
+
+    .card img {
+        height: 200px; /* Larger image height */
+    }
+
+    .card-subtitle h3 {
+        font-size: 16px; /* Larger heading */
+    }
+
+    .card-subtitle p {
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    footer {
+        margin-top: 25px;
+        padding: 40px 30px 15px 30px; /* Increase padding in the footer */
+    }
+
+    .footer-section h3 {
+        font-size: 16px;
+    }
+
+    .footer-section ul {
+        font-size: 14px;
+    }    
+}
+
+/* For very large screens like 2560px and above */
+@media screen and (min-width: 2560px) {
+    #intro .hero-section {
+        margin-bottom: 25px;
+    }
+
+    #intro .hero-section .hero-section-content {
+        padding: 70px 0px 60px 0px; 
+        max-width: 57%;
+    }
+
+    #intro .hero-section h2 {
+        font-size: 26px; /* Larger font size */
+    }
+
+    #intro .hero-section p {
+        font-size: 18px;
+    }
+
+    #intro .hero-section .read-more {
+        margin-top: 10px;
+        font-size: 18px;
+    }
+
+    #cards {
+        gap: 60px; /* Larger gap between cards */
+        margin-top: 65px;
+        max-width: 1700px;
+    }
+
+    .card {
+        width: 450px;
+    }
+
+    .card img {
+        height: 200px; /* Larger image height */
+    }
+
+    .card-subtitle h3 {
+        font-size: 16px;
+    }
+
+    .card-subtitle p {
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    footer {
+        margin-top: 25px;
+        padding: 50px 40px 20px 40px; /* Further increase padding */
+    }
+
+    .footer-section h3 {
+        font-size: 16px;
+    }
+
+    .footer-section ul {
+        font-size: 14px;
+    }      
 }
-
-/* Table Styling */
-#help-page-content table {
-    width: 100%;
-    border-collapse: collapse; /* Ensures internal borders between cells */
-}
-
-/* General styles for table header and cells */
-#help-page-content th, 
-#help-page-content td {
-    padding: 12px 15px;
-    text-align: left;
-    border-bottom: 1px solid #ddd; /* Apply bottom border for rows */
-    border-right: 1px solid #ddd;  /* Vertical borders between cells */
-}
-
-/* Remove right border from the last column to avoid double borders */
-#help-page-content th:last-child, 
-#help-page-content td:last-child {
-    border-right: none;
-}
-
-/* Remove the bottom border from the last row */
-#help-page-content tr:last-child td {
-    border-bottom: none;
-}
-
-/* Table header background styling */
-#help-page-content th {
-    background-color: #f0f8ff; /* Light blue background for headers */
-    font-weight: 600;
-    color: #333;
-    font-size: 0.95rem;
-    letter-spacing: 0.15px;
-    line-height: 1.333;
-    margin-bottom: 1.5rem;
-}
-
-#help-page-content td {
-    background-color: #fff; /* White background for table cells */
-    line-height: 1.6;
-    font-weight: 400;
-    /* font-size: 15px; */
-}
-
-
-#help-page-content td.search_type {
-    min-width: 130px;
-    max-width: 140px;
-    background-color: #fff; /* White background for table cells */
-    line-height: 1.6;
-    font-weight: 400;
-    /* font-size: 15px; */
-}
-
-
-#help-page-content td.example {
-    min-width: 180px;
-    max-width: 200px;
-    background-color: #fff; /* White background for table cells */
-    line-height: 1.6;
-    font-weight: 400;
-    /* font-size: 15px; */
-}
-
-
-
-#help-page-content td.mutation_type {
-    min-width: 250px;
-    max-width: 260px;
-    background-color: #fff; /* White background for table cells */
-    line-height: 1.6;
-    font-weight: 400;
-    /* font-size: 15px; */
-}
-
-
-/* Styling for the image section in Description Search Field */
-#description-search-field .image-wrapper {
-    text-align: center; 
-    margin-top: 20px; 
-    margin-bottom: 20px; 
-}
-
-#description-search-field .description-image {
-    width: 100%; /* Make the image responsive */
-    max-width: 700px; /* Set a max-width for the image */
-    height: auto; /* Maintain aspect ratio */
-    border: 1px solid #ddd; /* Light border around the image */
-    border-radius: 8px; /* Rounded corners */
-    padding: 5px; /* Add some padding inside the border */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow for depth */
-}
-
-
-
-
-
-
-
-
-/* ------------------------ Help Page Specific End ------------------------- */
-
-
-
-
-
-
-
-
-
 
+/* ------------------------ Home Page End ------------------------- */
 
 /* ------------------------ Autosuggest Styles Start ------------------------- */
-
-
 
 /* Ensure the form-group is relatively positioned */
 .form-group {
@@ -3475,8 +827,3215 @@ code {
     color: var(--body_text_color); /* Maintain consistent text color */
 }
 
-
-
-
+.no-suggestions {
+    pointer-events: none; /* Disable hover, click, etc. */
+    color: #999;
+    background-color: #f1f1f1;
+    text-align: center;
+}
 
 /* ------------------------ Autosuggest Styles End ------------------------- */
+
+/* ------------------------ Search Pages (Gene, Mutation, Protein, and Expressions) Styles Start ------------------------- */
+
+/* ------------------------ Gene Search Page Start ------------------------- */
+
+#search-intro {
+    position: relative;
+    width: 100%; /* Full width of the page */
+    margin-bottom: 10px; /* Space below the hero section */
+    box-sizing: border-box; /* Include padding and borders in width */
+}
+
+#search-intro .search-hero-section {
+    color: #ffffff; /* Change the text color to white for better contrast */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertically centers content */
+    align-items: center; /* Horizontally centers content */
+    width: 100%; /* Full width of the section */
+    box-sizing: border-box;
+    position: relative;
+    height: auto; 
+    padding: 15px 15px 15px 15px; 
+    text-align: center;
+    z-index: 1; /* Ensure the content is above the background image */
+}
+
+/* Banner Images Start */
+/* Gene Search Hero Image */
+#gene-search-hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: url('assets/gene_search_hero.png'); /* Background image */
+    background-size: cover; /* Image covers entire section */
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 1; /* Increase the opacity to make the image more visible but subtle */
+    z-index: -1; /* Place the image behind the content */
+}
+
+#gene-search-hero-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.1); /* Darker overlay to enhance text readability */
+    z-index: 0; /* Overlay behind content, but above the image */
+}
+
+/* Mutation Search Hero Image */
+#mutation-search-hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: url('assets/mutation_search_hero.png'); 
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 1; 
+    z-index: -1; 
+}
+
+#mutation-search-hero-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.1); 
+    z-index: 0; 
+}
+
+/* Protein Search Hero Image */
+#protein-search-hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: url('assets/protein_search_hero.png'); 
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 1; 
+    z-index: -1; 
+}
+
+#protein-search-hero-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.1); 
+    z-index: 0; 
+}
+
+/* Expression-Stages Search Hero Image */
+#stage-search-hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: url('assets/expression_stage_search_hero.png'); 
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 1; 
+    z-index: -1; 
+}
+
+#stage-search-hero-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.1); 
+    z-index: 0; 
+}
+
+/* Expression-Tissues Search Hero Image */
+#tissue-search-hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: url('assets/expression_tissue_search_hero.png'); 
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 1; 
+    z-index: -1; 
+}
+
+#tissue-search-hero-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.1); 
+    z-index: 0; 
+}
+
+/* Expression-Embryo Search Hero Image */
+#embryo-search-hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: url('assets/expression_embryo_search_hero.png'); 
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 1; 
+    z-index: -1; 
+}
+
+#embryo-search-hero-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.1); 
+    z-index: 0; 
+}
+
+/* Compare and Convert Search Hero Image */
+#compare-convert-search-hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: url('assets/compare_convert_hero.png'); 
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 1; 
+    z-index: -1; 
+}
+
+#compare-convert-search-hero-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.1); 
+    z-index: 0; 
+}
+/* Banner Images End */
+
+#search-intro .search-hero-section * {
+    position: relative;
+    z-index: 1; /* Ensures text is above the background overlay */
+}
+
+#search-intro .search-hero-section h2 {
+    font-size: 20px; 
+    font-weight: 700;
+    margin-bottom: 10px; 
+    text-align: center; 
+    letter-spacing: 1px; 
+}
+
+#search-intro .search-hero-section p {
+    line-height: 1.6; 
+    text-align: center; 
+    font-weight: 400;
+    font-size: 14px; 
+    margin: 0 auto; 
+    max-width: 90%; 
+}
+
+#search-intro .search-hero-section a {
+    margin-top: 10px; 
+    padding: 8px 15px;
+    background-color: rgba(255, 255, 255, 0.1); 
+    color: #ffffff; 
+    font-size: 13px; 
+    font-weight: 600; 
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+#search-intro .search-hero-section a:hover {
+    background-color: rgba(255, 255, 255, 0.3); 
+}
+
+.search-param-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0px 20px 40px 20px; 
+    box-sizing: border-box; 
+}
+
+/* Form Section */
+#search-param {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0px 100px;
+    width: 100%;
+    max-width: 1200px;
+    background-color: #ffffff; /* Card-like appearance */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.search-param-column-1,
+.search-param-column-2 {
+    width: 100%;
+    min-width: 0; /* Prevent fixed-width shrinking */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch; /* Ensure columns stretch to full width */
+    flex-grow: 1; /* Allow the columns to grow equally */
+}
+
+
+.form-group {
+    width: 100%; 
+    margin-bottom: 20px; 
+}
+
+/* Group Headers = Group Titles */
+.form-group h4 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--body_text_color); ;
+    margin-bottom: 20px;
+}
+
+/* Labels */
+.form-group h5 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--body_text_color); ;
+    margin-bottom: 5px;
+    margin-right: 0px;
+}
+
+.splice-variant-row label {
+    display: flex;
+    align-items: center;
+    cursor: pointer; 
+    margin-right: 20px;
+}
+
+.more-than-one-gene-deletion label {
+    display: flex;
+    align-items: center;
+    cursor: pointer; 
+    margin-right: 20px;
+}
+
+.label-container label {
+    display: flex;
+    align-items: center;
+    cursor: pointer; 
+    margin-right: 20px;
+}
+
+label h5 {
+    margin-bottom: 0; 
+}
+
+/* Input Fields */
+.form-group input[type="text"],
+.form-group select {
+    height: 35px;
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    transition: border-color 0.3s;
+}
+
+.form-group textarea {
+    height: 50px; 
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    resize: vertical; /* Allows users to resize the textarea vertically */
+}
+
+.form-group input[type="text"]:hover,
+.form-group textarea:hover,
+.form-group input[type="text"]:focus,
+.form-group textarea:focus,
+.form-group select:hover,
+.form-group select:focus {
+    border-color: #068EF1; 
+    outline: none; 
+}
+
+.form-group input[type="text"],
+.form-group textarea,
+.form-group select {
+    transition: border-color 0.3s ease-in-out;
+}
+
+.form-group input[type="checkbox"],
+.form-group input[type="radio"] {
+    margin-right: 8px;
+}
+
+/* Ensure the form actions span both columns */
+.form-actions {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 80px;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    width: 100%;
+    padding: 10px;
+    background-color: #ffffff; 
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1); 
+    z-index: 1000; /* Ensure it appears above other content */
+}
+
+/* Search Page Buttons */
+.form-actions button {
+    font-family: 'Open Sans', sans-serif;
+    width: 140px;
+    height: 40px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--button_text_color);
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.form-actions button[type="reset"] {
+    background-color: #F2F7F9; 
+    color: #222222;
+}
+
+.form-actions button[type="reset"]:hover {
+    background-color: #DFEAEE;
+}
+
+/* Inactive state of the search button */
+#search-button:disabled {
+    background-color: #6ABBF7; /* Inactive background color */
+    cursor: not-allowed; /* Change cursor to indicate it's not clickable */
+}
+
+/* Active state of the search button */
+#search-button {
+    background-color: var(--button_bkgr_color); /* Active background color */
+    color: var(--button_text_color);
+    cursor: pointer; /* Pointer cursor to indicate it's clickable */
+    transition: background-color 0.3s ease-in-out; /* Smooth transition */
+}
+
+#search-button:hover:not(:disabled) {
+    background-color: var(--button_hover_bkgr_color); /* Hover color when active */
+}
+
+/* ------- Group Specific ------- */
+
+/* Container for longest splice variant row */
+.splice-variant-row {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+
+.more-than-one-gene-deletion {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+
+.splice-variant-row h5 {
+    margin: 0 0 0 0; /* Remove the bottom margin to keep the elements aligned */
+}
+
+.more-than-one-gene-deletion h5 {
+    margin: 0 0 0 0; /* Remove the bottom margin to keep the elements aligned */
+}
+
+/* Container for location fields */
+.location-row {
+    display: flex;
+    align-items: center;
+    gap: 0px; 
+    margin-bottom: 20px;
+}
+
+.location-row h5 {
+    margin: 0 10px 0 0; 
+}
+
+.location-row h5:nth-of-type(2),
+.location-row h5:nth-of-type(3) {
+    margin-left: 30px; /* Apply left margin only to the second and third h5 elements (From and To) */
+}
+
+.location-type-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.location-type-row select {
+    width: 100%; /* Set to full width */
+    max-width: 158px; /* Set a max-width to limit size */
+    margin-right: 60px; /* Adjust margin for spacing */
+}
+
+.location-type-row label {
+    display: flex;
+    align-items: center;
+    cursor: pointer; 
+    margin-right: 20px;
+}
+
+.location-type-row .chromosome_title {
+    margin-right: 10px;
+}
+
+.location-radio-group {
+    display: flex;
+    align-items: center;
+    gap: 0px; /* Space between the radio button labels */
+}
+
+@media screen and (max-width: 1100px) {
+    .location-type-row {
+        flex-direction: column; /* Stack the items vertically */
+        align-items: flex-start; /* Align items to the start */
+    }
+
+    .location-radio-group {
+        flex-direction: row; /* Align radio buttons in a row */
+        width: 100%; /* Ensure it takes full width */
+        margin-top: 10px; /* Add space between select and radio buttons */
+        gap: 10px; /* Space between radio buttons */
+    }
+
+    /* Make the select dropdown full width on mobile */
+    .location-type-row select {
+        width: 100%;
+        margin-bottom: 10px; /* Add space below the dropdown */
+    }
+
+    /* Style the radio button labels to avoid excessive spacing */
+    .location-radio-group label {
+        margin-bottom: 0; /* Remove default margin */
+    }
+}
+
+.location-row input[type="text"] {
+    flex: 1; /* Make the select and input fields take up available space equally */
+}
+
+/* Description and Phenotype checkboxes next to text area titles*/
+.label-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Ensure the h5 and checkboxes are on opposite sides */
+    width: 100%; /* Ensures the container takes up the full width */
+    margin-bottom: 10px; /* Add some space below the container */
+}
+
+.checkbox-container {
+    display: flex;
+    gap: 10px; /* Space between each checkbox label */
+}
+
+.label-container h5 {
+    margin: 0;
+}
+
+/* Style for the help icon */
+.search-page-help-icon {
+    width: 16.52x;
+    height: 14.125px;
+    margin-left: 8px; /* Space between the title and the icon */
+    cursor: pointer;  /* Indicate that it’s clickable */
+    vertical-align: middle; /* Aligns the icon vertically with the text */
+}
+
+.form-group .search-page-help-content {
+    display: none; /* Ensure it is hidden by default */
+    background-color: #f0f8ff; /* Light blue background */
+    color: #484848;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+}
+
+.form-group .search-page-help-content-no-icon {
+    background-color: #f0f8ff; /* Light blue background */
+    color: #484848;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+}
+
+.form-group .search-page-help-content a {
+    color: #005BB5;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.form-group .search-page-help-content a:hover {
+    color: #004799;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.form-group .search-page-help-content ul,
+.form-group .search-page-help-content-no-icon ul {
+    margin-top: 10px; /* Add left padding to indent the list */
+    margin-left: 40px; /* Add left padding to indent the list */
+    padding-left: 0; /* Ensure no extra padding on the list */
+}
+
+.form-group .search-page-help-content ul li,
+.form-group .search-page-help-content-no-icon ul li {
+    margin-bottom: 5px; /* Add some spacing between list items */
+    font-size: 14px; /* Adjust the font size */
+}
+
+/* ------------------------ Gene Search Page End ------------------------- */
+
+/* 
+Note that styles used above for gene search page will be used below for other search pages.
+Other search pages (other than gene) will have specific and adjusted styles below.
+*/
+
+/* ------------------------ Mutation Search Page Start ------------------------- */
+
+/* Shared styles for mutation-type and mutation-source containers */
+.mutation-type-container, .mutation-source-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Set consistent vertical gap between labels */
+}
+
+/* Shared label styles for both containers */
+.mutation-type-container label, .mutation-source-container label {
+    display: flex; /* Use flex to align checkbox and text */
+    align-items: center; /* Center align the checkbox and label text */
+    margin-bottom: 0; /* Remove bottom margin */
+    gap: 5px; /* Set a small horizontal gap between checkbox and text */
+    cursor: pointer;
+}
+
+/* Specific input styles for both containers */
+.mutation-type-container label input, .mutation-source-container label input {
+    margin-bottom: 0; /* Ensure no bottom margin below inputs */
+}
+
+/* Input styles for number inputs in mutation-type container */
+.mutation-type-container input[type="number"] {
+    height: 25px;
+    width: 75px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 0; /* Remove bottom margin */
+    margin-left: 5px; /* Add space between text and number input */
+    transition: border-color 0.3s ease-in-out;
+}
+
+/* Responsive layout for input numbers */
+@media screen and (max-width: 1100px) {
+    #search-vertical-content {
+        overflow-x: hidden;
+    }
+
+    /* Adjust the layout for labels and inputs in the mutation-type container */
+    .mutation-type-container label {
+        display: flex; /* Use flexbox layout */
+        align-items: center; /* Center-align checkbox and label text */
+        justify-content: flex-start; /* Align checkbox and label text to start */
+        gap: 10px; /* Space between checkbox and text */
+        width: auto; /* Allow label to fit its content */
+    }
+
+    /* Stack the number input below the label */
+    .mutation-type-container label {
+        flex-wrap: wrap; /* Allow wrapping of elements inside the label */
+    }
+
+    /* Move number input to a new line */
+    .mutation-type-container input[type="number"] {
+        width: 25%; /* Make the number input take full width */
+        margin-left: 0; /* Remove left margin */
+        margin-top: 5px; /* Add a bit of space above the input */
+        order: 2; /* Move input to the next row */
+    }
+}
+
+/* Hover and focus state for number inputs */
+.mutation-type-container input[type="number"]:hover,
+.mutation-type-container input[type="number"]:focus {
+    border-color: #068EF1; 
+    outline: none; 
+}
+
+/* ------------------------ Mutation Search Page End ------------------------- */
+
+/* ------------------------ Protein Search Page Start ------------------------- */
+
+.orthologs-category {
+    margin-bottom: 20px;
+}
+
+.orthologs-category h5 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.orthologs-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.orthologs-container label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+}
+
+.orthologs-container i {
+    font-style: italic; /* Ensure the species names are italic */
+}
+
+#species-selection {
+    grid-column: 1 / span 2; /* Span across both columns */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px; /* Space below the dropdown */
+}
+
+#species-selection label {
+    margin-right: 15px; /* Slightly more space between label and dropdown */
+    font-size: 16px; 
+    font-weight: 600; 
+    color: var(--body_text_color); ;
+}
+
+#species-selection select {
+    padding: 8px 12px; 
+    font-size: 14px; 
+    border-radius: 4px;
+    border: 1px solid #ccc; 
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for interactions */
+}
+
+/* Hover and focus effects for the dropdown */
+#species-selection select:hover,
+#species-selection select:focus {
+    border-color: #0070d2; 
+    box-shadow: 0 0 5px rgba(0, 112, 210, 0.5);
+    outline: none;
+}
+
+/* Optgroup (not selectable) styling within the dropdown */
+#species-selection select optgroup {
+    font-weight: bold; 
+    color: #555; 
+    padding: 5px 0; 
+    background-color: #f0f0f0; 
+}
+
+/* Options styling within the dropdown */
+#species-selection select option {
+    padding-left: 10px; 
+    color: var(--body_text_color); ;
+    background-color: #fff; 
+}
+
+/* Hover effect for options */
+#species-selection select option:hover {
+    background-color: #e0e0e0; 
+}
+
+/* ------------------------ Protein Search Page End ------------------------- */
+
+/* ------------------------ Expression (Stages) Search Page Start ------------------------- */
+
+/* General Styles used for all expression search pages */
+.search-param-column-full {
+    grid-column: 1 / span 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.search-param-column-full .more-explanation {
+    background-color: #f0f8ff;
+    color: #484848;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+}
+
+
+.search-param-column-full .more-explanation {
+    line-height: 1.6;
+}
+
+.search-param-column-full .more-explanation a {
+    color: #005BB5;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.search-param-column-full .more-explanation a:hover {
+    color: #004799;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.search-param-column-full .more-explanation a:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 91, 181, 0.5);
+}
+
+.search-param-column-full .more-explanation a:active {
+    color: #003E73;
+    text-decoration: underline;
+}
+
+.search-param-column-full .more-explanation ul {
+    margin-top: 10px; 
+    margin-left: 40px; 
+    padding-left: 0; 
+}
+
+.search-param-column-full .more-explanation ul li {
+    margin-bottom: 5px; 
+    font-size: 14px; 
+}
+
+#stage-expression-page .form-group textarea,
+#tissue-expression-page .form-group textarea,
+#embryo-expression-page .form-group textarea {
+    width: 100%;
+    max-width: 550px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: border-color 0.3s;
+}
+
+#stage-expression-page .form-group,
+#tissue-expression-page .form-group,
+#embryo-expression-page .form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+/* Two-column layout */
+.two-column-wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 100px;
+    width: 100%;
+    max-width: 1000px;
+    margin-bottom: 0px;
+}
+
+.form-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+#stage-expression-page select,
+#tissue-expression-page select,
+#embryo-expression-page select,
+#stage-expression-page input[type="text"],
+#tissue-expression-page input[type="text"],
+#embryo-expression-page input[type="text"] {
+    width: 100%;
+    height: 35px;
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: border-color 0.3s;
+}
+
+#stage-expression-page textarea:hover,
+#tissue-expression-page textarea:hover,
+#embryo-expression-page textarea:hover,
+#stage-expression-page textarea:focus,
+#tissue-expression-page textarea:focus,
+#embryo-expression-page textarea:focus,
+#stage-expression-page select:hover,
+#tissue-expression-page select:hover,
+#embryo-expression-page select:hover,
+#stage-expression-page input[type="text"]:hover,
+#tissue-expression-page input[type="text"]:hover,
+#embryo-expression-page input[type="text"]:hover,
+#stage-expression-page select:focus,
+#tissue-expression-page select:focus,
+#embryo-expression-page select:focus,
+#stage-expression-page input[type="text"]:focus,
+#tissue-expression-page input[type="text"]:focus,
+#embryo-expression-page input[type="text"]:focus {
+    border-color: #068EF1;
+    outline: none;
+}
+
+#stage-expression-page .form-group .search-page-help-content,
+#tissue-expression-page .form-group .search-page-help-content,
+#embryo-expression-page .form-group .search-page-help-content {
+    max-width: 550px;
+    display: none;
+    background-color: #f0f8ff;
+    color: #484848;
+    font-size: 14px;
+    font-weight: 500;    
+    padding: 10px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+}
+
+.search-for-expression-help-content {
+    display: none;
+    max-width: 550px;
+    background-color: #f0f8ff;
+    color: #484848;
+    font-weight: 500;
+    font-size: 14px;
+    padding: 10px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+}
+
+.search-for-expression-help-content a {
+    color: #005BB5;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.search-for-expression-help-content a:hover {
+    color: #004799;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.search-for-expression-help-content ul {
+    margin-top: 10px; 
+    margin-left: 40px; 
+    padding-left: 0; 
+}
+
+.search-for-expression-help-content ul li {
+    margin-bottom: 5px; 
+    font-size: 14px; 
+}
+
+/* Ensure consistent styling for all titles */
+#stage-expression-page h4,
+#tissue-expression-page h4,
+#embryo-expression-page h4 {
+    font-size: 16px; 
+    font-weight: 700; 
+    margin: 0; 
+    padding-bottom: 20px; 
+}
+
+/* Styling for the Sample Profiles dropdown */
+#profile {
+    max-width: 550px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* ------------------------ Expression (Stages) Search Page End ------------------------- */
+
+/* ------------------------ Expression (Tissues) Search Page Start ------------------------- */
+
+/* Wrapper for Enrichment fields */
+.enrichment-wrapper {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: space-between;
+    gap: 20px; /* Maintain spacing between the elements */
+    width: 100%; 
+    padding: 0 40px;
+}
+
+/* Flexbox container for rows */
+.enrichment-row {
+    display: flex;
+    align-items: center;
+    flex: 1 1 45%; /* Flex-grow: 1, Flex-shrink: 1, Flex-basis: 45% - ensures they shrink and take up half the width */
+    gap: 10px; /* Adjust the gap between the fields */
+    margin-bottom: 0px;
+    min-width: 460px; /* Set a minimum width to ensure readability */
+}
+
+.enrichment-row h5:nth-of-type(2),
+.enrichment-row h5:nth-of-type(3) {
+    margin-left: 30px; 
+}
+
+.enrichment-row select {
+    flex: 1; /* Make the select and input fields take up available space equally */
+}
+
+/* ------------------------ Expression (Tissues) Search Page End ------------------------- */
+
+/* ------------------------ Expression (Embryos) Search Page Start ------------------------- */
+
+/* Three-column layout */
+.three-column-wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 100px;
+    width: 100%;
+    max-width: 1000px;
+    margin-bottom: 20px;
+}
+
+.form-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+#stage-expression-page select,
+#tissue-expression-page select,
+#embryo-expression-page select,
+#stage-expression-page input[type="text"],
+#tissue-expression-page input[type="text"],
+#embryo-expression-page select {
+    width: 100%;
+    height: 35px;
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: border-color 0.3s;
+}
+
+#stage-expression-page textarea:hover,
+#tissue-expression-page textarea:hover,
+#embryo-expression-page textarea:hover,
+#stage-expression-page textarea:focus,
+#tissue-expression-page textarea:focus,
+#embryo-expression-page textarea:focus,
+#stage-expression-page select:hover,
+#tissue-expression-page select:hover,
+#embryo-expression-page select:hover,
+#stage-expression-page input[type="text"]:hover,
+#tissue-expression-page input[type="text"]:hover,
+#embryo-expression-page input[type="text"]:hover,
+#stage-expression-page select:focus,
+#tissue-expression-page select:focus,
+#embryo-expression-page select:focus,
+#stage-expression-page input[type="text"]:focus,
+#tissue-expression-page input[type="text"]:focus,
+#embryo-expression-page input[type="text"]:focus {
+    border-color: #068EF1;
+    outline: none;
+}
+
+/* ------------------------ Expression (Embryos) Search Page Specific End ------------------------- */
+
+/* ------------------------ Search Pages (Gene, Mutation, Protein, and Expressions) Styles Start ------------------------- */
+
+/* ------------------------ Compare Page + Compare Result Start ------------------------- */
+
+/* Form Section */
+#compare-param {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+    background-color: #ffffff; /* Card-like appearance */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Ensure each form group takes full width of its column */
+.search-param-column {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+#compare-page .form-group textarea {
+    height: 200px;
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    resize: vertical; 
+}
+
+#compare-page .form-group textarea:hover,
+#compare-page .form-group textarea:focus {
+    border-color: #068EF1;
+    outline: none;
+}
+
+#compare-button,
+#convert-button {
+    background-color: var(--button_bkgr_color);
+    color: var(--button_text_color);
+    cursor: pointer; 
+    transition: background-color 0.3s ease-in-out; 
+}
+
+#compare-button:hover,
+#convert-button:hover {
+    background-color: var(--button_hover_bkgr_color);
+}
+
+#compare-page .search-param-column-full {
+    grid-column: 1 / span 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 0px;
+}
+
+/* Result box styles - replaces the textareas */
+.result-box {
+    width: 100%;
+    min-height: 100px; /* Set a minimum height */
+    padding: 16px 16px;
+    border: 1px solid #ddd; /* Same border as the text area */
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    overflow-y: auto; /* Allow scrolling if content overflows */
+    box-sizing: border-box;
+}
+
+/* Ensures padding is added to the text inside */
+.result-box p {
+    margin: 0; 
+    line-height: 1.6;
+    white-space: pre-wrap; /* Preserve white space and wrap the text */
+    word-wrap: break-word; /* Ensure long words break correctly */
+}
+
+/* ------------------------ Compare Page + Compare Result End ------------------------- */
+
+/* ------------------------ Display Page (Search Results) Start ------------------------- */
+
+/* Add keyframes for modern slide-in and slide-out animations */
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+.sidebar-wrapper {
+    display: flex;
+    height: 100%;
+    position: relative;
+}
+
+#sidebar-icon-container {
+    width: 50px;
+    height: 100%;
+    background-color: #F0F0F0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 16px;
+    position: relative; /* Important for absolute positioning of help icon */
+    z-index: 100;
+    border-right: 1px solid var(--border_color);
+    transition: transform 0.4s ease;
+}
+
+#active-line {
+    position: absolute;
+    border-radius: 2px;
+    left: 2px;
+    width: 3px;
+    height: 31.5px; /* Adjust height to match icon container height */
+    background-color: var(--active_icon_border_color);
+    transition: top 0.3s ease; /* Smooth transition */
+    top: 16px; /* Ensure there's an initial value for top */
+}
+
+.icon-container {
+    user-select: none;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px; /* Add bottom margin for vertical spacing */
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease; /* Add transition for smooth background change */
+    border: 7px solid transparent; /* Default transparent border to maintain size */
+    border-radius: 6px; 
+}
+
+.icon-container:hover {
+    background-color: #ffffff; /* Change this to your desired hover background color */
+    border-radius: 6px; 
+    border-color: #ffffff; /* Change border color on hover */
+}
+
+.icon-container .list-icon {
+    width: 21.8px;
+    height: 18.65px;
+    transition: transform 0.4s ease;
+}
+
+.tooltip-text {
+    font-weight: 400;
+    font-size: 14px;
+    visibility: hidden;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px;
+    position: absolute;
+    z-index: 100;
+    top: 40%;
+    left: 110%;
+    transform: translate(10px, -50%);
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 37%;
+    left: -4px; /* Offset the arrow to the left of the tooltip */
+    transform: translateX(-65%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent #555 transparent transparent; /* Triangle pointing left */
+}
+
+.icon-container:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+#sidebar {
+    background-color: #F5F5F5;
+    width: 380px; /* Adjust the width to match your layout */
+    height: 100%;
+    padding: 0 0 0px 50px;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    margin-top: 0;
+    border-right: 1px solid var(--border_color);
+    white-space: normal;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: translateX(0);
+    transition: transform 0.4s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+#sidebar.collapsed {
+    animation: slideOut 0.4s forwards;
+}
+
+#sidebar.collapsed #active-line {
+    opacity: 0;
+}
+
+#sidebar.expanded #active-line {
+    opacity: 1;
+}
+
+#sidebar.expanded {
+    animation: slideIn 0.4s forwards;
+}
+
+#main-content {
+    padding: 0 20px;
+    flex-grow: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: margin-left 0.4s ease;
+    margin-top: 0;
+    margin-left: 340px; /* Adjust to match the sidebar width minus 40px for proper layout */
+}
+
+#main-content.shifted {
+    margin-left: 0; /* Shift content back to original position when sidebar is collapsed */
+}
+
+/*-------------------------------- Table Start -------------------------------- */
+
+.table-container {
+    margin-top: 20px;
+    flex-grow: 1;
+    width: 100%;
+    overflow: hidden;
+    padding: 0;
+    text-align: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px; /* Rounded corners for a modern look */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow for elevation */
+}
+
+#scrollableTable {
+    flex-grow: 1;
+    overflow-x: auto;
+    overflow-y: auto;
+    transition: all 0.3s ease;
+    border-radius: 8px; /* Match border radius of container */
+
+}
+
+#scrollableTable table {
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+    border-bottom: 1px solid #e0e0e0;    ;
+    width: 100%;
+    border-collapse: separate;
+    font-family: 'Open Sans', sans-serif; 
+    border-spacing: 0px;
+}
+
+/*
+STICKY ROW
+Normal css box-shadow works for the header as it is a single html element
+*/
+
+#scrollableTable tr.sticky {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background: #E3F3FB; /* Blue background for headers */
+    box-shadow: 0 0 6px rgba(0,0,0,0.25);
+}
+
+#scrollableTable th {
+    border-top: none;
+    border-left: none;
+    border-right: 2px solid #e0e0e0;
+    border-bottom: 2px solid #e0e0e0;
+    padding: 12px 16px; /* More padding for better readability */
+    text-align: left;
+    box-sizing: border-box;
+    min-width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    position: relative; /* For positioning pseudo-elements */
+    max-width: 250px;
+    vertical-align: middle;
+    color: var(--body_text_color); ; 
+    font-size: 14px; 
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Remove the right border from the last th element */
+#scrollableTable th:last-child {
+    border-right: none; 
+}
+
+#scrollableTable th:hover {
+    background-color: #C5E7F6; /* Darker blue on hover */
+    cursor: move; /* Change to pointer to indicate interaction */
+}
+
+/*
+STICKY COLUMN
+Avoid undesirable overlapping shadows by creating a faux shadow on the ::after psudo-element instead of using the css box-shadow property.
+*/
+
+#scrollableTable th.sticky {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  background: #E3F3FB; 
+}
+
+#scrollableTable th.sticky:hover {
+    background-color: #C5E7F6; /* Darker blue on hover */
+    cursor: move; /* Change to pointer to indicate interaction */
+}
+
+#scrollableTable td.sticky {
+position: sticky;
+left: 0;
+z-index: 1;
+background: #F3F8FD;
+}
+
+#scrollableTable th.sticky::after,
+#scrollableTable td.sticky::after {
+  content: "";
+  position: absolute;
+  right: -6px;
+  top: 0;
+  bottom: -1px;
+  width: 5px;
+  border-left: 1px solid #e0e0e0;
+  background: linear-gradient(90deg, rgba(0,0,0,0.04) 0%, rgba(0,0,0,0) 100%);
+}
+
+/*------------------------- Sorting Arrow Styling Start -------------------------*/
+
+/* Container for the sorting icons - only applies to sortable columns */
+th.sortable .sort-icons {
+    display: inline-flex;
+    flex-direction: column;
+    position: absolute;
+    right: 8px; /* Position the arrows to the right side of the header */
+    top: 50%;
+    transform: translateY(-50%);
+    justify-content: center;
+    align-items: center;
+}
+
+/* Upward and downward arrows - both are initially visible but faded */
+th.sortable .arrow-up, 
+th.sortable .arrow-down {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    opacity: 0.25; /* Light, inactive state */
+    transition: opacity 0.3s, border-color 0.3s; /* Smooth transitions */
+}
+
+/* Upward arrow specific style */
+th.sortable .arrow-up {
+    border-bottom: 7px solid var(--body_text_color); ; 
+    margin-bottom: 2px; /* Space between up and down arrows */
+}
+
+/* Downward arrow specific style */
+th.sortable .arrow-down {
+    border-top: 7px solid var(--body_text_color); ;
+    margin-top: 2px;
+}
+
+/* Active state for the ascending arrow */
+th.sorted-asc .arrow-up {
+    opacity: 1; /* Fully visible when active */
+    border-bottom-color: #000000; /* Ensure the arrow is filled with black */
+}
+
+/* Inactive state for the descending arrow when sorted in ascending */
+th.sorted-asc .arrow-down {
+    opacity: 0.3; /* Fade the down arrow when ascending */
+}
+
+/* Active state for the descending arrow */
+th.sorted-desc .arrow-down {
+    opacity: 1; /* Fully visible when active */
+    border-top-color: #000000; /* Ensure the arrow is filled with black */
+}
+
+/* Inactive state for the ascending arrow when sorted in descending */
+th.sorted-desc .arrow-up {
+    opacity: 0.3; /* Fade the up arrow when descending */
+}
+
+/*------------------------- Sorting Arrow Styling End -------------------------*/
+
+#scrollableTable td {
+    border-top: none;
+    border-left: none;
+    border-right: 2px solid #e0e0e0;
+    border-bottom: 2px solid #e0e0e0;    
+    padding: 12px 16px; /* More padding for better readability */
+    text-align: left;
+    box-sizing: border-box;
+    min-width: 90px; 
+    max-width: 160px; 
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+    word-wrap: break-word;
+    position: relative; /* For positioning pseudo-elements */
+    vertical-align: top;
+    cursor: default;
+    line-height: 1.6;
+    color: var(--body_text_color); ; /* Slightly darker text for better contrast */
+    font-size: 14px; /* Clean and modern font size */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Remove the right border from the last td element */
+#scrollableTable td:last-child {
+    border-right: none; 
+}
+
+/* Custom column styling + width styling depending on the column cell content */
+#scrollableTable .checkbox_col {
+    min-width: 40px; /* Set smaller minimum width for checkbox */
+    max-width: 50px; 
+    padding: 12px 4px 4px 4px;
+    text-align: center; /* Center the checkbox within the cell */
+    cursor: auto;
+}
+
+#scrollableTable .gene_col {
+    min-width: 90px; 
+    max-width: 250px; 
+}
+
+#scrollableTable .sage_col {
+    min-width: 100px; 
+    max-width: 110px; 
+}
+
+#scrollableTable .tissue_sage_col {
+    min-width: 230px; 
+    max-width: 240px; 
+}
+
+.tissue_sage_col {
+    text-align: center;  /* Center the content horizontally */
+    vertical-align: top; /* Align the content at the top of the table cell */
+    padding: 0px;        /* Ensure there's padding for spacing */
+}
+
+.tissue_sage_col img {
+    display: block;
+    margin: 0 auto 0px auto; /* Center the image and add space below it */
+}
+
+.tissue_sage_col span {
+    display: block;
+    margin-top: 0px; /* Space between text and sort icons */
+}
+
+#scrollableTable .embryo_tissue_sage_col {
+    min-width: 160px; 
+    max-width: 170px; 
+}
+
+.embryo_tissue_sage_col {
+    text-align: center;  /* Center the content horizontally */
+    vertical-align: top; /* Align the content at the top of the table cell */
+    padding: 0px;        /* Ensure there's padding for spacing */
+}
+
+.embryo_tissue_sage_col img {
+    display: block;
+    margin: 0 auto 0px auto; /* Center the image and add space below it */
+}
+
+.embryo_tissue_sage_col span {
+    display: block;
+    margin-top: 0px; /* Space between text and sort icons */
+}
+
+#scrollableTable .expr_pic_col {
+    min-width: 280px; 
+    max-width: 290px; 
+}
+
+#scrollableTable th.expr_pic_col {
+    width: auto;
+    text-align: left;
+    vertical-align: middle;
+    cursor: move;
+}
+
+#scrollableTable td.expr_pic_col {
+    padding: 12px 10px 12px 10px;
+    max-width: none; /* Ensure pic_col does not have a max-width */
+    width: auto;
+    text-align: left;
+    vertical-align: top;
+    cursor: move;
+}
+
+#scrollableTable .species_col {
+    min-width: 280px; 
+    max-width: 290px; 
+}
+
+#scrollableTable .seqname_col {
+    min-width: 160px; 
+    max-width: 170px; 
+}
+
+#scrollableTable .cds_col {
+    min-width: 130px; 
+    max-width: 140px; 
+}
+
+#scrollableTable .uniprot_col {
+    min-width: 120px; 
+    max-width: 160px; 
+}
+
+
+#scrollableTable .chr_col {
+    min-width: 100px; 
+    max-width: 110px; 
+}
+
+#scrollableTable .nuc_pos_col {
+    min-width: 190px; 
+    max-width: 200px; 
+}
+
+#scrollableTable .gpos_col {
+    min-width: 90px; 
+    max-width: 100px; 
+}
+
+#scrollableTable .ppos_col {
+    min-width: 110px; 
+    max-width: 150px; 
+}
+
+#scrollableTable .text_col {
+    min-width: 350px;
+    max-width: 350px;
+}
+
+#scrollableTable .protsize_col {
+    min-width: 100px; 
+    max-width: 110px; 
+}
+
+#scrollableTable th.pic_col {
+    max-width: none; /* Ensure pic_col does not have a max-width */
+    width: auto;
+    text-align: left;
+    vertical-align: middle;
+    cursor: move;
+}
+
+#scrollableTable td.pic_col {
+    padding: 12px 10px 12px 10px;
+    max-width: none; /* Ensure pic_col does not have a max-width */
+    width: auto;
+    text-align: left;
+    vertical-align: top;
+    cursor: move;
+}
+
+#scrollableTable td.pic_col {
+    border: none;
+}
+
+#scrollableTable tr:last-child td.pic_col {
+    border-bottom: 2px solid #e0e0e0;    
+}
+
+/* Sequence-specific styling */
+#scrollableTable td.seq_col {
+    min-width: 500px; /* Set smaller minimum width for checkbox */
+    max-width: 600px; 
+    word-wrap: break-word;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 14px;
+    padding: 10px;
+
+}
+
+/* Color-code of tissue + embryo column headers = taking over 100% width of their relative header cells */
+.tissue_sage_col img,
+.embryo_tissue_sage_col img {
+    position: absolute;
+    top: 0; 
+    left: 0;
+    width: 100%; /* Make image span the entire width of the th */
+    height: 5px; /* Maintain the original height or adjust as needed */
+}
+
+/* Style for links inside table cells */
+#scrollableTable td a {
+    color: #005BB5;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+/* Hover effect for links */
+#scrollableTable td a:hover {
+    color: #004799;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* Active state for links */
+#scrollableTable td a:active {
+    color: #003E73;
+    text-decoration: underline;
+}
+
+/* Column dragging feature styles */
+.dragging {
+    opacity: 0.5;
+}
+
+.drag-over {
+    border: 2px dashed #000;
+}
+
+.drag-left-border {
+    border-left: 2px dashed #000;
+}
+
+.drag-right-border {
+    border-right: 2px dashed #000;
+}
+
+.drag-indicator {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 6px;
+    background-color: #059BD8;
+}
+
+/* Align table title to the sidebar icon container */
+#main-content-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 16px 0px 16px 0px;
+    justify-content: center;
+}
+
+.table-title {
+    margin: 0;
+    font-size: 1em;
+    font-weight: bold;
+    color: var(--body_text_color);
+    z-index: 101;
+}
+
+/* Sidebar content styling */
+.sidebar-content {
+    display: none;
+    color: var(--body_sidebar_color);
+}
+
+.sidebar-content.active {
+    display: block;
+}
+
+/* I think I have to delete these not used anymore = check again
+.close {
+    color: #555;
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close:hover {
+    color: #000;
+}
+*/
+
+/*-------------------------------- Table End -------------------------------- */
+
+/* ------------------------ Display Page Sidebar CONTENT ------------------------ */
+
+/* all sidebar titles */
+.sidebar-title {
+    padding: 16px 0 16px 0;
+    position: sticky; /* Use sticky positioning for flexibility */
+    top: 0; /* Align it at the top of its container */
+    background-color: #F5F5F5; /* Ensure it has a background color */
+    z-index: 1; /* Ensure it stays above other elements */
+    border-bottom: 1px solid var(--border_color); /* Optional: Add a bottom border for visual separation */
+}
+
+.sidebar-content h4 {
+    font-weight: 600;
+    font-size: 14px;
+    padding: 0 0 0 20px;
+}
+
+/* all sidebar left and right padding */
+#sidebar-info {
+    padding: 0px 20px 0px 20px;
+    overflow-y: auto;
+    flex: 1; /* Allows this section to grow and shrink as needed */
+}
+
+/* ------------------------ Sidebar 1 (Search Results) ------------------------ */
+#database-content {
+    padding: 0px 0px 0px 0px;
+}
+
+.first-content-title {
+    font-weight: 700; 
+    font-size: 15px; 
+    margin: 15px 0 10px 0;
+}
+
+.content-title{
+    font-weight: 700; 
+    font-size: 15px; 
+    margin: 0 0 10px 0;
+}
+
+.content-info {
+    font-weight: 500; 
+    font-size: 14px;
+    margin: 0 0 20px 0;
+    line-height: 1.6;
+}
+
+.list-info {
+    font-weight: 500; 
+    font-size: 14px;
+    margin: 0 0 0 0;
+    line-height: 1.6;
+}
+
+.list-header {
+    display: flex; /* Use flexbox to align items */
+    align-items: center; /* Vertically center items */
+    justify-content: space-between; /* Adjust the space between items */
+}
+
+.list-header p {
+    margin: 0; /* Remove margin to align text vertically with the icon */
+    font-weight: 700; /* Make the title bold */
+    font-size: 15px; /* Set the font size */
+}
+
+.gene-list-container {
+    border: 1px solid var(--border_color);
+    border-radius: 5px;
+    padding: 10px 10px 10px 10px;
+    margin: 10px 0 20px 0;
+    background-color: #f9f9f9; 
+}
+
+.copy-icon-row {
+    display: flex;
+    justify-content: space-between; /* Space between the info and the icon */
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 10px; /* Add padding for spacing */
+    border-bottom: 1px solid var(--border_color); /* Horizontal line for separation */
+}
+
+.genes-found-info {
+    font-size: 14px;
+    font-weight: 600; /* Slightly bolder font */
+    color: var(--body_text_color); ; /* Slightly darker color */
+    margin-right: auto; /* Aligns the text to the left */
+    line-height: 18.65px;
+}
+
+.copy-icon-container {
+    position: relative; /* Needed for positioning the tooltip */
+    display: inline-block; /* Ensure the tooltip aligns properly */
+}
+
+#copy-icon {
+    width: 21.8px;
+    height: 18.65px;
+    cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
+    transition: transform 0.2s ease;
+    margin-right: 10px; /* Space between icon and tooltip */
+}
+
+.copy-tooltip-text {
+    font-size: 14px;
+    font-weight: 400;
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px;
+    width: 130px; /* Fixed width for the tooltip */
+    bottom: 125%; /* Position above the icon */
+    right: 10%; /* Align tooltip to the right edge of the copy icon */
+    transform: translateX(0); /* Reset the transform if needed */
+    white-space: nowrap;
+    transition: opacity 0.3s;
+    z-index: 10;
+    margin-bottom: 5px;
+    display: flex; /* Use flexbox for centering */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+.copy-tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    right: 10%; /* Adjust position to align properly */
+    transform: translateX(0);
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+.copy-icon-container:hover .copy-tooltip-text,
+.copy-icon-container:focus .copy-tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* ------------------------ Sidebar 2 (Display Options) ------------------------ */
+#display-options-content {
+    padding: 0px 0px 0px 0px;
+}
+
+.column-filter-container {
+    border: none;
+    padding: 0px 10px 10px 5px;
+    margin: 10px 0 0px 0;
+}
+
+.display-filter-container {
+    border: none;
+    padding: 0px 10px 10px 5px;
+    margin: 10px 0 20px 0;
+}
+
+.display-option-form label {
+    display: block;                       /* Makes labels block-level elements */
+    font-family: 'Open Sans', sans-serif; /* Apply Open Sans font */
+    font-size: 14px;                      /* Set font size */
+    font-weight: 500; 
+    margin-bottom: 5px;                  /* Adds space between labels */
+    color: var(--body_sidebar_color);
+    cursor: pointer;
+    user-select: none;
+}
+
+.display-option-form p {
+    display: block;                       /* Makes labels block-level elements */
+    font-family: 'Open Sans', sans-serif; /* Apply Open Sans font */
+    font-size: 14px;                      /* Set font size */
+    font-weight: 500; 
+    margin-bottom: 5px;                  /* Adds space between labels */
+    color: var(--body_sidebar_color);
+    user-select: none;
+}
+
+.display-option-form input[type="checkbox"] {
+    margin-right: 5px;                   /* Adds space between checkbox and label text */
+}
+
+.display-option-form h5 {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    margin-right: 0px;
+    font-size: 14px;                 
+    font-weight: 500; 
+    margin-bottom: 5px;                
+    color: var(--body_sidebar_color);
+}
+
+.display-option-form textarea {
+    height: 50px; 
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    resize: vertical; 
+}
+
+.display-option-form input[type="number"] {
+    height: 25px;
+    width: 32%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    transition: border-color 0.3s;
+}
+
+.display-option-form select {
+    height: 35px;
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    transition: border-color 0.3s;
+}
+
+.display-option-form select:hover,
+.display-option-form select:focus {
+    border-color: #068EF1; 
+    outline: none; 
+}
+
+.display-option-form select {
+    transition: border-color 0.3s ease-in-out;
+}
+
+.display-option-form input[type="number"]:hover,
+.display-option-form input[type="number"]:focus,
+.display-option-form textarea:hover,
+.display-option-form textarea:focus {
+    border-color: #068EF1; 
+    outline: none; 
+}
+
+.display-option-form input[type="number"],
+.display-option-form textarea {
+    transition: border-color 0.3s ease-in-out;
+}
+
+/* Centering the Update Display button */
+.button-container {
+    background-color: #F5F5F5; /* Match the background color with sidebar */
+    padding: 15px;
+    border-top: 1px solid var(--border_color); /* a border for visual separation */
+    position: sticky; /* Keep the button at the bottom of the viewport */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Center the button horizontally */
+    z-index: 1; /* Ensure it stays above other elements */
+}
+
+.update-display-btn {
+    font-family: 'Open Sans', sans-serif; 
+    width: 140px;
+    height: 40px;
+    font-size: 14px;
+    font-weight: 600; /* Slightly bolder font */
+    background-color: var(--button_bkgr_color);
+    color: var(--button_text_color);
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    margin: 0 auto; /* Center the button horizontally */
+}
+
+.update-display-btn:hover {
+    background-color: var(--button_hover_bkgr_color);
+}
+
+/* ------------------------ Sidebar 3 (Export Data) ------------------------ */
+
+#export-content {
+    padding: 0px 0px 0px 0px;
+}
+
+.export-option-container {
+    border: none;
+    padding: 0px 10px 10px 5px;
+    margin: 10px 0 20px 0;
+    
+}
+
+/* Styling for export buttons in the sidebar */
+.export-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 10px; /* Space between the buttons */
+    padding: 10px 5px;
+}
+
+#export-csv-button, #export-txt-button {
+    font-family: 'Open Sans', sans-serif;
+    width: 140px;
+    height: 40px;
+    font-size: 14px;
+    font-weight: 600;
+    background-color: var(--button_bkgr_color);
+    color: var(--button_text_color);
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    margin: 0 auto; /* Center the button horizontally */
+}
+
+#export-csv-button:hover, #export-txt-button:hover {
+    background-color: var(--button_hover_bkgr_color);
+}
+
+/* ------------------------ Sidebar 4 (Help) ------------------------ */
+
+#help-content {
+    padding: 0px 0px 0px 0px;
+}
+
+.help-content-container {
+    background-color: #f9f9f9; 
+    border: 1px solid var(--border_color);
+    border-radius: 5px;
+    padding: 10px 10px 10px 10px;
+    margin: 10px 0 20px 0;
+}
+
+.help-content-container p {
+    font-family: 'Open Sans', sans-serif; 
+    line-height: 1.6;
+    padding: 10px 0;
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: 500; /* Slightly bolder font */
+    color: var(--body_text_color); ; /* Slightly darker color */
+    user-select: none;
+}
+
+/* Highlight the selected sub-section title */
+.help-content-container p:hover {
+    background-color: #f0f8ff;
+    padding: 10px 0px 10px 0px;
+    border-radius: 4px;
+}
+
+/* Centering a Help button similar to the other sections */
+.help-button-container {
+    background-color: #F5F5F5; 
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Center the button horizontally */
+    z-index: 1; /* Ensure it stays above other elements */
+}
+
+.help-button {
+    display: inline-block;
+    line-height: 25px;     /* Match the line-height to the button height for vertical centering */
+    text-align: center;
+    text-decoration: none; /* Remove the underline */
+    font-family: 'Open Sans', sans-serif;
+    width: 240px;
+    height: 40px;
+    font-size: 14px;
+    font-weight: 600; /* Slightly bolder font */
+    background-color: var(--button_bkgr_color);
+    color: var(--button_text_color);
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    margin: 0 auto; /* Center the button horizontally */
+}
+
+.help-button:hover {
+    background-color: var(--button_hover_bkgr_color);
+}
+
+/* ------------------------ Display Page (Search Results) End ------------------------- */
+
+/* ------------------------ Help Page Start ------------------------- */
+
+/* Help Sidebar */
+.help-sidebar-wrapper {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    position: relative;
+}
+
+#help-sidebar {
+    background-color: #F5F5F5;
+    width: 340px;
+    height: 100%;
+    padding: 0 30px 60px 30px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    margin-top: 0;
+    border-right: 1px solid var(--border_color);
+    white-space: normal;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.help-sidebar-title {
+    padding: 16px 0 0px 0;
+    position: sticky; /* Use sticky positioning for flexibility */
+    top: 0; /* Align it at the top of its container */
+    background-color: #F5F5F5; /* Ensure it has a background color */
+    z-index: 1; /* Ensure it stays above other elements */
+}
+
+#help-sidebar h4 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+#help-sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#help-sidebar ul li {
+    margin: 10px 0;
+    position: relative;
+}
+
+#help-sidebar ul li a {
+    color: var(--body_text_color);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 5px 30px; /* Adjusted padding to cover full width including icon */
+    display: block;
+    position: relative;
+    border-radius: 5px;
+}
+
+#help-sidebar ul li a.active {
+    background-color: #E4E4E4;
+    border-radius: 5px;
+}
+
+#help-sidebar ul ul li a.active {
+    background-color: transparent;
+}
+
+#help-sidebar ul li a:hover {
+    background-color: #FAFAFA;
+    border-radius: 5px;
+}
+
+#help-sidebar ul li.has-submenu > a:hover {
+    background-color: #FAFAFA;
+    border-radius: 5px;
+}
+
+#help-sidebar ul ul li a {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+#help-sidebar ul ul li a:hover {
+    background-color: #FAFAFA;
+    border-radius: 5px;
+}
+
+#help-sidebar ul ul {
+    padding-left: 0px;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease-in-out;
+}
+
+#help-sidebar ul li.has-submenu > a::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background: url('assets/angle-down.png') no-repeat center center;
+    background-size: contain;
+    position: absolute;
+    left: 5px; /* Adjusted position to align with padding */
+    top: 50%;
+    transform: translateY(-50%) rotate(-90deg);
+    transition: transform 0.3s;
+}
+
+#help-sidebar ul li.has-submenu.open > a::before {
+    transform: translateY(-50%) rotate(0deg);
+}
+
+#help-sidebar ul li.has-submenu > a {
+    cursor: pointer;
+}
+
+#help-sidebar ul li a[href="#user-guide"]:hover {
+    border-radius: 5px;
+}
+
+/* Help sidebar styling end */
+
+/* Help Contents  on right side of the help sidebar */
+#help-page-content {
+    padding: 0 40px 60px 40px;
+    flex-grow: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    margin-top: 0;
+    margin-left: 340px;
+    position: relative;
+}
+
+#help-content-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0px 0px;
+    justify-content: center;
+}
+
+.help-content-section {
+    display: none;   
+}
+
+.help-content-section.active {
+    display: block;
+}
+
+.date-last-updated {
+    padding: 16px 0 20px 0;
+}
+
+.date-last-updated h4 {
+    font-weight: 400;
+    font-size: 12px;
+}
+
+/* help content section main title for subpages */
+.help-content-section-title h4 {
+    padding: 0 0 0px 0;
+    line-height: 1.188;
+    color: var(--body_text_color); ;
+    font-weight: 700;
+    font-size: 1.8rem;
+}
+
+/* help content section main title for subpages */
+#user-guide .help-content-section-title h4,
+#databases .help-content-section-title h4,
+#FAQs .help-content-section-title h4 {
+    padding: 0 0 0px 0;
+    line-height: 1.188;
+    margin-bottom: 3rem;
+    color: var(--body_text_color); ;
+    font-weight: 700;
+    font-size: 1.8rem;
+}
+
+#domain-abbreviations .help-content-section-title h4 {
+    padding: 0 0 0px 0;
+    line-height: 1.188;
+    margin-bottom: 1rem;
+    color: var(--body_text_color); ;
+    font-weight: 700;
+    font-size: 1.8rem;
+}
+
+/* help content section titles whithin the subpages */
+.help-content-section h5 {
+    padding: 10px 0px 10px 0px; 
+    margin-top: 1.5rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+    color: var(--body_text_color); ;
+    font-size: 1.2rem;
+    line-height: 1.333;
+}
+
+/* help content section sub-titles whithin the subpages */
+.help-content-section h6 {
+    padding: 10px 0px 10px 0px; 
+    font-weight: 700;
+    color: var(--body_text_color); ;
+    font-size: 1rem;
+    line-height: 1.333;
+}
+
+/* help content section sub-titles whithin the subpages */
+.help-content-section h2 {
+    padding: 10px 0px 10px 0px; 
+    font-weight: 700;
+    color: var(--body_text_color); ;
+    font-size: 1rem;
+    line-height: 1.333;
+}
+
+.help-content-section p {
+    padding: 0 0 0px 0;
+    font-weight: 500;
+    font-size: 0.95rem;
+    letter-spacing: 0.15px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* suggested highlight style to be used for the highlight display feature of the display pages (search result pages) */
+.highlight_style {
+    background-color: #FFE082; /* Soft yellow with an orange tint */
+    padding: 0px 0px; /* Small padding for better visibility */
+    border-radius: 4px; /* Rounded corners for a modern look */
+    color: var(--body_text_color); ; /* Dark text color for good contrast + also the color used for texts in td */
+}
+
+#general-comments,
+#gene-search-field,
+#protein-domain-search-fields,
+#text-search-fields,
+#mutation-search-page,
+#expression-search-pages {
+    margin-bottom: 40px;
+}
+
+.help-content-section ul,
+.help-content-section ol {
+    padding: 0px 0px 0px 40px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    letter-spacing: 0.15px;
+    line-height: 1.6;
+}
+
+#gene-search-field ul {
+    margin-bottom: 20px;
+}
+
+#whats-new li {
+    margin-bottom: 10px;
+}
+
+#introduction .update-article-button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 10px;
+    background-color: #0070d2;
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 20px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+#introduction .update-article-button:hover {
+    background-color: #005bb5;
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Highlight the selected sub-section title */
+.help-content-section div.highlight h5, .help-content-section div.highlight h6 {
+    background-color: #f0f8ff;
+    padding: 10px 0px 10px 0px;
+    border-radius: 4px;
+}
+
+/* Ensure that only the title is highlighted, not the whole section */
+.help-content-section div.highlight {
+    background-color: transparent;
+}
+
+code {
+    background-color: #f0f4f8; /* Light blue-gray background similar to the screenshot */
+    padding: 2px 6px; /* Padding to make it stand out */
+    border-radius: 4px; /* Rounded corners for smooth look */
+    font-size: 90%; /* Slightly smaller font size for code elements */
+    font-weight: 500;
+    color: black; /* Dark gray for the text color */
+    font-family: 'Consolas', 'Courier New', Courier, monospace; /* Consolas font is really good! */
+    border: 1px solid #d1e3f0; /* Subtle border to give it depth */
+}
+
+#help-page-content a {
+    color: #005BB5;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+#help-page-content a:hover {
+    color: #004799;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* Scoped Table Styling for Help Page */
+#help-page-content .table-wrapper {
+    border: 1px solid #ddd; /* Apply border to the wrapper */
+    border-radius: 8px; /* Rounded corners for the entire table section */
+    overflow: hidden; /* Ensure content doesn't overflow the rounded corners */
+    margin: 20px 0;
+}
+
+/* Table Styling */
+#help-page-content table {
+    width: 100%;
+    border-collapse: collapse; /* Ensures internal borders between cells */
+}
+
+/* General styles for table header and cells */
+#help-page-content th, 
+#help-page-content td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd; /* Apply bottom border for rows */
+    border-right: 1px solid #ddd;  /* Vertical borders between cells */
+}
+
+/* Remove right border from the last column to avoid double borders */
+#help-page-content th:last-child, 
+#help-page-content td:last-child {
+    border-right: none;
+}
+
+/* Remove the bottom border from the last row */
+#help-page-content tr:last-child td {
+    border-bottom: none;
+}
+
+/* Table header background styling */
+#help-page-content th {
+    background-color: #f0f8ff; /* Light blue background for headers */
+    font-weight: 600;
+    color: var(--body_text_color); ;
+    font-size: 0.95rem;
+    letter-spacing: 0.15px;
+    line-height: 1.333;
+    margin-bottom: 1.5rem;
+}
+
+#help-page-content td {
+    background-color: #fff; /* White background for table cells */
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+#help-page-content td.search_type {
+    min-width: 130px;
+    max-width: 140px;
+    background-color: #fff; /* White background for table cells */
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+#help-page-content td.example {
+    min-width: 180px;
+    max-width: 200px;
+    background-color: #fff; /* White background for table cells */
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+#help-page-content td.mutation_type {
+    min-width: 250px;
+    max-width: 260px;
+    background-color: #fff; /* White background for table cells */
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+/* Styling for the image section in Description Search Field */
+#description-search-field .image-wrapper {
+    text-align: center; 
+    margin-top: 20px; 
+    margin-bottom: 20px; 
+}
+
+#description-search-field .description-image {
+    width: 100%; /* Make the image responsive */
+    max-width: 700px; /* Set a max-width for the image */
+    height: auto; /* Maintain aspect ratio */
+    border: 1px solid #ddd; /* Light border around the image */
+    border-radius: 8px; /* Rounded corners */
+    padding: 5px; /* Add some padding inside the border */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow for depth */
+}
+
+/* ------------- Table of Domain Abbreviations Start ------------- */
+
+/* Scoped Table Styling for Help Page */
+#domain-abbreviations .table-wrapper {
+    border: 1px solid #ddd; /* Apply border to the wrapper */
+    border-radius: 8px; /* Rounded corners for the entire table section */
+    overflow: hidden; /* Ensure content doesn't overflow the rounded corners */
+    margin: 20px 0;
+}
+
+/* Table Styling */
+#domain-abbreviations table {
+    width: 100%;
+    border-collapse: collapse; /* Ensures internal borders between cells */
+}
+
+/* General styles for table header and cells */
+#domain-abbreviations th {
+    padding: 12px 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd; /* Apply bottom border for rows */
+    border-right: 1px solid #ddd;  /* Vertical borders between cells */
+}
+
+/* Remove right border from the last column to avoid double borders */
+#domain-abbreviations th:last-child, 
+#domain-abbreviations td:last-child {
+    border-right: none;
+}
+
+/* Remove the bottom border from the last row */
+#domain-abbreviations tr:last-child td {
+    border-bottom: none;
+}
+
+/* Table header background styling */
+#domain-abbreviations th {
+    background-color: #f0f8ff; /* Light blue background for headers */
+    font-weight: 600;
+    color: var(--body_text_color); ;
+    font-size: 0.95rem;
+    letter-spacing: 0.15px;
+    line-height: 1.333;
+    margin-bottom: 1.5rem;
+}
+
+#domain-abbreviations td {
+    background-color: #fff; /* White background for table cells */
+    line-height: 1.6;
+    font-size: 0.9rem;
+    font-weight: 400;
+    vertical-align: middle; /* Ensures all cells align content vertically */
+}
+
+.ipr_col {
+    min-width: 150px;
+    max-width: 160px;
+}
+
+@media screen and (min-width: 1920px) {
+    .ipr_col {
+        min-width: 350px;
+        max-width: 360px;
+    }
+
+    .abbrev_col {
+        width: 200px;
+    }
+}
+
+@media screen and (min-width: 2560px) {
+    .ipr_col {
+        min-width: 350px;
+        max-width: 360px;
+    }
+
+    .abbrev_col {
+        width: 200px;
+    }
+}
+
+/* Links for Pfam and SMART */
+.ipr_col a {
+    color: #005BB5; /* Adjust the color for links */
+    text-decoration: none;
+}
+
+.ipr_col a:hover {
+    text-decoration: underline;
+}
+
+.description_col {
+    font-size: 14px;
+    color: var(--body_text_color);
+}
+
+/* Override for description_col to align text to the left */
+#domain-abbreviations .description_col {
+    text-align: left; /* Align text to the left */
+    padding-left: 20px; /* Optional: Add some left padding for spacing */
+}
+
+/* Apply left alignment for both the header (th) and cells (td) in the description column */
+#domain-abbreviations th.description_col {
+    text-align: left; /* Align header text to the left */
+    padding-left: 20px; /* Optional: Add some left padding for consistency */
+}
+
+/* More specific rule to ensure alignment of th elements */
+#domain-abbreviations th:last-child {
+    text-align: left; /* Align the last th element to the left */
+    padding-left: 20px; /* Optional: Add left padding */
+}
+
+/* For the abbreviation column containing the images */
+.abbrev_col {
+    width: 160px;
+    text-align: center; /* Center content horizontally */
+    vertical-align: middle; /* Center content vertically */
+}
+
+/* To ensure the images maintain aspect ratio and are centered */
+.abbrev_col img {
+    max-width: 180px; /* Limit the image width */
+    height: auto;
+    display: block; /* Ensure the image is treated as a block for alignment */
+    margin: 0 auto; /* Center horizontally */
+}
+
+/* To ensure all cells are centered both horizontally and vertically */
+#domain-abbreviations td {
+    padding: 2px 3px; /* Add sufficient padding */
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    text-align: center; /* Center content horizontally */
+    vertical-align: middle; /* Center content vertically */
+}
+
+/* ------------- Table of Domain Abbreviations End ------------- */
+
+/* FAQ Section */
+
+/* First FAQ item has a top border */
+#FAQs .first-faq {
+    border-top: 1px solid #ddd;
+}
+
+/* FAQ item general styles */
+.faq-item {
+    border-bottom: 1px solid #ddd;
+    padding: 5px 0;
+    box-sizing: border-box;
+}
+
+/* Apply hover effect to the entire faq-item */
+.faq-item:hover {
+    background-color: #F4F4F4; /* Hover effect on the entire item */
+}
+
+/* Remove hover effect when the faq-item is open */
+.faq-item.open {
+    background-color: transparent; /* Remove background when open */
+}
+
+#FAQs .faq-question {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--body_text_color) !important; /* Override global styles */
+    text-decoration: none !important; /* Prevent text decoration */
+    padding: 5px 0;
+    min-height: 50px; /* Add a consistent minimum height for each question */
+}
+
+/* FAQ Answer Styling */
+.faq-answer {
+    display: none; /* Hidden by default */
+    margin-top: 20px;
+    padding: 0px 0;
+    font-size: 0.95rem;
+    color: var(--body_text_color); ;
+}
+
+/* Arrow icon now to the left of the question */
+.faq-question::before {
+    content: '';
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    background: url('assets/angle-down.png') no-repeat center center;
+    background-size: contain;
+    margin-right: 10px; /* Space between arrow and text */
+    flex-shrink: 0; /* Prevent the arrow from shrinking or growing */
+    transition: transform 0.3s ease;
+    transform: rotate(-90deg); /* Initially rotate the arrow */
+}
+
+/* Rotate the arrow when the faq-item is open */
+.faq-item.open .faq-question::before {
+    transform: rotate(0deg); /* Rotate back to point downwards when open */
+}
+
+/* Styling for the new FAQ link section */
+.faq-links-section {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.faq-links-section h5 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.faq-links-section ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.faq-links-section li {
+    margin-bottom: 5px;
+}
+
+.faq-links-section a.faq-link {
+    text-decoration: none;
+    color: #0078d4; /* Blue color for the FAQ links */
+    font-size: 1rem;
+}
+
+.faq-links-section a.faq-link:hover {
+    text-decoration: underline;
+}
+
+/* Adjustments to make the smooth scroll better visually */
+.faq-item {
+    scroll-margin-top: 100px; /* Creates space at the top when scrolling to an item */
+}
+
+/* FAQ Answer Image Styling */
+.faq-image-wrapper {
+    text-align: center; /* Center the image */
+    margin-top: 10px; /* Space above the image */
+    margin-bottom: 10px; /* Space below the image */
+}
+
+.faq-image {
+    width: 100%; /* Make the image responsive */
+    max-width: 600px; /* Set a max-width for the image */
+    height: auto; /* Maintain aspect ratio */
+    border: 1px solid #ddd; /* Light border around the image */
+    border-radius: 8px; /* Rounded corners */
+    padding: 5px; /* Add some padding inside the border */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow for depth */
+}
+
+/* Subtitle for FAQ Image */
+#faq10 h6 {
+    text-align: center;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--body_text_color);
+    margin: 0px 0 10px; /* Space around the subtitle */
+}
+
+/* ------------------------ Help Page End ------------------------- */
+
+/* ------------------------ About Start ------------------------- */
+.about_background_section {
+    background-image: url('assets/about-hero.jpeg'); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    opacity: 1;
+}
+
+#about_intro {
+    position: relative;
+}
+
+#about_intro .hero-section {
+    padding: 5px 10% 20px 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0px; /* Gap between content and image */
+    flex-wrap: wrap; /* Ensure responsiveness on smaller screens */
+}
+
+#about_intro .hero-section-content {
+    margin-top: 10px;
+    flex: 1 1 50%; /* Allow the contact details to take 50% width */
+}
+
+.worm-image {
+    margin-top: 99px;
+    flex: 1 1 40%; /* Allow the image to take 40% width */
+    display: flex; /* Use flexbox for alignment */
+    justify-content: center; /* Align the image to the left */
+    align-items: flex-start; /* Align items at the top */
+    text-align: center; /* Center-align the image and caption */
+}
+
+.worm-image img {
+    width: 275px; /* Ensure the image takes full container width */
+    height: auto; /* Set a maximum height relative to the viewport height */
+    object-fit: cover; /* Ensure the image maintains aspect ratio and fills the container */
+    border-radius: 8px; /* Rounded corners for the image */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+}
+
+/* Adjusting font size based on viewport height */
+#about_intro .hero-section h2 {
+    font-size: 24px; /* Larger font size scaling with viewport width */
+    color: var(--body_text_color); ;
+    font-weight: bold;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    max-width: 60%; /* Control width for better readability */
+    line-height: 1.2; /* Adjust line height for better spacing */
+}
+
+/* Adjusting paragraph font size with scaling */
+#about_intro .hero-section p {
+    font-weight: 500;
+    font-size: 16px; /* Font size scales with viewport width */
+    line-height: 1.6;
+    max-width: 100%; /* Align text width with the heading */
+    margin-bottom: 0px;
+    color: var(--body_text_color); ;
+}
+
+/* Container for sections specific to About page */
+.about-section {
+    width: 100%;
+    min-height: auto;
+    padding: 5px 10% 0px 10%;
+    margin: 0px auto;
+    margin-bottom: 0px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Headings for About page */
+.about-section h3 {
+    font-size: 16px;
+    text-align: center;
+    color: var(--body_text_color); ;
+    font-weight: 700;
+    margin-top: 20px;
+    margin-bottom: 5px;   
+    text-align: left;
+    padding-bottom: 0px;
+}
+
+/* Paragraph styles */
+.about-section p {
+    font-size: 16px; 
+    color: var(--body_text_color); ;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+/* List styles */
+.about-section ul {
+    color: var(--body_text_color); ;
+    font-weight: 500;
+    font-size: 16px;     
+    line-height: 1.8;
+    margin-left: 40px;
+    margin-bottom: 20px;
+}
+
+/* Links */
+.about-section a {
+    color: #0070d2;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.about-section a:hover {
+    color: #005bb5;
+    text-decoration: underline;
+}
+
+#history h3 {
+    margin-top: 0;
+}
+
+#cite-us {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background: #F5F5F5;
+    background-size: cover; /* Ensure the image covers the entire section */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Do not repeat the background image */
+    color: var(--body_text_color); ; /* Set the text color to white for better contrast */
+    position: relative; /* Necessary for layering */
+}
+
+#cite-us h3 {
+    font-size: 24px;
+}
+
+#contact {
+    width: 100%;
+    min-height: auto;
+    padding: 0px 5% 40px 10%;
+    margin: 0px auto;
+    margin-bottom: 0px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#contact h3 {
+    margin-top: 0;
+    text-align: left;
+    color: var(--body_text_color); ;
+    font-weight: 700;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+/* Flexbox container for contact section */
+.contact-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 30px; /* Gap between content and image */
+    flex-wrap: wrap; /* Ensure responsiveness on smaller screens */
+}
+
+/* Contact details styles */
+.contact-details {
+    margin-top: 40px;
+    flex: 1 1 50%; /* Allow the contact details to take 50% width */
+}
+
+/* Image section styles */
+.contact-image {
+    margin-top: 40px;
+    flex: 1 1 40%; /* Allow the image to take 40% width */
+    text-align: center; /* Center-align the image and caption */
+}
+
+.contact-image img {
+    width: 450px; /* Ensure the image takes full container width */
+    height: auto; /* Set a maximum height relative to the viewport height */
+    object-fit: cover; /* Ensure the image maintains aspect ratio and fills the container */
+    border-radius: 8px; /* Rounded corners for the image */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+}
+
+.contact-image .image-caption {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #4a5568; /* Muted dark color for caption */
+}
+
+@media screen and (min-width: 1920px) {
+    #about_intro .hero-section h2 {
+        font-size: 26px; 
+    }
+
+    #about_intro .hero-section p {
+        font-size: 18px;
+    }
+
+    .about-section h3 {
+        font-size: 18px;
+    }
+
+    .about-section p {
+        font-size: 18px; 
+    }
+
+    .about-section ul {
+        font-size: 18px;
+    }
+    
+    #usefulness {
+        margin-bottom: 40px;
+    }
+
+    .about-section p,
+    .about-section ul {
+        max-width: 90%;
+    }
+}
+
+@media screen and (min-width: 2560px) {
+    #about_intro .hero-section h2 {
+        font-size: 26px; 
+    }
+
+    #about_intro .hero-section p {
+        font-size: 18px;
+    }
+
+    .about-section h3 {
+        font-size: 18px;
+    }
+
+    .about-section p {
+        font-size: 18px; 
+    }
+
+    .about-section ul {
+        font-size: 18px;
+    }
+    
+    #usefulness {
+        margin-bottom: 40px;
+    }
+
+    .about-section p,
+    .about-section ul {
+        max-width: 90%;
+    }
+}
+
+/* ------------------------ About End ------------------------- */
+
+/* ------------------------ Credits Start ------------------------- */
+
+/* Credits Section Styling */
+.credits-section {
+    padding: 30px;
+    color: var(--body_text_color); ;
+    border-radius: 8px; /* Rounded corners */
+    margin-bottom: 40px;
+}
+
+.credits-section h2 {
+    font-weight: 700;
+    color: var(--body_text_color); ;
+    margin-bottom: 40px;
+}
+
+.credits-section h3 {
+    font-weight: 700;
+    color: var(--body_text_color); ;
+    margin-bottom: 20px;
+}
+
+.credits-section p {
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.6;
+    color: var(--body_text_color); ;
+    margin-bottom: 3rem;
+}
+
+.credits-section a {
+    color: #005BB5;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.credits-section a:hover {
+    color: #004799;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.credits-list {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 30px;
+}
+
+.credits-list li {
+    margin-bottom: 10px;
+}
+
+.credits-list a {
+    color: #005BB5;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.credits-list a:hover {
+    color: #004799;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.credits-section ul {
+    padding-left: 20px;
+}
+
+/* ------------------------ Credits End ------------------------- */
