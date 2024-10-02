@@ -106,65 +106,38 @@ document.addEventListener("DOMContentLoaded", function() {
                 var targetElement = document.getElementById(targetId);
                 var parentLi = this.parentElement;
 
-                // If it's a submenu item, do not apply active class to it
-                if (parentLi.classList.contains("has-submenu")) {
-                    // Handle parent menu item activation
-                    sidebarLinks.forEach(function(link) {
-                        link.classList.remove("active");
-                    });
-                    this.classList.add("active");
+                // Clear "active" class from all links
+                sidebarLinks.forEach(function(link) {
+                    link.classList.remove("active");
+                });
 
-                    // Show the corresponding content section
-                    contentSections.forEach(function(section) {
-                        if (section.contains(targetElement)) {
-                            section.classList.add("active");
-                            var subSections = section.querySelectorAll("div[id]");
-                            subSections.forEach(function(subSection) {
-                                subSection.classList.remove("highlight");
-                            });
-                            document.querySelector('#help-page-content').scrollTo({
-                                top: 0,
-                                behavior: "smooth"
-                            });
-                        } else {
-                            section.classList.remove("active");
-                        }
-                    });
-                } else {
-                    // Handle submenu item activation
-                    var parentMenu = parentLi.closest('li.has-submenu');
-                    sidebarLinks.forEach(function(link) {
-                        link.classList.remove("active");
-                    });
-                    if (parentMenu) {
-                        parentMenu.querySelector('a').classList.add("active");
+                // Set the active class for the clicked link
+                this.classList.add("active");
+
+                // Show the corresponding content section
+                contentSections.forEach(function(section) {
+                    section.classList.remove("active");
+                    if (section.contains(targetElement)) {
+                        section.classList.add("active");
+                        var subSections = section.querySelectorAll("div[id]");
+                        subSections.forEach(function(subSection) {
+                            subSection.classList.remove("highlight");
+                        });
+
+                        // Highlight the target section and scroll smoothly
+                        targetElement.classList.add("highlight");
+                        var offset = targetElement.offsetTop;
+                        document.querySelector('#help-page-content').scrollTo({
+                            top: offset,
+                            behavior: "smooth"
+                        });
+
+                        // Remove the highlight after 3 seconds
+                        setTimeout(function() {
+                            targetElement.classList.remove("highlight");
+                        }, 3000);
                     }
-
-                    // Show the corresponding content section and highlight the subsection
-                    contentSections.forEach(function(section) {
-                        if (section.contains(targetElement)) {
-                            section.classList.add("active");
-                            var subSections = section.querySelectorAll("div[id]");
-                            subSections.forEach(function(subSection) {
-                                subSection.classList.remove("highlight");
-                            });
-                            targetElement.classList.add("highlight");
-
-                            var offset = targetElement.offsetTop;
-                            document.querySelector('#help-page-content').scrollTo({
-                                top: offset,
-                                behavior: "smooth"
-                            });
-
-                            // Remove the highlight after 3 seconds
-                            setTimeout(function() {
-                                targetElement.classList.remove("highlight");
-                            }, 3000);
-                        } else {
-                            section.classList.remove("active");
-                        }
-                    });
-                }
+                });
 
                 // Change the URL without reloading the page
                 history.pushState(null, null, '#' + targetId);
@@ -178,32 +151,48 @@ document.addEventListener("DOMContentLoaded", function() {
             document.getElementById("user-guide").classList.add("active");
         }
 
-        // Add event listener for "GExplore User Guide" to maintain background color and close submenus
+        // Select the links for "Domain Abbreviations" and "FAQs"
+        var domainAbbreviationsLink = document.querySelector('#help-sidebar a[href="#domain-abbreviations"]');
+        var faqsLink = document.querySelector('#help-sidebar a[href="#FAQs"]');
+        
+        // Add event listener for "GExplore User Guide", "Domain Abbreviations", and "FAQs" to maintain background color and close submenus
         var userGuideLink = document.querySelector('#help-sidebar a[href="#user-guide"]');
-        if (userGuideLink) {
-            userGuideLink.addEventListener("click", function(e) {
-                e.preventDefault();
+        
+        if (userGuideLink || domainAbbreviationsLink || faqsLink) {
+            [userGuideLink, domainAbbreviationsLink, faqsLink].forEach(function(link) {
+                if (link) {
+                    link.addEventListener("click", function(e) {
+                        e.preventDefault();
 
-                // Close all open submenus
-                submenuItems.forEach(function(item) {
-                    var itemParentLi = item.parentElement;
-                    var itemSubmenu = item.nextElementSibling;
+                        // Close all open submenus
+                        submenuItems.forEach(function(item) {
+                            var itemParentLi = item.parentElement;
+                            var itemSubmenu = item.nextElementSibling;
 
-                    itemSubmenu.style.maxHeight = null;
-                    itemParentLi.classList.remove("open");
-                });
+                            itemSubmenu.style.maxHeight = null;
+                            itemParentLi.classList.remove("open");
+                        });
 
-                // Activate the "GExplore User Guide" link
-                sidebarLinks.forEach(function(link) {
-                    link.classList.remove("active");
-                });
-                this.classList.add("active");
-                document.getElementById("user-guide").classList.add("active");
-                document.querySelector('#help-page-content').scrollTo({
-                    top: 0,
-                    behavior: "smooth"
-                });
-                history.pushState(null, null, '#user-guide');
+                        // Activate the clicked link
+                        sidebarLinks.forEach(function(link) {
+                            link.classList.remove("active");
+                        });
+                        this.classList.add("active");
+
+                        // Activate the corresponding content section
+                        var targetId = this.getAttribute("href").substring(1);
+                        document.getElementById(targetId).classList.add("active");
+
+                        // Scroll to the top of the help content
+                        document.querySelector('#help-page-content').scrollTo({
+                            top: 0,
+                            behavior: "smooth"
+                        });
+
+                        // Change the URL without reloading the page
+                        history.pushState(null, null, '#' + targetId);
+                    });
+                }
             });
         }
 
@@ -223,6 +212,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
                 // Show the corresponding content section
                 contentSections.forEach(function(section) {
+                    section.classList.remove("active");
                     if (section.contains(targetElement)) {
                         section.classList.add("active");
                         var subSections = section.querySelectorAll("div[id]");
@@ -241,13 +231,59 @@ document.addEventListener("DOMContentLoaded", function() {
                         setTimeout(function() {
                             targetElement.classList.remove("highlight");
                         }, 3000);
-                    } else {
-                        section.classList.remove("active");
                     }
                 });
             }
         }
     }
+
+    // FAQ Toggle Behavior (without scrolling)
+    var faqItems = document.querySelectorAll('.faq-item');
+
+    // Loop through each FAQ item
+    faqItems.forEach(function(item) {
+        var question = item.querySelector('.faq-question');
+        var answer = item.querySelector('.faq-answer');
+
+        question.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            // Toggle the current FAQ item (leave other items unaffected)
+            if (item.classList.contains('open')) {
+                answer.style.display = 'none';
+                item.classList.remove('open');
+            } else {
+                answer.style.display = 'block';
+                item.classList.add('open');
+            }
+
+            // No scrolling behavior when FAQ items are opened or closed
+        });
+    });
+
+    // Smooth Scrolling for FAQ Links (like clicking on topics)
+    var faqLinks = document.querySelectorAll('.faq-link');
+
+    faqLinks.forEach(function(link) {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            // Get the target ID from the href (without the "#")
+            var targetId = this.getAttribute('href').substring(1);
+            var targetElement = document.getElementById(targetId);
+
+            // Scroll to the target element smoothly
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth', // Enable smooth scrolling
+                    block: 'start', // Align the target element to the top of the page
+                    inline: 'nearest'
+                });
+            }
+        });
+    });
+
+    // help page end 
 
     // Copy icon tooltip handling
     var copyIcon = document.getElementById("copy-icon");
@@ -380,11 +416,6 @@ document.addEventListener("DOMContentLoaded", function() {
     updateActiveLinePosition();
     window.addEventListener("resize", updateActiveLinePosition);
 
-
-
-
-
-
     // -------------------- Replace Empty td Feature -------------------- //
     function replaceEmptyTDsInScrollableTable() {
         // Select all td elements within the table that has the id "scrollableTable"
@@ -392,8 +423,8 @@ document.addEventListener("DOMContentLoaded", function() {
         
         // Loop through each td element
         tableCells.forEach(td => {
-            // Exclude td elements with class "checkbox_col" or "pic_col"
-            if (!td.classList.contains('checkbox_col') && !td.classList.contains('pic_col')) {
+            // Exclude td elements with class "checkbox_col" or "pic_col" or "expr_pic_col"
+            if (!td.classList.contains('checkbox_col') && !td.classList.contains('pic_col') && !td.classList.contains('expr_pic_col')) {
                 if (!td.textContent.trim()) {  // Check if the td is empty or contains only whitespace
                     td.textContent = 'N/A';    // Replace the content with "N/A"
                 }
@@ -404,19 +435,6 @@ document.addEventListener("DOMContentLoaded", function() {
     // Ensure that this function runs after the page's content has been fully loaded
     window.addEventListener('load', replaceEmptyTDsInScrollableTable);
     
-
-
-    
-    
-    
-   
-
-
-
-
-
-
-
     // Variables for drag-and-drop functionality
     let dragSrcEl = null;
     let dragIndex = null;
@@ -557,34 +575,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     adjustTableHeight();
 
-
-
-
-
-    
-    
-
-
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     // Function to escape CSV data, handle commas, double quotes, and line breaks
     function escapeCsvField(field) {
         if (!field) {
@@ -598,18 +588,18 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Updated Export functions
 
-    // Get visible table data for export and handle missing data, line breaks, and ignore checkbox and pic columns
+    // Get visible table data for export and handle missing data, line breaks, and ignore checkbox, pic, and expr_pic columns
     function getVisibleTableData() {
         var table = document.querySelector("#scrollableTable table");
 
-        // Filter out the checkbox column and hidden columns by class name
+        // Filter out the checkbox, pic, and expr_pic columns by class name
         var headers = Array.from(table.querySelectorAll('thead th'))
-            .filter(th => th.style.display !== 'none' && !th.classList.contains('checkbox_col') && !th.classList.contains('pic_col'));
+            .filter(th => th.style.display !== 'none' && !th.classList.contains('checkbox_col') && !th.classList.contains('pic_col') && !th.classList.contains('expr_pic_col'));
 
         var rows = Array.from(table.querySelectorAll('tbody tr'));
         var data = rows.map(row => {
             var cells = Array.from(row.querySelectorAll('td'))
-                .filter(td => td.style.display !== 'none' && !td.classList.contains('checkbox_col') && !td.classList.contains('pic_col'));
+                .filter(td => td.style.display !== 'none' && !td.classList.contains('checkbox_col') && !td.classList.contains('pic_col') && !td.classList.contains('expr_pic_col'));
 
             var rowData = {};
             cells.forEach((cell, index) => {
@@ -672,15 +662,6 @@ document.addEventListener("DOMContentLoaded", function() {
             exportAsTXT(tableData);
         });
     }
-
-
-
-
-
-
-
-
-
 
     // New code for enabling/disabling the search button based on form inputs
     var searchButton = document.getElementById("search-button");
@@ -813,30 +794,52 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log("Not an Expression Search page");
     }
 
+    // Check if we are on the Mutation Search page by checking the body ID
+    if (document.body.id === "mutation-search-page") {
+        // Specific code for enabling/disabling the search button based on form inputs in Mutation Search page
+        var searchButton = document.getElementById("search-button");
+        if (searchButton) {
+            // Select only the Gene Name and Allele Name fields specific to Mutation Search page
+            var geneAlleleInputs = document.querySelectorAll('#gene-names, #allele');
+
+            function checkMutationSearchFields() {
+                let isFilled = false;
+
+                // Check if at least one of the relevant fields is filled
+                geneAlleleInputs.forEach(function(input) {
+                    if (input.value.trim() !== "") {
+                        isFilled = true;
+                    }
+                });
+
+                if (isFilled) {
+                    searchButton.disabled = false; // Enable the button
+                } else {
+                    searchButton.disabled = true; // Disable the button
+                }
+            }
+
+            // Add event listeners to the Gene Name and Allele Name fields
+            geneAlleleInputs.forEach(function(input) {
+                input.addEventListener('input', checkMutationSearchFields);
+                input.addEventListener('change', checkMutationSearchFields); // Also listen to change events
+            });
+
+            // Initial check in case the form is pre-filled (e.g., browser autofill)
+            checkMutationSearchFields();
+        }
+
+        // Override the global input listener logic to exclude specific inputs on Mutation Search page
+        var allMutationInputs = document.querySelectorAll('.form-group input, .form-group textarea, .form-group select');
+        allMutationInputs.forEach(function(input) {
+            // Remove event listeners for excluded fields (e.g., Protein Domain)
+            if (input.id === 'protein-domain') {
+                input.removeEventListener('input', checkFormFields);
+                input.removeEventListener('change', checkFormFields);
+            }
+        });
+    }
+
+
     
-
-
-
-    
-
-
-
-
-    
-
-    
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
 });
